@@ -1,14 +1,14 @@
-body{
+body {
     background-image: url("../img/foto_prueba.jpg");
     background-repeat: none;
-    background-size:cover;
+    background-size: cover;
 }
 
-.titulo{
+.titulo {
     margin-top: 10px;
 }
 
-.container{
+.container {
     width: 30%;
     border: solid 5px black;
     border-radius: 30px;
@@ -16,15 +16,15 @@ body{
     backdrop-filter: blur(10px);
 }
 
-.input-correo p{
+.input-correo p {
     margin-bottom: 0px;
 }
 
-.input-correo{
+.input-correo {
     margin-bottom: 20px;
 }
 
-.input-correo input{
+.input-correo input {
     width: 100%;
     text-decoration: none;
     border-radius: 10px;
@@ -32,15 +32,15 @@ body{
     border: solid 2px black;
 }
 
-.input-contra p{
+.input-contra p {
     margin-bottom: 0px;
 }
 
-.input-contra{
+.input-contra {
     margin-bottom: 30px;
 }
 
-.input-contra input{
+.input-contra input {
     width: 100%;
     text-decoration: none;
     border-radius: 10px;
@@ -48,18 +48,19 @@ body{
     border: solid 2px black;
 }
 
-.login{
+.login {
     margin-bottom: 30px;
     border-radius: 20px;
     background-color: #2b82b863;
 }
-.login:hover{
+
+.login:hover {
     margin-bottom: 30px;
     border-radius: 20px;
     background-color: #51a2d4a8;
 }
 
-footer{
+footer {
     background-color: transparent;
     backdrop-filter: blur(3px);
     color: #a3a3a3;
@@ -72,14 +73,14 @@ footer{
     border-top: solid 1px rgba(0, 0, 0, 0.226);
 }
 
-@media(max-width: 768px){
+@media(max-width: 768px) {
 
-    body{
+    body {
         background-size: auto;
         background-position: center;
     }
 
-    .container{
+    .container {
         width: 75%;
         backdrop-filter: blur(6px);
     }
