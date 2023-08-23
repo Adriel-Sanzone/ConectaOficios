@@ -1,0 +1,169 @@
+/* variables */
+:root {
+    /* fuentes(letras) */
+    --fuente: 'Montserrat', sans-serif;
+    --regular: 400;
+    --bold: 700;
+    /* colores */
+    --blanco: #FFFFFF;
+    --naranja: #FF685B;
+    --naranjaOscuro: #E74040;
+    --azul: #252B42;
+    --gris: #737373;
+    --celeste: #EEF4F8;
+}
+
+body {
+    font-family: var(--fuente);
+    background-color: var(--blanco);
+}
+
+/* body .container {
+    padding-inline: 197px;
+    margin-right: 0px;
+    margin-left: 0px;
+} */
+
+/* header */
+header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-family: var(--fuente);
+    height: 90px;
+    margin-block-end: 50px;
+}
+
+header h3 {
+    color: var(--azul);
+    font-weight: var(--bold);
+    font-size: 24px;
+}
+
+header nav a {
+    text-decoration: none;
+    margin: 10px;
+    color: var(--gris);
+    font-weight: var(--bold);
+    font-size: 14px;
+}
+
+header nav a:hover {
+    color: var(--naranja);
+}
+
+header div a {
+    text-decoration: none;
+    margin: 10px;
+    color: var(--naranja);
+    font-weight: var(--bold);
+    font-size: 14px;
+}
+
+header div a:hover {
+    color: var(--gris);
+}
+
+header div .registrarse {
+    color: var(--blanco);
+    border-radius: 5px;
+    background: var(--naranja);
+    padding: 15px 23px;
+}
+
+header div .registrarse:hover {
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.47);
+    color: var(--blanco);
+}
+
+/* inicio */
+.inicio {
+    padding-inline: 197px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    margin-block-end: 80px;
+    font-family: var(--fuente);
+}
+
+.inicio .presentacion {
+    padding: 0;
+    padding-inline-end: 60px;
+}
+
+.inicio .presentacion h5 {
+    color: var(--naranja);
+    font-weight: var(--bold);
+    font-size: 16px;
+    margin-block-end: 30px;
+}
+
+.inicio .presentacion h1 {
+    color: var(--azul);
+    font-weight: var(--bold);
+    font-size: 58px;
+    margin-block-end: 20px;
+}
+
+.inicio .presentacion h4 {
+    color: var(--gris);
+    font-weight: var(--regular);
+    font-size: 20px;
+    line-height: 30px;
+    margin-block-end: 45px;
+}
+
+.inicio .presentacion a {
+    color: var(--naranja);
+    font-weight: var(--bold);
+    font-size: 14px;
+    text-decoration: none;
+    line-height: 22px;
+    padding: 15px 30px;
+    border-radius: 5px;
+    border: 1px solid var(--primary-color, #FF685B);
+}
+
+.inicio .imagen {
+    padding: 0;
+}
+
+/* tarjetas */
+.tarjetas {
+    padding-inline: 197px;
+    font-family: var(--fuente);
+}
+
+.tarjetas .tarjeta {
+    box-shadow: 0px 13px 19px 0px rgba(0, 0, 0, 0.07);
+    padding: 40px;
+}
+
+.tarjetas .tarjeta .icono {
+    margin-block-end: 20px;
+}
+
+.tarjetas .tarjeta .icono i {
+    padding: 20px;
+    border-radius: 200px;
+    background: var(--naranjaOscuro);
+}
+
+.tarjetas .tarjeta hr {
+    color: var(--naranjaOscuro);
+    border: 1px solid var(--naranjaOscuro);
+    width: 50px;
+}
+
+.tarjetas .tarjeta h5 {
+    color: var(--azul);
+    font-weight: var(--bold);
+    font-size: 16px;
+}
+
+.tarjetas .tarjeta p {
+    color: var(--gris);
+    font-weight: var(--regular);
+    font-size: 14px;
+}
