@@ -5,6 +5,8 @@ import UsuariosRoutes from './Backend/Routes/usuarios.js';
 
 
 const app = express();
+
+app.set('view engine', 'ejs');
 app.set('port' , 3000);
 
 app.use(express.urlencoded());
