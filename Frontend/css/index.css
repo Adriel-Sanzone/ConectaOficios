@@ -5,7 +5,7 @@
     --regular: 400;
     --bold: 700;
     /* colores */
-    --blanco: #FFFFFF;
+    --blanco: #FAFAFA;
     --naranja: #FF685B;
     --naranjaOscuro: #E74040;
     --azul: #252B42;
@@ -166,4 +166,22 @@ header div .registrarse:hover {
     color: var(--gris);
     font-weight: var(--regular);
     font-size: 14px;
+}
+
+/* tarjetas-anuncios (kevin)*/
+
+.anuncios{
+    background-color:#EEF4F8;
+} 
+
+.tarjetas .tarjeta-anuncio{
+    background-color: white;
+    padding: 10px;
+    box-sizing: border-box;
+    
+}
+
+
+.cartel{
+    color: #FF685B;
 }
