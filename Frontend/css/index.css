@@ -24,6 +24,13 @@ body {
     margin-left: 0px;
 } */
 
+#mobile-menu-button {
+    display: none;
+    /*Inicialmente oculto en pantallas grandes */
+    cursor: pointer;
+    padding: 10px;
+}
+
 /* header */
 header {
     display: flex;
@@ -46,6 +53,18 @@ header nav a {
     color: var(--gris);
     font-weight: var(--bold);
     font-size: 14px;
+}
+
+header .headerA {
+    margin-inline-end: 90px;
+}
+
+.headerAcceder {
+    color: var(--gris);
+}
+
+.headerAcceder:hover {
+    color: var(--naranja);
 }
 
 header nav a:hover {
@@ -170,18 +189,65 @@ header div .registrarse:hover {
 
 /* tarjetas-anuncios (kevin)*/
 
-.anuncios{
-    background-color:#EEF4F8;
-} 
+.anuncios {
+    background-color: #EEF4F8;
+}
 
-.tarjetas .tarjeta-anuncio{
+.tarjetas .tarjeta-anuncio {
     background-color: white;
     padding: 10px;
     box-sizing: border-box;
-    
+
+}
+
+.cartel {
+    color: #FF685B;
 }
 
 
-.cartel{
-    color: #FF685B;
+@media (max-width: 768px) {
+
+    .inicio .presentacion {
+        padding: 0;
+    }
+
+    .inicio .presentacion h1 {
+        font-size: 40px;
+    }
+
+    .inicio,
+    .tarjetas {
+        padding-inline: 50px;
+    }
+
+    header {
+        display: flex;
+        height: 40px;
+        margin-block-end: 20px;
+        justify-content: space-around;
+        align-items: center;
+        margin-block-start: 20px;
+    }
+
+    header #menu {
+        display: none;
+        /* Oculta el menú en pantallas pequeñas */
+    }
+
+    #mobile-menu-button {
+        display: inline;
+        /* Muestra el icono de hamburguesa en pantallas pequeñas */
+    }
+
+    /* Muestra el menú cuando se hace clic en el icono de hamburguesa */
+    #menu.show-menu {
+        display: inline;
+    }
+    #menu.show-menu a {
+        font-size: 5px;
+    }
+
+    .inicio .imagen {
+        margin-block-start: 20px;
+    }
 }
