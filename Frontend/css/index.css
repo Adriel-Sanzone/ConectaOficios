@@ -186,20 +186,177 @@ header div .registrarse:hover {
 /* tarjetas-anuncios (kevin)*/
 
 .anuncios {
-    background-color: #EEF4F8;
+    padding-inline: 185px;
+    background-color: var(--celeste);
+    padding-bottom: 25px;
 }
 
-.tarjetas .tarjeta-anuncio {
-    background-color: white;
+.tarjeta-anuncio {
+    background-color: var(--blanco);
+    padding-bottom: 30px;
+}
+
+
+
+.tarjeta-anuncio img {
+    padding-top: 10px;
+    width: 210px;
+    height: 210px;
+    border-radius: 50%;
+
+}
+
+.tarjeta-anuncio button {
+    margin-top: 10px;
+}
+
+.head-anuncios {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 50px;
+    width: 100%;
+
+}
+
+.texto-anuncio {
+    width: 500px;
+    height: 60px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--gris);
+
+}
+
+.head-anuncios h2 {
+    width: 399px;
+    height: 50px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 50px;
+    letter-spacing: 0.2px;
+    color: var(--azul);
+}
+
+.titulo-cartel {
+    width: 71px;
+    height: 24px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 0.2px;
+    color: var(--naranjaOscuro);
+}
+
+.nombre-empleador {
+    padding-top: 10px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.1px;
+    color: var(--azul);
+}
+
+.descripcion-empleador {
+    width: 100%;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.empleo .servicio {
+    padding-right: 120px;
+}
+
+.empleo .servicio,
+.valoracion {
+    padding-top: 15px;
+}
+
+.empleo .servicio a {
+    text-decoration: none;
+    color: var(--naranja);
+}
+
+
+
+.contacto-anuncios {
+    text-decoration: none;
+}
+
+.boton-contacto {
+    display: flex;
+    align-items: center;
     padding: 10px;
-    box-sizing: border-box;
-
+    padding-right: 40px;
+    gap: 10px;
+    text-decoration: none;
+    width: 60%;
+    border: 1px solid #FF685B;
+    border-radius: 37px;
 }
 
-.cartel {
+.boton-contacto h6 {
+    padding-left: 5px;
+    padding-top: 5px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 24px;
     color: #FF685B;
 }
 
+.boton-contacto i {
+    color: var(--naranja);
+}
+
+.ver-mas {
+    margin: 50px auto 50px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 131px;
+    height: 60px;
+    background: var(--azul);
+ 
+    border-radius: 37px;
+
+}
+
+.ver-mas a h6 {
+    padding-top: 3px;
+
+
+    width: 70px;
+    height: 24px;
+
+    
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+
+    color: var(--blanco);
+
+}
+
+
+footer div{
+    background-color: var(--blanco);
+}
 
 @media (max-width: 768px) {
 
@@ -221,7 +378,7 @@ header div .registrarse:hover {
     }
 
     /* header */
-    
+
     header {
         display: flex;
         height: 40px;

@@ -8,8 +8,11 @@
   <link rel="stylesheet" href="../css/index.css">
   <title>ConectaOficios</title>
   <!-- boostrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
   <!-- fuentes -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -95,77 +98,165 @@
 
   <!---modificaciones de kevin
     anuncios-->
-
-  <div class="container-fluid anuncios">
-
-    <div class="row tarjetas">
-      <h6 class="cartel">anuncios</h6>
+  <div class="anuncios">
+  
+    <!---encabezado de anuncios-->
+    <div class="head-anuncios">
+      <h6 class="titulo-cartel">anuncios</h6>
       <h2>descubre expertos</h2>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam nobis quam, possimus rerum suscipit ipsum qui,
-        nemo ullam repellendus pariatur et ducimus recusandae expedita doloribus eos dignissimos! Possimus, voluptatibus
-        officia.</p>
-      <div class="col-md-4 tarjeta-anuncio">
-        <div>
-          <a href="#"><img src="../img/prueba-ingeniero.webp" class="img-fluid""></a>
-          <div class=" categoria">
-            <a href="#">plomero</a>
-            <a href="#" class="calificacion">#</a>
-        </div>
-
-        <h5>raul gonzalez</h5>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae voluptatibus molestiae dolorum corporis
-          nesciunt! Modi quibusdam voluptatum ea rerum iste! Nam mollitia aliquid quibusdam possimus voluptatem est
-          voluptatum laborum minima?</p>
-        <div>
-          <a href="" class="ubicacion">☺</a>
-        </div>
-        <div class="d-flex">
-          <button class="btn btn-success">contacto</button>
-        </div>
-      </div>
+      <p class="texto-anuncio">Encuentra a dedicados expertos locales que ofrecen sus habilidades y servicios con un
+        compromiso inquebrantable hacia la calidad y la satisfacción del cliente</p>
     </div>
-    <div class="col-md-4 tarjeta-anuncio">
-      <div>
-        <img src="../img/prueba-ingeniero.webp" class="img-fluid">
-        <div class="categoria">
-          <a href="#">plomero</a>
-          <a href="#" class="calificacion">#</a>
-        </div>
-
-        <h5>raul gonzalez</h5>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae voluptatibus molestiae dolorum corporis
-          nesciunt! Modi quibusdam voluptatum ea rerum iste! Nam mollitia aliquid quibusdam possimus voluptatem est
-          voluptatum laborum minima?</p>
+    <!---fin encabezado de anuncios-->
+  
+    <!---tarjetas de anuncios-->
+    <div class="row">
+  
+      <!---tarjeta 1-->
+      <div class="tarjeta-anuncio col-md-4">
         <div>
-          <a href="" class="ubicacion">☺</a>
+          <button class="btn btn-success">Agua</button>
+          <div class="">
+            <a href="">
+              <img src="../img/prueba-ingeniero.webp" alt="imagen">
+            </a>
+          </div>
         </div>
-        <div class="d-flex">
-          <button class="btn btn-success">contacto</button>
-        </div>
+  
+        
+          <div class="empleo d-flex">
+            <div class="servicio">
+              <a href="">
+                <h6>plomero</h6>
+              </a>
+            </div>
+            <div class="valoracion">
+              <a href="">
+                <i class="fas fa-briefcase" style="color: red"></i>
+              </a>
+            </div>
+          </div>
+  
+          <div class="d-block">
+            <h5 class="nombre-empleador">Raul Gimenez</h5>
+            <p class="descripcion-empleador">Desde reparaciones simples hasta proyectos más complejos, resuelve problemas
+              de tuberías, desagües y
+              grifería con precisión.</p>
+            <a href="" class="contacto-anuncios">
+              <button class="boton-contacto">
+                <h6>Contacto</h6>
+                <i class="fab fa-whatsapp"></i>
+              </button>
+            </a>
+          </div>
+          
       </div>
+  
+      <!---fin tarjeta 1-->
+  
+      <!---tarjeta 2-->
+      <div class="tarjeta-anuncio col-md-4">
+        <div>
+          <button class="btn btn-success">Agua</button>
+          <div>
+            <a href="">
+              <img src="../img/prueba-ingeniero.webp" alt="imagen">
+            </a>
+          </div>
+        </div>
+        
+          <div class="empleo d-flex">
+            <div class="servicio">
+              <a href="">
+                <h6>plomero</h6>
+              </a>
+            </div>
+            <div class="valoracion">
+              <a href="">
+                <i class="fas fa-briefcase" style="color: red"></i>
+              </a>
+            </div>
+          </div>
+  
+          <div class="d-block">
+            <h5 class="nombre-empleador">Raul Gimenez</h5>
+            <p class="descripcion-empleador">Desde reparaciones simples hasta proyectos más complejos, resuelve problemas
+              de tuberías, desagües y
+              grifería con precisión.</p>
+            <a href="" class="contacto-anuncios">
+              <button class="boton-contacto">
+                <h6>Contacto</h6>
+                <i class="fab fa-whatsapp"></i>
+              </button>
+            </a>
+          </div>
+        
+      </div>
+      <!--- fin tarjeta 2-->
+  
+      <!---tarjeta 3-->
+  
+      <div class="tarjeta-anuncio col-md-4">
+        <div>
+          <button class="btn btn-success">Agua</button>
+          <div class="">
+            <a href="">
+              <img src="../img/prueba-ingeniero.webp" alt="imagen">
+            </a>
+          </div>
+        </div>
+        
+          <div class="empleo d-flex">
+            <div class="servicio">
+              <a href="">
+                <h6>plomero</h6>
+              </a>
+            </div>
+            <div class="valoracion">
+              <a href="">
+                <i class="fas fa-briefcase" style="color: red"></i>
+              </a>
+            </div>
+          </div>
+  
+          <div class="d-block">
+            <h5 class="nombre-empleador">Raul Gimenez</h5>
+            <p class="descripcion-empleador">Desde reparaciones simples hasta proyectos más complejos, resuelve problemas
+              de tuberías, desagües y
+              grifería con precisión.</p>
+            <a href="" class="contacto-anuncios">
+              <button class="boton-contacto">
+                <h6>Contacto</h6>
+                <i class="fab fa-whatsapp"></i>
+              </button>
+            </a>
+          </div>
+      
+      </div>
+  
+      <!--- fin tarjeta 3-->
     </div>
-    <div class="col-md-4 tarjeta-anuncio">
-      <div>
-        <img src="../img/prueba-ingeniero.webp" class="img-fluid">
-        <div class="categoria">
-          <a href="#">plomero</a>
-          <a href="#" class="calificacion">#</a>
-        </div>
 
-        <h5>raul gonzalez</h5>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae voluptatibus molestiae dolorum corporis
-          nesciunt! Modi quibusdam voluptatum ea rerum iste! Nam mollitia aliquid quibusdam possimus voluptatem est
-          voluptatum laborum minima?</p>
-        <div>
-          <a href="" class="ubicacion">☺</a>
-        </div>
-        <div class="d-flex">
-          <button class="btn btn-success">contacto</button>
-        </div>
-      </div>
+    <div class="ver-mas">
+      <a href="" class="btn">
+        <h6>Ver Más</h6>
+      </a>
     </div>
   </div>
-  </div>
+  <!---fin tarjetas de anuncios-->
+
+
+
+<!---Falta agregar footer-->
+<!---inicio footer-->
+
+  <footer>
+    <div>
+      footer
+    </div>
+  </footer>
+<!---fin footer-->
+
 
 
   <script src="../js/script.js"></script>
