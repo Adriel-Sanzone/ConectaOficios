@@ -5,7 +5,7 @@ export const getUsuarios = async (req, res) =>
 {
     connection.query(
         'SELECT * FROM usuarios',
-        function (err, results, fields) {
+        function (err, results) {
             if (err) 
             {
                 console.error(err);
@@ -30,7 +30,7 @@ export const getUsuario = async (req, res) =>
         'SELECT * FROM usuarios WHERE email = ? AND password = ?',
         [email , password],
 
-        function (err, results, fields) 
+        function (err, results) 
         {
             if (err) 
             {
@@ -80,7 +80,7 @@ export const UsuarioValidado = async (req, res) =>
         'SELECT * FROM usuarios WHERE token = ?',
         [token],
 
-        function (err, results, fields) 
+        function (err, results) 
         {
             if (err) 
             {
@@ -108,7 +108,7 @@ export const UsuarioValidado = async (req, res) =>
 export const RegistroUsuario = async (req, res) => 
 {
     //Obtengo los datos ingresados por el usuario
-    let {email, password} = req.body;
+    let {nombre, contacto, email, password, especialista, direccion} = req.body;
 
     //Si el espacio de email estaba vacio
     if(email == "")
@@ -128,10 +128,37 @@ export const RegistroUsuario = async (req, res) =>
         });
         return false;
     };
+    //Si el espacio de nombre estaba vacio
+    if(nombre == "")
+    {
+        res.json({
+            "error": 1,
+            "mensaje": "El nombre esta vacio",
+        });
+        return false;
+    };
+    //Si el espacio de contacto estaba vacio
+    if(contacto == "")
+    {
+        res.json({
+            "error": 1,
+            "mensaje": "El contacto esta vacio",
+        });
+        return false;
+    };
+    //Si el espacio de direccion estaba vacio habiendo marcado que quiere ser especialista
+    if(direccion == "" && especialista == 1)
+    {
+        res.json({
+            "error": 1,
+            "mensaje": "El direccion esta vacio",
+        });
+        return false;
+    };
 
     //Llamo a una funcion que verifica que el email no este registrado en mi base de datos
     const EmailValidado = ComprueboEmailExistente(email);
-
+    //Continuo la ejecucion cuando la funcion que verifica email repetido termine con then
     EmailValidado.then(function(r)
     {
         //Si esta registrado previamente
@@ -148,10 +175,10 @@ export const RegistroUsuario = async (req, res) =>
 
             //Creo la consulta para agregar el nuevo usuario con los datos clave
             connection.query(
-                'INSERT usuarios (email, password) VALUES (?,?)',
-                [email, password],
+                'INSERT usuarios (email, password, nombre, contacto, especialista, direccion) VALUES (?,?,?,?,?,?)',
+                [email, password, nombre, contacto, especialista, direccion],
         
-                function (err, results, fields) 
+                function (err, results) 
                 {
                     if (err) 
                     {
@@ -159,6 +186,7 @@ export const RegistroUsuario = async (req, res) =>
                         res.status(500).json({ error: 'Error al obtener los datos' });
                     } else 
                     {
+                        //Devuelvo que NO hay error
                         res.json({
                             "error": 0,
                         })
@@ -180,7 +208,7 @@ function CrearToken()
     {
         connection.query('SELECT * FROM usuarios WHERE token = ?' , 
         [token],
-        function(err, results, fields)
+        function(err, results)
         {
             if(results[0] === undefined)
             {
@@ -201,7 +229,7 @@ function ComprueboEmailExistente(email)
     {
         connection.query('SELECT * FROM usuarios WHERE email = ?',
         [email],
-        function(err, results, fields)
+        function(err, results)
         {
             if (results[0] === undefined)
             {
