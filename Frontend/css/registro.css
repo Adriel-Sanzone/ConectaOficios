@@ -12,18 +12,6 @@
     --celeste: #EEF4F8;
 }
 
-html,
-body {
-    position: relative;
-    height: 100%;
-}
-
-body {
-    font-family: var(--fuente);
-    background-color: var(--blanco);
-    margin: 0;
-    padding: 0;
-}
 
 .contenedor {
     display: flex;
