@@ -22,8 +22,28 @@ export const getUsuario = async (req, res) =>
 {
     //Obtengo los datos ingresados por el usuario
     let {email , password} = req.body;
+
+    //Si el espacio de email estaba vacio
+    if(email == "")
+    {
+        res.json({
+            "error": 1,
+            "mensaje": "El email esta vacio",
+        });
+        return false;
+    };
+    //Si el espacio de contraseña estaba vacio
+    if(password == "")
+    {
+        res.json({
+            "error": 1,
+            "mensaje": "La contraseña esta vacia",
+        });
+        return false;
+    };
+
     //Transformo la contraseña a MD5
-    password = md5(password);
+    password = md5(password);    
 
     //Realizo la consulta a la base de datos para obtener un usuario que coincida con los valores indicados
     connection.query(
@@ -39,10 +59,11 @@ export const getUsuario = async (req, res) =>
             } else 
             {
                 //Si no encuentra ningun usuario con email y contraseña indicados
-                if(result[0] === undefined)
+                if(results[0] === undefined)
                 {
                     res.json({
                         "error": 1,
+                        "mensaje": "La contraseña o el email son incorrectos"
                     })
                 } else  //Si encuentra un usuario que coincida con el email y contraseña indicados
                 { 
@@ -58,7 +79,7 @@ export const getUsuario = async (req, res) =>
 
                         res.json({
                             "error": 0,
-                            "usuario": result[0],
+                            "usuario": results[0],
                             "token": r,
                         });
                     });
@@ -89,10 +110,11 @@ export const UsuarioValidado = async (req, res) =>
             } else 
             {
                 //Si no encuentro ningun usuario con el token de la SesionStorage
-                if(result[0] === undefined)
+                if(results[0] === undefined)
                 {
                     res.json({
                         "error": 1,
+                        "mensaje": "Ocurrio un error en la validacion",
                     })
                 } else  //Si encuentro un usuario con el mismo token que el de la SesionStorage
                 {

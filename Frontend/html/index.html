@@ -19,6 +19,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <!-- iconos -->
   <script src="https://kit.fontawesome.com/e86e320e6f.js" crossorigin="anonymous"></script>
+  <!-- Jquery-->
+  <script src="../js/Jquery.js"></script>
 </head>
 
 <body>
@@ -258,8 +260,18 @@
 <!---fin footer-->
 
 
-
   <script src="../js/script.js"></script>
+  <script src="../js/funciones_usuarios.js"></script>
+  <!-- Script para disparar la funcion que valida el usuario-->
+  <script type="text/javascript">
+
+    $(document).ready(function(){
+      var token = sessionStorage.getItem("Token");
+
+      ValidarUsuario(token);
+    })
+
+  </script>
 </body>
 
 </html>
