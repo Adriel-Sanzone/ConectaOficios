@@ -19,6 +19,7 @@
     padding: 10px;
 }
 
+
 header {
     
     display: flex;
@@ -156,6 +157,61 @@ header div .registrarse:hover {
 #camposAdicionales select{
     margin-left: 5px;
 }
+
+/* FOOTER*/
+footer {
+    padding-top: 10px;
+    padding-inline: 140px;
+    margin: 10px;
+    
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+
+footer h6 {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 24px;
+    color: var(--gris);
+}
+
+footer .div-icon {
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 236px;
+    height: 24px;
+
+    
+
+}
+
+footer .iconos{
+    
+    color: var(--naranjaOscuro);
+
+    left: 2.08%;
+    right: 2.08%;
+    top: 0%;
+    bottom: 4.17%;
+
+}
+
+footer .iconos i{
+    color: var(--naranjaOscuro);
+    width: 24px;
+    margin-right: 15px;
+}
+
+footer .iconos i:last-child{
+    margin-right: 0px;
+}
+/*FIN CSS FOOTER*/
 
 @media only screen and (max-width: 575px) {
     .contenedor {
