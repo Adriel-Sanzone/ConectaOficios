@@ -2,6 +2,10 @@ const URL_BASE = "http://localhost:3000/";
 
 function RegistrarUsuario(nombre, contacto, email, password, trabaja, direccion)
 {
+    //Creo bandera para que no registre ajaxs mientras hay uno en ejecucion
+    if (window.Enviando == 1) return false;
+    window.Enviando = 1;
+    
     //transformo el valor booleano de la checkbox en 0 o 1
     if (trabaja)
     {
@@ -27,6 +31,7 @@ function RegistrarUsuario(nombre, contacto, email, password, trabaja, direccion)
            },
            success: function(r)
            {
+                window.Enviando = 0;
                 if(r.error == 1)
                 {
                     alert(r.mensaje);
@@ -40,6 +45,10 @@ function RegistrarUsuario(nombre, contacto, email, password, trabaja, direccion)
 
 function BuscarUsuario(email, password)
 {
+    //Creo bandera para que no registre ajaxs mientras hay uno en ejecucion
+    if (window.Enviando == 1) return false;
+    window.Enviando = 1;
+
     $.ajax(
         {
            "url": URL_BASE + "usuario",
@@ -52,6 +61,9 @@ function BuscarUsuario(email, password)
            },
            success: function(r)
            {
+                
+                window.Enviando = 0;
+
                 if(r.error == 1)
                 {
                     console.log("error");

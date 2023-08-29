@@ -36,7 +36,7 @@
   <div class="contenedor row">
     <div class="registro col-md-4">
       <p class="titulo">Crear Cuenta</p>
-      <form>
+      <div>
         <input class="form-control" id="nombre" type="text" placeholder="Nombre Completo (*)">
         <input class="form-control" id="contacto" type="text" placeholder="WhatsApp">
         <input class="form-control" id="email" type="email" placeholder="Email (*)">
@@ -48,7 +48,7 @@
         <div id="camposAdicionales" style="display: none;">
           <input class="form-control" id="direccion" type="text" placeholder="Dirección (*)">
           <label for="categorias">Selecciona una categoría:</label>
-          <select id="categorias">
+          <select class="form-control" id="categorias">
             <option>Gas</option>
             <option>Agua</option>
             <option>Electricidad</option>
@@ -56,7 +56,7 @@
           </select>
         </div>
         <input class="form-control registrar" type="submit" value="Crear Cuenta">
-      </form>
+      </div>
       <p>¿Ya tienes una cuenta?</p><a href="iniciarSesion.html">Iniciar sesión</a>
     </div>
   </div>
