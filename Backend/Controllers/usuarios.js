@@ -220,6 +220,31 @@ export const RegistroUsuario = async (req, res) =>
 
 };
 
+export const ModificoCliente = async (req, res) => 
+{
+    const {nombre, contacto, email, password, especialista, direccion} = req.body;
+
+    //Obtengo el nombre de la imagen por multer
+    const filename = '/uploads/' + req.file.filename;
+
+    connection.query(
+        'INSERT usuarios (email, password, nombre, contacto, especialista, direccion, path) VALUES (?,?,?,?,?,?,?)',
+        [email, password, nombre, contacto, especialista, direccion, filename],
+        function (err, results) {
+            if (err) 
+            {
+                console.error(err);
+                res.status(500).json({ error: 'Error al obtener los datos' });
+            } else 
+            {
+                res.json({
+                    "error": 0,
+                });
+            }
+        }
+    );
+};
+
 function CrearToken()
 {
     var numero = Math.floor(Math.random() * 200000);

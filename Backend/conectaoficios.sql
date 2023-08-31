@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `especializaciones` (
   `id` int(11) NOT NULL,
   `especializacion` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_german2_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Volcado de datos para la tabla `especializaciones`
@@ -52,7 +52,7 @@ CREATE TABLE `especializacion_usuario` (
   `id` int(11) NOT NULL,
   `id_usuario` int(11) DEFAULT NULL,
   `id_especializacion` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_german2_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Volcado de datos para la tabla `especializacion_usuario`
@@ -77,7 +77,7 @@ CREATE TABLE `usuarios` (
   `especialista` tinyint(1) NOT NULL DEFAULT 0,
   `direccion` int(4) NOT NULL,
   `token` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_german2_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
