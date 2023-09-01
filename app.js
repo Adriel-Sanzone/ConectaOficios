@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 
 import UsuariosRoutes from './Backend/Routes/usuarios.js';
-import viewsRoutes from './Frontend/views';
+import viewsRoutes from './Backend/Routes/views.js';
 
 
 const app = express();
@@ -17,10 +17,10 @@ app.use(express.urlencoded());
 app.use(express.json());
 app.use(cors());
 
-app.get('/' , (req, res) =>
-{
-    res.send("ANDA!!!");
-})
+// app.get('/' , (req, res) =>
+// {
+//     res.send("ANDA!!!");
+// })
 
 app.use(UsuariosRoutes);
 app.use(viewsRoutes);
