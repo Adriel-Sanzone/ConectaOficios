@@ -220,7 +220,7 @@ export const RegistroUsuario = async (req, res) =>
 
 };
 
-export const ModificoCliente = async (req, res) => 
+export const ModificoUsuario = async (req, res) => 
 {
     const {nombre, contacto, email, password, especialista, direccion} = req.body;
 

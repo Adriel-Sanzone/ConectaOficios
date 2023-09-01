@@ -104,16 +104,19 @@
 
     //Tras apretar "Crear cuenta" obtengo los valores de los inputs
     $(".registrar").on("click", function () {
-      var nombre = $("#nombre").val();
-      var contacto = $("#contacto").val();
-      var email = $("#email").val();
-      var password = $("#password").val();
-      var trabaja = especialista;
-      var direccion = $("#direccion").val();
+
+      var especificaciones = new FormData();
+
+      especificaciones.append('nombre' , $("#nombre").val());
+      especificaciones.append('contacto' , $("#contacto").val());
+      especificaciones.append('email' , $("#email").val());
+      especificaciones.append('password' , $("#password").val());
+      especificaciones.append('trabaja' , especialista);
+      especificaciones.append('direccion' , $("#direccion").val());
 
       //Llamo la funcion enviandole los parametros obtenidos
-      console.log(nombre, contacto, email, password, trabaja, direccion);
-      RegistrarUsuario(nombre, contacto, email, password, trabaja, direccion);
+      console.log(especificaciones);
+      RegistrarUsuario(especificaciones);
     })
 
   </script>

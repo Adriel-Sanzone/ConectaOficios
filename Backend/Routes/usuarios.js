@@ -1,5 +1,5 @@
 import {Router} from 'express';
-import {getUsuarios , getUsuario, UsuarioValidado, RegistroUsuario} from '../Controllers/usuarios.js'
+import {getUsuarios , getUsuario, UsuarioValidado, RegistroUsuario, ModificoUsuario} from '../Controllers/usuarios.js'
 
 import multer from 'multer';
 
@@ -28,6 +28,6 @@ router.post('/usuario' , getUsuario);
 router.post('/usuariovalidado' , UsuarioValidado);
 router.post('/registrousuario' , RegistroUsuario);
 //Subida de archivo
-router.post('usuario', upload.single("UsuarioImagen"), RegistroUsuario);
+router.post('/modificousuario', upload.single("UsuarioImagen"), ModificoUsuario);
 
 export default router;

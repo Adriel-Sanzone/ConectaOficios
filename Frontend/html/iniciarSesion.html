@@ -75,12 +75,15 @@
   <script type="text/javascript">
 
     $(".registrar").on("click", function () {
-      var email = $("#email").val();
-      var password = $("#password").val();
+      
+      var especificaciones = new FormData();
+
+      especificaciones.append('email' , $("#email").val());
+      especificaciones.append('password' , $("#password").val());
 
       //Llamo la funcion enviandole los parametros obtenidos
-      console.log(email, password);
-      BuscarUsuario(email, password);
+      console.log(especificaciones);
+      BuscarUsuario(especificaciones);
     })
 
 

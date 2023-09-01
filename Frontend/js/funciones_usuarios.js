@@ -1,10 +1,17 @@
 const URL_BASE = "http://localhost:3000/"; 
 
-function RegistrarUsuario(nombre, contacto, email, password, trabaja, direccion)
+function RegistrarUsuario(especificaciones)
 {
     //Creo bandera para que no registre ajaxs mientras hay uno en ejecucion
     if (window.Enviando == 1) return false;
     window.Enviando = 1;
+
+    var nombre = especificaciones.get('nombre');
+    var contacto = especificaciones.get('contacto');
+    var email = especificaciones.get('email');
+    var password = especificaciones.get('password');
+    var trabaja = especificaciones.get('trabaja');
+    var direccion = especificaciones.get('direccion');
     
     //transformo el valor booleano de la checkbox en 0 o 1
     if (trabaja)
@@ -43,11 +50,14 @@ function RegistrarUsuario(nombre, contacto, email, password, trabaja, direccion)
         })
 };
 
-function BuscarUsuario(email, password)
+function BuscarUsuario(especificaciones)
 {
     //Creo bandera para que no registre ajaxs mientras hay uno en ejecucion
     if (window.Enviando == 1) return false;
     window.Enviando = 1;
+
+    var email = especificaciones.get('email');
+    var password = especificaciones.get('password');
 
     $.ajax(
         {
@@ -109,3 +119,24 @@ function ValidarUsuario(token)
 
 }
 
+function ModificoUsuario(datos, imagen)
+{
+    var fd = new FormData();
+    fd.append('UsuarioImagen', imagen[0], files[0]);
+    fd.append('datos' , datos);
+    
+    $.ajax(
+        {
+           "url": URL_BASE + "modificousuario",
+           "type": "POST",
+           "processData": false,
+           "contentType": false,           
+           "dataType": "json",
+           "data": fd,
+           success: function(data)
+           {
+
+           }
+        })
+
+}
