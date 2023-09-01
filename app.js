@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 
 import UsuariosRoutes from './Backend/Routes/usuarios.js';
+import viewsRoutes from './Frontend/views';
 
 
 const app = express();
@@ -22,5 +23,6 @@ app.get('/' , (req, res) =>
 })
 
 app.use(UsuariosRoutes);
+app.use(viewsRoutes);
 
 export default app;
