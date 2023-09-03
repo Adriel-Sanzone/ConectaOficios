@@ -12,6 +12,8 @@ app.set('port' , 3000);
 
 //Para que funcione la carpeta de uploads (evita que la url sea la ubicacion de la carpeta sea una ruta express)
 app.use('/uploads', express.static('uploads'));
+//Le dice a Express que debe servir archivos estáticos desde la carpeta Frontend y configurar automáticamente el tipo MIME correctamente para los archivos CSS.
+app.use('/Frontend', express.static('Frontend')); 
 
 app.use(express.urlencoded());
 app.use(express.json());

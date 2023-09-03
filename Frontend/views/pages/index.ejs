@@ -20,7 +20,7 @@
   <!-- iconos -->
   <script src="https://kit.fontawesome.com/e86e320e6f.js" crossorigin="anonymous"></script>
   <!-- Jquery-->
-  <script src="../js/Jquery.js"></script>
+  <script src="/Frontend/js/Jquery.js"></script>
 </head>
 
 <body>
@@ -31,10 +31,10 @@
       <i class="fa-solid fa-bars"></i>
     </div>
     <div id="menu">
-      <a href="index.html">Inicio</a>
-      <a class="headerA" href="oficios.html">Oficios</a>
-      <a class="headerAcceder" href="iniciarSesion.html">Acceder</a>
-      <a class="registrarse" href="registro.html">Registrarse</a>
+      <a href="index.ejs">Inicio</a>
+      <a class="headerA" href="oficios.ejs">Oficios</a>
+      <a class="headerAcceder" href="iniciarSesion.ejs">Acceder</a>
+      <a class="registrarse" href="registro.ejs">Registrarse</a>
     </div>
   </header>
 
@@ -47,7 +47,7 @@
       <a href="">Acerca de Nosotros</a>
     </div>
     <div class="imagen col-md-5">
-      <img class="img-fluid" src="../img/mecanico.png" alt="">
+      <img class="img-fluid" src="/Frontend/img/mecanico.png" alt="">
     </div>
   </div>
 
@@ -120,7 +120,7 @@
           <button class="btn btn-success">Agua</button>
           <div class="">
             <a href="">
-              <img src="../img/prueba-ingeniero.webp" alt="imagen">
+              <img src="/Frontend/img/prueba-ingeniero.webp" alt="imagen">
             </a>
           </div>
         </div>
@@ -162,7 +162,7 @@
           <button class="btn btn-success">Agua</button>
           <div>
             <a href="">
-              <img src="../img/prueba-ingeniero.webp" alt="imagen">
+              <img src="/Frontend/img/prueba-ingeniero.webp" alt="imagen">
             </a>
           </div>
         </div>
@@ -203,7 +203,7 @@
           <button class="btn btn-success">Agua</button>
           <div class="">
             <a href="">
-              <img src="../img/prueba-ingeniero.webp" alt="imagen">
+              <img src="/Frontend/img/prueba-ingeniero.webp" alt="imagen">
             </a>
           </div>
         </div>
@@ -273,15 +273,15 @@
   <!---fin footer-->
 
 
-  <script src="../js/script.js"></script>
-  <script src="../js/funciones_usuarios.js"></script>
+  <script src="/Frontend/js/script.js"></script>
+  <script src="/Frontend/js/funciones_usuarios.js"></script>
   <!-- Script para disparar la funcion que valida el usuario-->
   <script type="text/javascript">
 
     $(document).ready(function () {
       var token = sessionStorage.getItem("Token");
 
-      ValidarUsuario(token);
+      //ValidarUsuario(token);
     })
 
   </script>
