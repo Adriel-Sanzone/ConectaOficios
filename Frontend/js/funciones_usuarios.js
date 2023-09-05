@@ -82,7 +82,7 @@ function BuscarUsuario(especificaciones)
                 {
                     console.log("exito");
                     alert("Usuario logeado exitosamente");
-                    location.href="../html/index.html";
+                    location.href="/";
                     sessionStorage.setItem("IdUsuario" , r.usuario.id);
                     sessionStorage.setItem("Token" , r.token);
                     
@@ -108,7 +108,7 @@ function ValidarUsuario(token)
                 {
                     console.log("error");
                     alert(r.mensaje);
-                    location.href="../html/iniciarSesion.html";
+                    location.href="iniciarSesion";
                 } else
                 {
                     console.log("validado");                    
