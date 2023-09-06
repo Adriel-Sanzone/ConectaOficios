@@ -9,7 +9,8 @@
 
 header {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding-inline: 30px;
     align-items: center;
     font-family: var(--fuente);
     height: 90px;

@@ -30,7 +30,6 @@ body {
 }
 
 .inicio .presentacion {
-    padding-left: 185px;
     padding-inline-end: 60px;
 }
 
@@ -73,13 +72,13 @@ body {
 
 /* tarjetas */
 .tarjetas {
-    padding-inline: 197px;
     font-family: var(--fuente);
 }
 
 .tarjetas .tarjeta {
     box-shadow: 0px 13px 19px 0px rgba(0, 0, 0, 0.07);
     padding: 40px;
+    height: 350px;
 }
 
 .tarjetas .tarjeta .icono {
@@ -113,7 +112,7 @@ body {
 /* tarjetas-anuncios (kevin)*/
 
 .anuncios {
-    padding-inline: 185px;
+    
     background-color: var(--celeste);
     padding-bottom: 25px;
 }

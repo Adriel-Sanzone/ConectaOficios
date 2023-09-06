@@ -1,7 +1,8 @@
 /* FOOTER*/
 footer {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding-inline: 30px;
     align-items: center;
     height: 60px;
 }
@@ -17,8 +18,8 @@ footer h6 {
 }
 
 footer .iconos i{ 
-    width: 24px;
-    padding: 15px;
+    font-size: 24px;
+    padding: 5px;
     color: #E74040;
 }
 

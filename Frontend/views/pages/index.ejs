@@ -9,128 +9,188 @@
 <body>
   <%- include ('../partials/header') %>
 
-  <div class="inicio row">
-    <div class="presentacion col-md-7">
-      <h5>Soluciones Domésticas</h5>
-      <h1>Contrata profesionales</h1>
-      <h4>Conecta Oficios es una solución tecnológica moderna y eficaz para tus necesidades</h4>
-      <a href="">Acerca de Nosotros</a>
-    </div>
-    <div class="imagen col-md-5">
-      <img class="img-fluid" src="/Frontend/img/mecanico.png" alt="">
-    </div>
-  </div>
-
-  <div class="tarjetas row">
-    <div class="tarjeta col-md-4">
-      <div class="icono">
-        <i class="fas fa-briefcase" style="color: #ffffff;"></i>
-      </div>
-      <div class="titulo">
-        <h5>Descubre Oportunidades Laborales</h5>
-      </div>
-      <hr>
-      <div class="descripcion">
-        <p>Explora oportunidades laborales en Chivilcoy a través de nuestra plataforma que une a trabajadores
-          especializados con proyectos demandantes.</p>
+  <div class="container">
+    <div class="row">
+      <div class="inicio">
+        <div class="col-md-7">
+          <div class="presentacion">
+            <h5>Soluciones Domésticas</h5>
+            <h1>Contrata profesionales</h1>
+            <h4>Conecta Oficios es una solución tecnológica moderna y eficaz para tus necesidades</h4>
+            <a href="">Acerca de Nosotros</a>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="imagen">
+            <img class="img-fluid" src="/Frontend/img/mecanico.png" alt="">
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="tarjeta col-md-4">
-      <div class="icono">
-        <i class="fas fa-briefcase" style="color: #ffffff;"></i>
+    <!-- tarjetas -->
+
+    <div class="tarjetas row">
+      <div class="col-md-4">
+        <div class="tarjeta">
+
+          <div class="icono">
+            <i class="fas fa-briefcase" style="color: #ffffff;"></i>
+          </div>
+          <div class="titulo">
+            <h5>Descubre Oportunidades Laborales</h5>
+          </div>
+          <hr>
+          <div class="descripcion">
+            <p>Explora oportunidades laborales en Chivilcoy a través de nuestra plataforma que une a trabajadores
+              especializados con proyectos demandantes.</p>
+          </div>
+        </div>
       </div>
-      <div class="titulo">
-        <h5>Descubre Oportunidades Laborales</h5>
+
+
+      <div class="col-md-4">
+        <div class="tarjeta">
+          <div class="icono">
+            <i class="fa-solid fa-people-robbery" style="color: #ffffff;"></i>
+          </div>
+          <div class="titulo">
+            <h5>Conecta con Profesionales</h5>
+          </div>
+          <hr>
+          <div class="descripcion">
+            <p>Crea conexiones entre profesionales y clientes fomentando colaboraciones
+              productivas y satisfactorias.</p>
+          </div>
+        </div>
       </div>
-      <hr>
-      <div class="descripcion">
-        <p>Explora oportunidades laborales en Chivilcoy a través de nuestra plataforma que une a trabajadores
-          especializados con proyectos demandantes.</p>
+
+      <div class="col-md-4">
+        <div class="tarjeta">
+          <div class="icono">
+            <i class="fa-solid fa-map-location-dot" style="color: #ffffff;"></i>
+          </div>
+          <div class="titulo">
+            <h5>Creciendo Juntos en Chivilcoy</h5>
+          </div>
+          <hr>
+          <div class="descripcion">
+            <p>Contribuye al crecimiento económico local en Chivilcoy
+              al participar en una comunidad en línea dedicada a destacar las habilidades y servicios de la ciudad.</p>
+          </div>
+        </div>
       </div>
+
     </div>
-
-    <div class="tarjeta col-md-4">
-      <div class="icono">
-        <i class="fas fa-briefcase" style="color: #ffffff;"></i>
-      </div>
-      <div class="titulo">
-        <h5>Descubre Oportunidades Laborales</h5>
-      </div>
-      <hr>
-      <div class="descripcion">
-        <p>Explora oportunidades laborales en Chivilcoy a través de nuestra plataforma que une a trabajadores
-          especializados con proyectos demandantes.</p>
-      </div>
-    </div>
-  </div>
-
-
+  </div> <!-- container -->
 
   <!---modificaciones de kevin
     anuncios-->
+  
   <div class="anuncios">
-
-    <!---encabezado de anuncios-->
-    <div class="head-anuncios">
-      <h6 class="titulo-cartel">anuncios</h6>
-      <h2>descubre expertos</h2>
-      <p class="texto-anuncio">Encuentra a dedicados expertos locales que ofrecen sus habilidades y servicios con un
-        compromiso inquebrantable hacia la calidad y la satisfacción del cliente</p>
-    </div>
-    <!---fin encabezado de anuncios-->
-
-    <!---tarjetas de anuncios-->
-    <div class="row">
-
-      <!---tarjeta 1-->
-      <div class="tarjeta-anuncio col-md-4">
-        <div>
-          <button class="btn btn-success">Agua</button>
-          <div class="">
-            <a href="">
-              <img src="/Frontend/img/prueba-ingeniero.webp" alt="imagen">
-            </a>
-          </div>
-        </div>
-
-
-        <div class="empleo d-flex">
-          <div class="servicio">
-            <a href="">
-              <h6>plomero</h6>
-            </a>
-          </div>
-          <div class="valoracion">
-            <a href="">
-              <i class="fas fa-briefcase" style="color: red"></i>
-            </a>
-          </div>
-        </div>
-
-        <div class="d-block">
-          <h5 class="nombre-empleador">Raul Gimenez</h5>
-          <p class="descripcion-empleador">Desde reparaciones simples hasta proyectos más complejos, resuelve problemas
-            de tuberías, desagües y
-            grifería con precisión.</p>
-          <a href="" class="contacto-anuncios">
-            <button class="boton-contacto">
-              <h6>Contacto</h6>
-              <i class="fab fa-whatsapp"></i>
-            </button>
-          </a>
-        </div>
-
+    <div class="container">
+      <!---encabezado de anuncios-->
+      <div class="head-anuncios">
+        <h6 class="titulo-cartel">anuncios</h6>
+        <h2>descubre expertos</h2>
+        <p class="texto-anuncio">Encuentra a dedicados expertos locales que ofrecen sus habilidades y servicios con un
+          compromiso inquebrantable hacia la calidad y la satisfacción del cliente</p>
       </div>
+      <!---fin encabezado de anuncios-->
 
-      <!---fin tarjeta 1-->
+      <!---tarjetas de anuncios-->
+      <div class="row">
 
-      <!---tarjeta 2-->
-      <div class="col-md-4">
-        <div class="tarjeta-anuncio">
+        <!---tarjeta 1-->
+        <div class="tarjeta-anuncio col-md-4">
           <div>
             <button class="btn btn-success">Agua</button>
+            <div class="">
+              <a href="">
+                <img src="/Frontend/img/prueba-ingeniero.webp" alt="imagen">
+              </a>
+            </div>
+          </div>
+
+
+          <div class="empleo d-flex">
+            <div class="servicio">
+              <a href="">
+                <h6>plomero</h6>
+              </a>
+            </div>
+            <div class="valoracion">
+              <a href="">
+                <i class="fas fa-briefcase" style="color: red"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="d-block">
+            <h5 class="nombre-empleador">Raul Gimenez</h5>
+            <p class="descripcion-empleador">Desde reparaciones simples hasta proyectos más complejos, resuelve problemas
+              de tuberías, desagües y
+              grifería con precisión.</p>
+            <a href="" class="contacto-anuncios">
+              <button class="boton-contacto">
+                <h6>Contacto</h6>
+                <i class="fab fa-whatsapp"></i>
+              </button>
+            </a>
+          </div>
+
+        </div>
+
+        <!---fin tarjeta 1-->
+
+        <!---tarjeta 2-->
+        <div class="col-md-4">
+          <div class="tarjeta-anuncio">
             <div>
+              <button class="btn btn-success">Agua</button>
+              <div>
+                <a href="">
+                  <img src="/Frontend/img/prueba-ingeniero.webp" alt="imagen">
+                </a>
+              </div>
+            </div>
+
+            <div class="empleo d-flex">
+              <div class="servicio">
+                <a href="">
+                  <h6>plomero</h6>
+                </a>
+              </div>
+              <div class="valoracion">
+                <a href="">
+                  <i class="fas fa-briefcase" style="color: red"></i>
+                </a>
+              </div>
+            </div>
+
+            <div class="d-block">
+              <h5 class="nombre-empleador">Raul Gimenez</h5>
+              <p class="descripcion-empleador">Desde reparaciones simples hasta proyectos más complejos, resuelve problemas
+                de tuberías, desagües y
+                grifería con precisión.</p>
+              <a href="" class="contacto-anuncios">
+                <button class="boton-contacto">
+                  <h6>Contacto</h6>
+                  <i class="fab fa-whatsapp"></i>
+                </button>
+              </a>
+            </div>
+          </div>
+
+        </div>
+        <!--- fin tarjeta 2-->
+
+        <!---tarjeta 3-->
+
+        <div class="tarjeta-anuncio col-md-4">
+          <div>
+            <button class="btn btn-success">Agua</button>
+            <div class="">
               <a href="">
                 <img src="/Frontend/img/prueba-ingeniero.webp" alt="imagen">
               </a>
@@ -162,67 +222,28 @@
               </button>
             </a>
           </div>
+
         </div>
 
-      </div>
-      <!--- fin tarjeta 2-->
-
-      <!---tarjeta 3-->
-
-      <div class="tarjeta-anuncio col-md-4">
-        <div>
-          <button class="btn btn-success">Agua</button>
-          <div class="">
-            <a href="">
-              <img src="/Frontend/img/prueba-ingeniero.webp" alt="imagen">
-            </a>
-          </div>
-        </div>
-
-        <div class="empleo d-flex">
-          <div class="servicio">
-            <a href="">
-              <h6>plomero</h6>
-            </a>
-          </div>
-          <div class="valoracion">
-            <a href="">
-              <i class="fas fa-briefcase" style="color: red"></i>
-            </a>
-          </div>
-        </div>
-
-        <div class="d-block">
-          <h5 class="nombre-empleador">Raul Gimenez</h5>
-          <p class="descripcion-empleador">Desde reparaciones simples hasta proyectos más complejos, resuelve problemas
-            de tuberías, desagües y
-            grifería con precisión.</p>
-          <a href="" class="contacto-anuncios">
-            <button class="boton-contacto">
-              <h6>Contacto</h6>
-              <i class="fab fa-whatsapp"></i>
-            </button>
-          </a>
-        </div>
-
+        <!--- fin tarjeta 3-->
       </div>
 
-      <!--- fin tarjeta 3-->
-    </div>
+      <div class="ver-mas">
+        <a href="" class="btn">
+          Ver Más<i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
 
-    <div class="ver-mas">
-      <a href="" class="btn">
-        <h6>Ver Más</h6>
-      </a>
     </div>
   </div>
+
   <!---fin tarjetas de anuncios-->
 
 
   <!---inicio footer-->
 
   <%- include ('../partials/footer') %>
-  
+
   <!---fin footer-->
 
 
@@ -230,13 +251,11 @@
   <script src="/Frontend/js/funciones_usuarios.js"></script>
   <!-- Script para disparar la funcion que valida el usuario-->
   <script type="text/javascript">
-
-    $(document).ready(function () {
+    $(document).ready(function() {
       var token = sessionStorage.getItem("Token");
 
       //ValidarUsuario(token);
     })
-
   </script>
 </body>
 
