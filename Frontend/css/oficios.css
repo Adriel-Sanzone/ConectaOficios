@@ -28,108 +28,31 @@ body {
     padding: 0;
 }
 
-/* header */
-#mobile-menu-button {
-    display: none;
-    /*Inicialmente oculto en pantallas grandes */
-    cursor: pointer;
-    padding: 10px;
-}
-
-header {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    font-family: var(--fuente);
-    height: 90px;
-    margin-block-end: 50px;
-    background-color: var(--blanco);
-}
-
-header h3 {
-    color: var(--azul);
-    font-weight: var(--bold);
-    font-size: 24px;
-}
-
-header nav a {
-    text-decoration: none;
-    margin: 10px;
-    color: var(--gris);
-    font-weight: var(--bold);
-    font-size: 14px;
-}
-
-header .headerA {
-    margin-inline-end: 90px;
-}
-
-.headerAcceder {
-    color: var(--gris);
-}
-
-.headerAcceder:hover {
-    color: var(--naranja);
-}
-
-header nav a:hover {
-    color: var(--naranja);
-}
-
-header div a {
-    text-decoration: none;
-    margin: 10px;
-    color: var(--naranja);
-    font-weight: var(--bold);
-    font-size: 14px;
-}
-
-header div a:hover {
-    color: var(--gris);
-}
-
-header div .registrarse {
-    color: var(--blanco);
-    border-radius: 5px;
-    background: var(--naranja);
-    padding: 15px 23px;
-}
-
-header div .registrarse:hover {
-    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.47);
-    color: var(--blanco);
-}
-
-/* contenedor */
-.contenedor {
-    padding-inline: 197px;
-    font-family: var(--fuente);
-}
-
 /* categorias */
-.contenedor .categorias {
+.categorias {
     position: sticky;
-    top: 0;
-    background-color: var(--blancoClaro);
-    stroke-width: 1px;
-    stroke: rgba(0, 0, 0, 0.10);
+    top: 20px;
+    background-color: var(--blanco);
     filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 0.05));
-    border: 1px solid #0000001A;
-    padding-bottom: 3px;
     padding-block: 20px;
     padding-inline: 35px;
+    border-radius: 5px;
 }
 
 .categorias p {
     color: var(--gris);
-    font-size: 12px;
+    font-size: 14px;
 }
 
-.categorias input {
+.categorias .categoria {
+    display: flex;
+}
+
+.categorias label {
     margin-bottom: 20px;
     color: var(--azul);
     font-size: 14px;
-    display: inline;
+
 }
 
 input[type="checkbox"] {
@@ -141,27 +64,35 @@ input[type="checkbox"] {
 }
 
 /* personas */
-.personas{
-    margin: 0;
-    padding: 0;
-}
+
 .personas .persona {
     background-color: var(--blanco);
-    padding: 20px;
-    
+    padding: 20px 35px;
+    filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 0.05));
+    border-radius: 5px;
+    margin-block-end: 30px;
+}
+
+.persona .especialidades{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-block-end: 5px;
 }
 
 .personas .persona h4 {
-    display: inline;
-    padding: 5px 10px;
+    display: inline-block;
+    padding-inline: 10px;
     align-items: center;
     background-color: var(--naranjaOscuro);
     border-radius: 3px;
     box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.10);
     color: var(--blanco);
-    font-size: 12px;
+    font-size: 14px;
     font-weight: var(--bold);
     line-height: 24px;
+    margin-inline-end: 10px;
 }
 
 .personas .persona img {
@@ -182,11 +113,16 @@ input[type="checkbox"] {
     font-weight: var(--bold);
 }
 
-.personas .persona .descripcion {
+.persona .descripcion p {
     color: var(--gris);
     font-size: 14px;
     margin-block-end: 7px;
+    overflow: auto;
+    max-height: 105px;
+    margin-block: 10px;
 }
+
+
 
 .personas .persona .ubicacion {
     display: flex;
@@ -210,41 +146,22 @@ input[type="checkbox"] {
     color: var(--primary-color, #FF685B);
     font-size: 14px;
     font-weight: var(--bold);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.persona button i {
+    font-size: 24px;
+    margin-inline-start: 10px;
 }
 
 
-
-@media (max-width: 768px) {
-    /* header */
-
-    header {
-        display: flex;
-        height: 40px;
-        margin-block-end: 20px;
-        justify-content: space-around;
-        align-items: center;
-        margin-block-start: 20px;
+@media (max-width: 993px) {
+    .categorias {
+        padding-inline: 10px;
     }
-
-    header #menu {
-        display: none;
-        /* Oculta el menú en pantallas pequeñas */
-    }
-
-    #mobile-menu-button {
-        display: inline;
-        /* Muestra el icono de hamburguesa en pantallas pequeñas */
-    }
-
-    /* Muestra el menú cuando se hace clic en el icono de hamburguesa */
-    #menu.show-menu {
-        display: inline;
-    }
-
-    #menu.show-menu a {
-        font-size: 5px;
-    }
-
-    /* fin header */
-
 }
+
+@media (max-width: 768px) {}

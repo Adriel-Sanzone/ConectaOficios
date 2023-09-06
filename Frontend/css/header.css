@@ -15,6 +15,7 @@ header {
     font-family: var(--fuente);
     height: 90px;
     margin-block-end: 50px;
+    background-color: var(--blanco);
 }
 
 header h3 {
