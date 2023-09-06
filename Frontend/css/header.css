@@ -19,9 +19,17 @@ header {
 }
 
 header h3 {
-    color: var(--azul);
     font-weight: var(--bold);
     font-size: 24px;
+}
+
+header h3 a{
+    text-decoration: none;
+    color: var(--azul);
+}
+
+header h3 a:hover{
+    color: var(--azul);
 }
 
 header nav a {
