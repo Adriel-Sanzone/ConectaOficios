@@ -14,4 +14,8 @@ router.get('/registro', function (req, res) {
     res.render('../Frontend/views/pages/registro')
 });
 
+router.get('/perfil', function (req, res) {
+    res.render('../Frontend/views/pages/perfil')
+});
+
 export default router;

@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-  
+
 <head>
 
   <%- include ('../partials/head') %>
+    <link rel="stylesheet" href="/Frontend/css/perfil.css">
+
 
 </head>
 
@@ -11,11 +13,42 @@
 
   <%- include ('../partials/header') %>
 
+    <div class="container">
+      <div class="col-md-8">
+        <div class="presentacion">
+          <div class="foto-portada">
 
-  <%- include ('../partials/footer') %>
+            <a href="#" class="btn"> editar foto </a>
 
 
-    
-    
+            <img src="/Frontend/img/prueba-portada.jpg">
+
+          </div>
+
+
+          <div class="foto-perfil">
+            <img src="/Frontend/img/prueba-perfil.jpg"> 
+            <h2>Nombre Apellido</h2>
+          </div>
+
+
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+
+
+
+    <%- include ('../partials/footer') %>
+
+
+
+
 </body>
+
 </html>
