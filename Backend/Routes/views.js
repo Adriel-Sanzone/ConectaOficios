@@ -19,7 +19,13 @@ router.get('/iniciarSesion', function (req, res) {
 });
 
 router.get('/oficios', function (req, res) {
-    res.render('../Frontend/views/pages/oficios')
+    var usuariosEspecialista = viewUsuariosEspecialistas()
+    usuariosEspecialista.then(function(usuarios)
+    {
+        res.render("../Frontend/views/pages/oficios", {
+            "usuariosEsp" : usuarios,
+        });
+    }) 
 });
 
 router.get('/registro', function (req, res) {

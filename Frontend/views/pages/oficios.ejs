@@ -36,98 +36,30 @@
       </div>
       <div class="col-md-9">
         <div class="personas">
-
-          <div class="persona">
-            <div class="row">
-              <div class="imagen col-md-3">
-                <img class="img-fluid" src="/Frontend/img/persona.jpg" alt="">
-              </div>
-              <div class="info-persona col-md-9">
-                <div class="especialidades">
-                  <h4>Agua</h4>
-                  <h3>Plomero</h3>
+          <% usuariosEsp.forEach(function(c){ %>  
+            <div class="persona">
+              <div class="row">
+                <div class="imagen col-md-3">
+                  <img class="img-fluid" src="/Frontend/img/persona.jpg" alt="">
                 </div>
-                <h5>Raul Gomez</h5>
-                <div class="descripcion">
-                  <p>Desde reparaciones simples hasta proyectos más complejos,
-                    resuelve problemas de tuberías, desagües y grifería con precisión.
-                    Desde reparaciones simples hasta proyectos más complejos,
-                    resuelve problemas de tuberías, desagües y grifería con precisión.
-                    Desde reparaciones simples hasta proyectos más complejos,
-                    resuelve problemas de tuberías, desagües y grifería con precisión.
-                    Desde reparaciones simples hasta proyectos más complejos,
-                    resuelve problemas de tuberías, desagües y grifería con precisión.</p>
+                <div class="info-persona col-md-9">
+                  <div class="especialidades">
+                    <h4>Agua</h4>
+                    <h3>Plomero</h3>
+                  </div>
+                  <h5><%= c.nombre %> <%= c.apellido %></h5>
+                  <div class="descripcion">
+                    <p><%= c.descripcion %></p>
+                  </div>
+                  <div class="ubicacion">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <p><%= c.direccion %></p>
+                  </div>
+                  <button><%= c.contacto %> <i class="fab fa-whatsapp"></i></button>
                 </div>
-                <div class="ubicacion">
-                  <i class="fa-solid fa-location-dot"></i>
-                  <p>Calle 504, 970</p>
-                </div>
-                <button>Contacto <i class="fab fa-whatsapp"></i></button>
               </div>
             </div>
-          </div>
-
-          <div class="persona">
-            <div class="row">
-              <div class="imagen col-md-3">
-                <img class="img-fluid" src="/Frontend/img/persona.jpg" alt="">
-              </div>
-              <div class="info-persona col-md-9">
-                <div class="especialidades">
-                  <h4>Agua</h4>
-                  <h3>Plomero</h3>
-                </div>
-                <h5>Raul Gomez</h5>
-                <div class="descripcion">
-                  <p>Desde reparaciones simples hasta proyectos más complejos,
-                    resuelve problemas de tuberías, desagües y grifería con precisión.
-                    Desde reparaciones simples hasta proyectos más complejos,
-                    resuelve problemas de tuberías, desagües y grifería con precisión.
-                    Desde reparaciones simples hasta proyectos más complejos,
-                    resuelve problemas de tuberías, desagües y grifería con precisión.
-                    Desde reparaciones simples hasta proyectos más complejos,
-                    resuelve problemas de tuberías, desagües y grifería con precisión.</p>
-                </div>
-                <div class="ubicacion">
-                  <i class="fa-solid fa-location-dot"></i>
-                  <p>Calle 504, 970</p>
-                </div>
-                <button>Contacto <i class="fab fa-whatsapp"></i></button>
-              </div>
-            </div>
-          </div>
-
-          <div class="persona">
-            <div class="row">
-              <div class="imagen col-md-3">
-                <img class="img-fluid" src="/Frontend/img/persona.jpg" alt="">
-              </div>
-              <div class="info-persona col-md-9">
-                <div class="especialidades">
-                  <h4>Agua</h4>
-                  <h3>Plomero</h3>
-                </div>
-                <h5>Raul Gomez</h5>
-                <div class="descripcion">
-                  <p>Desde reparaciones simples hasta proyectos más complejos,
-                    resuelve problemas de tuberías, desagües y grifería con precisión.
-                    Desde reparaciones simples hasta proyectos más complejos,
-                    resuelve problemas de tuberías, desagües y grifería con precisión.
-                    Desde reparaciones simples hasta proyectos más complejos,
-                    resuelve problemas de tuberías, desagües y grifería con precisión.
-                    Desde reparaciones simples hasta proyectos más complejos,
-                    resuelve problemas de tuberías, desagües y grifería con precisión.</p>
-                </div>
-                <div class="ubicacion">
-                  <i class="fa-solid fa-location-dot"></i>
-                  <p>Calle 504, 970</p>
-                </div>
-                <button>Contacto <i class="fab fa-whatsapp"></i></button>
-              </div>
-            </div>
-          </div>
-
-
+          <% }) %>
         </div>
 
       </div>
