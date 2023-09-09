@@ -18,6 +18,21 @@ export const getUsuarios = async (req, res) =>
     );
 };
 
+//Funcion distinta para ver los usuarios con templates
+export const viewUsuariosEspecialistas = () =>
+{
+    //Promesa para asegurarme de tener los datos antes de enviarlos
+    return new Promise (function(resolve)
+    {
+        connection.query(
+            'SELECT * FROM usuarios WHERE especialista = 1',
+            function (err, results) {
+                resolve(results);
+            }
+        );
+    });
+}
+
 export const getUsuario = async (req, res) => 
 {
     //Obtengo los datos ingresados por el usuario

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-08-2023 a las 20:36:28
+-- Tiempo de generación: 09-09-2023 a las 02:35:44
 -- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.0.28
+-- Versión de PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -72,10 +72,12 @@ CREATE TABLE `usuarios` (
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `nombre` varchar(100) NOT NULL,
+  `apellido` varchar(255) NOT NULL,
   `contacto` varchar(100) DEFAULT NULL,
+  `descripcion` text DEFAULT NULL,
   `destacado` tinyint(1) NOT NULL DEFAULT 0,
   `especialista` tinyint(1) NOT NULL DEFAULT 0,
-  `direccion` int(4) NOT NULL,
+  `direccion` varchar(255) DEFAULT NULL,
   `token` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
@@ -83,11 +85,11 @@ CREATE TABLE `usuarios` (
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `email`, `password`, `nombre`, `contacto`, `destacado`, `especialista`, `direccion`, `token`) VALUES
-(1, 'pepito@hotmail.com', '12345', 'Pepe', '+54 1234 56-7890', 0, 1, 0, NULL),
-(2, 'adriel@hotmail', '202cb962ac59075b964b07152d234b70', 'adriel', '1234567', 0, 0, 6620, '90e69b1b1ea70f4c0315f714f0ed863a'),
-(3, 'dasd', '1cfe70df284a018d4ba63e20c72e0fd5', 'dasda', 'dasd', 0, 0, 0, NULL),
-(4, 'dsadsadasd', '4473e588b35568687564de38ed134d0b', 'dsad', 'dsada', 0, 1, 6620, NULL);
+INSERT INTO `usuarios` (`id`, `email`, `password`, `nombre`, `apellido`, `contacto`, `descripcion`, `destacado`, `especialista`, `direccion`, `token`) VALUES
+(1, 'pepito@hotmail.com', '12345', 'Pepe', 'Peposo', '+54 1234 56-7890', 'este es el espacio de la descripcion de mi buen amigo el trabajador Pepe', 0, 1, 'San Lorenzo 321', NULL),
+(2, 'adriel@hotmail', '202cb962ac59075b964b07152d234b70', 'adriel', '', '1234567', NULL, 0, 0, '6620', '90e69b1b1ea70f4c0315f714f0ed863a'),
+(3, 'dasd', '1cfe70df284a018d4ba63e20c72e0fd5', 'dasda', '', 'dasd', NULL, 0, 0, '0', NULL),
+(4, 'dsadsadasd', '4473e588b35568687564de38ed134d0b', 'Ramon', 'Gomez', '+54 9876 54-3210', 'este es el espacio de la descripcion de mi buen amigo el trabajador Ramon', 0, 1, 'Colon 123', NULL);
 
 --
 -- Índices para tablas volcadas
