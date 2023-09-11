@@ -109,12 +109,12 @@ export const getUsuario = async (req, res) =>
 export const UsuarioValidado = async (req, res) => 
 {
     //Obtengo los datos almacenados en la SesionStorage
-    const {token} = req.body;
+    const {token, id} = req.body;
 
     //Realizo una consulta para buscar si este token existe en algun usuario
     connection.query(
-        'SELECT * FROM usuarios WHERE token = ?',
-        [token],
+        'SELECT * FROM usuarios WHERE token = ? AND id = ?',
+        [token, id],
 
         function (err, results) 
         {
@@ -235,16 +235,16 @@ export const RegistroUsuario = async (req, res) =>
 
 };
 
-export const ModificoUsuario = async (req, res) => 
+export const InsertoImagen = async (req, res) => 
 {
-    const {nombre, contacto, email, password, especialista, direccion} = req.body;
+    const {id_usuario} = req.body;
 
     //Obtengo el nombre de la imagen por multer
     const filename = '/uploads/' + req.file.filename;
 
     connection.query(
-        'INSERT usuarios (email, password, nombre, contacto, especialista, direccion, path) VALUES (?,?,?,?,?,?,?)',
-        [email, password, nombre, contacto, especialista, direccion, filename],
+        'UPDATE usuarios SET path = ? WHERE id = ?',
+        [filename, id_usuario],
         function (err, results) {
             if (err) 
             {

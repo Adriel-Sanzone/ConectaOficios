@@ -32,6 +32,10 @@ router.get('/registro', function (req, res) {
     res.render('../Frontend/views/pages/registro')
 });
 
+router.get('/registro2', function (req, res) {
+    res.render('../Frontend/views/pages/registro2')
+});
+
 router.get('/perfil', function (req, res) {
     res.render('../Frontend/views/pages/perfil')
 });

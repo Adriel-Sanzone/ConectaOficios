@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-09-2023 a las 02:35:44
+-- Tiempo de generación: 11-09-2023 a las 05:14:25
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -78,18 +78,21 @@ CREATE TABLE `usuarios` (
   `destacado` tinyint(1) NOT NULL DEFAULT 0,
   `especialista` tinyint(1) NOT NULL DEFAULT 0,
   `direccion` varchar(255) DEFAULT NULL,
-  `token` varchar(255) DEFAULT NULL
+  `token` varchar(255) DEFAULT NULL,
+  `path` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `email`, `password`, `nombre`, `apellido`, `contacto`, `descripcion`, `destacado`, `especialista`, `direccion`, `token`) VALUES
-(1, 'pepito@hotmail.com', '12345', 'Pepe', 'Peposo', '+54 1234 56-7890', 'este es el espacio de la descripcion de mi buen amigo el trabajador Pepe', 0, 1, 'San Lorenzo 321', NULL),
-(2, 'adriel@hotmail', '202cb962ac59075b964b07152d234b70', 'adriel', '', '1234567', NULL, 0, 0, '6620', '90e69b1b1ea70f4c0315f714f0ed863a'),
-(3, 'dasd', '1cfe70df284a018d4ba63e20c72e0fd5', 'dasda', '', 'dasd', NULL, 0, 0, '0', NULL),
-(4, 'dsadsadasd', '4473e588b35568687564de38ed134d0b', 'Ramon', 'Gomez', '+54 9876 54-3210', 'este es el espacio de la descripcion de mi buen amigo el trabajador Ramon', 0, 1, 'Colon 123', NULL);
+INSERT INTO `usuarios` (`id`, `email`, `password`, `nombre`, `apellido`, `contacto`, `descripcion`, `destacado`, `especialista`, `direccion`, `token`, `path`) VALUES
+(1, 'pepito@hotmail.com', '12345', 'Pepe', 'Peposo', '+54 1234 56-7890', 'este es el espacio de la descripcion de mi buen amigo el trabajador Pepe', 1, 1, 'San Lorenzo 321', NULL, ''),
+(2, 'adriel@hotmail', '202cb962ac59075b964b07152d234b70', 'adriel', '', '1234567', NULL, 0, 0, '6620', '444b8ce35b6f0cd905c9f68152a655ef', '/uploads/1694400825857.gatofino.jpg'),
+(3, 'dasd', '1cfe70df284a018d4ba63e20c72e0fd5', 'dasda', '', 'dasd', NULL, 0, 0, '0', NULL, ''),
+(4, 'dsadsadasd', '4473e588b35568687564de38ed134d0b', 'Ramon', 'Gomez', '+54 9876 54-3210', 'este es el espacio de la descripcion de mi buen amigo el trabajador Ramon', 0, 1, 'Colon 123', NULL, ''),
+(5, 'holasebas@hotmail', '15de21c670ae7c3f6f3f1f37029303c9', 'El', '', '+55 5555 55-5555', NULL, 0, 1, 'Rosario', '7224a442b67b8248329bceb09e558fd1', ''),
+(6, 'asdasd', 'adbf5a778175ee757c34d0eba4e932bc', 'El', '', 'dasdad', NULL, 0, 1, 'dsada', '510b57837943cc161dd08c76ab9b082a', '');
 
 --
 -- Índices para tablas volcadas
@@ -135,7 +138,7 @@ ALTER TABLE `especializacion_usuario`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Restricciones para tablas volcadas

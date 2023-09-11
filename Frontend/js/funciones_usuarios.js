@@ -45,6 +45,13 @@ function RegistrarUsuario(especificaciones)
                 } else
                 {
                     alert("Usuario creado exitosamente");
+                    //Ejecuto la misma funcion de iniciar sesion para que automaticamente ingrese con el usuario que se acaba de registrar
+                    var especificaciones = new FormData();
+
+                    especificaciones.append('email', email);
+                    especificaciones.append('password', password);
+                    BuscarUsuario(especificaciones);
+                    location.href="/registro2"
                 }
            }
         })
@@ -82,7 +89,7 @@ function BuscarUsuario(especificaciones)
                 {
                     console.log("exito");
                     alert("Usuario logeado exitosamente");
-                    location.href="/";
+                    location.href="/inicio";
                     sessionStorage.setItem("IdUsuario" , r.usuario.id);
                     sessionStorage.setItem("Token" , r.token);
                     
@@ -91,51 +98,50 @@ function BuscarUsuario(especificaciones)
         })
 }
 
-function ValidarUsuario(token)
+function ValidarUsuario(token, id)
 {
-    $.ajax(
-        {
-           "url": URL_BASE + "usuariovalidado",
-           "type": "POST",
-           "dataType": "json",
-           "data":
-           {
-                "token": token,
-           },
-           success: function(r)
-           {
-                if(r.error == 1)
+    if (id != "")
+    {
+        $.ajax(
+            {
+                "url": URL_BASE + "usuariovalidado",
+                "type": "POST",
+                "dataType": "json",
+                "data":
                 {
-                    console.log("error");
-                    alert(r.mensaje);
-                    location.href="iniciarSesion";
-                } else
+                    "token": token,
+                    "id": id,
+                },
+                success: function(r)
                 {
-                    console.log("validado");                    
+                    if(r.error == 1)
+                    {
+                        console.log("error");
+                        alert(r.mensaje);
+                        location.href="/iniciarSesion";
+                    } else
+                    {
+                        console.log("validado");                    
+                    }
                 }
-           }
-        })
-
-
+            })
+    }
 }
 
-function ModificoUsuario(datos, imagen)
-{
-    var fd = new FormData();
-    fd.append('UsuarioImagen', imagen[0], files[0]);
-    fd.append('datos' , datos);
-    
+function InsertarImagen(datos)
+{    
     $.ajax(
         {
-           "url": URL_BASE + "modificousuario",
+           "url": URL_BASE + "insertoimagen",
            "type": "POST",
            "processData": false,
            "contentType": false,           
            "dataType": "json",
-           "data": fd,
+           "data": datos,
            success: function(data)
            {
-
+            alert("Foto agregada correctamente");
+            location.href="/inicio";
            }
         })
 
