@@ -100,7 +100,8 @@ function BuscarUsuario(especificaciones)
 
 function ValidarUsuario(token, id)
 {
-    if (id != "")
+    console.log(id);
+    if (id != null)
     {
         $.ajax(
             {
