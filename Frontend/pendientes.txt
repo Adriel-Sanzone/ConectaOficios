@@ -1,3 +1,2 @@
 hecer menu para movil
 como achicar el container?
-ver mas descarga un archivo no redirige a oficios

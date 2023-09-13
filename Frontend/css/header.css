@@ -1,11 +1,10 @@
 /* header */
 
-#mobile-menu-button {
+/* #mobile-menu-button {
     display: none;
-    /*Inicialmente oculto en pantallas grandes */
     cursor: pointer;
     padding: 10px;
-}
+} */
 
 header {
     display: flex;
@@ -23,12 +22,12 @@ header h3 {
     font-size: 24px;
 }
 
-header h3 a{
+header h3 a {
     text-decoration: none;
     color: var(--azul);
 }
 
-header h3 a:hover{
+header h3 a:hover {
     color: var(--azul);
 }
 
@@ -80,34 +79,61 @@ header div .registrarse:hover {
     color: var(--blanco);
 }
 
-@media (max-width: 768px) {
+.barra {
+    margin: 0 !important;
+}
+
+.barra i {
+    color: var(--azul);
+}
+
+.barra input {
+    border-radius: 5px;
+}
+
+@media (max-width: 828px) {
+
     /* header */
     header {
         display: flex;
-        height: 40px;
         margin-block-end: 20px;
-        justify-content: space-around;
         align-items: center;
         margin-block-start: 20px;
+        justify-content: flex-start;
+        flex-direction: column;
+        height: 150px;
+        align-items: center;
     }
 
-    header #menu {
+    header h3{
+        padding-bottom: 10px;
+    }
+
+    header .barra{
+        padding-bottom: 25px;
+    }
+
+    header .menu{
+        padding-bottom: 10px;
+    }
+
+    /* header .menu {
         display: none;
         /* Oculta el menú en pantallas pequeñas */
-    }
+    /* }
 
     #mobile-menu-button {
         display: inline;
     }
 
     /* Muestra el menú cuando se hace clic en el icono de hamburguesa */
-    #menu.show-menu {
+    /* .menu.show-menu {
         display: inline;
     }
 
-    #menu.show-menu a {
+    .menu.show-menu a {
         font-size: 5px;
-    }
+    }  */
 
     /* fin header */
 
