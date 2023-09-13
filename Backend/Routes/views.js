@@ -2,7 +2,7 @@ import { Router } from 'express';
 import {viewUsuariosEspecialistas} from '../Controllers/usuarios.js'
 const router = Router();
 
-router.get('/inicio', function (req, res) 
+router.get('/', function (req, res) 
 {
     var usuariosEspecialista = viewUsuariosEspecialistas()
     usuariosEspecialista.then(function(usuarios)

@@ -1,2 +1,3 @@
 hecer menu para movil
 como achicar el container?
+overflow de registro ???

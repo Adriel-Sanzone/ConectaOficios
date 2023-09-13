@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 
-  
+
 <head>
 
   <%- include ('../partials/head') %>
@@ -13,32 +13,36 @@
 
   <%- include ('../partials/header') %>
 
-  <div class="contenedor row">
-    <div class="registro col-md-4">
-      <p class="titulo">Crear Cuenta</p>
-      <div>
-        <input class="form-control" id="nombre" type="text" placeholder="Nombre (*)">
-        <input class="form-control" id="apellido" type="text" placeholder="Apellido (*)">
-        <input class="form-control" id="contacto" type="text" placeholder="WhatsApp">
-        <input class="form-control" id="email" type="email" placeholder="Email (*)">
-        <input class="form-control" id="password" type="password" placeholder="Contraseña (*)">
-        <div class="contenedorCheckbox">
-          <input class="checkbox" type="checkbox" id="mostrarCampos">
-          <label for="mostrarCampos">Quiero ofrecer mis servicios</label>
+  <div class="row">
+    <div class="contenedor">
+      <div class="col-md-4">
+        <div class="registro">
+          <p class="titulo">Crear Cuenta</p>
+          <div>
+            <input class="form-control" id="nombre" type="text" placeholder="Nombre (*)">
+            <input class="form-control" id="apellido" type="text" placeholder="Apellido (*)">
+            <input class="form-control" id="contacto" type="text" placeholder="WhatsApp">
+            <input class="form-control" id="email" type="email" placeholder="Email (*)">
+            <input class="form-control" id="password" type="password" placeholder="Contraseña (*)">
+            <div class="contenedorCheckbox">
+              <input class="checkbox" type="checkbox" id="mostrarCampos">
+              <label for="mostrarCampos">Quiero ofrecer mis servicios</label>
+            </div>
+            <div id="camposAdicionales" style="display: none;">
+              <input class="form-control" id="direccion" type="text" placeholder="Dirección (*)">
+              <label for="categorias">Selecciona una categoría:</label>
+              <select class="form-control" id="categorias">
+                <option>Gas</option>
+                <option>Agua</option>
+                <option>Electricidad</option>
+                <option>Tecnología</option>
+              </select>
+            </div>
+            <input class="form-control registrar" type="submit" value="Crear Cuenta">
+          </div>
+          <p>¿Ya tienes una cuenta?</p><a href="iniciarSesion.html">Iniciar sesión</a>
         </div>
-        <div id="camposAdicionales" style="display: none;">
-          <input class="form-control" id="direccion" type="text" placeholder="Dirección (*)">
-          <label for="categorias">Selecciona una categoría:</label>
-          <select class="form-control" id="categorias">
-            <option>Gas</option>
-            <option>Agua</option>
-            <option>Electricidad</option>
-            <option>Tecnología</option>
-          </select>
-        </div>
-        <input class="form-control registrar" type="submit" value="Crear Cuenta">
       </div>
-      <p>¿Ya tienes una cuenta?</p><a href="iniciarSesion.html">Iniciar sesión</a>
     </div>
   </div>
 
@@ -50,16 +54,14 @@
 
   <script src="/Frontend/js/script.js"></script>
   <script src="/Frontend/js/funciones_usuarios.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   <!-- Script para disparar la funcion que crea el usuario-->
   <script type="text/javascript">
     //Obtengo el valor de la checkbox en booleano
     var checkbox = document.getElementById("mostrarCampos");
     var especialista = false;
 
-    checkbox.addEventListener("change", function () {
+    checkbox.addEventListener("change", function() {
       if (this.checked) {
         especialista = true;
       } else {
@@ -68,22 +70,21 @@
     });
 
     //Tras apretar "Crear cuenta" obtengo los valores de los inputs
-    $(".registrar").on("click", function () {
+    $(".registrar").on("click", function() {
 
       var especificaciones = new FormData();
 
-      especificaciones.append('nombre' , $("#nombre").val());
-      especificaciones.append('contacto' , $("#contacto").val());
-      especificaciones.append('email' , $("#email").val());
-      especificaciones.append('password' , $("#password").val());
-      especificaciones.append('trabaja' , especialista);
-      especificaciones.append('direccion' , $("#direccion").val());
+      especificaciones.append('nombre', $("#nombre").val());
+      especificaciones.append('contacto', $("#contacto").val());
+      especificaciones.append('email', $("#email").val());
+      especificaciones.append('password', $("#password").val());
+      especificaciones.append('trabaja', especialista);
+      especificaciones.append('direccion', $("#direccion").val());
 
       //Llamo la funcion enviandole los parametros obtenidos
       console.log(especificaciones);
       RegistrarUsuario(especificaciones);
     })
-
   </script>
 
 </body>
