@@ -108,7 +108,11 @@
             <swiper-slide>
               <div class="persona">
                 <h4>Agua</h4>
-                <img class="img-fluid" src="/Frontend/img/persona.jpg">
+                <% if(c.path != ""){ %>
+                  <img class="img-fluid" src="<%= c.path %>" alt="">
+                <% } else {; %>             
+                  <img class="img-fluid" src="/Frontend/img/usuario-sin-foto.png" alt="">
+                <% }; %>
                 <h3>Plomero</h3>
                 <h5> <%= c.nombre %> <%= c.apellido %></h5>
                 <div class="descripcion">
@@ -127,7 +131,7 @@
       <!-- fin carrusel -->
 
       <div class="ver-mas">
-        <a href="oficios" target="_blank">Ver más<i class="fa-solid fa-arrow-right"></i></a>
+        <a href="oficios">Ver más<i class="fa-solid fa-arrow-right"></i></a>
       </div>
 
     </div>

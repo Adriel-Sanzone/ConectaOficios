@@ -40,7 +40,11 @@
             <div class="persona">
               <div class="row">
                 <div class="imagen col-md-3">
-                  <img class="img-fluid" src="<%= c.path %>" alt="">
+                  <% if(c.path != ""){ %>
+                    <img class="img-fluid" src="<%= c.path %>">
+                  <% } else {; %>             
+                    <img class="img-fluid" src="Frontend/img/usuario-sin-foto.png">
+                  <% }; %>
                 </div>
                 <div class="info-persona col-md-9">
                   <div class="especialidades">
