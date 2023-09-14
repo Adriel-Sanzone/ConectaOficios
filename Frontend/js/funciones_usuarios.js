@@ -7,6 +7,7 @@ function RegistrarUsuario(especificaciones)
     window.Enviando = 1;
 
     var nombre = especificaciones.get('nombre');
+    var apellido = especificaciones.get('apellido');
     var contacto = especificaciones.get('contacto');
     var email = especificaciones.get('email');
     var password = especificaciones.get('password');
@@ -30,6 +31,7 @@ function RegistrarUsuario(especificaciones)
            "data":
            {
                 "nombre": nombre,
+                "apellido": apellido,
                 "contacto": contacto,
                 "email": email,
                 "password": password,

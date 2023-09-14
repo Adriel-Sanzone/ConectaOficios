@@ -1,5 +1,7 @@
 import { Router } from 'express';
 import {viewUsuariosEspecialistas} from '../Controllers/usuarios.js'
+import { viewEspecializaciones } from '../Controllers/especializaciones.js';
+
 const router = Router();
 
 router.get('/', function (req, res) 
@@ -19,8 +21,8 @@ router.get('/iniciarSesion', function (req, res) {
 });
 
 router.get('/oficios', function (req, res) {
-    var usuariosEspecialista = viewUsuariosEspecialistas()
-    usuariosEspecialista.then(function(usuarios)
+    var usuariosEspecialistas = viewUsuariosEspecialistas()
+    usuariosEspecialistas.then(function(usuarios)
     {
         res.render("../Frontend/views/pages/oficios", {
             "usuariosEsp" : usuarios,
@@ -29,7 +31,13 @@ router.get('/oficios', function (req, res) {
 });
 
 router.get('/registro', function (req, res) {
-    res.render('../Frontend/views/pages/registro')
+    var especializaciones = viewEspecializaciones()
+    especializaciones.then(function(especializacion)
+    {
+        res.render("../Frontend/views/pages/registro", {
+            "especializacion" : especializacion,
+        });
+    }) 
 });
 
 router.get('/registro2', function (req, res) {

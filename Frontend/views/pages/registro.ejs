@@ -19,8 +19,14 @@
         <div class="registro">
           <p class="titulo">Crear Cuenta</p>
           <div>
-            <input class="form-control" id="nombre" type="text" placeholder="Nombre (*)">
-            <input class="form-control" id="apellido" type="text" placeholder="Apellido (*)">
+            <div class="row">
+              <div class="col-md-6">
+                <input class="form-control" id="nombre" type="text" placeholder="Nombre (*)">
+              </div>
+              <div class="col-md-6">
+                <input class="form-control" id="apellido" type="text" placeholder="Apellido (*)">
+              </div>
+            </div>
             <input class="form-control" id="contacto" type="text" placeholder="WhatsApp">
             <input class="form-control" id="email" type="email" placeholder="Email (*)">
             <input class="form-control" id="password" type="password" placeholder="Contraseña (*)">
@@ -32,10 +38,9 @@
               <input class="form-control" id="direccion" type="text" placeholder="Dirección (*)">
               <label for="categorias">Selecciona una categoría:</label>
               <select class="form-control" id="categorias">
-                <option>Gas</option>
-                <option>Agua</option>
-                <option>Electricidad</option>
-                <option>Tecnología</option>
+                <% especializacion.forEach(function(c){ %>  
+                  <option><%= c.especializacion %></option>
+                <% }) %>
               </select>
             </div>
             <input class="form-control registrar" type="submit" value="Crear Cuenta">
@@ -75,6 +80,7 @@
       var especificaciones = new FormData();
 
       especificaciones.append('nombre', $("#nombre").val());
+      especificaciones.append('apellido', $("#apellido").val());
       especificaciones.append('contacto', $("#contacto").val());
       especificaciones.append('email', $("#email").val());
       especificaciones.append('password', $("#password").val());
