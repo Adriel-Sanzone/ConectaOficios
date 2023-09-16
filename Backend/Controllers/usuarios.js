@@ -145,7 +145,7 @@ export const UsuarioValidado = async (req, res) =>
 export const RegistroUsuario = async (req, res) => 
 {
     //Obtengo los datos ingresados por el usuario
-    let {nombre, apellido, contacto, email, password, especialista, direccion} = req.body;
+    let {nombre, apellido, contacto, email, password, especialista, direccion, descripcion} = req.body;
 
     //Si el espacio de email estaba vacio
     if(email == "")
@@ -221,8 +221,8 @@ export const RegistroUsuario = async (req, res) =>
 
             //Creo la consulta para agregar el nuevo usuario con los datos clave
             connection.query(
-                'INSERT usuarios (email, password, nombre, apellido, contacto, especialista, direccion) VALUES (?,?,?,?,?,?,?)',
-                [email, password, nombre, apellido, contacto, especialista, direccion],
+                'INSERT usuarios (email, password, nombre, apellido, contacto, especialista, direccion, descripcion) VALUES (?,?,?,?,?,?,?,?)',
+                [email, password, nombre, apellido, contacto, especialista, direccion, descripcion],
         
                 function (err, results) 
                 {

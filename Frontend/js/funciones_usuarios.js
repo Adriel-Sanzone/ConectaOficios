@@ -13,6 +13,7 @@ function RegistrarUsuario(especificaciones)
     var password = especificaciones.get('password');
     var trabaja = especificaciones.get('trabaja');
     var direccion = especificaciones.get('direccion');
+    var descripcion = especificaciones.get('descripcion');
     var especializacion_id = especificaciones.get('especializacion_id');
     
     //transformo el valor booleano de la checkbox en 0 o 1
@@ -41,6 +42,7 @@ function RegistrarUsuario(especificaciones)
                 "password": password,
                 "especialista": trabaja,
                 "direccion": direccion,
+                "descripcion": descripcion,
            },
            success: function(r)
            {
