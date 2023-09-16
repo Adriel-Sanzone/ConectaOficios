@@ -171,6 +171,7 @@ swiper-slide {
     width: 320px !important;
     background-color: var(--blanco2);
     padding: 20px 20px 35px 20px;
+    margin-bottom: 35px;
 }
 
 .persona h4 {
@@ -217,6 +218,7 @@ swiper-slide {
     font-size: 14px;
     overflow: auto;
     max-height: 84px;
+    min-height: 84px;
 }
 
 .persona .ubicacion {

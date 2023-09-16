@@ -249,7 +249,7 @@ export const InsertoImagen = async (req, res) =>
     const {id_usuario} = req.body;
 
     //Obtengo el nombre de la imagen por multer
-    const filename = '/uploads/' + req.file.filename;
+    const filename = '/Backend/uploads/' + req.file.filename;
 
     connection.query(
         'UPDATE usuarios SET path = ? WHERE id = ?',

@@ -39,7 +39,7 @@
               <label for="categorias">Selecciona una categoría:</label>
               <select class="form-control" id="categorias">
                 <% especializacion.forEach(function(c){ %>  
-                  <option><%= c.especializacion %></option>
+                  <option value="<%= c.id %>"><%= c.especializacion %></option>
                 <% }) %>
               </select>
             </div>
@@ -86,6 +86,7 @@
       especificaciones.append('password', $("#password").val());
       especificaciones.append('trabaja', especialista);
       especificaciones.append('direccion', $("#direccion").val());
+      especificaciones.append('especializacion_id', $("#categorias").val());
 
       //Llamo la funcion enviandole los parametros obtenidos
       console.log(especificaciones);

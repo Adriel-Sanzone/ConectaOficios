@@ -2,7 +2,6 @@ import {connection} from '../Database/connection.js';
 
 export const viewEspecializaciones = () =>
 {
-    
     return new Promise (function(resolve)
     {
         connection.query(
