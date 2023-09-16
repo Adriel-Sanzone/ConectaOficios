@@ -1,5 +1,5 @@
 import {Router} from 'express';
-import {getUsuarios , getUsuario, UsuarioValidado, RegistroUsuario, InsertoImagen} from '../Controllers/usuarios.js'
+import {getUsuarios , getUsuario, UsuarioValidado, RegistroUsuario, InsertoImagen, AsignoEspecializacion} from '../Controllers/usuarios.js'
 
 import multer from 'multer';
 
@@ -10,7 +10,7 @@ const multerStorage = multer.diskStorage(
 {
     destination: (req, file, cb) =>
     {
-        cb(null, "Backend/uploads");
+        cb(null, "Frontend/uploads");
     },
     filename: (req, file, cb) =>
     {
@@ -27,6 +27,7 @@ router.get('/usuarios' , getUsuarios);
 router.post('/usuario' , getUsuario);
 router.post('/usuariovalidado' , UsuarioValidado);
 router.post('/registrousuario' , RegistroUsuario);
+router.post('/asignoespecializacion' , AsignoEspecializacion);
 //Subida de archivo
 router.post('/insertoimagen', upload.single("usuarioFoto"), InsertoImagen);
 

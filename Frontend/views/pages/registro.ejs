@@ -45,7 +45,7 @@
             </div>
             <input class="form-control registrar" type="submit" value="Crear Cuenta">
           </div>
-          <p>¿Ya tienes una cuenta?</p><a href="iniciarSesion.html">Iniciar sesión</a>
+          <p>¿Ya tienes una cuenta?</p><a href="/iniciarSesion">Iniciar sesión</a>
         </div>
       </div>
     </div>
@@ -64,13 +64,13 @@
   <script type="text/javascript">
     //Obtengo el valor de la checkbox en booleano
     var checkbox = document.getElementById("mostrarCampos");
-    var especialista = false;
+    var especialista = 0;
 
     checkbox.addEventListener("change", function() {
       if (this.checked) {
-        especialista = true;
+        especialista = 1;
       } else {
-        especialista = false;
+        especialista = 0;
       }
     });
 

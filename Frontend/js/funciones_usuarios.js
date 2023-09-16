@@ -13,15 +13,19 @@ function RegistrarUsuario(especificaciones)
     var password = especificaciones.get('password');
     var trabaja = especificaciones.get('trabaja');
     var direccion = especificaciones.get('direccion');
+    var especializacion_id = especificaciones.get('especializacion_id');
     
     //transformo el valor booleano de la checkbox en 0 o 1
-    if (trabaja)
+    /*console.log(trabaja);
+    if (trabaja != false) 
     {
         trabaja = 1;
     } else
     {
         trabaja = 0;
-    }
+    }*/
+
+    console.log(trabaja);
 
     $.ajax(
         {
@@ -40,20 +44,84 @@ function RegistrarUsuario(especificaciones)
            },
            success: function(r)
            {
-                window.Enviando = 0;
+            window.Enviando = 0;
+
                 if(r.error == 1)
-                {
+                {            
                     alert(r.mensaje);
                 } else
                 {
                     alert("Usuario creado exitosamente");
                     //Ejecuto la misma funcion de iniciar sesion para que automaticamente ingrese con el usuario que se acaba de registrar
-                    var especificaciones = new FormData();
-
-                    especificaciones.append('email', email);
-                    especificaciones.append('password', password);
-                    BuscarUsuario(especificaciones);
-                    location.href="/registro2"
+                    $.ajax(
+                        {
+                           "url": URL_BASE + "usuario",
+                           "type": "POST",
+                           "dataType": "json",
+                           "data":
+                           {
+                                "email": email,
+                                "password": password,
+                           },
+                           success: function(r)
+                           {                
+                                if(r.error == 1)
+                                {                            
+                                    console.log("error");
+                                    alert(r.mensaje);
+                                } else
+                                {
+                                    console.log("exito 2");
+                                    sessionStorage.setItem("IdUsuario" , r.usuario.id);
+                                    sessionStorage.setItem("Token" , r.token);
+                                    //luego de guardar el id y token del usuario recien creado asigno el trabajo que selecciono
+                                    if (r.usuario.especialista != 0)
+                                    {
+                                        console.log("El pibe trabaja");
+                                        $.ajax(
+                                            {
+                                            "url": URL_BASE + "asignoespecializacion",
+                                            "type": "POST",
+                                            "dataType": "json",
+                                            "data":
+                                            {
+                                                    "id_usuario": r.usuario.id,
+                                                    "id_especializacion": especializacion_id,
+                                            },
+                                            success: function(r)
+                                            {                                              
+                                    
+                                                    if(r.error == 1)
+                                                    {                                                
+                                                        console.log("error");
+                                                        alert(r.mensaje);
+                                                    } else
+                                                    {                                                
+                                                        console.log("exito 3");
+                                                        
+                                                        location.href="/registro2";
+                                                    }
+                                            }
+                                            })
+                                    } else
+                                    {
+                                        console.log("El pibe no trabaja");                                
+                                    
+                                        if(r.error == 1)
+                                        {
+                                            console.log("error");
+                                            alert(r.mensaje);
+                                        } else
+                                        {
+                                            console.log("exito 3");
+                                            
+                                            location.href="/registro2";
+                                        }
+                                    }
+                                }
+                           }
+                        })
+                    
                 }
            }
         })
@@ -91,7 +159,7 @@ function BuscarUsuario(especificaciones)
                 {
                     console.log("exito");
                     alert("Usuario logeado exitosamente");
-                    location.href="/inicio";
+                    location.href="/";
                     sessionStorage.setItem("IdUsuario" , r.usuario.id);
                     sessionStorage.setItem("Token" , r.token);
                     
@@ -103,7 +171,7 @@ function BuscarUsuario(especificaciones)
 function ValidarUsuario(token, id)
 {
     console.log(id);
-    if (id != null)
+    if (id != null && id != 0)
     {
         $.ajax(
             {
@@ -121,6 +189,8 @@ function ValidarUsuario(token, id)
                     {
                         console.log("error");
                         alert(r.mensaje);
+                        sessionStorage.setItem("IdUsuario" , 0);
+                        sessionStorage.setItem("Token" , 0);
                         location.href="/iniciarSesion";
                     } else
                     {
@@ -144,7 +214,7 @@ function InsertarImagen(datos)
            success: function(data)
            {
             alert("Foto agregada correctamente");
-            location.href="/inicio";
+            location.href="/";
            }
         })
 

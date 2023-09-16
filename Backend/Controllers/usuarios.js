@@ -193,7 +193,7 @@ export const RegistroUsuario = async (req, res) =>
         return false;
     };
     //Si el espacio de direccion estaba vacio habiendo marcado que quiere ser especialista
-    if(direccion == "" && especialista == 1)
+    if(direccion == "" && especialista != 0)
     {
         res.json({
             "error": 1,
@@ -244,12 +244,47 @@ export const RegistroUsuario = async (req, res) =>
 
 };
 
+export const AsignoEspecializacion = async (req, res) =>
+{
+    let {id_usuario, id_especializacion} = req.body;
+
+    //Si el espacio de especializacion estaba vacio
+    if(id_especializacion == "")
+    {
+        res.json({
+            "error": 1,
+            "mensaje": "No se selecciono especializacion",
+        });
+        return false;
+    };
+
+    connection.query(
+        'INSERT INTO especializacion_usuario (id_usuario, id_especializacion) VALUES (?,?)',
+        [id_usuario, id_especializacion],
+        function(err, results)
+        {
+            if (err) 
+            {
+                console.error(err);
+                res.status(500).json({ error: 'Error al obtener los datos' });
+            } else 
+            {
+                //Devuelvo que NO hay error
+                res.json({
+                    "error": 0,
+                })
+            }    
+        }
+    )
+}
+
+
 export const InsertoImagen = async (req, res) => 
 {
     const {id_usuario} = req.body;
 
     //Obtengo el nombre de la imagen por multer
-    const filename = '/Backend/uploads/' + req.file.filename;
+    const filename = 'Frontend/uploads/' + req.file.filename;
 
     connection.query(
         'UPDATE usuarios SET path = ? WHERE id = ?',
