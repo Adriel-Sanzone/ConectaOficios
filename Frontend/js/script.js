@@ -25,3 +25,19 @@ function resizeForSquareAppearance(event) {
 window.addEventListener('resize', resizeForSquareAppearance);
 document.addEventListener('DOMContentLoaded', resizeForSquareAppearance);
 
+
+
+
+
+
+
+//Declarando variables
+bars_search =       document.getElementById("ctn-bars-search");
+cover_ctn_search =  document.getElementById("cover-ctn-search");
+inputSearch =       document.getElementById("inputSearch");
+box_search =        document.getElementById("box-search");
+
+function buscador_interno(){
+    filter = inputSearch.value.toUpperCase();
+    
+}

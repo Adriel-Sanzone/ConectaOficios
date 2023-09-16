@@ -48,4 +48,8 @@ router.get('/perfil', function (req, res) {
     res.render('../Frontend/views/pages/perfil')
 });
 
+router.get('/acercaDe', function (req, res) {
+    res.render('../Frontend/views/pages/acercaDe')
+});
+
 export default router;

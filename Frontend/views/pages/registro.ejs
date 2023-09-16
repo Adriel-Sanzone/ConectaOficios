@@ -3,19 +3,17 @@
 
 
 <head>
-
   <%- include ('../partials/head') %>
   <link rel="stylesheet" href="/Frontend/css/registro.css">
 </head>
 
-
 <body>
 
-  <%- include ('../partials/header') %>
+  <%- include ('../partials/headerRegistro') %>
 
-  <div class="row">
-    <div class="contenedor">
-      <div class="col-md-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5">
         <div class="registro">
           <p class="titulo">Crear Cuenta</p>
           <div>
@@ -27,7 +25,6 @@
                 <input class="form-control" id="apellido" type="text" placeholder="Apellido (*)">
               </div>
             </div>
-            <input class="form-control" id="contacto" type="text" placeholder="WhatsApp">
             <input class="form-control" id="email" type="email" placeholder="Email (*)">
             <input class="form-control" id="password" type="password" placeholder="Contraseña (*)">
             <div class="contenedorCheckbox">
@@ -35,17 +32,19 @@
               <label for="mostrarCampos">Quiero ofrecer mis servicios</label>
             </div>
             <div id="camposAdicionales" style="display: none;">
+              <input class="form-control" id="contacto" type="text" placeholder="Contacto (*)">
               <input class="form-control" id="direccion" type="text" placeholder="Dirección (*)">
-              <label for="categorias">Selecciona una categoría:</label>
-              <select class="form-control" id="categorias">
-                <% especializacion.forEach(function(c){ %>  
-                  <option value="<%= c.id %>"><%= c.especializacion %></option>
+              <label class="label-categoria" for="categorias">Selecciona una categoría:</label>
+              <select class="form-control select-categoria" id="categorias">
+                <% especializacion.forEach(function(c){ %>
+                <option value="<%= c.id %>"><%= c.especializacion %></option>
                 <% }) %>
               </select>
+              <input class="form-control" id="descripcion" type="text" placeholder="Descripción">
             </div>
             <input class="form-control registrar" type="submit" value="Crear Cuenta">
           </div>
-          <p>¿Ya tienes una cuenta?</p><a href="iniciarSesion.html">Iniciar sesión</a>
+          <p>¿Ya tienes una cuenta?</p><a href="iniciarSesion">Iniciar sesión</a>
         </div>
       </div>
     </div>
@@ -86,6 +85,7 @@
       especificaciones.append('password', $("#password").val());
       especificaciones.append('trabaja', especialista);
       especificaciones.append('direccion', $("#direccion").val());
+      especificaciones.append('descripcion', $("#descripcion").val());
       especificaciones.append('especializacion_id', $("#categorias").val());
 
       //Llamo la funcion enviandole los parametros obtenidos
