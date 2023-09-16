@@ -1,4 +1,4 @@
-//Boton en registro
+//Boton en registro de quiero ofrecer servicios
 document.addEventListener("DOMContentLoaded", function () {
     const mostrarCamposCheckbox = document.getElementById("mostrarCampos");
     const camposAdicionalesDiv = document.getElementById("camposAdicionales");
@@ -12,18 +12,32 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-//Mostrar u ocultar el menú al hacer clic en el icono de hamburguesa
+//aspecto de foto en carrusel para que se mantenga cuadrada
+const aspectRatio1to1 = document.querySelectorAll('.aspect-ratio-1-1');
 
-const mobileMenuButton = document.getElementById("mobile-menu-button");
-const menuDiv = document.getElementById("menu");
+// Funcion para el evento
+function resizeForSquareAppearance(event) {
+    aspectRatio1to1.forEach((element) => {
+        // Modifica la altura a partir de la anchura del elemento
+        element.style.height = `${element.clientWidth}px`;
+    })
+}
+window.addEventListener('resize', resizeForSquareAppearance);
+document.addEventListener('DOMContentLoaded', resizeForSquareAppearance);
 
-mobileMenuButton.addEventListener("click", function() {
-    menuDiv.classList.toggle("show-menu");
-});
 
-// Agregar un listener para cambiar las clases en función del ancho de la ventana
-window.addEventListener("resize", function() {
-    if (window.innerWidth >= 768) {
-        menuDiv.classList.remove("show-menu");
-    }
-});
+
+
+
+
+
+//Declarando variables
+bars_search =       document.getElementById("ctn-bars-search");
+cover_ctn_search =  document.getElementById("cover-ctn-search");
+inputSearch =       document.getElementById("inputSearch");
+box_search =        document.getElementById("box-search");
+
+function buscador_interno(){
+    filter = inputSearch.value.toUpperCase();
+    
+}

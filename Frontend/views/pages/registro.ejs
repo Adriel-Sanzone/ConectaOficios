@@ -8,13 +8,9 @@
   <link rel="stylesheet" href="/Frontend/css/registro.css">
 </head>
 
-
 <body>
-
-  <%- include ('../partials/header') %>
-
-  <div class="row">
-    <div class="contenedor">
+  <div class="container">
+    <div class="row">
       <div class="col-md-4">
         <div class="registro">
           <p class="titulo">Crear Cuenta</p>
@@ -36,12 +32,13 @@
             </div>
             <div id="camposAdicionales" style="display: none;">
               <input class="form-control" id="direccion" type="text" placeholder="Dirección (*)">
-              <label for="categorias">Selecciona una categoría:</label>
-              <select class="form-control" id="categorias">
-                <% especializacion.forEach(function(c){ %>  
-                  <option value="<%= c.id %>"><%= c.especializacion %></option>
+              <label class="label-categoria" for="categorias">Selecciona una categoría:</label>
+              <select class="form-control select-categoria" id="categorias">
+                <% especializacion.forEach(function(c){ %>
+                <option value="<%= c.id %>"><%= c.especializacion %></option>
                 <% }) %>
               </select>
+              <input class="form-control" id="descripcion" type="text" placeholder="Descripción">
             </div>
             <input class="form-control registrar" type="submit" value="Crear Cuenta">
           </div>
