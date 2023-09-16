@@ -36,17 +36,20 @@
       </div>
       <div class="col-md-9">
         <div class="personas">
-          <% usuariosEsp.forEach(function(c){ %>  
-            <div class="persona">
-              <div class="row">
-                <div class="imagen col-md-3">
+          <% usuariosEsp.forEach(function(c){ %>
+          <div class="persona">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="imagen">
                   <% if(c.path != ""){ %>
-                    <img class="img-fluid" src="<%= c.path %>">
-                  <% } else {; %>             
-                    <img class="img-fluid" src="Frontend/img/usuario-sin-foto.png">
+                  <img class="img-fluid" src="<%= c.path %>">
+                  <% } else {; %>
+                  <img class="img-fluid" src="Frontend/img/usuario-sin-foto.png">
                   <% }; %>
                 </div>
-                <div class="info-persona col-md-9">
+              </div>
+              <div class="col-md-9">
+                <div class="info-persona">
                   <div class="especialidades">
                     <h4>Agua</h4>
                     <h3>Plomero</h3>
@@ -63,6 +66,7 @@
                 </div>
               </div>
             </div>
+          </div>
           <% }) %>
         </div>
 
