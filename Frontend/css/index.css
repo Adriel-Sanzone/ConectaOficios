@@ -30,14 +30,14 @@ body {
 }
 
 .inicio .presentacion {
-    padding-inline-end: 60px;
+    padding-inline-end: 40px;
 }
 
 .inicio .presentacion h5 {
     color: var(--naranja);
     font-weight: var(--bold);
     font-size: 16px;
-    margin-block-end: 30px;
+    margin-block-end: 20px;
 }
 
 .inicio .presentacion h1 {
@@ -45,6 +45,7 @@ body {
     font-weight: var(--bold);
     font-size: 58px;
     margin-block-end: 20px;
+    margin-top: 0;
 }
 
 .inicio .presentacion h4 {
@@ -52,7 +53,7 @@ body {
     font-weight: var(--regular);
     font-size: 20px;
     line-height: 30px;
-    margin-block-end: 45px;
+    margin-block-end: 40px;
 }
 
 .inicio .presentacion a {
@@ -68,6 +69,13 @@ body {
 
 .inicio .imagen {
     padding: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.inicio .imagen img {
+    max-height: 420px;
 }
 
 /* tarjetas */
@@ -191,10 +199,17 @@ swiper-slide {
 .persona img {
     border-radius: 200px;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.20);
-    height: 250px;
+    max-height: 225px !important;
+    max-width: 225px !important;
     display: block;
     margin: auto;
 }
+
+.persona .aspect-ratio-1-1 {
+    object-fit: cover; /* Recorta la imagen sin deformarla */
+    object-position: center;
+}
+
 
 .persona h3 {
     color: var(--naranja);
@@ -264,7 +279,8 @@ swiper-slide {
     align-content: center;
     justify-content: center;
     align-items: center;
-    padding: 50px;
+    padding-block-start: 5px;
+    padding-block-end: 25px;
 }
 
 .ver-mas a {
@@ -306,7 +322,7 @@ swiper-slide {
         margin-block-start: 20px;
     }
 
-    .head-anuncios h2{
+    .head-anuncios h2 {
         font-size: 30px;
     }
 }
