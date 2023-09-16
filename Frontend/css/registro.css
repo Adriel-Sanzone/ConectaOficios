@@ -17,8 +17,12 @@
     justify-content: center;
 }
 
+.registro{
+    margin-bottom: 50px;
+}
+
 .container .registro .titulo {
-    margin-block: 50px 30px;
+    margin-block-end: 30px;
     color: var(--azul);
     font-size: 50px;
     font-weight: var(--regular);
@@ -78,6 +82,7 @@
     display: inline;
     margin-right: 5px;
     font-size: 14px;
+    color: var(--gris);
 }
 
 .registro a {

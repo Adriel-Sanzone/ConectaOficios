@@ -3,12 +3,14 @@
 
 
 <head>
-
   <%- include ('../partials/head') %>
   <link rel="stylesheet" href="/Frontend/css/registro.css">
 </head>
 
 <body>
+
+  <%- include ('../partials/headerRegistro') %>
+
   <div class="container">
     <div class="row">
       <div class="col-md-5">
@@ -23,7 +25,6 @@
                 <input class="form-control" id="apellido" type="text" placeholder="Apellido (*)">
               </div>
             </div>
-            <input class="form-control" id="contacto" type="text" placeholder="WhatsApp">
             <input class="form-control" id="email" type="email" placeholder="Email (*)">
             <input class="form-control" id="password" type="password" placeholder="Contraseña (*)">
             <div class="contenedorCheckbox">
@@ -31,6 +32,7 @@
               <label for="mostrarCampos">Quiero ofrecer mis servicios</label>
             </div>
             <div id="camposAdicionales" style="display: none;">
+              <input class="form-control" id="contacto" type="text" placeholder="Contacto (*)">
               <input class="form-control" id="direccion" type="text" placeholder="Dirección (*)">
               <label class="label-categoria" for="categorias">Selecciona una categoría:</label>
               <select class="form-control select-categoria" id="categorias">
@@ -42,7 +44,7 @@
             </div>
             <input class="form-control registrar" type="submit" value="Crear Cuenta">
           </div>
-          <p>¿Ya tienes una cuenta?</p><a href="/iniciarSesion">Iniciar sesión</a>
+          <p>¿Ya tienes una cuenta?</p><a href="iniciarSesion">Iniciar sesión</a>
         </div>
       </div>
     </div>
@@ -61,13 +63,13 @@
   <script type="text/javascript">
     //Obtengo el valor de la checkbox en booleano
     var checkbox = document.getElementById("mostrarCampos");
-    var especialista = 0;
+    var especialista = false;
 
     checkbox.addEventListener("change", function() {
       if (this.checked) {
-        especialista = 1;
+        especialista = true;
       } else {
-        especialista = 0;
+        especialista = false;
       }
     });
 
