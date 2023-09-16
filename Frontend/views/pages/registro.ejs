@@ -63,13 +63,13 @@
   <script type="text/javascript">
     //Obtengo el valor de la checkbox en booleano
     var checkbox = document.getElementById("mostrarCampos");
-    var especialista = false;
+    var especialista = 0;
 
     checkbox.addEventListener("change", function() {
       if (this.checked) {
-        especialista = true;
+        especialista = 1;
       } else {
-        especialista = false;
+        especialista = 0;
       }
     });
 

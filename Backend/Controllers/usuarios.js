@@ -184,7 +184,7 @@ export const RegistroUsuario = async (req, res) =>
         return false;
     };
     //Si el espacio de contacto estaba vacio
-    if(contacto == "")
+    if(contacto == "" && especialista != 0)
     {
         res.json({
             "error": 1,

@@ -16,15 +16,9 @@ function RegistrarUsuario(especificaciones)
     var descripcion = especificaciones.get('descripcion');
     var especializacion_id = especificaciones.get('especializacion_id');
     
-    //transformo el valor booleano de la checkbox en 0 o 1
-    /*console.log(trabaja);
-    if (trabaja != false) 
-    {
-        trabaja = 1;
-    } else
-    {
-        trabaja = 0;
-    }*/
+
+    //console.log(trabaja);
+
 
     console.log(trabaja);
 
