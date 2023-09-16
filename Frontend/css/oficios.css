@@ -73,7 +73,7 @@ input[type="checkbox"] {
     margin-block-end: 30px;
 }
 
-.persona .especialidades{
+.persona .especialidades {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -95,10 +95,15 @@ input[type="checkbox"] {
     margin-inline-end: 10px;
 }
 
-.personas .persona img {
+.persona .imagen img {
     border-radius: 200px;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.20);
     margin-block: 10px;
+    max-height: 225px !important;
+    max-width: 225px !important;
+    object-fit: cover;
+    /* Recorta la imagen sin deformarla */
+    object-position: center;
 }
 
 .personas .persona h3 {
