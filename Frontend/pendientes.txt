@@ -1,4 +1,2 @@
 hecer menu para movil
-como achicar el container?
-overflow de registro ??? 
--por lo que vi el problema esta adentro del div con clase registro, uno de los campos hace que se estire horizontalmente
+como agregar estrellas a rese;as
