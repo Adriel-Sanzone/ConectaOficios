@@ -42,9 +42,15 @@
               <div class="col-md-3">
                 <div class="imagen">
                   <% if(c.path != ""){ %>
-                  <img class="img-fluid" src="<%= c.path %>">
+                  <div class="imagen-container">
+                    <img class="img-fluid" src="<%= c.path %>">
+                  </div>
+                  
                   <% } else {; %>
-                  <img class="img-fluid" src="Frontend/img/usuario-sin-foto.png">
+                  <div class="imagen-container">
+                    <img class="img-fluid" src="Frontend/img/usuario-sin-foto.png">
+                  </div>
+                  
                   <% }; %>
                 </div>
               </div>

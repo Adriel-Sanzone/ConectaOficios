@@ -15,8 +15,7 @@
     --celeste: #EEF4F8;
 }
 
-html,
-body {
+html,body {
     position: relative;
     height: 100%;
 }
@@ -100,12 +99,22 @@ input[type="checkbox"] {
     max-height: 200px;
 }
 
-.persona .imagen img {
-    border-radius: 200px;
+.imagen-container{
+    max-width: 100%;
+    height: auto;
+}
+
+.persona .imagen-container img {
+    min-width: 170px;
+    max-width: 170px;
+    max-height: 170px;
+    min-height: 170px;
+
+
+    border-radius: 50%;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.20);
     margin-block: 10px;
-    object-fit: cover; /* Recorta la imagen sin deformarla */
-    object-position: center;
+    
 }
 
 .personas .persona h3 {
