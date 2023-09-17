@@ -11,78 +11,154 @@
     --naranjaOscuro: #E74040;
     --azul: #252B42;
     --gris: #737373;
+    --grisClaro: #ECECEC;
     --celeste: #EEF4F8;
 }
 
 body {
-    background: var(--celeste);
+    background: var(--grisClaro);
 }
 
 .container {
-    width: 850px;
-    background: var(--blanco2);
+    max-width: 850px;
     padding: 0;
 }
 
+.contenido{
+    background-color: var(--blanco2);
+    border-radius: 5px;
+    filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 0.05));
+    margin-block-end: 30px;
+}
+
+.contenedor-info {
+    display: none;
+}
+
+.icono-perfil {
+    cursor: pointer;
+}
+
+
 .perfil {
-    padding-left: 100px;
+    padding-inline: 100px;
+}
+
+.perfil-principal {
+    border-radius: 5px 5px 5px 5px;
 }
 
 .portada img {
     width: 100%;
     height: 200px;
+    border-radius: 5px 5px 0px 0px;
 }
-
-
 
 .perfil img {
     position: absolute;
     width: 200px;
     height: 200px;
-    top: 242px;
+    top: 100px;
     background: url("/Frontend/img/prueba-perfil.jpg");
     border: 5px solid #E5E5E5;
     border-radius: 50%;
 }
 
 .categorias {
-    padding-right: 75px;
     padding-top: 30px;
+}
+
+.categorias .btn-categorias {
+    padding: 5px 10px;
+    border-radius: 3px;
+    background: var(--naranjaOscuro);
+    text-decoration: none;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.10);
+    color: var(--blanco);
+    font-family: Montserrat;
+    font-size: 14px;
+    font-weight: var(--bold);
 }
 
 .categorias .text {
     text-decoration: none;
-    color: var(--naranjaOscuro);
+    color: var(--naranja);
+    font-size: 14px;
+    font-weight: var(--bold);
 }
 
 .perfil-inferior {
-    margin-top: 4%;
-    padding-left: 100px;
+    padding-top: 70px;
+    padding-inline: 100px;
+}
+
+.perfil-inferior h1 {
+    font-family: Montserrat;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-top: 0;
+    margin-bottom: 5px;
 }
 
 .perfil-inferior p {
-    max-width: 90%;
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
     line-height: 20px;
-    letter-spacing: 0.2px;
     color: #737373;
 }
 
-.perfil-inferior button {
-    box-sizing: border-box;
+.perfil-inferior .btn-perfil-inf {
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 5px 10px;
-    gap: 10px;
-    border: 1px solid #FF685B;
+    padding: 10px 20px;
     border-radius: 37px;
+    margin-bottom: 30px;
+    margin-right: 15px;
 }
 
-.perfil-inferior button h6 {
+.perfil-inferior .whatsapp {
+    border: 1px solid #FF685B;
+}
+
+.perfil-inferior .email {
+    border: 1px solid #252B42;
+}
+
+.perfil-inferior .email a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--azul);
+}
+
+.perfil-inferior .whatsapp a {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--naranjaOscuro);
+}
+
+.email i {
+    padding-left: 10px;
+    font-size: 20px;
+}
+
+.perfil-inferior .whatsapp i {
+    padding-left: 10px;
+    font-size: 20px;
+}
+
+.perfil-inferior .perfil-inferior button h6 {
     padding-top: 5px;
     width: 91px;
     height: 24px;
@@ -97,12 +173,8 @@ body {
 
 
 .perfil-inferior .btn2 h6 {
-
-
     width: 42px;
     height: 24px;
-
-
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 700;
@@ -118,43 +190,36 @@ body {
     padding-bottom: 10px;
 }
 
-/*RESEÑAS*/
+/*Contenedores*/
 
-.titulo-reseña {
-    /* Reseñas */
+.contenedor-flecha {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+    padding-inline: 70px;
+    height: 100px;
+}
 
-
-    width: 181px;
-    height: 61px;
-    left: 73px;
-    top: 32px;
-
-    padding-left: 70px;
-    padding-top: 20px;
-
-
-    /* sub-nombre */
+.contenedor-flecha h5 {
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 400;
     font-size: 24px;
-    line-height: 29px;
-    display: flex;
-    align-items: center;
-    letter-spacing: -0.02em;
-
     color: #252B42;
-
-
+    margin: 0;
 }
 
-.encabezado {
-    padding-left: 100px;
-
-
+.contenedor-info {
+    padding-inline: 100px;
 }
 
-div .nombre {
+.resenias{
+    margin-bottom: 20px;
+}
+
+.nombre {
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 700;
@@ -163,51 +228,23 @@ div .nombre {
     color: #000000;
 }
 
+.encabezado{
+    margin-bottom: 5px;
+}
+
 .encabezado .estrellas {
     padding-left: 50px;
 }
 
 .cuerpo p {
-    /* paragraph product-description sec- */
-
-    width: 90%;
-
-    padding-left: 100px;
-
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
-    line-height: 20px;
-    /* or 143% */
-    letter-spacing: 0.2px;
-
-    /* second-text-color */
     color: #737373;
-
-
 }
 
-.vector {
-    padding-bottom: 10px;
 
-}
-
-.vector p {
-
-    width: 80%;
-    margin-left: 100px;
-
-
-    height: 0px;
-
-    top: 236.11px;
-
-    border: 1px solid #737373;
-
-
-
-}
 
 
 
@@ -233,23 +270,15 @@ div .nombre {
     display: flex;
     align-items: center;
     letter-spacing: -0.02em;
-
     color: #252B42;
-
-
 }
 
 
 .encabezado img {
     /* Frame 162 */
-
     margin-bottom: 30px;
     width: 170px;
     height: 125px;
-
-
-
-
     border-radius: 5px;
 
 }
@@ -289,7 +318,7 @@ div .nombre {
 
 }
 
-.ubi{
+.ubi {
     width: 90%;
     padding-left: 100px;
 
@@ -317,9 +346,8 @@ div .nombre {
     padding-left: 60px;
     padding-right: 60px;
 
-    
+
     width: 775px;
     height: 270px;
     padding-bottom: 40px;
 }
-
