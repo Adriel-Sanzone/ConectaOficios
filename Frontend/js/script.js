@@ -27,4 +27,29 @@ iconos.forEach((icono, index) => {
     });
 });
 
+// este script es al pedo pq en reseñas no hay que seleccionar las estrellas
+// pero puede servir para despues pq quedo lindo :)
+const estrellas = document.querySelectorAll('.icono-estrella');
+
+estrellas.forEach((estrella, index) => {
+    estrella.addEventListener('click', () => {
+        const currentColor = estrella.getAttribute('data-color');
+
+        // Si la estrella actual está seleccionada, desmarcar todas las estrellas
+        if (currentColor === '#FF6723') {
+            for (let i = 0; i < estrellas.length; i++) {
+                estrellas[i].style.color = '#737373';
+                estrellas[i].setAttribute('data-color', '#737373');
+            }
+        } else {
+            // Marcar la estrella actual y las anteriores
+            for (let i = 0; i <= index; i++) {
+                estrellas[i].style.color = '#FF6723';
+                estrellas[i].setAttribute('data-color', '#FF6723');
+            }
+        }
+    });
+});
+
+
 

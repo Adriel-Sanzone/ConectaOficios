@@ -24,7 +24,15 @@ body {
     padding: 0;
 }
 
-.contenido{
+/* styles.css */
+.icono-estrella {
+    cursor: pointer;
+    transition: color 0.3s;
+    margin: 10px;
+}
+
+
+.contenido {
     background-color: var(--blanco2);
     border-radius: 5px;
     filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 0.05));
@@ -215,7 +223,7 @@ body {
     padding-inline: 100px;
 }
 
-.resenias{
+.resenias {
     margin-bottom: 20px;
 }
 
@@ -226,14 +234,26 @@ body {
     font-size: 24px;
     line-height: 20px;
     color: #000000;
+    margin: 0;
 }
 
-.encabezado{
+.encabezado {
     margin-bottom: 5px;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
 }
 
-.encabezado .estrellas {
-    padding-left: 50px;
+.encabezado .barra {
+    padding-inline: 20px;
+    margin-bottom: 4px !important;
+}
+
+.estrellas i {
+    margin-inline: 2px;
+    color: var(--gris);
 }
 
 .cuerpo p {
