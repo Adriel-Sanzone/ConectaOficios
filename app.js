@@ -20,11 +20,6 @@ app.use(express.urlencoded());
 app.use(express.json());
 app.use(cors());
 
-// app.get('/' , (req, res) =>
-// {
-//     res.send("ANDA!!!");
-// })
-
 app.use(UsuariosRoutes);
 app.use(viewsRoutes);
 

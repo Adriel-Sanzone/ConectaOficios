@@ -1,3 +1,2 @@
 hecer menu para movil
 como agregar estrellas a rese;as
-hacer que el footer de iniciar sesion y registro 1 y 2 este abajo de la pantalla
