@@ -12,13 +12,37 @@
     --celeste: #EEF4F8;
 }
 
+header {
+    margin-block-end: 10px !important;
+}
+
+footer {
+    position: absolute !important;
+    bottom: 0 !important;
+    width: 100% !important;
+}
+
+html {
+    min-height: 100%;
+    position: relative;
+}
+
+body {
+    margin: 0;
+    margin-bottom: 40px;
+}
+
 .row {
     display: flex;
     justify-content: center;
 }
 
-.registro{
-    margin-bottom: 50px;
+.registro {
+    padding-bottom: 150px;
+}
+
+.registro2 {
+    padding-top: 50px;
 }
 
 .container .registro .titulo {
@@ -40,8 +64,11 @@
 }
 
 .registro label {
-    margin-block-end: 20px;
     color: var(--gris);
+}
+
+.registro .labelRegistro {
+    margin-block-end: 20px;
 }
 
 .registro .label-categoria {
@@ -92,6 +119,9 @@
     font-size: 14px;
 }
 
+.labelRegistro2 {
+    margin-block-end: 5px;
+}
 
 
 @media only screen and (max-width: 575px) {
