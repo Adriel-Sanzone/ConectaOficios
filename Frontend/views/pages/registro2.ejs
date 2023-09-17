@@ -19,9 +19,15 @@
       <div>
         <input class="form-control" type="file" id="imagen_perfil" accept="image/*" />
     
-        <input class="form-control registrar" type="submit" value="Crear Cuenta">
+        <div class="row">
+          <div class="col-md-8">
+            <input class="form-control registrar" type="submit" value="Agregar foto">
+          </div>
+          <div class="col-md-4">
+            <input class="form-control omitir" href="/" type="submit" value="Omitir">
+          </div>
+        </div>
       </div>
-      <p>¿Ya tienes una cuenta?</p><a href="iniciarSesion.html">Iniciar sesión</a>
     </div>
   </div>
 
@@ -51,6 +57,10 @@
         datosFoto.append("id_usuario", id);
 
         InsertarImagen(datosFoto);
+    })
+
+    $(".omitir").on("click", function () {
+      location.href="/";
     })
 
   </script>

@@ -146,6 +146,7 @@ export const RegistroUsuario = async (req, res) =>
 {
     //Obtengo los datos ingresados por el usuario
     let {nombre, apellido, contacto, email, password, especialista, direccion, descripcion} = req.body;
+    const sin_foto = 'Frontend/img/usuario-sin-foto.png';
 
     //Si el espacio de email estaba vacio
     if(email == "")
@@ -221,8 +222,8 @@ export const RegistroUsuario = async (req, res) =>
 
             //Creo la consulta para agregar el nuevo usuario con los datos clave
             connection.query(
-                'INSERT usuarios (email, password, nombre, apellido, contacto, especialista, direccion, descripcion) VALUES (?,?,?,?,?,?,?,?)',
-                [email, password, nombre, apellido, contacto, especialista, direccion, descripcion],
+                'INSERT usuarios (email, password, nombre, apellido, contacto, especialista, direccion, descripcion, path) VALUES (?,?,?,?,?,?,?,?,?)',
+                [email, password, nombre, apellido, contacto, especialista, direccion, descripcion, sin_foto],
         
                 function (err, results) 
                 {
