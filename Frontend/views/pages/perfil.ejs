@@ -13,140 +13,167 @@
 
   <%- include ('../partials/header') %>
 
-
   <div class="container">
-    <div class="row">
-      <div class="col-md-12 portada">
-        <img class="img-fluid" src="/Frontend/img/prueba-portada.jpg" alt="">
-      </div>
-      <div class="col-md-12 perfil">
-        <img src="/Frontend/img/prueba-perfil-formal.jpg" class="img-fluid" alt="">
-        <div class="categorias text-end">
-          <a href="/Frontend/views/pages/oficios.ejs" class="btn btn-danger">agua</a>
-          <a href="/Frontend/views/pages/oficios.ejs" class="text">plomero</a>
+    <div class="perfil-principal contenido">
+      <div class="row">
+        
+        <div class="col-md-12">
+          <div class="text-end editar-portada">
+            <a class="btn">
+              <i class="fa-solid fa-pen-to-square"></i>
+            </a>
+          </div>
+          <div class="portada">  
+            <img class="img-fluid" src="/Frontend/img/prueba-portada.jpg" alt="">
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="perfil">
+            
+            <img src="/Frontend/img/prueba-perfil-formal.jpg" class="img-fluid" alt="">
+            <div class="categorias text-end">
+              <a href="oficios" target="_blank" class="btn-categorias">Agua</a>
+              <a href="oficios" target="_blank" class="text">Plomero</a>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="row">
       <div class="perfil-inferior">
-        <h1 class="nombre">Raul Gomez</h1>
+        <h1>Raul Gomez</h1>
         <p>Desde reparaciones simples hasta proyectos más complejos, resuelve problemas de tuberías, desagües y
           grifería
           con precisión.Desde reparaciones simples hasta proyectos más complejos, resuelve problemas de tuberías,
           desagües y grifería con precisión.</p>
-
         <div class="d-flex">
-          <div>
-            <button>
-              <h6>234600000</h6>
-            </button>
+          <div class="whatsapp btn-perfil-inf">
+            <a href="https://wa.me/92346000000" target="_blank">234600000<i class="fab fa-whatsapp"></i></a>
           </div>
-
-          <div class="btn2">
-            <button>
-              <h6 class="mail">mail</h6>
-            </button>
+          <div class="email btn-perfil-inf">
+            <a href="mailto:sanchezdeniseabril@gmail.com" target="_blank">Email<i class="far fa-envelope"></i></a>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <br>
 
   <div class="container">
-    <div>
-      <h5 class="titulo-reseña">Reseñas</h5>
-    </div>
-    <div>
-      <div class="encabezado d-flex">
-        <h4 class="nombre">Maria Rosa</h4>
-        <i class="estrellas">1 2 3 4 5</i>
+    <div class="resenias contenido">
+      <div class="contenedor-flecha">
+        <h5 class="titulo-resenia">Reseñas</h5>
+        <i class="fas fa-chevron-down icono-perfil"></i>
       </div>
-      <div class="cuerpo">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam blanditiis molestias quam! Voluptas
-          suscipit laborum praesentium exercitationem consequuntur laudantium enim nemo asperiores perferendis
-          numquam, id voluptatem nulla soluta molestias eveniet.</p>
-      </div>
-      <div class="vector">
-        <p></p>
-      </div>
-    </div>
-
-    <div>
-      <div class="encabezado d-flex">
-        <h5 class="nombre">Maria Rosa</h5>
-
-        <i class="estrellas">1 2 3 4 5</i>
-      </div>
-      <div class="cuerpo">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam blanditiis molestias quam! Voluptas
-          suscipit laborum praesentium exercitationem consequuntur laudantium enim nemo asperiores perferendis
-          numquam, id voluptatem nulla soluta molestias eveniet.</p>
-      </div>
-      <div class="vector">
-        <p></p>
-      </div>
-    </div>
-  </div>
-  <br>
-
-  <div class="container">
-    <div>
-      <h5 class="proyectos">Proyectos/Trabajos</h5>
-    </div>
-    <div>
-      <div class="proyectos-cuerpo d-flex ">
-        <div class="encabezado">
-          <img src="/Frontend/img/prueba-trabajador.jpg" alt="">
+      <div class="contenedor-info">
+        <div class="resenia">
+          <div class="encabezado">
+            <h4 class="nombre">Maria Rosa</h4>
+            <i class="far fa-window-minimize barra"></i>
+            <div class="estrellas">
+              <i class="fas fa-star icono-estrella" data-color="#737373"></i>
+              <i class="fas fa-star icono-estrella" data-color="#737373"></i>
+              <i class="fas fa-star icono-estrella" data-color="#737373"></i>
+              <i class="fas fa-star icono-estrella" data-color="#737373"></i>
+              <i class="fas fa-star icono-estrella" data-color="#737373"></i>
+            </div>
+          </div>
+          <div class="cuerpo">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam blanditiis molestias quam! Voluptas
+              suscipit laborum praesentium exercitationem consequuntur laudantium enim nemo asperiores perferendis
+              numquam, id voluptatem nulla soluta molestias eveniet.</p>
+          </div>
+          <hr>
         </div>
-        <div class="cuerpo-proyecto">
-          <h5 class="titulo">
-            Titulo
-          </h5>
-          <p class="text-proyecto">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam ab explicabo
-            quisquam exercitationem
-            quaerat odit ad ipsa, repudiandae, fugiat quod nam distinctio quo non obcaecati illum eum atque. Officia,
-            id.</p>
+        <div class="resenia">
+          <div class="encabezado">
+            <h4 class="nombre">Maria Rosa</h4>
+            <i class="far fa-window-minimize barra"></i>
+            <div class="estrellas">
+              <i class="fas fa-star icono-estrella" data-color="#737373"></i>
+              <i class="fas fa-star icono-estrella" data-color="#737373"></i>
+              <i class="fas fa-star icono-estrella" data-color="#737373"></i>
+              <i class="fas fa-star icono-estrella" data-color="#737373"></i>
+              <i class="fas fa-star icono-estrella" data-color="#737373"></i>
+            </div>
+          </div>
+          <div class="cuerpo">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam blanditiis molestias quam! Voluptas
+              suscipit laborum praesentium exercitationem consequuntur laudantium enim nemo asperiores perferendis
+              numquam, id voluptatem nulla soluta molestias eveniet.</p>
+          </div>
+          <hr>
         </div>
       </div>
-      <div class="vector">
-        <p></p>
-      </div>
-    </div>
-    <div>
-      <div class="proyectos-cuerpo d-flex ">
-        <div class="encabezado">
-          <img src="/Frontend/img/prueba-trabajador.jpg" alt="">
-        </div>
-        <div class="cuerpo-proyecto">
-          <h5 class="titulo">
-            Titulo
-          </h5>
-          <p class="text-proyecto">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam ab explicabo
-            quisquam exercitationem
-            quaerat odit ad ipsa, repudiandae, fugiat quod nam distinctio quo non obcaecati illum eum atque. Officia,
-            id.</p>
-        </div>
-      </div>
-      <div class="vector">
-        <p></p>
-      </div>
-    </div>
-  </div>
-  <br>
-
-  <div class="container">
-    <h5 class="proyectos">Ubicacion</h5>
-    <p class="ubi">coordenadas</p>
-    <div class="location d-flex">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d817.9736236228513!2d-60.03290813548677!3d-34.90909711665791!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bebad1ec18ed01%3A0x27eea2ba52fe3f42!2sFacultad%20de%20Psicolog%C3%ADa%20%7C%20Sede%20Chivilcoy!5e0!3m2!1ses-419!2sar!4v1694909701433!5m2!1ses-419!2sar" width="665px" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
   </div>
 
 
+  <div class="container">
+    <div class="contenido">
+      <div class="contenedor-flecha">
+        <h5 class="titulo-resenia">Proyectos / Trabajos</h5>
+        <i class="fas fa-chevron-down icono-perfil"></i>
+      </div>
+      <div class="contenedor-info">
+        <div class="proyecto">
+          <div class="proyectos-cuerpo d-flex ">
+            <div class="encabezado">
+              <img src="/Frontend/img/prueba-trabajador.jpg" alt="">
+            </div>
+            <div class="cuerpo-proyecto">
+              <h5 class="titulo">
+                Titulo
+              </h5>
+              <p class="text-proyecto">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam ab explicabo
+                quisquam exercitationem
+                quaerat odit ad ipsa, repudiandae, fugiat quod nam distinctio quo non obcaecati illum eum atque. Officia,
+                id.</p>
+            </div>
+          </div>
+          <div class="vector">
+            <p></p>
+          </div>
+        </div>
+        <div>
+          <div class="proyectos-cuerpo d-flex ">
+            <div class="encabezado">
+              <img src="/Frontend/img/prueba-trabajador.jpg" alt="">
+            </div>
+            <div class="cuerpo-proyecto">
+              <h5 class="titulo">
+                Titulo
+              </h5>
+              <p class="text-proyecto">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam ab explicabo
+                quisquam exercitationem
+                quaerat odit ad ipsa, repudiandae, fugiat quod nam distinctio quo non obcaecati illum eum atque. Officia,
+                id.</p>
+            </div>
+          </div>
+          <div class="vector">
+            <p></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="contenido">
+      <div class="contenedor-flecha">
+        <h5 class="titulo-resenia">Ubicación</h5>
+        <i class="fas fa-chevron-down icono-perfil"></i>
+      </div>
+      <div class="contenedor-info">
+        <p class="ubi">coordenadas</p>
+        <div class="location d-flex">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d817.9736236228513!2d-60.03290813548677!3d-34.90909711665791!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bebad1ec18ed01%3A0x27eea2ba52fe3f42!2sFacultad%20de%20Psicolog%C3%ADa%20%7C%20Sede%20Chivilcoy!5e0!3m2!1ses-419!2sar!4v1694909701433!5m2!1ses-419!2sar" width="665px" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <%- include ('../partials/footer') %>
+
+  <script src="/Frontend/js/script.js"></script>
 </body>
 
 </html>
