@@ -12,3 +12,16 @@ export const viewEspecializaciones = () =>
         );
     });
 }
+
+export const viewEspecializacionUsuario = () =>
+{
+    return new Promise (function(resolve)
+    {
+        connection.query(
+            'SELECT * FROM especializacion_usuario',
+            function (err, results) {
+                resolve(results);
+            }
+        );
+    });
+}

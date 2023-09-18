@@ -16,63 +16,62 @@
       <div class="col-md-3">
         <div class="categorias">
           <p>Categorías</p>
-          <div class="categoria">
-            <input id="agua" type="checkbox">
-            <label for="agua">AGUA</label>
-          </div>
-          <div class="categoria">
-            <input id="gas" type="checkbox">
-            <label for="gas">GAS</label>
-          </div>
-          <div class="categoria">
-            <input id="electricidad" type="checkbox">
-            <label for="electricidad">ELECTRICIDAD</label>
-          </div>
-          <div class="categoria">
-            <input id="tecnologia" type="checkbox">
-            <label for="tecnologia">TECNOLOGÍA</label>
-          </div>
+          <% especializacion.forEach(function(c){ %>
+            <div class="categoria <%=c.especializacion%>">
+              <input  class="checkbox-especializacion" type="checkbox" id="checkbox-<%= c.id %>" checked>
+              <label for="checkbox-<%= c.id %>"><%= c.especializacion %></label>
+            </div>
+          <% }) %>
+          
         </div>
       </div>
       <div class="col-md-9">
-        <div class="personas">
+        <div class="personas" >
           <% usuariosEsp.forEach(function(c){ %>
-          <div class="persona">
-            <div class="row">
-              <div class="col-md-3">
-                <div class="imagen">
-                  <% if(c.path != ""){ %>
-                  <div class="imagen-container">
-                    <img class="img-fluid" src="<%= c.path %>">
-                  </div>
-                  
-                  <% } else {; %>
-                  <div class="imagen-container">
-                    <img class="img-fluid" src="Frontend/img/usuario-sin-foto.png">
-                  </div>
-                  
+            <% especializacionUsuario.forEach(function(d){ %>
+              <% if(c.id === d.id_usuario){ %>
+                <% especializacion.forEach(function(e){ %>
+                  <% if(e.id === d.id_especializacion){ %>
+                    <div class="persona " data-especializacion="<%= e.id %>">
+                      <div class="row">
+                        <div class="col-md-3">
+                          <div class="imagen">
+                            <% if(c.path != ""){ %>
+                            <div class="imagen-container">
+                              <img class="img-fluid" src="<%= c.path %>">
+                            </div>
+                            <% } else {; %>
+                            <div class="imagen-container">
+                              <img class="img-fluid" src="Frontend/img/usuario-sin-foto.png">
+                            </div>                            
+                            <% }; %>
+                          </div>
+                        </div>
+                        <div class="col-md-9">
+                          <div class="info-persona">
+                            <div class="especialidades">
+                              <h4>Agua</h4>
+                              <h3><%= e.especializacion %></h3>
+                            </div>
+                            <h5><%= c.nombre %> <%= c.apellido %></h5>
+                            <div class="descripcion">
+                              <p><%= c.descripcion %></p>
+                            </div>
+                            <div class="ubicacion">
+                              <i class="fa-solid fa-location-dot"></i>
+                              <p><%= c.direccion %></p>
+                            </div>
+                            <button><%= c.contacto %> <i class="fab fa-whatsapp"></i></button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!---Salir del for?-->
                   <% }; %>
-                </div>
-              </div>
-              <div class="col-md-9">
-                <div class="info-persona">
-                  <div class="especialidades">
-                    <h4>Agua</h4>
-                    <h3>Plomero</h3>
-                  </div>
-                  <h5><%= c.nombre %> <%= c.apellido %></h5>
-                  <div class="descripcion">
-                    <p><%= c.descripcion %></p>
-                  </div>
-                  <div class="ubicacion">
-                    <i class="fa-solid fa-location-dot"></i>
-                    <p><%= c.direccion %></p>
-                  </div>
-                  <button><%= c.contacto %> <i class="fab fa-whatsapp"></i></button>
-                </div>
-              </div>
-            </div>
-          </div>
+                <% }) %>
+                <!---Salir del for?-->
+              <% }; %>
+            <% }) %>
           <% }) %>
         </div>
 
@@ -84,6 +83,32 @@
   <%- include ('../partials/footer') %>
 
   <script src="/Frontend/js/script.js"></script>
+  <script type="text/javascript">
+
+    $(document).ready(function() {
+      // Obtengo todas las casillas de verificación
+      const checkboxes = document.querySelectorAll('.checkbox-especializacion');
+
+      checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+          const especializacionId = checkbox.getAttribute('id').replace('checkbox-', '');
+
+          // Obtengo todas las tarjetas de persona con el atributo data-especializacion igual al ID de la especialización
+          const personas = document.querySelectorAll(`.persona[data-especializacion="${especializacionId}"]`);
+
+          // Si la casilla de verificación está marcada, muestra las tarjetas; de lo contrario, ocúltalas
+          personas.forEach(persona => {
+            if (checkbox.checked) {
+              persona.style.display = 'block';
+            } else {
+              persona.style.display = 'none';
+            }
+          });
+        });
+      });
+    });
+  </script>
+
 </body>
 
 </html>
