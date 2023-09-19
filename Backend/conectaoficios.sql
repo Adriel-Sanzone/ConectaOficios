@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-09-2023 a las 00:58:07
+-- Tiempo de generación: 19-09-2023 a las 10:28:57
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -37,10 +37,12 @@ CREATE TABLE `especializaciones` (
 --
 
 INSERT INTO `especializaciones` (`id`, `especializacion`) VALUES
-(1, 'plomeria'),
-(2, 'electricista'),
-(3, 'pintor'),
-(4, 'jardinero');
+(1, 'Plomero'),
+(2, 'Electricista'),
+(3, 'Pintor'),
+(4, 'Jardinero'),
+(5, 'Gasista'),
+(6, 'Tecnologías');
 
 -- --------------------------------------------------------
 
@@ -60,8 +62,14 @@ CREATE TABLE `especializacion_usuario` (
 
 INSERT INTO `especializacion_usuario` (`id`, `id_usuario`, `id_especializacion`) VALUES
 (1, 1, 3),
-(8, 21, 1),
-(9, 23, 2);
+(12, 32, 1),
+(13, 33, 5),
+(14, 34, 2),
+(15, 35, 4),
+(16, 36, 3),
+(17, 37, 6),
+(18, 39, 5),
+(19, 40, 2);
 
 -- --------------------------------------------------------
 
@@ -89,12 +97,18 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `email`, `password`, `nombre`, `apellido`, `contacto`, `descripcion`, `destacado`, `especialista`, `direccion`, `token`, `path`) VALUES
-(1, 'pepito@hotmail.com', '12345', 'Pepe', 'Peposo', '+54 1234 56-7890', 'este es el espacio de la descripcion de mi buen amigo el trabajador Pepe', 1, 1, 'San Lorenzo 321', NULL, ''),
-(2, 'adriel@hotmail', '202cb962ac59075b964b07152d234b70', 'adriel', '', '1234567', NULL, 0, 0, '6620', '444b8ce35b6f0cd905c9f68152a655ef', ''),
-(20, 'asdasd', '7815696ecbf1c96e6894b779456d330e', 'dsad', 'dasd', 'dasd', NULL, 0, 0, '', '39cd87ea4735d72cc8b2635cedd60fe5', 'Frontend/uploads/1694903606867.gatofino.jpg'),
-(21, 'DASD', '89320dbd4e0a792bc1676fde2d5bccfc', 'aA', 'DSAD', 'DSA', NULL, 0, 1, 'DSAD', 'c2851a22f969b3711f35ad8adee9baaa', 'Frontend/uploads/1694903636424.gatofino.jpg'),
-(22, 'sdasdas', 'eb36521207f3437aa363010bb17dd708', 'ADRIEL', 'dsada', 'sdasda', NULL, 0, 1, '', '1567e6e91ea104b1f65f618bb5d4d9f4', 'Frontend/uploads/1694904520446.bigsale logo.jpg'),
-(23, 'asdasdasd', 'ec02c59dee6faaca3189bace969c22d3', 'MATEO', 'MORI', 'dsadasd', 'juega che eche 2', 0, 1, 'rosario', '86aff00feace7ca8e6836102a98da861', 'Frontend/uploads/1694904755703.wallpaper2.png');
+(1, 'pepito@hotmail.com', '12345', 'Pepe', 'Peposo', '+54 1234 56-7890', 'este es el espacio de la descripcion de mi buen amigo el trabajador Pepe. A Pepe le da vergüenza subir una foto asi que deja la default', 1, 1, 'San Lorenzo 321', NULL, ''),
+(2, 'adriel@hotmail', '202cb962ac59075b964b07152d234b70', 'adriel', 'sanzone', '1234567', NULL, 0, 0, '6620', '444b8ce35b6f0cd905c9f68152a655ef', ''),
+(32, 'martin.gonzalez@email.com', '202cb962ac59075b964b07152d234b70', 'Martín', 'González', '+54 1234 56-7890', 'Plomero de confianza en Chivilcoy. Soluciono tus problemas de fontanería de manera rápida y eficiente. ¡Llámame para un servicio de alta calidad!', 0, 1, '9 de Julio 123', '46b5cf792f067940918889f2c09a6145', 'Frontend/uploads/1695109538550.Sin tÃ­tulo.png'),
+(33, 'laura.rodriguez@email.com', '202cb962ac59075b964b07152d234b70', 'Laura', 'Rodríguez', '+54 1234 56-7890', 'Especialista en instalación y reparación de gas. Tu seguridad es mi prioridad. Contáctame para trabajos profesionales y seguros', 1, 1, 'Belgrano 456', 'fc4004be96e11dc804b95e866a54e61e', 'Frontend/uploads/1695109619338.Sin tÃ­tulo.png'),
+(34, 'juan.perez@email.com', '202cb962ac59075b964b07152d234b70', 'Juan', 'Pérez', '+54 1234 56-7890', 'Electricista con amplia experiencia en Chivilcoy. Hago que tu hogar brille con luz. ¡Confía en mí para tus necesidades eléctricas', 0, 1, 'San Martín 789', '282ca9f5cc5f2cb18421370eeba98556', 'Frontend/uploads/1695109737901.Sin tÃ­tulo.png'),
+(35, 'maria.lopez@email.com', '202cb962ac59075b964b07152d234b70', 'María', 'López', '+54 1234 56-7890', 'Transformo jardines en paraísos verdes. Cuida la belleza de tu espacio exterior. ¡Contáctame para un jardín de ensueño!', 1, 1, 'Rivadavia 234', '0a7e98ffd60b77dffa50db7c68858a0c', 'Frontend/uploads/1695109952599.Sin tÃ­tulo.png'),
+(36, 'pablo.fernandez@email.com', '202cb962ac59075b964b07152d234b70', 'Pablo', 'Fernández', '+54 1234 56-7890', 'Pintor artístico en Chivilcoy. Doy vida a tus ideas en colores. Transforma tu hogar u oficina con mi creatividad y precisión.', 0, 1, 'Sarmiento 567', '2196ae3e2ed683344c757a846df7deee', 'Frontend/uploads/1695110028824.Sin tÃ­tulo.png'),
+(37, 'diego.martinez@email.com', '202cb962ac59075b964b07152d234b70', 'Diego', 'Martínez', '+54 1234 56-7890', 'Reparación rápida y confiable de dispositivos móviles. Vuelve a conectarte con tus seres queridos. ¡Estoy aquí para ayudarte con tus problemas de celular!', 1, 1, 'Mitre 890', '919909307311af824cf5b5dd1ca2c894', 'Frontend/uploads/1695110119612.Sin tÃ­tulo.png'),
+(38, 'carolina.silva@email.com', '202cb962ac59075b964b07152d234b70', 'Carolina', 'Silva', '', '', 0, 0, '', '1a81179de59a412ce878aefc63e7f5d5', 'Frontend/uploads/1695110204520.Sin tÃ­tulo.png'),
+(39, 'andres.torres@email.com', '202cb962ac59075b964b07152d234b70', 'Andrés', 'Torres', '+54 1234 56-7890', 'Gasista matriculado. Garantizo instalaciones seguras y eficientes. Tu tranquilidad es mi prioridad.', 1, 1, 'Moreno 678', 'fefa221db590c2b0efd4c683a79d1f7d', 'Frontend/uploads/1695110283985.Sin tÃ­tulo.png'),
+(40, 'valentina.garcia@email.com', '202cb962ac59075b964b07152d234b70', 'Valentina', 'García', '+54 1234 56-7890', 'Electricista profesional en Chivilcoy. Soluciono tus problemas eléctricos con rapidez y calidad. ¡Confía en mí para un servicio de primera!', 0, 1, 'Urquiza 456', 'de87ac959a9094705cf1aece501c95ad', 'Frontend/uploads/1695110392657.Sin tÃ­tulo.png'),
+(41, 'sebastian.ramos@email.com', '202cb962ac59075b964b07152d234b70', 'Sebastián', 'Ramos', '', '', 0, 0, '', '5958a34223bb53b9e193b7d340e2d612', 'Frontend/img/usuario-sin-foto.png');
 
 --
 -- Índices para tablas volcadas
@@ -128,19 +142,19 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `especializaciones`
 --
 ALTER TABLE `especializaciones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `especializacion_usuario`
 --
 ALTER TABLE `especializacion_usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- Restricciones para tablas volcadas
