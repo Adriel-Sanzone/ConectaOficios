@@ -27,51 +27,103 @@
       </div>
       <div class="col-md-9">
         <div class="personas" >
+          <!---Llamo a los trabajadores destacados-->
           <% usuariosEsp.forEach(function(c){ %>
-            <% especializacionUsuario.forEach(function(d){ %>
-              <% if(c.id === d.id_usuario){ %>
-                <% especializacion.forEach(function(e){ %>
-                  <% if(e.id === d.id_especializacion){ %>
-                    <div class="persona " data-especializacion="<%= e.id %>">
-                      <div class="row">
-                        <div class="col-md-3">
-                          <div class="imagen">
-                            <% if(c.path != ""){ %>
-                            <div class="imagen-container">
-                              <img class="img-fluid" src="<%= c.path %>">
+            <% if(c.destacado === 1){ %>
+              <% especializacionUsuario.forEach(function(d){ %>
+                <% if(c.id === d.id_usuario){ %>
+                  <% especializacion.forEach(function(e){ %>
+                    <% if(e.id === d.id_especializacion){ %>
+                      <div class="persona " data-especializacion="<%= e.id %>">
+                        <div class="row">
+                          <div class="col-md-3">
+                            <div class="imagen">
+                              <% if(c.path != ""){ %>
+                              <div class="imagen-container">
+                                <img class="img-fluid" src="<%= c.path %>">
+                              </div>
+                              <% } else {; %>
+                              <div class="imagen-container">
+                                <img class="img-fluid" src="Frontend/img/usuario-sin-foto.png">
+                              </div>                            
+                              <% }; %>
                             </div>
-                            <% } else {; %>
-                            <div class="imagen-container">
-                              <img class="img-fluid" src="Frontend/img/usuario-sin-foto.png">
-                            </div>                            
-                            <% }; %>
                           </div>
-                        </div>
-                        <div class="col-md-9">
-                          <div class="info-persona">
-                            <div class="especialidades">
-                              <h4>Agua</h4>
-                              <h3><%= e.especializacion %></h3>
+                          <div class="col-md-9">
+                            <div class="info-persona">
+                              <div class="especialidades">
+                                <h4>Agua</h4>
+                                <h3><%= e.especializacion %></h3>
+                              </div>
+                              <h5><%= c.nombre %> <%= c.apellido %></h5>
+                              <div class="descripcion">
+                                <p><%= c.descripcion %></p>
+                              </div>
+                              <div class="ubicacion">
+                                <i class="fa-solid fa-location-dot"></i>
+                                <p><%= c.direccion %></p>
+                              </div>
+                              <button><%= c.contacto %> <i class="fab fa-whatsapp"></i></button>
                             </div>
-                            <h5><%= c.nombre %> <%= c.apellido %></h5>
-                            <div class="descripcion">
-                              <p><%= c.descripcion %></p>
-                            </div>
-                            <div class="ubicacion">
-                              <i class="fa-solid fa-location-dot"></i>
-                              <p><%= c.direccion %></p>
-                            </div>
-                            <button><%= c.contacto %> <i class="fab fa-whatsapp"></i></button>
                           </div>
                         </div>
                       </div>
-                    </div>
-                    <!---Salir del for?-->
-                  <% }; %>
-                <% }) %>
-                <!---Salir del for?-->
-              <% }; %>
-            <% }) %>
+                      <!---Salir del for?-->
+                    <% }; %>
+                  <% }) %>
+                  <!---Salir del for?-->
+                <% }; %>
+              <% }) %>
+            <% }; %>
+          <% }) %>
+          <!---Llamo a los trabajadores NO destacados-->
+          <% usuariosEsp.forEach(function(c){ %>
+            <% if(c.destacado === 0){ %>
+              <% especializacionUsuario.forEach(function(d){ %>
+                <% if(c.id === d.id_usuario){ %>
+                  <% especializacion.forEach(function(e){ %>
+                    <% if(e.id === d.id_especializacion){ %>
+                      <div class="persona " data-especializacion="<%= e.id %>">
+                        <div class="row">
+                          <div class="col-md-3">
+                            <div class="imagen">
+                              <% if(c.path != ""){ %>
+                              <div class="imagen-container">
+                                <img class="img-fluid" src="<%= c.path %>">
+                              </div>
+                              <% } else {; %>
+                              <div class="imagen-container">
+                                <img class="img-fluid" src="Frontend/img/usuario-sin-foto.png">
+                              </div>                            
+                              <% }; %>
+                            </div>
+                          </div>
+                          <div class="col-md-9">
+                            <div class="info-persona">
+                              <div class="especialidades">
+                                <h4>Agua</h4>
+                                <h3><%= e.especializacion %></h3>
+                              </div>
+                              <h5><%= c.nombre %> <%= c.apellido %></h5>
+                              <div class="descripcion">
+                                <p><%= c.descripcion %></p>
+                              </div>
+                              <div class="ubicacion">
+                                <i class="fa-solid fa-location-dot"></i>
+                                <p><%= c.direccion %></p>
+                              </div>
+                              <button><%= c.contacto %> <i class="fab fa-whatsapp"></i></button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!---Salir del for?-->
+                    <% }; %>
+                  <% }) %>
+                  <!---Salir del for?-->
+                <% }; %>
+              <% }) %>
+            <% }; %>
           <% }) %>
         </div>
 
