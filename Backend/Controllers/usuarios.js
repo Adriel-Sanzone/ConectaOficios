@@ -280,7 +280,7 @@ export const AsignoEspecializacion = async (req, res) =>
 }
 
 
-export const InsertoImagen = async (req, res) => 
+export const InsertoImagenPerfil = async (req, res) => 
 {
     const {id_usuario} = req.body;
 
@@ -289,6 +289,31 @@ export const InsertoImagen = async (req, res) =>
 
     connection.query(
         'UPDATE usuarios SET path = ? WHERE id = ?',
+        [filename, id_usuario],
+        function (err, results) {
+            if (err) 
+            {
+                console.error(err);
+                res.status(500).json({ error: 'Error al obtener los datos' });
+            } else 
+            {
+                res.json({
+                    "error": 0,
+                });
+            }
+        }
+    );
+};
+
+export const InsertoImagenPortada = async (req, res) => 
+{
+    const {id_usuario} = req.body;
+
+    //Obtengo el nombre de la imagen por multer
+    const filename = 'Frontend/uploads/' + req.file.filename;
+
+    connection.query(
+        'UPDATE usuarios SET path_portada = ? WHERE id = ?',
         [filename, id_usuario],
         function (err, results) {
             if (err) 

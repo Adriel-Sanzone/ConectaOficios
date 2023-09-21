@@ -197,21 +197,32 @@ function ValidarUsuario(token, id)
     }
 }
 
-function InsertarImagen(datos)
+function InsertarImagenes(datosPerfil, datosPortada)
 {    
     $.ajax(
         {
-           "url": URL_BASE + "insertoimagen",
+           "url": URL_BASE + "insertoimagenperfil",
            "type": "POST",
            "processData": false,
            "contentType": false,           
            "dataType": "json",
-           "data": datos,
+           "data": datosPerfil,
            success: function(data)
            {
-            alert("Foto agregada correctamente");
-            location.href="/";
+                $.ajax(
+                {
+                    "url": URL_BASE + "insertoimagenportada",
+                    "type": "POST",
+                    "processData": false,
+                    "contentType": false,
+                    "dataType": "json",
+                    "data": datosPortada,
+                    success: function (data) 
+                    {
+                        alert("Foto agregada correctamente");
+                        location.href = "/";
+                    }
+                })
            }
         })
-
 }

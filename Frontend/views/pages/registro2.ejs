@@ -49,13 +49,18 @@
     $(".registrar").on("click", function() {
 
       var id = sessionStorage.getItem("IdUsuario");
-      var foto = $("#imagen_perfil");
+      var fotoPerfil = $("#imagen_perfil");
+      var fotoPortada = $("#imagen_portada");
 
-      var datosFoto = new FormData();
-      datosFoto.append("usuarioFoto", foto[0].files[0]);
-      datosFoto.append("id_usuario", id);
+      var datosFotoPerfil = new FormData();
+      datosFotoPerfil.append("usuarioFoto", fotoPerfil[0].files[0]);
+      datosFotoPerfil.append("id_usuario", id);
 
-      InsertarImagen(datosFoto);
+      var datosFotoPortada = new FormData();
+      datosFotoPortada.append("usuarioFoto", fotoPortada[0].files[0]);
+      datosFotoPortada.append("id_usuario", id);
+
+      InsertarImagenes(datosFotoPerfil, datosFotoPortada);
     })
 
     $(".omitir").on("click", function() {
