@@ -86,6 +86,21 @@ header div .registrarse:hover {
     border-radius: 5px;
 }
 
+/* header para usuari0 */
+.imagenParaUsuario {
+    max-width: 50px;
+    border-radius: 50%;
+}
+
+.imagenParaUsuario a {
+    margin: 0;
+}
+
+.imagenParaUsuario img {
+    border-radius: 50%;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.47);
+}
+
 @media (max-width: 828px) {
 
     /* header */
@@ -100,36 +115,15 @@ header div .registrarse:hover {
         align-items: center;
     }
 
-    header h3{
+    header h3 {
         padding-bottom: 10px;
     }
 
-    header .barra{
+    header .barra {
         padding-bottom: 25px;
     }
 
-    header .menu{
+    header .menu {
         padding-bottom: 10px;
     }
-
-    /* header .menu {
-        display: none;
-        /* Oculta el menú en pantallas pequeñas */
-    /* }
-
-    #mobile-menu-button {
-        display: inline;
-    }
-
-    /* Muestra el menú cuando se hace clic en el icono de hamburguesa */
-    /* .menu.show-menu {
-        display: inline;
-    }
-
-    .menu.show-menu a {
-        font-size: 5px;
-    }  */
-
-    /* fin header */
-
 }

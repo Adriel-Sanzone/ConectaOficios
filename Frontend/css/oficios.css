@@ -15,7 +15,8 @@
     --celeste: #EEF4F8;
 }
 
-html,body {
+html,
+body {
     position: relative;
     height: 100%;
 }
@@ -99,7 +100,7 @@ input[type="checkbox"] {
     max-height: 200px;
 }
 
-.imagen-container{
+.imagen-container {
     max-width: 100%;
     height: auto;
 }
@@ -126,12 +127,16 @@ input[type="checkbox"] {
     font-weight: var(--bold);
 }
 
+.persona .descripcion {
+    max-height: 105px;
+    min-height: 105px;
+    overflow: auto;
+}
+
 .persona .descripcion p {
     color: var(--gris);
     font-size: 14px;
     margin-block-end: 7px;
-    overflow: auto;
-    max-height: 105px;
     margin-block: 10px;
 }
 
@@ -172,7 +177,14 @@ input[type="checkbox"] {
 @media (max-width: 993px) {
     .categorias {
         padding-inline: 10px;
+        margin-bottom: 30px;
+        position: static;
+    }
+
+    .persona .imagen-container img {
+        min-width: 100px;
+        max-width: 100px;
+        max-height: 100px;
+        min-height: 100px;
     }
 }
-
-@media (max-width: 768px) {}
