@@ -1,5 +1,6 @@
 hecer menu para movil
 como agregar estrellas a rese;as
 hacer que contacto no sea obligatorio para no trabajadores
-hacer funcionales botone de whatsapp y mail
-las tarjetas de destacados de index se volvieron a romper :(
+hacer funcionales botones de whatsapp y mail
+que se muestre la categoria elegida por el usuario en su perfil
+hacer barra de busqueda funcional o lista desplegable en header
