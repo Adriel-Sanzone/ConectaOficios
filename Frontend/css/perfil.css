@@ -105,6 +105,11 @@ body {
 
 .categorias {
     padding-top: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 20px;
 }
 
 .categorias .btn-categorias {
@@ -124,6 +129,7 @@ body {
     color: var(--naranja);
     font-size: 14px;
     font-weight: var(--bold);
+    padding: 10px;
 }
 
 .perfil-inferior {
@@ -360,4 +366,43 @@ body {
     font-weight: 700;
     font-size: 14px;
     color: #737373;
+}
+
+.location iframe{
+    max-width: 665px;
+    max-height: 300px;
+}
+
+@media (max-width: 993px) {
+    .perfil {
+        padding-inline: 0px;
+    }
+
+    .contenedor-info {
+        padding-inline: 20px;
+    }
+
+    .perfil-inferior {
+        padding: 20px;
+        padding-top: 50px;
+    }
+
+    .perfil-inferior p {
+        max-width: 350px;
+        font-size: 18px;
+    }
+
+    .container {
+        padding-inline: 15px;
+    }
+
+    .proyectos-cuerpo {
+        flex-direction: column
+    }
+
+    .proyectos-cuerpo .cuerpo-proyecto {
+        padding-block: 20px;
+        padding-inline: 0;
+    }
+
 }
