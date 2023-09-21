@@ -8,7 +8,12 @@
 </head>
 
 <body>
-  <%- include ('../partials/header') %>
+  
+  <% if (usuarioLogeado.logeado) { %>
+    <%- include ('../partials/headerParaUsuario') %>
+  <% } else { %>
+    <%- include ('../partials/header') %>
+  <% } %>
 
   <div class="container">
     <div class="row">
@@ -104,29 +109,39 @@
       <!-- carrusel -->
       <swiper-container class="mySwiper" pagination="true" pagination-clickable="true" space-between="30" slides-per-view="3">
         <% usuariosEsp.forEach(function(c){ %>
-        <% if(c.destacado == 1){ %>
-        <swiper-slide style="width: 320px !important;">
-          <div class="persona">
-            <h4>Agua</h4>
-            <% if(c.path != ""){ %>
-            <img class="img-fluid aspect-ratio-1-1" src="<%= c.path %>" alt="">
-            <% } else {; %>
-            <img class="img-fluid aspect-ratio-1-1" src="/Frontend/img/usuario-sin-foto.png" alt="">
+          <% if(c.destacado === 1){ %>
+            <% especializacionUsuario.forEach(function(d){ %>
+              <% if(c.id === d.id_usuario){ %>
+                <% especializacion.forEach(function(e){ %>
+                  <% if(e.id === d.id_especializacion){ %>
+                    <swiper-slide style="width: 320px !important;">
+                      <div class="persona">
+                        <h4>Agua</h4>
+                        <% if(c.path != ""){ %>
+                        <img class="img-fluid aspect-ratio-1-1" src="<%= c.path %>" alt="">
+                        <% } else {; %>
+                        <img class="img-fluid aspect-ratio-1-1" src="/Frontend/img/usuario-sin-foto.png" alt="">
+                        <% }; %>
+                        <h3><%= e.especializacion %></h3>
+                        <h5> <%= c.nombre %> <%= c.apellido %></h5>
+                        <div class="descripcion">
+                          <p> <%= c.descripcion %> </p>
+                        </div>
+                        <div class="ubicacion">
+                          <i class="fa-solid fa-location-dot"></i>
+                          <p> <%= c.direccion %></p>
+                        </div>
+                        <button> <%= c.contacto %> <i class="fab fa-whatsapp"></i></button>
+                      </div>
+                    </swiper-slide>
+                    <!---Salir del for?-->
+                    <% }; %>
+                  <% }) %>
+                  <!---Salir del for?-->
+                <% }; %>
+              <% }) %>
             <% }; %>
-            <h3>Plomero</h3>
-            <h5> <%= c.nombre %> <%= c.apellido %></h5>
-            <div class="descripcion">
-              <p> <%= c.descripcion %> </p>
-            </div>
-            <div class="ubicacion">
-              <i class="fa-solid fa-location-dot"></i>
-              <p> <%= c.direccion %></p>
-            </div>
-            <button> <%= c.contacto %> <i class="fab fa-whatsapp"></i></button>
-          </div>
-        </swiper-slide>
-        <% }; %>
-        <% }) %>
+          <% }) %>
       </swiper-container>
       <!-- fin carrusel -->
 

@@ -133,6 +133,8 @@ export const UsuarioValidado = async (req, res) =>
                     })
                 } else  //Si encuentro un usuario con el mismo token que el de la SesionStorage
                 {
+                    req.session.IdUsuario = id;
+                    req.session.Token = token;
                     res.json({
                         "error": 0,
                     })
@@ -141,6 +143,45 @@ export const UsuarioValidado = async (req, res) =>
         }
     );
 };
+
+export const UsuarioLogeado = (id, token) =>
+{
+    return new Promise (function(resolve)
+    {
+        var res;
+        connection.query(
+            'SELECT * FROM usuarios WHERE token = ? AND id = ?',
+            [token, id],
+            function (err, results) 
+            {
+                if (err) 
+                {
+                    console.error(err);
+                    res.status(500).json({ error: 'Error al obtener los datos' });
+                } else 
+                {
+                    //Si no encuentro ningun usuario con el token de la SesionStorage
+                    if(results[0] === undefined)
+                    {
+                        res =
+                        {
+                            "logeado": false,
+                        }
+                        resolve(res);
+                    } else  //Si encuentro un usuario con el mismo token que el de la SesionStorage
+                    {
+                        res =
+                        {
+                            "logeado": true,
+                            "usuario": results[0],
+                        };
+                        resolve(res);
+                    }
+                }
+            }
+        );
+    });
+}
 
 export const RegistroUsuario = async (req, res) => 
 {

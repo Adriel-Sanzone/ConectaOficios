@@ -164,38 +164,37 @@ function BuscarUsuario(especificaciones)
         })
 }
 
-function ValidarUsuario(token, id)
+function ValidarUsuario(token, id) 
 {
     console.log(id);
-    if (id != null && id != 0)
-    {
-        $.ajax(
+    if (id != null && id != 0) {
+        $.ajax({
+            "url": URL_BASE + "usuariovalidado",
+            "type": "POST",
+            "dataType": "json",
+            "data": 
             {
-                "url": URL_BASE + "usuariovalidado",
-                "type": "POST",
-                "dataType": "json",
-                "data":
+                "token": token,
+                "id": id,
+            },
+            success: function (r) 
+            {
+                if (r.error == 1) 
                 {
-                    "token": token,
-                    "id": id,
-                },
-                success: function(r)
+                    console.log("error");
+                    alert(r.mensaje);
+                    sessionStorage.setItem("IdUsuario", 0);
+                    sessionStorage.setItem("Token", 0);
+                    location.href = "/iniciarSesion";
+                } else 
                 {
-                    if(r.error == 1)
-                    {
-                        console.log("error");
-                        alert(r.mensaje);
-                        sessionStorage.setItem("IdUsuario" , 0);
-                        sessionStorage.setItem("Token" , 0);
-                        location.href="/iniciarSesion";
-                    } else
-                    {
-                        console.log("validado");                    
-                    }
+                    console.log("validado");
                 }
-            })
-    }
+            }
+        });
+    } 
 }
+
 
 function InsertarImagenes(datosPerfil, datosPortada)
 {    

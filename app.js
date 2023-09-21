@@ -1,4 +1,5 @@
 import express from 'express';
+import session from 'express-session';
 import cors from 'cors';
 
 import UsuariosRoutes from './Backend/Routes/usuarios.js';
@@ -19,6 +20,13 @@ app.use('/Frontend', express.static('Frontend'));
 app.use(express.urlencoded());
 app.use(express.json());
 app.use(cors());
+
+//Configuro el session
+app.use(session({
+  secret: 'mi-secreto', // Cambiar esto a una cadena secreta segura
+  resave: false,
+  saveUninitialized: true
+}));
 
 app.use(UsuariosRoutes);
 app.use(viewsRoutes);
