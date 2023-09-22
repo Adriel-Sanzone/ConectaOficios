@@ -155,7 +155,7 @@ function BuscarUsuario(especificaciones)
                 {
                     console.log("exito");
                     alert("Usuario logeado exitosamente");
-                    location.href="/";
+                    location.href="/loged/" + r.usuario.id;
                     sessionStorage.setItem("IdUsuario" , r.usuario.id);
                     sessionStorage.setItem("Token" , r.token);
                     
@@ -219,7 +219,7 @@ function InsertarImagenes(datosPerfil, datosPortada)
                     success: function (data) 
                     {
                         alert("Foto agregada correctamente");
-                        location.href = "/";
+                        location.href = "/loged/" + sessionStorage.getItem("IdUsuario");
                     }
                 })
            }

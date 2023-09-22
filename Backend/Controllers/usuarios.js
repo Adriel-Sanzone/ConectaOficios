@@ -144,14 +144,14 @@ export const UsuarioValidado = async (req, res) =>
     );
 };
 
-export const UsuarioLogeado = (id, token) =>
+export const UsuarioLogeado = (id) =>
 {
     return new Promise (function(resolve)
     {
         var res;
         connection.query(
-            'SELECT * FROM usuarios WHERE token = ? AND id = ?',
-            [token, id],
+            'SELECT * FROM usuarios WHERE id = ?',
+            [id],
             function (err, results) 
             {
                 if (err) 
@@ -187,7 +187,7 @@ export const RegistroUsuario = async (req, res) =>
 {
     //Obtengo los datos ingresados por el usuario
     let {nombre, apellido, contacto, email, password, especialista, direccion, descripcion} = req.body;
-    const sin_foto = 'Frontend/img/usuario-sin-foto.png';
+    const sin_foto = '/Frontend/img/usuario-sin-foto.png';
 
     //Si el espacio de email estaba vacio
     if(email == "")
@@ -326,7 +326,7 @@ export const InsertoImagenPerfil = async (req, res) =>
     const {id_usuario} = req.body;
 
     //Obtengo el nombre de la imagen por multer
-    const filename = 'Frontend/uploads/' + req.file.filename;
+    const filename = '/Frontend/uploads/' + req.file.filename;
 
     connection.query(
         'UPDATE usuarios SET path = ? WHERE id = ?',
@@ -351,7 +351,7 @@ export const InsertoImagenPortada = async (req, res) =>
     const {id_usuario} = req.body;
 
     //Obtengo el nombre de la imagen por multer
-    const filename = 'Frontend/uploads/' + req.file.filename;
+    const filename = '/Frontend/uploads/' + req.file.filename;
 
     connection.query(
         'UPDATE usuarios SET path_portada = ? WHERE id = ?',

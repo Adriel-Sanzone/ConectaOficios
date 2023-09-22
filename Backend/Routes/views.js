@@ -6,11 +6,35 @@ const router = Router();
 
 router.get('/', function (req, res) {
 
-    //var idUsuario = req.session.IdUsuario;
-    //var Token = req.session.Token;
-    var idUsuario = 2;
-    var Token = "cf6fc6c48d6c6aabd97525c6e4d97ba6";
-    var usuarioLogeado = UsuarioLogeado(idUsuario, Token);
+    var usuarioLogeado = UsuarioLogeado(0);
+
+    var usuariosEspecialistas = viewUsuariosEspecialistas();
+    var especializaciones = viewEspecializaciones();
+    var especializacionUsuario = viewEspecializacionUsuario();
+    usuariosEspecialistas.then(function(usuarios)
+    {
+        especializaciones.then(function(especializacion)
+        {
+            especializacionUsuario.then(function(userEspecializacion)
+            {
+                usuarioLogeado.then(function(userLogeado)
+                {
+                    res.render("../Frontend/views/pages/index", {
+                        "usuariosEsp" : usuarios,
+                        "especializacion" : especializacion,
+                        "especializacionUsuario" : userEspecializacion,
+                        "usuarioLogeado": userLogeado,
+                    });
+                })
+            })
+        })
+    }) 
+}); 
+
+router.get('/loged/:id', function (req, res) {
+
+    var idUsuario = req.params.id;
+    var usuarioLogeado = UsuarioLogeado(idUsuario);
 
     var usuariosEspecialistas = viewUsuariosEspecialistas();
     var especializaciones = viewEspecializaciones();
