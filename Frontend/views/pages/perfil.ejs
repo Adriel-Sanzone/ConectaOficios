@@ -4,7 +4,7 @@
 <head>
 
   <%- include ('../partials/head') %>
-  <link rel="stylesheet" href="/Frontend/css/perfil.css">
+    <link rel="stylesheet" href="/Frontend/css/perfil.css">
 
 
 </head>
@@ -13,165 +13,331 @@
 
   <%- include ('../partials/header') %>
 
-  <div class="container">
-    <div class="perfil-principal contenido">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="text-end editar-portada">
-            <a class="btn">
-              <i class="fa-solid fa-pen-to-square"></i>
-            </a>
-          </div>
+    <div class="container">
+      <div class="perfil-principal contenido">
+        <div class="row">
+
+          <div class="col-md-12">
+            <div class="text-end editar-portada">
+              <a class="btn" id="btn-editar-fotos">
+                <i class="fa-solid fa-pen-to-square"></i>
+              </a>
+            </div>
+
+            <!--
           <div class="portada">
-            <img class="img-fluid" src="/Frontend/img/portada.png" alt="">
+            <%/* if (variable_real) { %>
+              <img class="img-fluid" src="<%=variable_real %>" alt="Portada del usuario">
+            <% } else { %>
+              <img class="img-fluid" src="/Frontend/img/usuario-sin-foto.png" alt="Portada predeterminada">
+            <% }*/ %>
           </div>
-        </div>
-        <div class="col-md-12">
+          -->
+
+
+            <div class="portada">
+              <img class="img-fluid" src="/Frontend/img/prueba-portada.jpg" alt="">
+            </div>
+          </div>
+
+          
+
+
+          <div class="col-md-12">
+            <!--
           <div class="perfil">
+            <%/* if (variable_real) { %>
+              <img class="img-fluid" src="<%= variable_real %>" alt="perfil del usuario">
+            <% } else { %>
+              <img class="img-fluid" src="/Frontend/img/usuario-sin.foto.png" alt="perfil predeterminada">
+            <% }*/ %>
+          </div>
+          -->
 
-            <img src="/Frontend/img/prueba-perfil-formal.jpg" class="img-fluid" alt="">
-            <div class="categorias">
-              <a href="oficios" target="_blank" class="btn-categorias">Agua</a>
-              <a href="oficios" target="_blank" class="text">Plomero</a>
+            <div class="perfil">
+              <img src="/Frontend/img/prueba-perfil-formal.jpg" class="img-fluid" alt="">
+
+              <div class="categorias text-end">
+                <a href="oficios" target="_blank" class="btn-categorias">Agua</a>
+                <a href="oficios" target="_blank" class="text">Plomero</a>
+              </div>
             </div>
           </div>
         </div>
+
+
+        <div class="perfil-inferior">
+          <div class="d-flex align-items-center mb-3">
+            <h1>Raul Gomez</h1>
+            <button class="btn btn-editar ml-3 editar-portada" id="btn-editar">
+              <a class="btn ">
+                <i class="fa-solid fa-pen-to-square "></i>
+              </a>
+            </button>
+          </div>
+          <p>Desde reparaciones simples hasta proyectos más complejos, resuelve problemas de tuberías, desagües y
+            grifería
+            con precisión.Desde reparaciones simples hasta proyectos más complejos, resuelve problemas de tuberías,
+            desagües y grifería con precisión.</p>
+          <div class="d-flex">
+            <div class="whatsapp btn-perfil-inf">
+              <a href="https://wa.me/92346000000" target="_blank">234600000<i class="fab fa-whatsapp"></i></a>
+            </div>
+            <div class="email btn-perfil-inf">
+              <a href="mailto:sanchezdeniseabril@gmail.com" target="_blank">Email<i class="far fa-envelope"></i></a>
+            </div>
+          </div>
+        </div>
+
+        
       </div>
-      <div class="perfil-inferior">
-        <h1>Raul Gomez</h1>
-        <p>Desde reparaciones simples hasta proyectos más complejos, resuelve problemas de tuberías, desagües y
-          grifería
-          con precisión.Desde reparaciones simples hasta proyectos más complejos, resuelve problemas de tuberías,
-          desagües y grifería con precisión.</p>
+    </div>
+
+
+    <div class="container">
+      <div class="resenias contenido">
+        <div class="contenedor-flecha">
+          <h5 class="titulo-resenia">Reseñas</h5>
+          <i class="fas fa-chevron-down icono-perfil"></i>
+        </div>
+        <div class="contenedor-info">
+          <div class="resenia">
+            <div class="encabezado">
+              <h4 class="nombre">Maria Rosa</h4>
+              <i class="far fa-window-minimize barra"></i>
+              <div class="estrellas">
+                <i class="fas fa-star icono-estrella" data-color="#737373"></i>
+                <i class="fas fa-star icono-estrella" data-color="#737373"></i>
+                <i class="fas fa-star icono-estrella" data-color="#737373"></i>
+                <i class="fas fa-star icono-estrella" data-color="#737373"></i>
+                <i class="fas fa-star icono-estrella" data-color="#737373"></i>
+              </div>
+            </div>
+            <div class="cuerpo">
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam blanditiis molestias quam! Voluptas
+                suscipit laborum praesentium exercitationem consequuntur laudantium enim nemo asperiores perferendis
+                numquam, id voluptatem nulla soluta molestias eveniet.</p>
+            </div>
+            <hr>
+          </div>
+          <div class="resenia">
+            <div class="encabezado">
+              <h4 class="nombre">Maria Rosa</h4>
+              <i class="far fa-window-minimize barra"></i>
+              <div class="estrellas">
+                <i class="fas fa-star icono-estrella" data-color="#737373"></i>
+                <i class="fas fa-star icono-estrella" data-color="#737373"></i>
+                <i class="fas fa-star icono-estrella" data-color="#737373"></i>
+                <i class="fas fa-star icono-estrella" data-color="#737373"></i>
+                <i class="fas fa-star icono-estrella" data-color="#737373"></i>
+              </div>
+            </div>
+            <div class="cuerpo">
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam blanditiis molestias quam! Voluptas
+                suscipit laborum praesentium exercitationem consequuntur laudantium enim nemo asperiores perferendis
+                numquam, id voluptatem nulla soluta molestias eveniet.</p>
+            </div>
+            <hr>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="container">
+      <div class="contenido">
+        <div class="contenedor-flecha">
+          <h5 class="titulo-resenia">Proyectos / Trabajos</h5>
+          <i class="fas fa-chevron-down icono-perfil"></i>
+        </div>
+        <div class="contenedor-info">
+          <!-- reemplazar por variables reales
+             <%/*trabajos.forEach((trabajo) => { %>
+                <div class="proyecto">
+                  <div class="proyectos-cuerpo d-flex">
+                    <div class="encabezado">
+                      <img src="<%= trabajo.imagen %>" alt="<%= trabajo.titulo %>">
+                    </div>
+                    <div class="cuerpo-proyecto">
+                      <h5 class="titulo">
+                        <%= trabajo.titulo %>
+                      </h5>
+                      <p class="text-proyecto"><%= trabajo.descripcion %></p>
+                    </div>
+                  </div>
+                  <div class="vector">
+                    <p></p>
+                  </div>
+                </div>
+            <% }); */%>
+          -->
+
+          <button class="mb-5" id="btn-formulario-Trabajos" onclick="FormularioTrabajos()">Agregar Trabajo</button>
+
+          
+
+          <div class="proyecto">
+            <div class="proyectos-cuerpo d-flex ">
+              <div class="encabezado">
+                <img src="/Frontend/img/prueba-trabajador.jpg" alt="">
+              </div>
+              <div class="cuerpo-proyecto">
+                <h5 class="titulo">
+                  Titulo
+                </h5>
+                <p class="text-proyecto">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam ab
+                  explicabo
+                  quisquam exercitationem
+                  quaerat odit ad ipsa, repudiandae, fugiat quod nam distinctio quo non obcaecati illum eum atque.
+                  Officia,
+                  id.</p>
+              </div>
+            </div>
+            <div class="vector">
+              <p></p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="contenido">
+        <div class="contenedor-flecha">
+          <h5 class="titulo-resenia">Ubicación</h5>
+          <i class="fas fa-chevron-down icono-perfil"></i>
+        </div>
+        <div class="contenedor-info">
+          <p id="coordenadas">Latitud: Desconocida, Longitud: Desconocida</p>
+          <div class="location d-flex">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d817.9736236228513!2d-60.03290813548677!3d-34.90909711665791!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bebad1ec18ed01%3A0x27eea2ba52fe3f42!2sFacultad%20de%20Psicolog%C3%ADa%20%7C%20Sede%20Chivilcoy!5e0!3m2!1ses-419!2sar!4v1694909701433!5m2!1ses-419!2sar"
+              width="665px" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%- include ('../partials/footer') %>
+
+<!--FORMULARIO PARA FOTOS PERFIL Y PORTADA--->
+<div id="editar-fotos" class="editar-fotos">
+  <form>
+    <h2>Editar Foto de Perfil o Portada</h2>
+
+    <label for="tipo">Seleccionar tipo de foto:</label>
+    <select id="tipo" name="tipo">
+      <option value="perfil">Perfil</option>
+      <option value="portada">Portada</option>
+    </select>
+
+    <label for="archivo">Seleccionar archivo:</label>
+    <input type="file" id="archivo" name="archivo" accept="image/*">
+
+    <button type="submit">Guardar</button>
+    <button type="button" onclick="CerrarFotos()">Cancelar</button>
+  </form>
+</div>
+<!-- FIN FORMULARIO PARA FOTOS PERFIL Y PORTADA--->
+
+<!---FORMULARIO PARA AGERGAR TRABAJOS-->
+    <div id="FormularioTrabajos" class="FormularioTrabajos" style="display: none;">
+      <form>
+        <div class="text-center">
+          <h3>Agregar trabajos</h3>
+        </div>
+        <label for="imagen">Foto:</label>
+        <input type="file" id="imagen" name="imagen" accept="image/*">
+
+        <label for="titulo">Título:</label>
+        <input type="text" id="titulo" name="titulo">
+
+        <label for="descripcion">Descripción:</label>
+        <textarea id="descripcion" name="descripcion"></textarea>
         <div class="d-flex">
-          <div class="whatsapp btn-perfil-inf">
-            <a href="https://wa.me/92346000000" target="_blank">234600000<i class="fab fa-whatsapp"></i></a>
-          </div>
-          <div class="email btn-perfil-inf">
-            <a href="mailto:sanchezdeniseabril@gmail.com" target="_blank">Email<i class="far fa-envelope"></i></a>
-          </div>
+          <button type="submit">Guardar</button>
+          <button type="button" onclick="CerrarTrabajos()">Cancelar</button>
         </div>
-      </div>
+      </form>
     </div>
-  </div>
+<!---FIN FORMULARIO TRABAJOS-->
+
+<!-- FORMULARIO NOMBRE/DESCRIPCION-->
+<div id="formulario-editar" class="formulario-editar">
+  <form>
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre">
+    <label for="descripcion">Descripción:</label>
+    <textarea id="descripcion" name="descripcion"></textarea>
+    <button type="submit">Guardar</button>
+    <button type="button" onclick="cerrarFormulario()">Cancelar</button>
+  </form>
+</div>
+
+<!-- FIN FORMULARIO NOMBRE/DESCRIPCION-->
+
+      <script src="/Frontend/js/script.js"></script>
+
+      <script>
+
+        /* FORMULARIO PARA EDITAR NOMBRE Y DESCRIPCION*/
+        document.getElementById('btn-editar').addEventListener('click', function () {
+          mostrarFormulario();
+        });
+
+        /* FORMULARIO PARA EDITAR FOTOS PERFIL Y PORTADA*/
+        document.getElementById('btn-editar-fotos').addEventListener('click', function () {
+          EditarFotos();
+        });
+
+        /* FORMULARIO PARA AGREGAR TRABAJOS/PROYECTOS */
+        document.getElementById('btn-formulario-trabajos').addEventListener('click', function () {
+          FormularioTrabajos();
+        });
+
+        /* FUNCION PARA OBTENER LAS COORDENADAS Y COLOCARLAS JUNTO AL MAPA EN TIEMPO REAL*/
+        function obtenerCoordenadas() {
+          if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+              const latitud = position.coords.latitude;
+              const longitud = position.coords.longitude;
+
+              // Actualiza el contenido del elemento coordenadas
+              const coordenadasElement = document.getElementById("coordenadas");
+              if (coordenadasElement) {
+                coordenadasElement.textContent = `Latitud: ${latitud}, Longitud: ${longitud}`;
+              }
+            },
+              function (error) {
+                switch (error.code) {
+                  case error.PERMISSION_DENIED:
+                    alert("El usuario ha denegado el permiso de geolocalización.");
+                    break;
+                  case error.POSITION_UNAVAILABLE:
+                    alert("La información de ubicación no está disponible.");
+                    break;
+                  case error.TIMEOUT:
+                    alert("Se ha agotado el tiempo de espera para obtener la ubicación.");
+                    break;
+                  case error.UNKNOWN_ERROR:
+                    alert("Se ha producido un error desconocido.");
+                    break;
+                }
+              });
+          } else {
+            alert("Geolocalización no compatible en este navegador.");
+          }
+        }
+
+        
+        window.onload = obtenerCoordenadas;
+      </script>
 
 
-  <div class="container">
-    <div class="resenias contenido">
-      <div class="contenedor-flecha">
-        <h5 class="titulo-resenia">Reseñas</h5>
-        <i class="fas fa-chevron-down icono-perfil"></i>
-      </div>
-      <div class="contenedor-info">
-        <div class="resenia">
-          <div class="encabezado">
-            <h4 class="nombre">Maria Rosa</h4>
-            <i class="far fa-window-minimize barra"></i>
-            <div class="estrellas">
-              <i class="fas fa-star icono-estrella" data-color="#737373"></i>
-              <i class="fas fa-star icono-estrella" data-color="#737373"></i>
-              <i class="fas fa-star icono-estrella" data-color="#737373"></i>
-              <i class="fas fa-star icono-estrella" data-color="#737373"></i>
-              <i class="fas fa-star icono-estrella" data-color="#737373"></i>
-            </div>
-          </div>
-          <div class="cuerpo">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam blanditiis molestias quam! Voluptas
-              suscipit laborum praesentium exercitationem consequuntur laudantium enim nemo asperiores perferendis
-              numquam, id voluptatem nulla soluta molestias eveniet.</p>
-          </div>
-          <hr>
-        </div>
-        <div class="resenia">
-          <div class="encabezado">
-            <h4 class="nombre">Maria Rosa</h4>
-            <i class="far fa-window-minimize barra"></i>
-            <div class="estrellas">
-              <i class="fas fa-star icono-estrella" data-color="#737373"></i>
-              <i class="fas fa-star icono-estrella" data-color="#737373"></i>
-              <i class="fas fa-star icono-estrella" data-color="#737373"></i>
-              <i class="fas fa-star icono-estrella" data-color="#737373"></i>
-              <i class="fas fa-star icono-estrella" data-color="#737373"></i>
-            </div>
-          </div>
-          <div class="cuerpo">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam blanditiis molestias quam! Voluptas
-              suscipit laborum praesentium exercitationem consequuntur laudantium enim nemo asperiores perferendis
-              numquam, id voluptatem nulla soluta molestias eveniet.</p>
-          </div>
-          <hr>
-        </div>
-      </div>
-    </div>
-  </div>
 
 
-  <div class="container">
-    <div class="contenido">
-      <div class="contenedor-flecha">
-        <h5 class="titulo-resenia">Proyectos / Trabajos</h5>
-        <i class="fas fa-chevron-down icono-perfil"></i>
-      </div>
-      <div class="contenedor-info">
-        <div class="proyecto">
-          <div class="proyectos-cuerpo">
-            <div class="encabezado">
-              <img src="/Frontend/img/prueba-trabajador.jpg" alt="">
-            </div>
-            <div class="cuerpo-proyecto">
-              <h5 class="titulo">
-                Titulo
-              </h5>
-              <p class="text-proyecto">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam ab explicabo
-                quisquam exercitationem
-                quaerat odit ad ipsa, repudiandae, fugiat quod nam distinctio quo non obcaecati illum eum atque. Officia,
-                id.</p>
-            </div>
-          </div>
-          <hr>
-        </div>
-        <div class="proyecto">
-          <div class="proyectos-cuerpo">
-            <div class="encabezado">
-              <img src="/Frontend/img/prueba-trabajador.jpg" alt="">
-            </div>
-            <div class="cuerpo-proyecto">
-              <h5 class="titulo">
-                Titulo
-              </h5>
-              <p class="text-proyecto">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam ab explicabo
-                quisquam exercitationem
-                quaerat odit ad ipsa, repudiandae, fugiat quod nam distinctio quo non obcaecati illum eum atque. Officia,
-                id.</p>
-            </div>
-          </div>
-          <hr>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="container">
-    <div class="contenido">
-      <div class="contenedor-flecha">
-        <h5 class="titulo-resenia">Ubicación</h5>
-        <i class="fas fa-chevron-down icono-perfil"></i>
-      </div>
-      <div class="contenedor-info">
-        <div class="ubi-info">
-          <i class="fas fa-map-marker-alt ubi-i"></i>
-          <p class="ubi">Av. C. Calderón 424</p>
-        </div>
-        <div class="location">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d817.9736236228513!2d-60.03290813548677!3d-34.90909711665791!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bebad1ec18ed01%3A0x27eea2ba52fe3f42!2sFacultad%20de%20Psicolog%C3%ADa%20%7C%20Sede%20Chivilcoy!5e0!3m2!1ses-419!2sar!4v1694909701433!5m2!1ses-419!2sar" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <%- include ('../partials/footer') %>
-
-  <script src="/Frontend/js/script.js"></script>
 </body>
 
 </html>

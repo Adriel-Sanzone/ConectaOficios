@@ -53,3 +53,37 @@ estrellas.forEach((estrella, index) => {
 
 
 
+ // JavaScript para mostrar el formulario
+function mostrarFormulario() {
+    var formulario = document.getElementById('formulario-editar');
+    formulario.style.display = 'block';
+    console.log('Mostrar formulario'); // Agrega esta línea para verificar si se llama la función
+  }
+
+  // JavaScript para cerrar el formulario
+function cerrarFormulario() {
+    var formulario = document.getElementById('formulario-editar');
+    formulario.style.display = 'none';
+}
+
+function EditarFotos() {
+    var formulario = document.getElementById('editar-fotos');
+    formulario.style.display = 'block';
+    console.log('Mostrar formulario'); // Agrega esta línea para verificar si se llama la función
+  }
+
+  // JavaScript para cerrar el formulario
+function CerrarFotos() {
+    var formulario = document.getElementById('editar-fotos');
+    formulario.style.display = 'none';
+}
+
+function FormularioTrabajos() {
+    const FormularioTrabajos = document.getElementById("FormularioTrabajos");
+    FormularioTrabajos.style.display = "block";
+}
+
+function CerrarTrabajos() {
+    var formulario = document.getElementById('FormularioTrabajos');
+    formulario.style.display = 'none';
+}

@@ -133,7 +133,7 @@ body {
 }
 
 .perfil-inferior {
-    padding-top: 70px;
+    padding-top: 50px;
     padding-inline: 100px;
 }
 
@@ -145,6 +145,7 @@ body {
     line-height: normal;
     margin-top: 0;
     margin-bottom: 5px;
+    
 }
 
 .perfil-inferior p {
@@ -242,6 +243,175 @@ body {
     padding-left: 10px;
     padding-bottom: 10px;
 }
+
+
+.formulario-editar {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+  .formulario-editar form {
+    text-align: center;
+  }
+  
+  .formulario-editar label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .formulario-editar input[type="text"],
+  .formulario-editar textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .formulario-editar button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .formulario-editar button[type="button"] {
+    background-color: #dc3545;
+  }
+
+  .formulario-editar label,
+.formulario-editar input[type="text"],
+.formulario-editar textarea,
+.formulario-editar button {
+  margin-bottom: 15px;
+}
+
+
+.FormularioTrabajos {
+    display: flex;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+  }
+  
+  .FormularioTrabajos label,
+  .FormularioTrabajos input,
+  .FormularioTrabajos textarea,
+  .FormularioTrabajos button {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .FormularioTrabajos label {
+    font-weight: bold;
+  }
+  
+  .FormularioTrabajos input[type="file"] {
+    width: 100%;
+  }
+  
+  .FormularioTrabajos input[type="text"],
+  .FormularioTrabajos textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  .FormularioTrabajos button[type="submit"] {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .FormularioTrabajos button[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  
+  .FormularioTrabajos button[type="button"] {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .FormularioTrabajos button[type="button"]:hover {
+    background-color: #c82333;
+  }
+  
+
+
+/* Estilos para el formulario de edición de fotos */
+.editar-fotos {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    text-align: center;
+    max-width: 400px;
+  }
+  
+  .editar-fotos h2 {
+    margin-top: 0;
+    font-size: 20px;
+  }
+  
+  .editar-fotos label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .editar-fotos select,
+  .editar-fotos input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .editar-fotos button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .editar-fotos button[type="button"] {
+    background-color: #dc3545;
+  }
+  
 
 /*Contenedores*/
 
