@@ -88,16 +88,22 @@ header div .registrarse:hover {
 
 /* header para usuari0 */
 .imagenParaUsuario {
-    max-width: 50px;
-    border-radius: 50%;
+   
+    min-width: 65px;
+    max-width: 65px;
+    max-height: 65px;
+    min-width: 65px;
+    
+    
 }
 
-.imagenParaUsuario a {
-    margin: 0;
-}
 
 .imagenParaUsuario img {
     border-radius: 50%;
+    max-width: 60px;
+    min-width: 60px;
+    max-height: 60px;
+    min-width: 60px;
     box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.47);
 }
 

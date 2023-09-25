@@ -1,15 +1,62 @@
 <head>
-    <link rel="stylesheet" href="/Frontend/css/header.css">
-  </head>
+  <link rel="stylesheet" href="/Frontend/css/header.css">
+</head>
+
+<header>
+  <h3><a href="/<%= usuarioLogeado.usuario.id %>">ConectaOficios.com</a></h3>
+  <form class="d-flex mt-3 barra" role="search">
+    <input class="form-control me-2" id="inputSearch" type="search" placeholder="Buscar..." aria-label="Search">
+    <button class="btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+  </form>
+  <div>
+
+  </div>
+
   
-  <header>
-    <h3><a href="/<%= usuarioLogeado.usuario.id %>">ConectaOficios.com</a></h3>
-    <form class="d-flex mt-3 barra" role="search">
-      <input class="form-control me-2" id="inputSearch" type="search" placeholder="Buscar..." aria-label="Search">
-      <button class="btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-    </form>
-    <h4>Hola, <%= usuarioLogeado.usuario.nombre %></h4>
-    <div class="imagenParaUsuario">
-        <a href="dirige a su perfil"><img class="img-fluid" src="<%= usuarioLogeado.usuario.path %>" alt=""></a>
-    </div>
-  </header>
+    <nav class="navbar">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"></a>
+        <div class="imagenParaUsuario">
+          <button class="navbar-toggler " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+            aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+
+            <img class="img-fluid" src="<%= usuarioLogeado.usuario.path %>" alt="">
+
+          </button>
+
+        </div>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+          <div class="offcanvas-header">
+            <div class="imagenParaUsuario">
+               <img class="img-fluid" src="<%= usuarioLogeado.usuario.path %>" alt="">
+    
+             
+    
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Mi perfil</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Oficios</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Acerca De</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Hacerse Premium</a>
+              </li>
+              <li class="nav-item fixed-bottom text-end" >
+                <a class="nav-link" href="#">Cerrar Sesion</a>
+              </li>
+
+          </div>
+        </div>
+      </div>
+    </nav>
+  
+
+</header>
