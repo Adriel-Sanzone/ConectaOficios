@@ -4,95 +4,143 @@
 
 <head>
   <%- include ('../partials/head') %>
-  <link rel="stylesheet" href="/Frontend/css/registro.css">
+    <link rel="stylesheet" href="/Frontend/css/registro.css">
 </head>
 
 <body>
 
   <%- include ('../partials/headerRegistro') %>
 
-  <div class="container">
-    <div class="row">
-      <div class="col-md-5">
-        <div class="registro">
-          <p class="titulo">Crear Cuenta</p>
-          <div>
-            <div class="row">
-              <div class="col-md-6">
-                <input class="form-control" id="nombre" type="text" placeholder="Nombre (*)">
-              </div>
-              <div class="col-md-6">
-                <input class="form-control" id="apellido" type="text" placeholder="Apellido (*)">
-              </div>
-            </div>
-            <input class="form-control" id="email" type="email" placeholder="Email (*)">
-            <input class="form-control" id="password" type="password" placeholder="Contraseña (*)">
-            <div class="contenedorCheckbox">
-              <input class="checkbox" type="checkbox" id="mostrarCampos">
-              <label class="labelRegistro" for="mostrarCampos">Quiero ofrecer mis servicios</label>
-            </div>
-            <div id="camposAdicionales" style="display: none;">
-              <input class="form-control" id="contacto" type="text" placeholder="Contacto (*)">
-              <input class="form-control" id="direccion" type="text" placeholder="Dirección (*)">
-              <label class="label-categoria" for="categorias">Selecciona una categoría:</label>
-              <select class="form-control select-categoria" id="categorias">
-                <% especializacion.forEach(function(c){ %>
-                <option value="<%= c.id %>"><%= c.especializacion %></option>
-                <% }) %>
-              </select>
-              <input class="form-control" id="descripcion" type="text" placeholder="Descripción">
-            </div>
-            <input class="form-control registrar" type="submit" value="Siguiente">
+    <div id="terminos" class="terminos">
+      <div class="container-terminos">
+        <h2>Términos y Condiciones</h2>
+        <textarea class="text" readonly>
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius consequatur odio nulla odit labore voluptas corrupti fugit excepturi, dolores, modi quasi eveniet numquam ipsum, commodi consectetur mollitia porro. Ipsa, temporibus.
+Lorem ipsum dolor sit, amet consectetur adipisicing elit. Mollitia velit in blanditiis modi officiis, numquam vero, quia voluptatem dolores molestiae ullam totam consectetur voluptas temporibus atque eligendi tempora sed repellat!
+        </textarea>
+        <div class="content">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" id="aceptar-terminos"> Acepto los términos y condiciones
+            </label>
           </div>
-          <p>¿Ya tienes una cuenta?</p><a href="iniciarSesion">Iniciar sesión</a>
+
+          <div class="button text-end">
+            <button id="boton-aceptar">Aceptar</button>
+          </div>
+        </div>
+        <br>
+
+
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5">
+          <div class="registro">
+            <p class="titulo">Crear Cuenta</p>
+            <div>
+              <div class="row">
+                <div class="col-md-6">
+                  <input class="form-control" id="nombre" type="text" placeholder="Nombre (*)">
+                </div>
+                <div class="col-md-6">
+                  <input class="form-control" id="apellido" type="text" placeholder="Apellido (*)">
+                </div>
+              </div>
+              <input class="form-control" id="email" type="email" placeholder="Email (*)">
+              <input class="form-control" id="password" type="password" placeholder="Contraseña (*)">
+              <div class="contenedorCheckbox">
+                <input class="checkbox" type="checkbox" id="mostrarCampos">
+                <label class="labelRegistro" for="mostrarCampos">Quiero ofrecer mis servicios</label>
+              </div>
+              <div id="camposAdicionales" style="display: none;">
+                <input class="form-control" id="contacto" type="text" placeholder="Contacto (*)">
+                <input class="form-control" id="direccion" type="text" placeholder="Dirección (*)">
+                <label class="label-categoria" for="categorias">Selecciona una categoría:</label>
+                <select class="form-control select-categoria" id="categorias">
+                  <% especializacion.forEach(function(c){ %>
+                    <option value="<%= c.id %>">
+                      <%= c.especializacion %>
+                    </option>
+                    <% }) %>
+                </select>
+                <input class="form-control" id="descripcion" type="text" placeholder="Descripción">
+              </div>
+              <input class="form-control registrar" type="submit" value="Siguiente">
+            </div>
+            <p>¿Ya tienes una cuenta?</p><a href="iniciarSesion">Iniciar sesión</a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!---inicio footer-->
+    <!---inicio footer-->
 
-  <%- include ('../partials/footer') %>
+    <%- include ('../partials/footer') %>
 
-  <!---fin footer-->
+      <!---fin footer-->
 
-  <script src="/Frontend/js/script.js"></script>
-  <script src="/Frontend/js/funciones_usuarios.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-  <!-- Script para disparar la funcion que crea el usuario-->
-  <script type="text/javascript">
-    //Obtengo el valor de la checkbox en booleano
-    var checkbox = document.getElementById("mostrarCampos");
-    var especialista = 0;
+      <script src="/Frontend/js/script.js"></script>
+      <script src="/Frontend/js/funciones_usuarios.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+      <!-- Script para disparar la funcion que crea el usuario-->
+      <script type="text/javascript">
+        //Obtengo el valor de la checkbox en booleano
+        var checkbox = document.getElementById("mostrarCampos");
+        var especialista = 0;
 
-    checkbox.addEventListener("change", function() {
-      if (this.checked) {
-        especialista = 1;
-      } else {
-        especialista = 0;
-      }
-    });
+        checkbox.addEventListener("change", function () {
+          if (this.checked) {
+            especialista = 1;
+          } else {
+            especialista = 0;
+          }
+        });
 
-    //Tras apretar "Crear cuenta" obtengo los valores de los inputs
-    $(".registrar").on("click", function() {
+        //Tras apretar "Crear cuenta" obtengo los valores de los inputs
+        $(".registrar").on("click", function () {
 
-      var especificaciones = new FormData();
+          var especificaciones = new FormData();
 
-      especificaciones.append('nombre', $("#nombre").val());
-      especificaciones.append('apellido', $("#apellido").val());
-      especificaciones.append('contacto', $("#contacto").val());
-      especificaciones.append('email', $("#email").val());
-      especificaciones.append('password', $("#password").val());
-      especificaciones.append('trabaja', especialista);
-      especificaciones.append('direccion', $("#direccion").val());
-      especificaciones.append('descripcion', $("#descripcion").val());
-      especificaciones.append('especializacion_id', $("#categorias").val());
+          especificaciones.append('nombre', $("#nombre").val());
+          especificaciones.append('apellido', $("#apellido").val());
+          especificaciones.append('contacto', $("#contacto").val());
+          especificaciones.append('email', $("#email").val());
+          especificaciones.append('password', $("#password").val());
+          especificaciones.append('trabaja', especialista);
+          especificaciones.append('direccion', $("#direccion").val());
+          especificaciones.append('descripcion', $("#descripcion").val());
+          especificaciones.append('especializacion_id', $("#categorias").val());
 
-      //Llamo la funcion enviandole los parametros obtenidos
-      console.log(especificaciones);
-      RegistrarUsuario(especificaciones);
-    })
-  </script>
+          //Llamo la funcion enviandole los parametros obtenidos
+          console.log(especificaciones);
+          RegistrarUsuario(especificaciones);
+        })
+      </script>
+
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          const termsOverlay = document.getElementById("terminos");
+          const acceptButton = document.getElementById("boton-aceptar");
+          const acceptCheckbox = document.getElementById("aceptar-terminos");
+
+          // Mostrar el cartel de términos y condiciones
+          termsOverlay.style.display = "block";
+
+          // Evento para ocultar el cartel cuando se hace clic en Aceptar
+          acceptButton.addEventListener("click", function () {
+            if (acceptCheckbox.checked) {
+              termsOverlay.style.display = "none";
+            } else {
+              alert("Debes aceptar los términos y condiciones para continuar.");
+            }
+          });
+        });
+      </script>
 
 </body>
 
