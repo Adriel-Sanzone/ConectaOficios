@@ -146,18 +146,12 @@ function BuscarUsuario(especificaciones)
            {
                 
                 window.Enviando = 0;
-
-                if(r.error == 1)
-                {
+                
+                if(r.error == 1){
                     console.log("error");
                     alert(r.mensaje);
-                } else
-                {
-                    console.log("exito");
-                    alert("Usuario logeado exitosamente");
-                    location.href="/loged/" + r.usuario.id;
-                    sessionStorage.setItem("IdUsuario" , r.usuario.id);
-                    sessionStorage.setItem("Token" , r.token);
+                } else {
+                    location.href="/"
                     
                 }
            }
