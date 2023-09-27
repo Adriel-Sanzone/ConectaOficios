@@ -131,7 +131,9 @@
                           <i class="fa-solid fa-location-dot"></i>
                           <p> <%= c.direccion %></p>
                         </div>
-                        <button> <%= c.contacto %> <i class="fab fa-whatsapp"></i></button>
+                        <% if (usuarioLogeado) { %>
+                          <button> <%= c.contacto %> <i class="fab fa-whatsapp"></i></button>
+                        <% } %>
                       </div>
                     </swiper-slide>
                     <!---Salir del for?-->

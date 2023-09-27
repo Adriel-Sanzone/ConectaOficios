@@ -19,13 +19,14 @@ export const getUsuarios = async (req, res) =>
 };
 
 //Funcion distinta para ver los usuarios con templates
-export const viewUsuariosEspecialistas = () =>
+export const viewUsuariosEspecialistas = (pagina) =>
 {
+    
     //Promesa para asegurarme de tener los datos antes de enviarlos
     return new Promise (function(resolve)
     {
         connection.query(
-            'SELECT * FROM usuarios WHERE especialista = 1',
+            'SELECT * FROM usuarios WHERE especialista = 1 ORDER BY destacado DESC',
             function (err, results) {
                 resolve(results);
             }
@@ -91,6 +92,8 @@ export const getUsuario = async (req, res) =>
                         //Agrego este nuevo token a la columna de su usuario correspondiente
                         connection.query('UPDATE usuarios SET token = ? WHERE id = ?' , 
                         [r , usuario.id])
+
+                        req.session.idUsuario = usuario.id;
 
                         res.json({
                             "error": 0,
@@ -163,19 +166,10 @@ export const UsuarioLogeado = (id) =>
                     //Si no encuentro ningun usuario con el token de la SesionStorage
                     if(results[0] === undefined)
                     {
-                        res =
-                        {
-                            "logeado": false,
-                        }
-                        resolve(res);
+                        resolve(false);
                     } else  //Si encuentro un usuario con el mismo token que el de la SesionStorage
                     {
-                        res =
-                        {
-                            "logeado": true,
-                            "usuario": results[0],
-                        };
-                        resolve(res);
+                        resolve(true);
                     }
                 }
             }

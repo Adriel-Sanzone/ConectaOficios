@@ -6,7 +6,9 @@ const router = Router();
 
 router.get('/', function (req, res) {
 
-    var usuarioLogeado = UsuarioLogeado(0);
+    var idUsuario = (req.session.idUsuario || 0);
+
+    var usuarioLogeado = UsuarioLogeado(idUsuario);
 
     var usuariosEspecialistas = viewUsuariosEspecialistas();
     var especializaciones = viewEspecializaciones();
@@ -31,33 +33,6 @@ router.get('/', function (req, res) {
     }) 
 }); 
 
-router.get('/loged/:id', function (req, res) {
-
-    var idUsuario = req.params.id;
-    var usuarioLogeado = UsuarioLogeado(idUsuario);
-
-    var usuariosEspecialistas = viewUsuariosEspecialistas();
-    var especializaciones = viewEspecializaciones();
-    var especializacionUsuario = viewEspecializacionUsuario();
-    usuariosEspecialistas.then(function(usuarios)
-    {
-        especializaciones.then(function(especializacion)
-        {
-            especializacionUsuario.then(function(userEspecializacion)
-            {
-                usuarioLogeado.then(function(userLogeado)
-                {
-                    res.render("../Frontend/views/pages/index", {
-                        "usuariosEsp" : usuarios,
-                        "especializacion" : especializacion,
-                        "especializacionUsuario" : userEspecializacion,
-                        "usuarioLogeado": userLogeado,
-                    });
-                })
-            })
-        })
-    }) 
-});
 
 router.get('/iniciarSesion', function (req, res) {
     res.render('../Frontend/views/pages/iniciarSesion')
