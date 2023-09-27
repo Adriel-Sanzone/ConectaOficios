@@ -183,8 +183,8 @@ function ValidarUsuario(token, id)
                 {
                     console.log("error");
                     alert(r.mensaje);
-                    sessionStorage.setItem("IdUsuario", 0);
-                    sessionStorage.setItem("Token", 0);
+                    sessionStorage.setItem("IdUsuario", "");
+                    sessionStorage.setItem("Token", "");
                     location.href = "/iniciarSesion";
                 } else 
                 {

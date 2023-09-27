@@ -160,7 +160,6 @@ export const UsuarioLogeado = (id) =>
                     res.status(500).json({ error: 'Error al obtener los datos' });
                 } else 
                 {
-                    //Si no encuentro ningun usuario con el token de la SesionStorage
                     if(results[0] === undefined)
                     {
                         res =
@@ -168,7 +167,7 @@ export const UsuarioLogeado = (id) =>
                             "logeado": false,
                         }
                         resolve(res);
-                    } else  //Si encuentro un usuario con el mismo token que el de la SesionStorage
+                    } else  
                     {
                         res =
                         {
