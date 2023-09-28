@@ -7,25 +7,47 @@
 </head>
 
 <body>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-3">
-        <div class="menu">
-          <h3>Inicio</h3>
-          <ul>
-            <li><a href="">Home</a></li>
-            <p>Tablas</p>
-            <ul>
-                <li><a href="">Especializaciones</a></li>
-                <li><a href="">Especializacion_usuario</a></li>
-                <li><a href="">Usuarios</a></li>
-            </ul>
-           
-          </ul>
-        </div>
+  <div class="row">
+    <div class="col-md-2 sub-menu">
+      <ul>
+        <li id="cerrar-sesion">
+          <a class="opcion-menu" onclick="CerrarSesion()" href="../main-menu.html">Cerrar Sesion</a>
+        </li>
+      </ul>
+
+    </div>
+    <div class="col-md-10">
+      <div class="text-end mt-3 mb-3">
+        <a onclick="GuardarId(0)" href="admin-producto.html" class="boton-nuevo">+ Nuevo Producto</a>
+      </div>
+      <h1 class="title">Productos Cargados</h1>
+      <div class="container">
+
+        <table>
+          <thead>
+            <tr>
+              <th class="nombre-tabla">NOMBRE</th>
+              <th class="marca-tabla">MARCA</th>
+              <th class="stock-tabla">STOCK</th>
+              <th class="precio-tabla">PRECIO</th>
+              <th class="opciones-tabla">OPCIONES</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
       </div>
     </div>
   </div>
+
+  <script src="../../js/admin.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      Validado();
+      CargarStock();
+    })
+  </script>
+
 </body>
 
 </html>
