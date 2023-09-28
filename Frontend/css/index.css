@@ -69,7 +69,7 @@ body {
 }
 
 .inicio .presentacion a:hover {
-    box-shadow: 1px 1px 15px -9px rgba(37,43,66,1);
+    box-shadow: 1px 1px 15px -9px rgba(37, 43, 66, 1);
     color: #FF685B;
 }
 
@@ -160,7 +160,7 @@ body {
 }
 
 .head-anuncios .texto-anuncios {
-    max-width: 500px;
+    max-width: 600px;
     margin-block-end: 50px;
 }
 
@@ -182,7 +182,7 @@ swiper-slide {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 320px !important;
+    width: 300px !important;
     background-color: var(--blanco2);
     padding: 20px 20px 35px 20px;
     margin-bottom: 35px;
@@ -299,9 +299,9 @@ swiper-slide {
     background: var(--azul);
     padding: 15px 20px;
     color: var(--blanco2) !important;
-    font-size: 16px;
-    font-weight: 700;
+    font-size: 14px;
     text-decoration: none;
+    font-weight: 700;
 }
 
 .ver-mas a:hover {
