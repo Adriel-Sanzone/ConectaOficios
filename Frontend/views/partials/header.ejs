@@ -4,17 +4,29 @@
 
 <header>
   <h3><a href="/">ConectaOficios.com</a></h3>
-  <form class="d-flex mt-3 barra" role="search">
-    <input class="form-control me-2" id="inputSearch" type="search" placeholder="Buscar..." aria-label="Search">
-    <button class="btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-  </form>
   <div class="menu">
-    <!-- <a href="/inicio">Inicio</a>
-      <a class="headerA" href="/oficios">Oficios</a> -->
+    <a href="/">Inicio</a>
+    <a class="headerA" href="/oficios">Oficios</a>
+  </div>
+  <div class="menu">
     <a class="headerAcceder" href="/iniciarSesion">Acceder</a>
     <a class="registrarse" href="/registro">Registrarse</a>
   </div>
 </header>
 
-<div style="background-color: black;height: 50px;">
+<div class="barra">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="input-group">
+        <input type="text" id="search-input" class="form-control" placeholder="Buscar oficios...">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button" id="search-button">Buscar</button>
+        </div>
+      </div>
+      <!-- Lista de sugerencias (inicialmente oculta) -->
+      <ul class="list-group" id="suggestions" style="display: none;"></ul>
+    </div>
+  </div>
 </div>
+
+<script src="/Frontend/js/script.js"></script>

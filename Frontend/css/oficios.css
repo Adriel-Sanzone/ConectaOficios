@@ -28,6 +28,20 @@ body {
     padding: 0;
 }
 
+.container {
+    margin-top: 30px;
+}
+
+.col-md-3,
+.col-md-9 {
+    padding: 0;
+}
+
+.col-md-3 {
+    padding-inline-end: 30px;
+    padding-block-end: 30px;
+}
+
 /* categorias */
 .categorias {
     position: sticky;
@@ -42,17 +56,20 @@ body {
 .categorias p {
     color: var(--gris);
     font-size: 14px;
+    margin-bottom: 10px;
 }
 
 .categorias .categoria {
     display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding-bottom: 10px;
 }
 
 .categorias label {
-    margin-bottom: 20px;
     color: var(--azul);
-    font-size: 14px;
-
+    font-size: 15px;
 }
 
 input[type="checkbox"] {
@@ -98,6 +115,13 @@ input[type="checkbox"] {
 .persona .imagen {
     max-width: 200px;
     max-height: 200px;
+}
+
+.persona .col-md-3{
+    padding: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .imagen-container {
