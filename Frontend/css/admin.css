@@ -1,0 +1,37 @@
+:root {
+    /* fuentes(letras) */
+    --fuente: 'Montserrat', sans-serif;
+    --regular: 400;
+    --bold: 700;
+    /* colores */
+    --blanco: #FAFAFA;
+    --blanco2: #fff;
+    --naranja: #FF685B;
+    --naranjaOscuro: #E74040;
+    --azul: #252B42;
+    --gris: #737373;
+    --grisClaro: #ECECEC;
+    --celeste: #EEF4F8;
+}
+
+html,
+body {
+    position: relative;
+    height: 100%;
+}
+
+body {
+    font-family: var(--fuente);
+    background-color: var(--grisClaro);
+    margin: 0;
+    padding: 0;
+}
+
+.col-md-3{
+    padding: 0;
+}
+
+.menu {
+    background-color: var(--azul);
+    min-height: 100vh;
+}
