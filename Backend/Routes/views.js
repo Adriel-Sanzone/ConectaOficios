@@ -76,4 +76,9 @@ router.get('/perfil', function (req, res) {
     res.render('../Frontend/views/pages/perfil')
 });
 
+router.get('/admin', function (req, res) {
+    res.render('../Frontend/views/pages/admin')
+});
+
+
 export default router;

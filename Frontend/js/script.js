@@ -53,14 +53,14 @@ estrellas.forEach((estrella, index) => {
 
 
 
- // JavaScript para mostrar el formulario
+// JavaScript para mostrar el formulario
 function mostrarFormulario() {
     var formulario = document.getElementById('formulario-editar');
     formulario.style.display = 'block';
     console.log('Mostrar formulario'); // Agrega esta línea para verificar si se llama la función
-  }
+}
 
-  // JavaScript para cerrar el formulario
+// JavaScript para cerrar el formulario
 function cerrarFormulario() {
     var formulario = document.getElementById('formulario-editar');
     formulario.style.display = 'none';
@@ -70,9 +70,9 @@ function EditarFotos() {
     var formulario = document.getElementById('editar-fotos');
     formulario.style.display = 'block';
     console.log('Mostrar formulario'); // Agrega esta línea para verificar si se llama la función
-  }
+}
 
-  // JavaScript para cerrar el formulario
+// JavaScript para cerrar el formulario
 function CerrarFotos() {
     var formulario = document.getElementById('editar-fotos');
     formulario.style.display = 'none';
@@ -87,3 +87,53 @@ function CerrarTrabajos() {
     var formulario = document.getElementById('FormularioTrabajos');
     formulario.style.display = 'none';
 }
+
+
+// BARRA
+document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.getElementById("search-input");
+    const suggestions = document.getElementById("suggestions");
+
+    // Lista de categorías
+    const categorias = ["Plomero", "Electricista", "Pintor", "Jardinero", "Gasista"];
+
+    // Función para mostrar las sugerencias
+    function showSuggestions() {
+        suggestions.innerHTML = "";
+        const inputValue = searchInput.value.toLowerCase();
+
+        categorias.forEach((categoria) => {
+            if (categoria.toLowerCase().includes(inputValue)) {
+                const listItem = document.createElement("li");
+                listItem.classList.add("list-group-item");
+                listItem.textContent = categoria;
+                listItem.addEventListener("click", () => {
+                    // Redirige a la página de oficios
+                    window.location.href = `oficios?categoria=${encodeURIComponent(categoria)}`;
+                });
+                suggestions.appendChild(listItem);
+            }
+        });
+
+        if (suggestions.children.length > 0) {
+            suggestions.style.display = "block";
+        } else {
+            suggestions.style.display = "none";
+        }
+    }
+
+    // Evento para el campo de entrada (keyup)
+    searchInput.addEventListener("keyup", showSuggestions);
+
+    // Evento para ocultar las sugerencias cuando se hace clic en cualquier parte de la página
+    document.addEventListener("click", function (event) {
+        if (event.target !== searchInput && event.target !== suggestions) {
+            suggestions.style.display = "none";
+        }
+    });
+});
+
+// FIN BARRA
+
+
+

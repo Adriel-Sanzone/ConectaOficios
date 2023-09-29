@@ -4,4 +4,6 @@ hacer que contacto no sea obligatorio para no trabajadores
 hacer funcionales botones de whatsapp y mail
 que se muestre la categoria elegida por el usuario en su perfil
 hacer barra de busqueda funcional o lista desplegable en header
-overflow en oficios
+como dirigir a la categoria filtrada en la barra ----------
+overflow en oficios en persona cargada desde registro
+perfil esta todo comentado???

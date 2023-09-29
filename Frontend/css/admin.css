@@ -1,0 +1,216 @@
+body{
+    background-image: url("../img/fondo-user-view.jpg");
+    background-repeat: none;
+    background-size:cover;
+}
+
+.sub-menu{
+    background-color: #212529;
+    height: 15vh;
+    border: solid black 5px;
+}
+
+.sub-menu ul{
+    list-style: none;
+    padding: 0;
+}
+.title{
+    color: #6bfdff;
+    margin-left: 155px;
+    margin-right: 155px;
+    margin-top: 20px;
+    padding: 5px;
+    background-color: rgba(0, 0, 0, 0.712);
+    border: 3px solid white;
+}
+
+.opcion-menu{
+    text-decoration: none; 
+    color: black;
+    font-size:large;
+    font-weight: bolder;
+}
+.opcion-menu:hover{
+    text-decoration: none; 
+    color: #c9c9c9;
+}
+
+.boton-nuevo{
+    background-color: rgba(0, 0, 0, 0.596);
+    padding: 10px;
+    margin-right: 155px;
+    border-radius: 25px;
+    border: 3px solid rgb(187, 255, 173);
+    text-decoration: none;
+    color: rgb(187, 255, 173);
+    font-weight: bold;
+}
+.boton-nuevo:hover{
+    background-color: rgba(0, 0, 0, 0.801);
+    padding: 10px;
+    margin-right: 155px;
+    border-radius: 25px;
+    border: 3px solid #00e93a;
+    text-decoration: none;
+    color: #00e93a;
+    font-weight: bold;
+}
+.boton-editar{
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 10px;
+    border: 1px solid rgb(255, 254, 198);
+    text-decoration: none;
+    color: rgb(255, 254, 198);
+    font-weight: bold;
+}
+.boton-eliminar{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 1px;
+    margin-left: 10px;
+    border: 1px solid rgb(255, 195, 195);
+    text-decoration: none;
+    color: rgb(255, 195, 195);
+    font-weight: bold;
+}
+.boton-editar:hover{
+    background-color: rgba(0, 0, 0, 0.596);
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 1px;
+    margin-right: 10px;
+    border: 1px solid rgb(255, 251, 0);
+    text-decoration: none;
+    color: rgb(255, 251, 0);
+    font-weight: bold;
+}
+.boton-eliminar:hover{
+    background-color: transparent;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 1px;
+    margin-left: 10px;
+    border: 1px solid rgb(197, 1, 1);
+    text-decoration: none;
+    color: rgb(197, 1, 1);
+    font-weight: bold;
+}
+.boton-guardar{
+    background-color: rgba(0, 0, 0, 0);
+    padding: 10px 40px 10px 40px;
+    margin-right: 20px;
+    border-radius: 25px;
+    border: 3px solid rgb(187, 255, 173);
+    text-decoration: none;
+    color: rgb(187, 255, 173);
+    font-weight: bold;
+}
+.boton-guardar:hover{
+    background-color: rgba(0, 0, 0, 0.801);
+    padding: 10px 40px 10px 40px;
+    margin-right: 20px;
+    border-radius: 25px;
+    border: 3px solid #00e93a;
+    text-decoration: none;
+    color: #00e93a;
+    font-weight: bold;
+}
+
+
+
+#cerrar-sesion{
+    margin-top: 33px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-align: center;
+    text-decoration: none;
+    background-color: #00d5d8;
+    border-radius: 10px;
+}
+#cerrar-sesion a{
+    color: #003f41;
+    font-size: larger;
+    border-radius: 10px;
+}
+#cerrar-sesion:hover{
+    margin-top: 33px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-align: center;
+    text-decoration: none;
+    background-color: #1ee5e9;
+    border-radius: 10px;
+}
+#cerrar-sesion a:hover{
+    color: #000000;
+    font-size: larger;
+    border-radius: 10px;
+}
+
+
+.menu-title{
+    color: #6bfdff;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 20px;
+    padding: 5px;
+    font-weight: bold;
+}
+
+.formulario{
+    background-color: #000000bb;
+    padding: 20px;
+    margin-top: 100px;
+    border: 3px solid white;
+    border-radius: 20px;
+}
+
+.label-form{
+    color: #6bfdff;
+    padding: 10px 0px 10px 0px;
+    font-weight: bold;
+}
+
+hr{
+    color:white;
+}
+
+table{
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+table td, th{
+    background-color: rgba(0, 0, 0, 0.747);
+    border: 3px solid white;
+}
+table thead{
+    text-align: center;
+    color: #6bfdff;
+}
+table thead tr th{
+    padding: 10px;
+    font-weight: bold;
+    font-size: large;
+}
+table tbody{
+    color: white;
+    text-align: center;
+}
+
+.nombre-tabla{
+    width: 30%;
+}
+.marca-tabla{
+    width: 20%;
+}
+.stock-tabla{
+    width: 10%;
+}
+.precio-tabla{
+    width: 20%;
+}
+.opciones-tabla{
+    width: 30%;
+}

@@ -1,13 +1,13 @@
 /* header */
 
+
 header {
     display: flex;
     justify-content: space-between;
     padding-inline: 30px;
     align-items: center;
     font-family: var(--fuente);
-    height: 90px;
-    margin-block-end: 50px;
+    height: 70px;
     background-color: var(--blanco);
 }
 
@@ -63,40 +63,29 @@ header div a:hover {
 }
 
 header div .registrarse {
-    color: var(--blanco);
+    color: var(--naranja);
+    font-weight: var(--bold);
+    font-size: 14px;
+    text-decoration: none;
+    line-height: 22px;
+    padding: 15px 30px;
     border-radius: 5px;
-    background: var(--naranja);
-    padding: 15px 23px;
+    border: 2px solid var(--primary-color, #FF685B);
 }
 
 header div .registrarse:hover {
-    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.47);
-    color: var(--blanco);
-}
-
-.barra {
-    margin: 0 !important;
-}
-
-.barra i {
-    color: var(--azul);
-}
-
-.barra input {
-    border-radius: 5px;
+    box-shadow: 1px 1px 15px -9px rgba(37, 43, 66, 1);
+    color: #FF685B;
 }
 
 /* header para usuari0 */
 .imagenParaUsuario {
-   
+
     min-width: 65px;
     max-width: 65px;
     max-height: 65px;
     min-width: 65px;
-    
-    
 }
-
 
 .imagenParaUsuario img {
     border-radius: 50%;
@@ -107,12 +96,44 @@ header div .registrarse:hover {
     box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.47);
 }
 
+.barra {
+    background-color: var(--blanco);
+    padding-bottom: 20px;
+    margin: 0 !important;
+}
+
+.barra .row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.barra input {
+    border-radius: 5px;
+    border: 0.667px solid var(--azul);
+    box-shadow: 0px 13px 19px 0px rgba(0, 0, 0, 0.04);
+}
+
+.barra button {
+    color: var(--blanco);
+    border-radius: 0 5px 5px 0;
+    background: var(--azul);
+    border: 0.667px solid var(--azul);
+    font-weight: bold;
+    box-shadow: 0px 13px 19px 0px rgba(0, 0, 0, 0.04);
+}
+
+.barra button:hover {
+    box-shadow: 1px 1px 15px -9px rgba(37, 43, 66, 1);
+    background: var(--azul);
+}
+
 @media (max-width: 828px) {
 
     /* header */
     header {
         display: flex;
-        margin-block-end: 20px;
         align-items: center;
         margin-block-start: 20px;
         justify-content: flex-start;
@@ -131,5 +152,9 @@ header div .registrarse:hover {
 
     header .menu {
         padding-bottom: 10px;
+    }
+
+    .barra {
+        margin-block-end: 20px;
     }
 }
