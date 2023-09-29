@@ -15,10 +15,6 @@ function RegistrarUsuario(especificaciones)
     var direccion = especificaciones.get('direccion');
     var descripcion = especificaciones.get('descripcion');
     var especializacion_id = especificaciones.get('especializacion_id');
-    
-
-    //console.log(trabaja);
-
 
     console.log(trabaja);
 
@@ -173,7 +169,7 @@ function ValidarUsuario(token, id)
             },
             success: function (r) 
             {
-                if (r.error == 1) 
+                if (r.error != 0) 
                 {
                     console.log("error");
                     alert(r.mensaje);
@@ -213,7 +209,7 @@ function InsertarImagenes(datosPerfil, datosPortada)
                     success: function (data) 
                     {
                         alert("Foto agregada correctamente");
-                        location.href = "/loged/" + sessionStorage.getItem("IdUsuario");
+                        location.href = "/";
                     }
                 })
            }

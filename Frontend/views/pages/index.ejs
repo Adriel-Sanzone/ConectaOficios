@@ -9,7 +9,7 @@
 
 <body>
   
-  <% if (usuarioLogeado.logeado) { %>
+  <% if (usuarioLogeado) { %>
     <%- include ('../partials/headerParaUsuario') %>
   <% } else { %>
     <%- include ('../partials/header') %>
@@ -133,7 +133,9 @@
                         </div>
                         <% if (usuarioLogeado) { %>
                           <button> <%= c.contacto %> <i class="fab fa-whatsapp"></i></button>
-                        <% } %>
+                        <% } else { %>
+                          <!-- ICONO CUANDO NO ESTE LOGEADO -->
+                        <% }%>
                       </div>
                     </swiper-slide>
                     <!---Salir del for?-->
