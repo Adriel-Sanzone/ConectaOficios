@@ -85,24 +85,26 @@ export const getUsuario = async (req, res) =>
                 { 
                     var usuario = results[0];
                     //Creo un token para este usuario
-                    var token = CrearToken();
+                    var getToken = CrearToken();
                     //Tras la resolucion de la promesa de la funcion CrearToken(), continuo la ejecucion por medio del "then" dentro de una funcion
-                    token.then(function(r)
+                    getToken.then(function(token)
                     {
                         //Agrego este nuevo token a la columna de su usuario correspondiente
                         connection.query('UPDATE usuarios SET token = ? WHERE id = ?' , 
-                        [r , usuario.id])
-
-                        req.session.idUsuario = usuario.id;
+                        [token , usuario.id])
 
                         res.json({
                             "error": 0,
                             "usuario": results[0],
-                            "token": r,
+                            "token": token,
                         });
+                        //Guardo los datos clave para validar en session de express
+                        req.session.idUsuario = usuario.id;
+                        req.session.token = token;
+                        console.log("GUARDADO:");
+                        console.log(req.session.idUsuario);
+                        console.log(req.session.token);
                     });
-
-
                 }
             }
         }
@@ -136,8 +138,6 @@ export const UsuarioValidado = async (req, res) =>
                     })
                 } else  //Si encuentro un usuario con el mismo token que el de la SesionStorage
                 {
-                    req.session.IdUsuario = id;
-                    req.session.Token = token;
                     res.json({
                         "error": 0,
                     })
@@ -147,14 +147,14 @@ export const UsuarioValidado = async (req, res) =>
     );
 };
 
-export const UsuarioLogeado = (id) =>
+export const UsuarioLogeado = (id, token) =>
 {
     return new Promise (function(resolve)
     {
         var res;
         connection.query(
-            'SELECT * FROM usuarios WHERE id = ?',
-            [id],
+            'SELECT * FROM usuarios WHERE id = ? AND token = ?',
+            [id, token],
             function (err, results) 
             {
                 if (err) 
@@ -271,6 +271,9 @@ export const RegistroUsuario = async (req, res) =>
                         res.json({
                             "error": 0,
                         })
+                        //Guardo los datos clave para validar en session de express
+                        req.session.IdUsuario = usuario.id;
+                        req.session.Token = token;
                     }
                 }
             );

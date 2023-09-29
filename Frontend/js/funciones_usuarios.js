@@ -64,12 +64,11 @@ function RegistrarUsuario(especificaciones)
                                 } else
                                 {
                                     console.log("exito 2");
-                                    sessionStorage.setItem("IdUsuario" , r.usuario.id);
-                                    sessionStorage.setItem("Token" , r.token);
+                                   /*  sessionStorage.setItem("IdUsuario" , r.usuario.id);
+                                    sessionStorage.setItem("Token" , r.token); */
                                     //luego de guardar el id y token del usuario recien creado asigno el trabajo que selecciono
                                     if (r.usuario.especialista != 0)
                                     {
-                                        console.log("El pibe trabaja");
                                         $.ajax(
                                             {
                                             "url": URL_BASE + "asignoespecializacion",
@@ -77,8 +76,8 @@ function RegistrarUsuario(especificaciones)
                                             "dataType": "json",
                                             "data":
                                             {
-                                                    "id_usuario": r.usuario.id,
-                                                    "id_especializacion": especializacion_id,
+                                                "id_usuario": r.usuario.id,
+                                                "id_especializacion": especializacion_id,
                                             },
                                             success: function(r)
                                             {                                              
@@ -96,9 +95,7 @@ function RegistrarUsuario(especificaciones)
                                             }
                                             })
                                     } else
-                                    {
-                                        console.log("El pibe no trabaja");                                
-                                    
+                                    {  
                                         if(r.error == 1)
                                         {
                                             console.log("error");
@@ -154,18 +151,15 @@ function BuscarUsuario(especificaciones)
         })
 }
 
-function ValidarUsuario(token, id) 
+function ValidarUsuario() 
 {
-    console.log(id);
-    if (id != null && id != 0) {
+    //if (id != null && id != 0) {
         $.ajax({
             "url": URL_BASE + "usuariovalidado",
             "type": "POST",
             "dataType": "json",
             "data": 
             {
-                "token": token,
-                "id": id,
             },
             success: function (r) 
             {
@@ -182,7 +176,7 @@ function ValidarUsuario(token, id)
                 }
             }
         });
-    } 
+    //} 
 }
 
 

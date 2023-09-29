@@ -7,8 +7,14 @@ const router = Router();
 router.get('/', function (req, res) {
 
     var idUsuario = (req.session.idUsuario || 0);
+    var tokenUsuario = (req.session.token || 0);
 
-    var usuarioLogeado = UsuarioLogeado(idUsuario);
+    console.log(req.session);
+    console.log("CARGADO:");
+    console.log(idUsuario);
+    console.log(tokenUsuario);
+
+    var usuarioLogeado = UsuarioLogeado(idUsuario , tokenUsuario);
 
     var usuariosEspecialistas = viewUsuariosEspecialistas();
     var especializaciones = viewEspecializaciones();

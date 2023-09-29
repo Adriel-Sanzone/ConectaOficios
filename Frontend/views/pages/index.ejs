@@ -8,11 +8,8 @@
 </head>
 
 <body>
-  
-  <% if (usuarioLogeado) { %>
-    <%- include ('../partials/headerParaUsuario') %>
 
-  <% if (usuarioLogeado.logeado) { %>
+  <% if (usuarioLogeado) { %>
   <%- include ('../partials/headerParaUsuario') %>
   <% } else { %>
   <%- include ('../partials/header') %>
@@ -171,12 +168,12 @@
   <script src="/Frontend/js/funciones_usuarios.js"></script>
   <!-- Script para disparar la funcion que valida el usuario-->
   <script type="text/javascript">
-    $(document).ready(function() {
+/*     $(document).ready(function() {
       var token = sessionStorage.getItem("Token");
       var id = sessionStorage.getItem("IdUsuario");
 
       ValidarUsuario(token, id);
-    })
+    }) */
   </script>
   <script>
     AOS.init();
