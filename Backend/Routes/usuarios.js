@@ -1,5 +1,5 @@
 import {Router} from 'express';
-import {getUsuarios , getUsuario, UsuarioValidado, RegistroUsuario, InsertoImagenPerfil, AsignoEspecializacion, InsertoImagenPortada} from '../Controllers/usuarios.js'
+import {getUsuarios , UsuarioLogeandose, UsuarioValidado, RegistroUsuario, InsertoImagenPerfil, AsignoEspecializacion, InsertoImagenPortada} from '../Controllers/usuarios.js'
 
 import multer from 'multer';
 
@@ -24,7 +24,7 @@ const upload = multer({ storage: multerStorage });
 const router = Router();
 
 router.get('/usuarios' , getUsuarios);
-router.post('/usuario' , getUsuario);
+router.post('/usuario' , UsuarioLogeandose);
 router.post('/usuariovalidado' , UsuarioValidado);
 router.post('/registrousuario' , RegistroUsuario);
 router.post('/asignoespecializacion' , AsignoEspecializacion);
@@ -32,4 +32,4 @@ router.post('/asignoespecializacion' , AsignoEspecializacion);
 router.post('/insertoimagenperfil', upload.single("usuarioFoto"), InsertoImagenPerfil);
 router.post('/insertoimagenportada', upload.single("usuarioFoto"), InsertoImagenPortada);
 
-export default router; 
+export default router;

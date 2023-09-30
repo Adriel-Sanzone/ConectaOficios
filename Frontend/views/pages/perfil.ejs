@@ -19,9 +19,12 @@
 
           <div class="col-md-12">
             <div class="text-end editar-portada">
+              <% if (user.id === id) { %>
               <a class="btn" id="btn-editar-fotos">
                 <i class="fa-solid fa-pen-to-square"></i>
               </a>
+              <% } %>
+
             </div>
 
             <!--
@@ -35,7 +38,7 @@
           -->
 
             <div class="portada">
-              <img class="img-fluid" src="/Frontend/img/prueba-portada.jpg" alt="">
+              <img class="img-fluid" src="<%= user.path_portada %>" alt="">
             </div>
           </div>
 
@@ -51,7 +54,7 @@
           -->
 
             <div class="perfil">
-              <img src="/Frontend/img/prueba-perfil-formal.jpg" class="img-fluid" alt="">
+              <img src="<%= user.path %>" class="img-fluid" alt="">
 
               <div class="categorias text-end">
                 <a href="oficios" target="_blank" class="btn-categorias">Agua</a>
@@ -64,23 +67,22 @@
 
         <div class="perfil-inferior">
           <div class="d-flex align-items-center mb-3">
-            <h1>Raul Gomez</h1>
+            <h1><%= user.nombre %> <%= user.apellido %></h1>
+            <% if (user.id === id) { %>
             <button class="btn btn-editar ml-3 editar-portada" id="btn-editar">
               <a class="btn ">
                 <i class="fa-solid fa-pen-to-square "></i>
               </a>
             </button>
+            <% } %>
           </div>
-          <p>Desde reparaciones simples hasta proyectos más complejos, resuelve problemas de tuberías, desagües y
-            grifería
-            con precisión.Desde reparaciones simples hasta proyectos más complejos, resuelve problemas de tuberías,
-            desagües y grifería con precisión.</p>
+          <p><%= user.descripcion %></p>
           <div class="d-flex">
             <div class="whatsapp btn-perfil-inf">
-              <a href="https://wa.me/92346000000" target="_blank">234600000<i class="fab fa-whatsapp"></i></a>
+              <a href="https://wa.me/<%= user.contacto %>" target="_blank"><%= user.contacto %><i class="fab fa-whatsapp"></i></a>
             </div>
             <div class="email btn-perfil-inf">
-              <a href="mailto:sanchezdeniseabril@gmail.com" target="_blank">Email<i class="far fa-envelope"></i></a>
+              <a href="mailto:<%= user.email %>" target="_blank"><%= user.email %><i class="far fa-envelope"></i></a>
             </div>
           </div>
         </div>
@@ -168,8 +170,9 @@
             <% }); */%>
           -->
 
+          <% if (user.id === id) { %>
           <button class="mb-5" id="btn-formulario-Trabajos" onclick="FormularioTrabajos()">Agregar Trabajo</button>
-
+          <% } %>
           
 
           <div class="proyecto">

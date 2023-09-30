@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import {viewUsuariosEspecialistas, UsuarioLogeado} from '../Controllers/usuarios.js'
-import { viewEspecializacionUsuario, viewEspecializaciones } from '../Controllers/especializaciones.js';
+import {viewUsuariosEspecialistas, UsuarioLogeado, getUsuario} from '../Controllers/usuarios.js'
+import { viewEspecializacionUsuario, viewEspecializaciones, getEspecializacionPerfil } from '../Controllers/especializaciones.js';
 
 const router = Router();
 
@@ -78,8 +78,33 @@ router.get('/registro2', function (req, res) {
     res.render('../Frontend/views/pages/registro2')
 });
 
-router.get('/perfil', function (req, res) {
-    res.render('../Frontend/views/pages/perfil')
+router.get('/perfil/:id', function (req, res) {
+
+    var idUsuario = (req.session.idUsuario || 0);
+    var tokenUsuario = (req.session.token || 0);
+
+    console.log(req.session);
+    console.log("CARGADO:");
+    console.log(idUsuario);
+    console.log(tokenUsuario);
+
+    var usuarioLogeado = UsuarioLogeado(idUsuario , tokenUsuario);
+
+    var idPerfil = req.params.id;
+    var idUsuario = (req.session.idUsuario || 0);
+    var usuarioPerfil = getUsuario(idPerfil);
+    //var especializacionPerfil = getEspecializacionPerfil(idPerfil);
+    usuarioPerfil.then(function(usuario)
+    {
+        usuarioLogeado.then(function(logeado)
+        {
+            res.render('../Frontend/views/pages/perfil', {
+                "user": usuario,
+                "id": idUsuario,
+                "usuarioLogeado": logeado,
+            });
+        })        
+    })   
 });
 
 router.get('/admin', function (req, res) {

@@ -34,7 +34,7 @@ export const viewUsuariosEspecialistas = (pagina) =>
     });
 }
 
-export const getUsuario = async (req, res) => 
+export const UsuarioLogeandose = async (req, res) => 
 {
     //Obtengo los datos ingresados por el usuario
     let {email , password} = req.body;
@@ -111,6 +111,34 @@ export const getUsuario = async (req, res) =>
     );
 };
 
+export const getUsuario = (id) =>
+{
+    return new Promise (function(resolve)
+    {
+        connection.query(
+            'SELECT * FROM usuarios WHERE id = ?',
+            [id],
+            function (err, results) 
+            {
+                if (err) 
+                {
+                    console.error(err);
+                    res.status(500).json({ error: 'Error al obtener los datos' });
+                } else 
+                {
+                    if(results[0] === undefined)
+                    {
+                        resolve(false);
+                    } else  
+                    {
+                        resolve(results[0]);
+                    }
+                }
+            }
+        );
+    });
+}
+
 export const UsuarioValidado = async (req, res) => 
 {
     //Obtengo los datos almacenados en la SesionStorage
@@ -180,7 +208,8 @@ export const RegistroUsuario = async (req, res) =>
 {
     //Obtengo los datos ingresados por el usuario
     let {nombre, apellido, contacto, email, password, especialista, direccion, descripcion} = req.body;
-    const sin_foto = '/Frontend/img/usuario-sin-foto.png';
+    const perfil_sin_foto = '/Frontend/img/usuario-sin-foto.png';
+    const portada_sin_foto = '/Frontend/img/portada-sin-foto.png';
 
     //Si el espacio de email estaba vacio
     if(email == "")
@@ -256,8 +285,8 @@ export const RegistroUsuario = async (req, res) =>
 
             //Creo la consulta para agregar el nuevo usuario con los datos clave
             connection.query(
-                'INSERT usuarios (email, password, nombre, apellido, contacto, especialista, direccion, descripcion, path) VALUES (?,?,?,?,?,?,?,?,?)',
-                [email, password, nombre, apellido, contacto, especialista, direccion, descripcion, sin_foto],
+                'INSERT usuarios (email, password, nombre, apellido, contacto, especialista, direccion, descripcion, path, path_portada) VALUES (?,?,?,?,?,?,?,?,?,?)',
+                [email, password, nombre, apellido, contacto, especialista, direccion, descripcion, perfil_sin_foto, portada_sin_foto],
         
                 function (err, results) 
                 {
