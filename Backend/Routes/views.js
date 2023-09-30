@@ -16,7 +16,7 @@ router.get('/', function (req, res) {
 
     var usuarioLogeado = UsuarioLogeado(idUsuario , tokenUsuario);
 
-    var usuariosEspecialistas = viewUsuariosEspecialistas();
+    var usuariosEspecialistas = viewUsuariosEspecialistas(0);
     var especializaciones = viewEspecializaciones();
     var especializacionUsuario = viewEspecializacionUsuario();
     usuariosEspecialistas.then(function(usuarios)
@@ -44,8 +44,11 @@ router.get('/iniciarSesion', function (req, res) {
     res.render('../Frontend/views/pages/iniciarSesion')
 });
 
-router.get('/oficios', function (req, res) {
-    var usuariosEspecialistas = viewUsuariosEspecialistas();
+router.get('/oficios/pagina::pag', function (req, res) {
+
+    var pagina = req.params.pag;
+
+    var usuariosEspecialistas = viewUsuariosEspecialistas(pagina);
     var especializaciones = viewEspecializaciones();
     var especializacionUsuario = viewEspecializacionUsuario();
     usuariosEspecialistas.then(function(usuarios)
@@ -93,17 +96,22 @@ router.get('/perfil/:id', function (req, res) {
     var idPerfil = req.params.id;
     var idUsuario = (req.session.idUsuario || 0);
     var usuarioPerfil = getUsuario(idPerfil);
-    //var especializacionPerfil = getEspecializacionPerfil(idPerfil);
+    var especializacionPerfil = getEspecializacionPerfil(idPerfil);
     usuarioPerfil.then(function(usuario)
     {
-        usuarioLogeado.then(function(logeado)
+        especializacionPerfil.then(function(especializaciones)
         {
-            res.render('../Frontend/views/pages/perfil', {
-                "user": usuario,
-                "id": idUsuario,
-                "usuarioLogeado": logeado,
-            });
-        })        
+            usuarioLogeado.then(function(logeado)
+            {
+                res.render('../Frontend/views/pages/perfil', {
+                    "user": usuario,
+                    "id": idUsuario,
+                    "especializaciones": especializaciones,
+                    "usuarioLogeado": logeado,
+                });
+            })      
+        })
+  
     })   
 });
 

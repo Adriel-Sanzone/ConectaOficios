@@ -21,12 +21,13 @@ export const getUsuarios = async (req, res) =>
 //Funcion distinta para ver los usuarios con templates
 export const viewUsuariosEspecialistas = (pagina) =>
 {
-    
+    var offset = pagina * 10;
     //Promesa para asegurarme de tener los datos antes de enviarlos
     return new Promise (function(resolve)
     {
         connection.query(
-            'SELECT * FROM usuarios WHERE especialista = 1 ORDER BY destacado DESC',
+            'SELECT * FROM usuarios WHERE especialista = 1 ORDER BY destacado DESC LIMIT 10 OFFSET ?',
+            [offset],
             function (err, results) {
                 resolve(results);
             }

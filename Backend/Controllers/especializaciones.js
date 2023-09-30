@@ -26,35 +26,22 @@ export const viewEspecializacionUsuario = () =>
     });
 }
 
-export const getEspecializacionPerfil = (id) =>
+export const getEspecializacionPerfil = (id_usuario) =>
 {
     return new Promise(function(resolve)
     {
         connection.query(
-            'SELECT FROM especializacion_usuario AS e WHERE id_usuario = ?',
-            [id],
+            'SELECT especializaciones.especializacion FROM especializacion_usuario INNER JOIN especializaciones ON especializacion_usuario.id_especializacion = especializaciones.id WHERE especializacion_usuario.id_usuario = ?',
+            [id_usuario],
             function(err, results)
             {
-                var coincidencias = results; 
-                if(err)
+                if (err)
                 {
                     console.log(err);
                 } else
                 {
-                    connection.query(
-                        'SELECT FROM especializaciones WHERE id = ?',
-                        [coincidencias.id_especializacion],
-                        function(err, results)
-                        {
-                            if (err)
-                            {
-                                console.log(err);
-                            } else
-                            {
-                                resolve(results);
-                            }
-                        }
-                    )
+                    console.log(results);
+                    resolve(results);
                 }
             }
         )
