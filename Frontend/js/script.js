@@ -12,24 +12,32 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-//oculta containers en perfil
+//ESTAS FUNCIONES TUVE QUE PONERLAS EN EL EJS PORQUE SI NO , NO LAS DETECTABA. AHORA FUNCIONAN 
+
+/*//oculta containers en perfil
 const iconos = document.querySelectorAll('.icono-perfil'); // Obtén todos los elementos con la clase .icono
 const contenedoresInfo = document.querySelectorAll('.contenedor-info'); // Obtén todos los elementos con la clase .contenedor-info
 
-// Agrega un evento de clic a cada icono
+// Inicializar contenedores ocultos
+contenedoresInfo.forEach((contenedor) => {
+    contenedor.style.display = 'none';
+});
+
+// Agregar un evento de clic a cada icono
 iconos.forEach((icono, index) => {
     icono.addEventListener('click', () => {
-        if (contenedoresInfo[index].style.display === 'none' || contenedoresInfo[index].style.display === '') {
+        if (contenedoresInfo[index].style.display === 'none') {
             contenedoresInfo[index].style.display = 'block';
         } else {
             contenedoresInfo[index].style.display = 'none';
         }
     });
-});
+});*/
+
 
 // este script es al pedo pq en reseñas no hay que seleccionar las estrellas
 // pero puede servir para despues pq quedo lindo :)
-const estrellas = document.querySelectorAll('.icono-estrella');
+/*const estrellas = document.querySelectorAll('.icono-estrella');
 
 estrellas.forEach((estrella, index) => {
     estrella.addEventListener('click', () => {
@@ -50,7 +58,7 @@ estrellas.forEach((estrella, index) => {
         }
     });
 });
-
+*/
 
 
 // JavaScript para mostrar el formulario

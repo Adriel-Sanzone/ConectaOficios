@@ -19,77 +19,121 @@
 
           <div class="col-md-12">
             <div class="text-end editar-portada">
-              <% if (user.id === id) { %>
+
               <a class="btn" id="btn-editar-fotos">
                 <i class="fa-solid fa-pen-to-square"></i>
               </a>
-              <% } %>
+
 
             </div>
 
-            <!--
-          <div class="portada">
-            <%/* if (variable_real) { %>
-              <img class="img-fluid" src="<%=variable_real %>" alt="Portada del usuario">
-            <% } else { %>
-              <img class="img-fluid" src="/Frontend/img/usuario-sin-foto.png" alt="Portada predeterminada">
-            <% }*/ %>
-          </div>
-          -->
 
             <div class="portada">
-              <img class="img-fluid" src="<%= user.path_portada %>" alt="">
+              <% if (user.id===id) { %>
+                <img class="img-fluid" src="<%= user.path %>" alt="Portada del usuario">
+                <% } else { %>
+                  <img class="img-fluid" src="/Frontend/img/usuario-sin-foto.png" alt="Portada predeterminada">
+                  <% } %>
             </div>
+
+
+
           </div>
 
           <div class="col-md-12">
-            <!--
-          <div class="perfil">
-            <%/* if (variable_real) { %>
-              <img class="img-fluid" src="<%= variable_real %>" alt="perfil del usuario">
-            <% } else { %>
-              <img class="img-fluid" src="/Frontend/img/usuario-sin.foto.png" alt="perfil predeterminada">
-            <% }*/ %>
-          </div>
-          -->
 
             <div class="perfil">
-              <img src="<%= user.path %>" class="img-fluid" alt="">
+              <% if (user.id===id) { %>
+                <img class="img-fluid" src="<%= user.path %>" alt="perfil del usuario">
+                <% } else { %>
+                  <img class="img-fluid" src="/Frontend/img/usuario-sin-foto.png">
+                  <% } %>
 
-              <div class="categorias text-end">
-                <a href="oficios" target="_blank" class="btn-categorias">Agua</a>
-                <% especializaciones.forEach(function(d){ %>
-                <a href="oficios" target="_blank" class="text"><%= d.especializacion %></a>
-                <% }) %>
-              </div>
+                    <div class="categorias text-end">
+                      <% let especializacionEncontrada=false; %>
+                        <% especializaciones.forEach(function(d) { %>
+                          <% if (d.id===user.id) { %>
+                            <a href="oficios" target="_blank" class="btn-categorias">
+                              <%= d.especializacion %>
+                            </a>
+                            <% especializacionEncontrada=true; %>
+                              <% } %>
+                                <% }) %>
+                                  <% if (!especializacionEncontrada) { %>
+                                    <a href="oficios" target="_blank" class="btn-categorias">xxx</a>
+                                    <% } %>
+                    </div>
             </div>
+
+
+
           </div>
         </div>
 
 
         <div class="perfil-inferior">
           <div class="d-flex align-items-center mb-3">
-            <h1><%= user.nombre %> <%= user.apellido %></h1>
-            <% if (user.id === id) { %>
             <button class="btn btn-editar ml-3 editar-portada" id="btn-editar">
               <a class="btn ">
                 <i class="fa-solid fa-pen-to-square "></i>
               </a>
             </button>
-            <% } %>
+
+
+            <% if (user.nombre==='' || user.nombre===undefined) { %>
+              <h1>sin nombre</h1>
+
+
+              <% } else { %>
+                <h1>
+                  <%= user.nombre %>
+                    <%= user.apellido %>
+                </h1>
+                <% } %>
+
           </div>
-          <p><%= user.descripcion %></p>
-          <div class="d-flex">
-            <div class="whatsapp btn-perfil-inf">
-              <a href="https://wa.me/<%= user.contacto %>" target="_blank"><%= user.contacto %><i class="fab fa-whatsapp"></i></a>
-            </div>
-            <div class="email btn-perfil-inf">
-              <a href="mailto:<%= user.email %>" target="_blank"><%= user.email %><i class="far fa-envelope"></i></a>
-            </div>
-          </div>
+          <% if (user.descripcion==='' || user.descripcion===undefined) { %>
+            <p>sin descripcion</p>
+
+
+            <% } else { %>
+              <p>
+                <%= user.descripcion %>
+              </p>
+              <% } %>
+                <div class="d-flex">
+                  <div class="whatsapp btn-perfil-inf">
+                    <% if (user.contacto==='' || user.contacto===undefined) { %>
+                      <a href="#" target="_blank">
+                        sin contacto<i class="fab fa-whatsapp"></i>
+                      </a>
+                      <% } else { %>
+
+                        <a href="https://wa.me/<%= user.contacto %>" target="_blank">
+                          <%= user.contacto %><i class="fab fa-whatsapp"></i>
+                        </a>
+
+                        <% } %>
+
+                  </div>
+                  <div class="email btn-perfil-inf">
+                    <% if (user.email==='' || user.email===undefined) { %>
+
+                      <a href="#" target="_blank">
+                        sin email<i class="far fa-envelope"></i>
+                      </a>
+                      <% } else { %>
+                        <div class="email btn-perfil-inf">
+                          <a href="mailto:<%= user.email %>" target="_blank">
+                            <%= user.email %><i class="far fa-envelope"></i>
+                          </a>
+                        </div>
+                        <% } %>
+                  </div>
+                </div>
         </div>
 
-        
+
       </div>
     </div>
 
@@ -150,8 +194,9 @@
           <h5 class="titulo-resenia">Proyectos / Trabajos</h5>
           <i class="fas fa-chevron-down icono-perfil"></i>
         </div>
-        <div class="contenedor-info">
-          <!-- reemplazar por variables reales
+        <div class="contenedor-info " style="display:none">
+
+          <!-- HAY QUE HACER UNA TABLA PARA TRABAJOS/PROYECTOS DONDE PODER GUARDARLOS Y LLAMARLOS DINAMICAMENTE
              <%/*trabajos.forEach((trabajo) => { %>
                 <div class="proyecto">
                   <div class="proyectos-cuerpo d-flex">
@@ -172,10 +217,8 @@
             <% }); */%>
           -->
 
-          <% if (user.id === id) { %>
+
           <button class="mb-5" id="btn-formulario-Trabajos" onclick="FormularioTrabajos()">Agregar Trabajo</button>
-          <% } %>
-          
 
           <div class="proyecto">
             <div class="proyectos-cuerpo d-flex ">
@@ -223,60 +266,60 @@
 
     <%- include ('../partials/footer') %>
 
-<!--FORMULARIO PARA FOTOS PERFIL Y PORTADA--->
-<div id="editar-fotos" class="editar-fotos">
-  <form>
-    <h2>Editar Foto de Perfil o Portada</h2>
+      <!--FORMULARIO PARA FOTOS PERFIL Y PORTADA--->
+      <div id="editar-fotos" class="editar-fotos">
+        <form>
+          <h2>Editar Foto de Perfil o Portada</h2>
 
-    <label for="tipo">Seleccionar tipo de foto:</label>
-    <select id="tipo" name="tipo">
-      <option value="perfil">Perfil</option>
-      <option value="portada">Portada</option>
-    </select>
+          <label for="tipo">Seleccionar tipo de foto:</label>
+          <select id="tipo" name="tipo">
+            <option value="perfil">Perfil</option>
+            <option value="portada">Portada</option>
+          </select>
 
-    <label for="archivo">Seleccionar archivo:</label>
-    <input type="file" id="archivo" name="archivo" accept="image/*">
+          <label for="archivo">Seleccionar archivo:</label>
+          <input type="file" id="archivo" name="archivo" accept="image/*">
 
-    <button type="submit">Guardar</button>
-    <button type="button" onclick="CerrarFotos()">Cancelar</button>
-  </form>
-</div>
-<!-- FIN FORMULARIO PARA FOTOS PERFIL Y PORTADA--->
-
-<!---FORMULARIO PARA AGERGAR TRABAJOS-->
-    <div id="FormularioTrabajos" class="FormularioTrabajos" style="display: none;">
-      <form>
-        <div class="text-center">
-          <h3>Agregar trabajos</h3>
-        </div>
-        <label for="imagen">Foto:</label>
-        <input type="file" id="imagen" name="imagen" accept="image/*">
-
-        <label for="titulo">Título:</label>
-        <input type="text" id="titulo" name="titulo">
-
-        <label for="descripcion">Descripción:</label>
-        <textarea id="descripcion" name="descripcion"></textarea>
-        <div class="d-flex">
           <button type="submit">Guardar</button>
-          <button type="button" onclick="CerrarTrabajos()">Cancelar</button>
-        </div>
-      </form>
-    </div>
-<!---FIN FORMULARIO TRABAJOS-->
+          <button type="button" onclick="CerrarFotos()">Cancelar</button>
+        </form>
+      </div>
+      <!-- FIN FORMULARIO PARA FOTOS PERFIL Y PORTADA--->
 
-<!-- FORMULARIO NOMBRE/DESCRIPCION-->
-<div id="formulario-editar" class="formulario-editar">
-  <form>
-    <label for="nombre">Nombre:</label>
-    <input type="text" id="nombre" name="nombre">
-    <label for="descripcion">Descripción:</label>
-    <textarea id="descripcion" name="descripcion"></textarea>
-    <button type="submit">Guardar</button>
-    <button type="button" onclick="cerrarFormulario()">Cancelar</button>
-  </form>
-</div>
-<!-- FIN FORMULARIO NOMBRE/DESCRIPCION-->
+      <!---FORMULARIO PARA AGERGAR TRABAJOS-->
+      <div id="FormularioTrabajos" class="FormularioTrabajos" style="display: none;">
+        <form>
+          <div class="text-center">
+            <h3>Agregar trabajos</h3>
+          </div>
+          <label for="imagen">Foto:</label>
+          <input type="file" id="imagen" name="imagen" accept="image/*">
+
+          <label for="titulo">Título:</label>
+          <input type="text" id="titulo" name="titulo">
+
+          <label for="descripcion">Descripción:</label>
+          <textarea id="descripcion" name="descripcion"></textarea>
+          <div class="d-flex">
+            <button type="submit">Guardar</button>
+            <button type="button" onclick="CerrarTrabajos()">Cancelar</button>
+          </div>
+        </form>
+      </div>
+      <!---FIN FORMULARIO TRABAJOS-->
+
+      <!-- FORMULARIO NOMBRE/DESCRIPCION-->
+      <div id="formulario-editar" class="formulario-editar">
+        <form>
+          <label for="nombre">Nombre:</label>
+          <input type="text" id="nombre" name="nombre">
+          <label for="descripcion">Descripción:</label>
+          <textarea id="descripcion" name="descripcion"></textarea>
+          <button type="submit">Guardar</button>
+          <button type="button" onclick="cerrarFormulario()">Cancelar</button>
+        </form>
+      </div>
+      <!-- FIN FORMULARIO NOMBRE/DESCRIPCION-->
 
       <script src="/Frontend/js/script.js"></script>
 
@@ -331,11 +374,55 @@
           }
         }
 
-        
+
         window.onload = obtenerCoordenadas;
       </script>
 
 
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          const iconos = document.querySelectorAll('.icono-perfil');
+          const contenedoresInfo = document.querySelectorAll('.contenedor-info');
+
+          iconos.forEach((icono, index) => {
+            icono.addEventListener('click', () => {
+              if (contenedoresInfo[index].style.display === 'none' || contenedoresInfo[index].style.display === '') {
+                contenedoresInfo[index].style.display = 'block';
+              } else {
+                contenedoresInfo[index].style.display = 'none';
+              }
+            });
+          });
+        });
+      </script>
+
+      <script>
+
+        document.addEventListener("DOMContentLoaded", function (){
+
+          const estrellas = document.querySelectorAll('.icono-estrella');
+  
+          estrellas.forEach((estrella, index) => {
+            estrella.addEventListener('click', () => {
+              const currentColor = estrella.getAttribute('data-color');
+  
+              // Si la estrella actual está seleccionada, desmarcar todas las estrellas
+              if (currentColor === '#FF6723') {
+                for (let i = 0; i < estrellas.length; i++) {
+                  estrellas[i].style.color = '#737373';
+                  estrellas[i].setAttribute('data-color', '#737373');
+                }
+              } else {
+                // Marcar la estrella actual y las anteriores
+                for (let i = 0; i <= index; i++) {
+                  estrellas[i].style.color = '#FF6723';
+                  estrellas[i].setAttribute('data-color', '#FF6723');
+                }
+              }
+            });
+          });
+        });
+      </script>
 
 
 </body>

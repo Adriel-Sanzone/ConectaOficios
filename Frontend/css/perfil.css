@@ -26,6 +26,10 @@ body {
     padding-top: 30px;
 }
 
+.contenedor-info {
+    display: none;
+  }
+
 /* styles.css */
 .icono-estrella {
     cursor: pointer;
