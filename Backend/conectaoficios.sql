@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-09-2023 a las 05:01:46
+-- Tiempo de generación: 02-10-2023 a las 10:32:57
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -24,25 +24,48 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `categorias`
+--
+
+CREATE TABLE `categorias` (
+  `id` int(11) NOT NULL,
+  `categoria` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `categorias`
+--
+
+INSERT INTO `categorias` (`id`, `categoria`) VALUES
+(1, 'Agua'),
+(2, 'Gas'),
+(3, 'Electricidad'),
+(4, 'Tecnología'),
+(5, 'Otros');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `especializaciones`
 --
 
 CREATE TABLE `especializaciones` (
   `id` int(11) NOT NULL,
-  `especializacion` varchar(100) NOT NULL
+  `especializacion` varchar(100) NOT NULL,
+  `id_categoria` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Volcado de datos para la tabla `especializaciones`
 --
 
-INSERT INTO `especializaciones` (`id`, `especializacion`) VALUES
-(1, 'Plomero'),
-(2, 'Electricista'),
-(3, 'Pintor'),
-(4, 'Jardinero'),
-(5, 'Gasista'),
-(6, 'Tecnologías');
+INSERT INTO `especializaciones` (`id`, `especializacion`, `id_categoria`) VALUES
+(1, 'Plomero', 1),
+(2, 'Electricista', 3),
+(3, 'Pintor', 5),
+(4, 'Jardinero', 5),
+(5, 'Gasista', 2),
+(6, 'Tecnologías', 4);
 
 -- --------------------------------------------------------
 
@@ -74,6 +97,35 @@ INSERT INTO `especializacion_usuario` (`id`, `id_usuario`, `id_especializacion`)
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `proyectos`
+--
+
+CREATE TABLE `proyectos` (
+  `id` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `titulo` varchar(255) NOT NULL,
+  `descripcion` varchar(255) NOT NULL,
+  `path` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `reseñas`
+--
+
+CREATE TABLE `reseñas` (
+  `id` int(11) NOT NULL,
+  `id_reseñador` int(11) NOT NULL,
+  `id_reseñado` int(11) NOT NULL,
+  `fecha` date NOT NULL,
+  `puntuacion` int(11) NOT NULL,
+  `descripcion` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuarios`
 --
 
@@ -99,7 +151,7 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id`, `email`, `password`, `nombre`, `apellido`, `contacto`, `descripcion`, `destacado`, `especialista`, `direccion`, `token`, `path`, `path_portada`) VALUES
 (1, 'pepito@hotmail.com', '12345', 'Pepe', 'Peposo', '+54 1234 56-7890', 'este es el espacio de la descripcion de mi buen amigo el trabajador Pepe. A Pepe le da vergüenza subir una foto asi que deja la default', 1, 1, 'San Lorenzo 321', NULL, '/Frontend/img/usuario-sin-foto.png', '/Frontend/uploads/portada-sin-foto.png'),
-(2, 'adriel@hotmail', '202cb962ac59075b964b07152d234b70', 'adriel', 'sanzone', '1234567', NULL, 0, 0, '6620', '002c9249101b3fb331b76125e2cb91a1', '/Frontend/img/usuario-sin-foto.png', '/Frontend/uploads/portada-sin-foto.png'),
+(2, 'adriel@hotmail', '202cb962ac59075b964b07152d234b70', 'adriel', 'sanzone', '1234567', NULL, 0, 0, '6620', '045d2593ae15f6d793bb6fbb2c7d07be', '/Frontend/img/usuario-sin-foto.png', '/Frontend/uploads/portada-sin-foto.png'),
 (32, 'martin.gonzalez@email.com', '202cb962ac59075b964b07152d234b70', 'Martín', 'González', '+54 1234 56-7890', 'Plomero de confianza en Chivilcoy. Soluciono tus problemas de fontanería de manera rápida y eficiente. ¡Llámame para un servicio de alta calidad!', 0, 1, '9 de Julio 123', '46b5cf792f067940918889f2c09a6145', '/Frontend/uploads/1695109538550.Sin tÃ­tulo.png', '/Frontend/uploads/portada-sin-foto.png'),
 (33, 'laura.rodriguez@email.com', '202cb962ac59075b964b07152d234b70', 'Laura', 'Rodríguez', '+54 1234 56-7890', 'Especialista en instalación y reparación de gas. Tu seguridad es mi prioridad. Contáctame para trabajos profesionales y seguros', 1, 1, 'Belgrano 456', 'fc4004be96e11dc804b95e866a54e61e', '/Frontend/uploads/1695109619338.Sin tÃ­tulo.png', '/Frontend/uploads/portada-sin-foto.png'),
 (34, 'juan.perez@email.com', '202cb962ac59075b964b07152d234b70', 'Juan', 'Pérez', '+54 1234 56-7890', 'Electricista con amplia experiencia en Chivilcoy. Hago que tu hogar brille con luz. ¡Confía en mí para tus necesidades eléctricas', 0, 1, 'San Martín 789', '282ca9f5cc5f2cb18421370eeba98556', '/Frontend/uploads/1695109737901.Sin tÃ­tulo.png', '/Frontend/uploads/portada-sin-foto.png'),
@@ -117,10 +169,17 @@ INSERT INTO `usuarios` (`id`, `email`, `password`, `nombre`, `apellido`, `contac
 --
 
 --
+-- Indices de la tabla `categorias`
+--
+ALTER TABLE `categorias`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `especializaciones`
 --
 ALTER TABLE `especializaciones`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_id_categoria` (`id_categoria`);
 
 --
 -- Indices de la tabla `especializacion_usuario`
@@ -129,6 +188,18 @@ ALTER TABLE `especializacion_usuario`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_usuario` (`id_usuario`),
   ADD KEY `id_especializacion` (`id_especializacion`);
+
+--
+-- Indices de la tabla `proyectos`
+--
+ALTER TABLE `proyectos`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `reseñas`
+--
+ALTER TABLE `reseñas`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `usuarios`
@@ -144,13 +215,25 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `especializaciones`
 --
 ALTER TABLE `especializaciones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `especializacion_usuario`
 --
 ALTER TABLE `especializacion_usuario`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT de la tabla `proyectos`
+--
+ALTER TABLE `proyectos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `reseñas`
+--
+ALTER TABLE `reseñas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
@@ -161,6 +244,12 @@ ALTER TABLE `usuarios`
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `especializaciones`
+--
+ALTER TABLE `especializaciones`
+  ADD CONSTRAINT `fk_id_categoria` FOREIGN KEY (`id_categoria`) REFERENCES `categorias` (`id`);
 
 --
 -- Filtros para la tabla `especializacion_usuario`
