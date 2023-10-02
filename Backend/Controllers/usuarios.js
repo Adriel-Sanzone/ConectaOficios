@@ -301,9 +301,9 @@ export const RegistroUsuario = async (req, res) =>
                         res.json({
                             "error": 0,
                         })
-                        //Guardo los datos clave para validar en session de express
-                        req.session.IdUsuario = usuario.id;
-                        req.session.Token = token;
+                        // //Guardo los datos clave para validar en session de express
+                        // req.session.IdUsuario = usuario.id;
+                        // req.session.Token = token;
                     }
                 }
             );

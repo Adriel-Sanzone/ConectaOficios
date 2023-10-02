@@ -76,7 +76,7 @@ body {
 }
 
 .registro select {
-    margin-block-end: 25px;
+    margin-bottom: 20px;
     padding: 10px 20px;
     border-radius: 10px;
     font-size: 17px;

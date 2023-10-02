@@ -154,14 +154,14 @@ input[type="checkbox"] {
 .persona .descripcion {
     max-height: 105px;
     min-height: 105px;
+    padding-bottom: 10px;
     overflow: auto;
 }
 
 .persona .descripcion p {
     color: var(--gris);
     font-size: 14px;
-    margin-block-end: 7px;
-    margin-block: 10px;
+    padding-block-end: 7px;
 }
 
 .personas .persona .ubicacion {
@@ -171,6 +171,7 @@ input[type="checkbox"] {
     font-size: 14px;
     font-weight: var(--bold);
     margin-block-end: 7px;
+    padding-top: 10px;
 }
 
 .personas .persona .ubicacion p {

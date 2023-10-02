@@ -3,6 +3,7 @@ const URL_BASE = "http://localhost:3000/";
 function RegistrarUsuario(especificaciones)
 {
     //Creo bandera para que no registre ajaxs mientras hay uno en ejecucion
+    console.log("entraa")
     if (window.Enviando == 1) return false;
     window.Enviando = 1;
 
