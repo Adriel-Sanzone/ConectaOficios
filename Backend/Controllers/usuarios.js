@@ -96,10 +96,8 @@ export const UsuarioLogeandose = async (req, res) =>
                         [token , usuario.id])
 
                         //Guardo los datos clave para validar en session de express
-                        console.log(req.session);
                         req.session.idUsuario = usuario.id;
                         req.session.token = token;
-                        console.log(req.session);
 
                         res.json({
                             "error": 0,
@@ -200,7 +198,7 @@ export const UsuarioLogeado = (id, token) =>
                         resolve(false);
                     } else  //Si encuentro un usuario con el mismo token que el de la session de express
                     {
-                        resolve(true);
+                        resolve(results[0]);
                     }
                 }
             }
