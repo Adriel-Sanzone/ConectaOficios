@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import {viewUsuariosEspecialistas, UsuarioLogeado, getUsuario} from '../Controllers/usuarios.js'
+import {viewUsuariosEspecialistas, UsuarioLogeado, getUsuario, viewsTodosLosUsuarios} from '../Controllers/usuarios.js'
 import { viewEspecializacionUsuario, viewEspecializaciones, getEspecializacionPerfil } from '../Controllers/especializaciones.js';
 
 const router = Router();
@@ -47,12 +47,21 @@ router.get('/iniciarSesion', function (req, res) {
 router.get('/oficios/pagina::pag', function (req, res) {
 
     var pagina = req.params.pag;
+    var idUsuario = (req.session.idUsuario || 0);
+    var tokenUsuario = (req.session.token || 0);
+    console.log(req.session);
+    console.log("CARGADO:");
+    console.log(idUsuario);
+    console.log(tokenUsuario);
 
-    var usuariosEspecialistas = viewUsuariosEspecialistas(pagina);
+    //var usuariosEspecialistas = viewUsuariosEspecialistas(pagina);
+    var usuariosEspecialistas = viewsTodosLosUsuarios(pagina);
+
     var especializaciones = viewEspecializaciones();
     var especializacionUsuario = viewEspecializacionUsuario();
     usuariosEspecialistas.then(function(usuarios)
     {
+        console.log(usuarios);
         especializaciones.then(function(especializacion)
         {
             especializacionUsuario.then(function(userEspecializacion)

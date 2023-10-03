@@ -1,3 +1,4 @@
+import { validateRequestWithBody } from 'twilio/lib/webhooks/webhooks.js';
 import {connection} from '../Database/connection.js';
 import md5 from 'md5';
 
@@ -94,17 +95,17 @@ export const UsuarioLogeandose = async (req, res) =>
                         connection.query('UPDATE usuarios SET token = ? WHERE id = ?' , 
                         [token , usuario.id])
 
+                        //Guardo los datos clave para validar en session de express
+                        console.log(req.session);
+                        req.session.idUsuario = usuario.id;
+                        req.session.token = token;
+                        console.log(req.session);
+
                         res.json({
                             "error": 0,
                             "usuario": results[0],
                             "token": token,
                         });
-                        //Guardo los datos clave para validar en session de express
-                        req.session.idUsuario = usuario.id;
-                        req.session.token = token;
-                        console.log("GUARDADO:");
-                        console.log(req.session.idUsuario);
-                        console.log(req.session.token);
                     });
                 }
             }
@@ -444,5 +445,62 @@ function ComprueboEmailExistente(email)
                 resolve(1);
             }
         });
+    });
+}
+
+export const viewsTodosLosUsuarios = (pagina) =>
+{
+    var offset = pagina * 10;
+    //Promesa para asegurarme de tener los datos antes de enviarlos
+    return new Promise (function(resolve)
+    {
+        connection.query(
+            'SELECT * FROM usuarios WHERE especialista = 1 ORDER BY destacado DESC LIMIT 10 OFFSET ?',
+            [offset],
+            function (err, resultados) {
+                var usuarios = new Array();
+                var misPromesas = new Array();
+                resultados.forEach(function(usuario){
+                    usuarios[usuario.id] = usuario;
+                    var especializaciones = getEspecializacionesUsuario(usuario.id);
+                    misPromesas.push(especializaciones);
+                    /*
+                    var promises = especializaciones.then(function(especializacion){
+                        usuario.especializaciones = especializacion;
+                    });*/
+                    
+                });
+
+                Promise.all(misPromesas)
+                    .then((especializaciones) => {
+                        // values is an array of the resolved values
+                        especializaciones.forEach(function(especializacion){
+                            usuarios[especializacion[0].id_usuario].especializaciones = especializacion;
+                        });
+                        
+                        resolve(usuarios);
+                    })
+                    .catch((error) => {
+                        // This catch block will not be executed
+                        console.error(error);
+                    });
+
+            }
+        );
+    });
+}
+
+function getEspecializacionesUsuario(id_usuario) {
+
+    return new Promise (function(resolve)
+    {
+
+        var sql = 'SELECT EU.*, IF(E.especializacion IS NULL, "", E.especializacion) as nombre FROM especializacion_usuario EU LEFT JOIN especializaciones E ON (E.id = EU.id_especializacion) WHERE id_usuario = ? ';
+        connection.query(sql,
+            [id_usuario],
+            function (err, especializaciones) {
+                resolve(especializaciones);
+            }
+        );
     });
 }

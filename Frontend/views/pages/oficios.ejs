@@ -18,7 +18,7 @@
           <p>Categorías</p>
           <% especializacion.forEach(function(c){ %>
             <div class="categoria <%=c.especializacion%>">
-              <input  class="checkbox-especializacion" type="checkbox" id="checkbox-<%= c.id %>" checked>
+              <input data-id="<%= c.id %>"  class="checkbox-especializacion" type="checkbox" id="checkbox-<%= c.id %>" >
               <label for="checkbox-<%= c.id %>"><%= c.especializacion %></label>
             </div>
           <% }) %>
@@ -29,50 +29,46 @@
         <div class="personas" >
           <!---Llamo a los trabajadores destacados-->
           <% usuariosEsp.forEach(function(c){ %>
-            <% especializacionUsuario.forEach(function(d){ %>
-              <% if(c.id === d.id_usuario){ %>
-                <% especializacion.forEach(function(e){ %>
-                  <% if(e.id === d.id_especializacion){ %>
-                    <div class="persona " data-especializacion="<%= e.id %>">
-                      <div class="row">
-                        <div class="col-md-3">
-                          <div class="imagen">
-                            <% if(c.path != ""){ %>
-                            <div class="imagen-container">
-                              <img class="img-fluid" src="<%= c.path %>">
-                            </div>
-                            <% } else {; %>
-                            <div class="imagen-container">
-                              <img class="img-fluid" src="Frontend/img/usuario-sin-foto.png">
-                            </div>                            
-                            <% }; %>
-                          </div>
-                        </div>
-                        <div class="col-md-9">
-                          <div class="info-persona">
-                            <div class="especialidades">
-                              <h4>Agua</h4>
-                              <h3><%= e.especializacion %></h3>
-                            </div>
-                            <h5><%= c.nombre %> <%= c.apellido %></h5>
-                            <div class="descripcion">
-                              <p><%= c.descripcion %></p>
-                            </div>
-                            <div class="ubicacion">
-                              <i class="fa-solid fa-location-dot"></i>
-                              <p><%= c.direccion %></p>
-                            </div>
-                            <button><%= c.contacto %> <i class="fab fa-whatsapp"></i></button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!---Salir del for?-->
-                  <% }; %>
-                <% }) %>
-                <!---Salir del for?-->
-              <% }; %>
+            <% var especializacionesTexto = ''; %>
+            <% c.especializaciones.forEach(function(e){ %>
+              <% especializacionesTexto =+ e.id_especializacion+',' %>
             <% }) %>
+            <div class="persona " data-especializacion="<%=  especializacionesTexto.substring(0, especializacionesTexto.length - 1); %>">
+              <div class="row">
+                <div class="col-md-3">
+                  <div class="imagen">
+                    <% if(c.path != ""){ %>
+                    <div class="imagen-container">
+                      <img class="img-fluid" src="<%= c.path %>">
+                    </div>
+                    <% } else {; %>
+                    <div class="imagen-container">
+                      <img class="img-fluid" src="Frontend/img/usuario-sin-foto.png">
+                    </div>                            
+                    <% }; %>
+                  </div>
+                </div>
+                <div class="col-md-9">
+                  <div class="info-persona">
+                    <% c.especializaciones.forEach(function(e){ %>
+                      <div class="especialidades">
+                        <h4>Agua</h4>
+                        <h3><%= e.nombre %></h3>
+                      </div>
+                    <% }) %>
+                    <h5><%= c.nombre %> <%= c.apellido %></h5>
+                    <div class="descripcion">
+                      <p><%= c.descripcion %></p>
+                    </div>
+                    <div class="ubicacion">
+                      <i class="fa-solid fa-location-dot"></i>
+                      <p><%= c.direccion %></p>
+                    </div>
+                    <button><%= c.contacto %> <i class="fab fa-whatsapp"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
           <% }) %>
           <!---Llamo a los trabajadores NO destacados-->
         </div>
@@ -93,17 +89,34 @@
 
       checkboxes.forEach(checkbox => {
         checkbox.addEventListener('change', () => {
-          const especializacionId = checkbox.getAttribute('id').replace('checkbox-', '');
 
-          // Obtengo todas las tarjetas de persona con el atributo data-especializacion igual al ID de la especialización
-          const personas = document.querySelectorAll(`.persona[data-especializacion="${especializacionId}"]`);
+          var checkedElements = new Array();
+          $('.checkbox-especializacion:checked').each(function(i, e){
+            checkedElements.push($(e).attr('data-id'))
 
-          // Si la casilla de verificación está marcada, muestra las tarjetas; de lo contrario, ocúltalas
-          personas.forEach(persona => {
-            if (checkbox.checked) {
-              persona.style.display = 'block';
+          });
+
+          if (checkedElements.length == 0) {
+            $('.persona').show();
+            return false;
+          }
+
+          $('.persona').each(function(i, e){
+            var especializacion = $(e).attr('data-especializacion');
+            
+            var ArrayEspecializaciones = especializacion.split(',');
+
+            var contador = 0;
+            ArrayEspecializaciones.forEach(function(id_especializacion){
+              if (checkedElements.includes(id_especializacion)) {
+                contador++;
+              }
+            });
+
+            if (contador == 0) {
+              $(e).hide();
             } else {
-              persona.style.display = 'none';
+              $(e).show();
             }
           });
         });
