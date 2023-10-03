@@ -178,8 +178,10 @@ export const UsuarioValidado = async (req, res) =>
 
 export const UsuarioLogeado = (id, token) =>
 {
+    //Creo promesa para comprobar que el usuario este logeado
     return new Promise (function(resolve)
     {
+        //Compruebo el id y token del session de express con la base de datos
         var res;
         connection.query(
             'SELECT * FROM usuarios WHERE id = ? AND token = ?',
@@ -195,7 +197,7 @@ export const UsuarioLogeado = (id, token) =>
                     if(results[0] === undefined)
                     {
                         resolve(false);
-                    } else  //Si encuentro un usuario con el mismo token que el de la SesionStorage
+                    } else  //Si encuentro un usuario con el mismo token que el de la session de express
                     {
                         resolve(true);
                     }
@@ -269,6 +271,7 @@ export const RegistroUsuario = async (req, res) =>
 
     //Llamo a una funcion que verifica que el email no este registrado en mi base de datos
     const EmailValidado = ComprueboEmailExistente(email);
+    
     //Continuo la ejecucion cuando la funcion que verifica email repetido termine con then
     EmailValidado.then(function(r)
     {
@@ -301,9 +304,9 @@ export const RegistroUsuario = async (req, res) =>
                         res.json({
                             "error": 0,
                         })
-                        // //Guardo los datos clave para validar en session de express
-                        // req.session.IdUsuario = usuario.id;
-                        // req.session.Token = token;
+                        //Guardo los datos clave para validar en session de express
+                        // req.session.idUsuario = usuario.id;
+                        // req.session.token = token;
                     }
                 }
             );
@@ -326,6 +329,7 @@ export const AsignoEspecializacion = async (req, res) =>
         return false;
     };
 
+    //Si el espacio no esta vacio inserto la especialidad junto al id del usuario
     connection.query(
         'INSERT INTO especializacion_usuario (id_usuario, id_especializacion) VALUES (?,?)',
         [id_usuario, id_especializacion],
@@ -349,11 +353,12 @@ export const AsignoEspecializacion = async (req, res) =>
 
 export const InsertoImagenPerfil = async (req, res) => 
 {
-    const {id_usuario} = req.body;
+    const {id_usuario} = req.session.idUsuario;
 
     //Obtengo el nombre de la imagen por multer
     const filename = '/Frontend/uploads/' + req.file.filename;
 
+    //Inserto la ruta donde esta guardada la imagen en la base de datos
     connection.query(
         'UPDATE usuarios SET path = ? WHERE id = ?',
         [filename, id_usuario],
@@ -374,11 +379,12 @@ export const InsertoImagenPerfil = async (req, res) =>
 
 export const InsertoImagenPortada = async (req, res) => 
 {
-    const {id_usuario} = req.body;
+    const {id_usuario} = req.session.idUsuario;
 
     //Obtengo el nombre de la imagen por multer
     const filename = '/Frontend/uploads/' + req.file.filename;
 
+    //Inserto la ruta donde esta guardada la imagen en la base de datos
     connection.query(
         'UPDATE usuarios SET path_portada = ? WHERE id = ?',
         [filename, id_usuario],

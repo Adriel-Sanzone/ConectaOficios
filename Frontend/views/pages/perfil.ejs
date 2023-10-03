@@ -39,21 +39,13 @@
               <!-- Muestro la foto de perfil sin validar nada, cualquiera que entre la ve -->
               <img class="img-fluid" src="<%= user.path %>" alt="perfil del usuario">
 
+              <!-- Muestro todas las especializaciones del usuario con un for -->
               <div class="categorias text-end">
-                      <% let especializacionEncontrada=false; %>
-                        <% especializaciones.forEach(function(d) { %>
-                          <% if (d.id===user.id) { %>
-                            <a href="oficios" target="_blank" class="btn-categorias">
-                              <%= d.especializacion %>
-                            </a>
-                            <% especializacionEncontrada=true; %>
-                          <% } %>
-                        <% }) %>
-                        <% if (!especializacionEncontrada) { %>
-                          <a href="oficios" target="_blank" class="btn-categorias">xxx</a>
-                        <% } %>
-                    </div>
-            </div>
+                <a href="oficios" target="_blank" class="btn-categorias">Agua</a>
+                <% especializaciones.forEach(function(d){ %>
+                <a href="oficios" target="_blank" class="text"><%= d.especializacion %></a>
+                <% }) %>
+              </div>
           </div>
         </div>
 

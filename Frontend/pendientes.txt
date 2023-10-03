@@ -1,14 +1,12 @@
 hecer menu para movil
-como agregar estrellas a rese;as
+como agregar estrellas a reseñas
 ponemos reseñas???????
-hacer que contacto no sea obligatorio para no trabajadores
-hacer funcionales botones de whatsapp y mail
 que se muestre la categoria elegida por el usuario en su perfil
 hacer barra de busqueda funcional o lista desplegable en header
 como dirigir a la categoria filtrada en la barra ----------
 overflow en oficios en persona cargada desde registro
 perfil esta todo comentado???
-como hacer paginas en oficios
+agregar boton para cambiar de pagina en oficio (inicia en 0)
 que el cuadro de terminos aparezca cuando se hace click en el
 footer en oficios no queda al final 
 no cargarn las img de oficios cuando se registra

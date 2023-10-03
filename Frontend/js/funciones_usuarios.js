@@ -3,7 +3,6 @@ const URL_BASE = "http://localhost:3000/";
 function RegistrarUsuario(especificaciones)
 {
     //Creo bandera para que no registre ajaxs mientras hay uno en ejecucion
-    console.log("entraa")
     if (window.Enviando == 1) return false;
     window.Enviando = 1;
 
@@ -17,8 +16,7 @@ function RegistrarUsuario(especificaciones)
     var descripcion = especificaciones.get('descripcion');
     var especializacion_id = especificaciones.get('especializacion_id');
 
-    console.log(trabaja);
-
+    //Comienzo el ajax para registrar los datos inciales
     $.ajax(
         {
            "url": URL_BASE + "registrousuario",
@@ -38,14 +36,14 @@ function RegistrarUsuario(especificaciones)
            success: function(r)
            {
             window.Enviando = 0;
-
+                //Si ocurrio un error en el lado del servidor 
                 if(r.error == 1)
                 {            
                     alert(r.mensaje);
                 } else
                 {
                     alert("Usuario creado exitosamente");
-                    //Ejecuto la misma funcion de iniciar sesion para que automaticamente ingrese con el usuario que se acaba de registrar
+                    //Ejecuto el mismo ajax de iniciar sesion para que automaticamente ingrese con el usuario que se acaba de registrar
                     $.ajax(
                         {
                            "url": URL_BASE + "usuario",
@@ -57,43 +55,40 @@ function RegistrarUsuario(especificaciones)
                                 "password": password,
                            },
                            success: function(r)
-                           {                
+                           {         
+                                //Si ocurrio un error en el lado del servidor       
                                 if(r.error == 1)
                                 {                            
                                     console.log("error");
                                     alert(r.mensaje);
                                 } else
                                 {
-                                    console.log("exito 2");
                                    /*  sessionStorage.setItem("IdUsuario" , r.usuario.id);
                                     sessionStorage.setItem("Token" , r.token); */
-                                    //luego de guardar el id y token del usuario recien creado asigno el trabajo que selecciono
+                                    //Si trabaja, comienza el ajax para asignar el trabajo que se selecciono 
                                     if (r.usuario.especialista != 0)
                                     {
                                         $.ajax(
                                             {
-                                            "url": URL_BASE + "asignoespecializacion",
-                                            "type": "POST",
-                                            "dataType": "json",
-                                            "data":
-                                            {
-                                                "id_usuario": r.usuario.id,
-                                                "id_especializacion": especializacion_id,
-                                            },
-                                            success: function(r)
-                                            {                                              
-                                    
+                                                "url": URL_BASE + "asignoespecializacion",
+                                                "type": "POST",
+                                                "dataType": "json",
+                                                "data":
+                                                {
+                                                    "id_usuario": r.usuario.id,
+                                                    "id_especializacion": especializacion_id,
+                                                },
+                                                success: function(r)
+                                                {                                              
                                                     if(r.error == 1)
                                                     {                                                
                                                         console.log("error");
                                                         alert(r.mensaje);
                                                     } else
-                                                    {                                                
-                                                        console.log("exito 3");
-                                                        
+                                                    {                                                                                                        
                                                         location.href="/registro2";
                                                     }
-                                            }
+                                                }
                                             })
                                     } else
                                     {  
@@ -103,8 +98,6 @@ function RegistrarUsuario(especificaciones)
                                             alert(r.mensaje);
                                         } else
                                         {
-                                            console.log("exito 3");
-                                            
                                             location.href="/registro2";
                                         }
                                     }
@@ -119,13 +112,14 @@ function RegistrarUsuario(especificaciones)
 
 function BuscarUsuario(especificaciones)
 {
-    //Creo bandera para que no registre ajaxs mientras hay uno en ejecucion
+    //Creo bandera para que no haga un ajaxs mientras hay uno en ejecucion
     if (window.Enviando == 1) return false;
     window.Enviando = 1;
 
     var email = especificaciones.get('email');
     var password = especificaciones.get('password');
 
+    //Comienza el ajax para buscar al usuario ingresado
     $.ajax(
         {
            "url": URL_BASE + "usuario",
@@ -138,9 +132,8 @@ function BuscarUsuario(especificaciones)
            },
            success: function(r)
            {
-                
                 window.Enviando = 0;
-                
+        
                 if(r.error == 1){
                     console.log("error");
                     alert(r.mensaje);
@@ -182,7 +175,7 @@ function ValidarUsuario()
 
 
 function InsertarImagenes(datosPerfil, datosPortada)
-{    
+{   //Comienzan los ajaxs para cargar ambas fotos al servidor y base de datos
     $.ajax(
         {
            "url": URL_BASE + "insertoimagenperfil",
