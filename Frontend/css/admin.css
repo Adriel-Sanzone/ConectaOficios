@@ -1,4 +1,73 @@
-table {
+.tablita {
     overflow: auto;
-    max-height: 700px;
+    border-radius: 5px;
+    background: #D9D9D9;
+    padding: 25px 50px;
+    margin-block: 30px;
+}
+
+.head-tablita {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 40px;
+}
+
+.tablita .head-tablita p {
+    color: #000;
+    font-family: Montserrat;
+    font-size: 20px;
+    font-weight: 400;
+    margin: 0;
+}
+
+.head-tablita .boton-agregar a {
+    border-radius: 5px;
+    background: #FFF;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #2CAF68;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.boton-agregar a:hover {
+    box-shadow: 0px 2px 7px 0px rgba(0, 0, 0, 0.25);
+}
+
+.boton-agregar i {
+    padding-left: 10px;
+}
+
+table thead th {
+    color: #000;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-weight: 700;
+    padding-right: 20px;
+}
+
+table tbody td {
+    background-color: #FFF;
+    padding-right: 30px;
+    font-size: 16px;
+}
+
+table tbody .editar {
+    color: #252B42;
+    font-family: Montserrat;
+    font-weight: 700;
+    padding-inline: 10px;
+}
+
+table tbody .eliminar {
+    color: #E74040;
+    font-family: Montserrat;
+    font-weight: 700;
+    border: 2px solid #E74040;
+    padding-inline: 10px;
+    margin: 5px;
 }
