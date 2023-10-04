@@ -1,6 +1,5 @@
 /* header */
 
-
 header {
     display: flex;
     justify-content: space-between;
@@ -62,7 +61,7 @@ header div a:hover {
     color: var(--gris);
 }
 
-header div .registrarse {
+/* header div .registrarse {
     color: var(--naranja);
     font-weight: var(--bold);
     font-size: 14px;
@@ -71,11 +70,31 @@ header div .registrarse {
     padding: 15px 30px;
     border-radius: 5px;
     border: 2px solid var(--primary-color, #FF685B);
+} */
+
+/* header div .registrarse:hover {
+    box-shadow: 1px 1px 15px -9px rgba(37, 43, 66, 1);
+    color: #FF685B;
+} */
+
+header div .registrarse {
+    text-decoration: none;
+    padding: 15px 20px;
+    border-radius: 5px;
+    background: var(--danger-color, #E74040);
+    color: var(--light-text-color, #FFF);
+    font-family: Montserrat;
+    font-size: 14px;
+    font-weight: 700;
 }
 
 header div .registrarse:hover {
-    box-shadow: 1px 1px 15px -9px rgba(37, 43, 66, 1);
-    color: #FF685B;
+    box-shadow: 0px 4px 27px 0px rgba(0, 0, 0, 0.25);
+    color: #FFF;
+}
+
+header div .registrarse i{
+    padding-inline-start: 10px;
 }
 
 /* header para usuari0 */

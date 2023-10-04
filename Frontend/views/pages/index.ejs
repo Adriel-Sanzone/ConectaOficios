@@ -23,7 +23,7 @@
             <h5>Soluciones Domésticas</h5>
             <h1>Contrata profesionales</h1>
             <h4>Conecta Oficios es una solución tecnológica moderna y eficaz para tus necesidades.</h4>
-            <a href="oficios" target="_blank">Ver Oficios</a>
+            <a href="oficios" target="_blank">Ver Oficios<i class="fa-solid fa-arrow-right"></i></a>
           </div>
         </div>
         <div class="col-md-5">
@@ -94,6 +94,7 @@
 
   <div class="anuncios">
     <div class="container">
+      <%- include ('../partials/banner-anuncio') %>
       <!---encabezado de anuncios-->
       <div class="head-anuncios">
         <h6 class="titulo-cartel">Anuncios</h6>
@@ -168,7 +169,7 @@
   <script src="/Frontend/js/funciones_usuarios.js"></script>
   <!-- Script para disparar la funcion que valida el usuario-->
   <script type="text/javascript">
-/*     $(document).ready(function() {
+    /*     $(document).ready(function() {
       var token = sessionStorage.getItem("Token");
       var id = sessionStorage.getItem("IdUsuario");
 

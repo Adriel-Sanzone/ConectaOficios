@@ -56,7 +56,7 @@ body {
     line-height: 30px;
     margin-block-end: 40px;
 }
-
+/* 
 .inicio .presentacion a {
     color: var(--naranja);
     font-weight: var(--bold);
@@ -71,6 +71,25 @@ body {
 .inicio .presentacion a:hover {
     box-shadow: 1px 1px 15px -9px rgba(37, 43, 66, 1);
     color: #FF685B;
+} */
+
+.inicio .presentacion a {
+    text-decoration: none;
+    padding: 15px 20px;
+    border-radius: 5px;
+    background: var(--danger-color, #E74040);
+    color: var(--light-text-color, #FFF);
+    font-family: Montserrat;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.inicio .presentacion a:hover {
+    box-shadow: 0px 4px 27px 0px rgba(0, 0, 0, 0.25);
+}
+
+.inicio .presentacion i{
+    padding-inline-start: 10px;
 }
 
 .inicio .imagen {
