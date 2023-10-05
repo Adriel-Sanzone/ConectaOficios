@@ -87,7 +87,7 @@ input[type="checkbox"] {
     padding: 20px 35px;
     filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 0.05));
     border-radius: 5px;
-    margin-block-end: 30px;
+    margin-block: 30px;
 }
 
 .persona .especialidades {

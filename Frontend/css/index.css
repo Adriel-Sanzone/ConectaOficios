@@ -154,6 +154,10 @@ body {
 
 /* descripcion anuncios  */
 
+.head-anuncios{
+    margin-top: 60px;
+}
+
 .head-anuncios h2 {
     width: 399px;
     height: 50px;

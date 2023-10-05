@@ -11,8 +11,13 @@
     border-radius: 5px;
     background: #FFF;
     box-shadow: 0px 1px 27px 0px rgba(0, 0, 0, 0.07);
-    margin-top: 20PX;
-    margin-bottom: 70px;
+}
+
+.imagen {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    border-radius: 5px;
 }
 
 .imagen-anuncio-destacar {
@@ -21,7 +26,7 @@
 
 .imagen-anuncio-destacar img {
     max-height: 300px;
-
+    border-radius: 5px;
 }
 
 .info-anuncio-destacar {
@@ -36,7 +41,7 @@
     color: #E64040;
     text-align: center;
     font-family: Montserrat;
-    font-size: 40px;
+    font-size: 38px;
     font-weight: 700;
 }
 
@@ -75,7 +80,7 @@
     box-shadow: 0px 4px 27px 0px rgba(0, 0, 0, 0.25);
 }
 
-.info-anuncio-destacar i{
+.info-anuncio-destacar i {
     padding-inline-start: 10px;
 }
 
