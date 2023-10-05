@@ -143,5 +143,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // FIN BARRA
 
-
-
+document.addEventListener('DOMContentLoaded', function () {
+    const toggleButton = document.getElementById('toggleButton');
+    const listaSecundaria = document.querySelector('.lista-secundaria');
+  
+    toggleButton.addEventListener('click', function () {
+      if (listaSecundaria.style.display === 'none' || listaSecundaria.style.display === '') {
+        listaSecundaria.style.display = 'block';
+      } else {
+        listaSecundaria.style.display = 'none';
+      }
+    });
+  });
+  

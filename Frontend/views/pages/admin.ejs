@@ -7,15 +7,25 @@
 </head>
 
 <body>
-  <div class="container">
+
+  <%- include ('../partials/headerRegistro') %>
+  <div class="container-fluid">
     <div class="row">
-
-      <div class="col-md-2">
-
+      <div class="col-md-3">
+        <div class="aside">
+          <p id="toggleButton">Base de datos<i class="fas fa-chevron-down"></i></p>
+          <ul class="lista-secundaria" style="display: none;">
+            <li><a href="pagina1.html">Categorías</a></li>
+            <li><a href="pagina2.html">Especializaciones</a></li>
+            <li><a href="pagina3.html">Especializaciones de Usuario</a></li>
+            <li><a href="pagina4.html">Proyectos</a></li>
+            <li><a href="pagina5.html">Reseñas</a></li>
+            <li><a href="pagina6.html">Usuarios</a></li>
+          </ul>
+        </div>
       </div>
+      <div class="col-md-9">
 
-      <div class="col-md-10">
-        
         <div class="tablita">
           <div class="head-tablita">
             <p class="title">Tabla usuarios</p>
@@ -73,10 +83,10 @@
           <table>
             <thead>
               <tr>
+                <th class=""></th>
+                <th class=""></th>
                 <th class="">Id</th>
                 <th class="">Especializacion</th>
-                <th class="">Editar</th>
-                <th class="">Eliminar</th>
               </tr>
             </thead>
             <tbody></tbody>
@@ -93,11 +103,11 @@
           <table>
             <thead>
               <tr>
+                <th class=""></th>
+                <th class=""></th>
                 <th class="">Id</th>
                 <th class="">Id_usuario</th>
                 <th class="">Id_especializacion</th>
-                <th class="">Editar</th>
-                <th class="">Eliminar</th>
               </tr>
             </thead>
             <tbody></tbody>
@@ -105,9 +115,11 @@
         </div>
 
       </div>
+
     </div>
   </div>
   </div>
+  <script src="/Frontend/js/script.js"></script>
 </body>
 
 </html>
