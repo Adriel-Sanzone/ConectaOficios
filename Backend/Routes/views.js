@@ -58,20 +58,15 @@ router.get('/oficios/pagina::pag', function (req, res) {
     var usuariosEspecialistas = viewsTodosLosUsuarios(pagina);
 
     var especializaciones = viewEspecializaciones();
-    var especializacionUsuario = viewEspecializacionUsuario();
     usuariosEspecialistas.then(function(usuarios)
     {
         console.log(usuarios);
         especializaciones.then(function(especializacion)
         {
-            especializacionUsuario.then(function(userEspecializacion)
-            {
-                res.render("../Frontend/views/pages/oficios", {
-                    "usuariosEsp" : usuarios,
-                    "especializacion" : especializacion,
-                    "especializacionUsuario" : userEspecializacion,
-                });
-            })
+            res.render("../Frontend/views/pages/oficios", {
+                "usuariosEsp" : usuarios,
+                "especializacion" : especializacion,
+            });
         })
     }) 
 });
