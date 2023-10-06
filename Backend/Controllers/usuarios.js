@@ -452,34 +452,38 @@ export const viewsTodosLosUsuarios = (pagina) =>
     //Promesa para asegurarme de tener los datos antes de enviarlos
     return new Promise (function(resolve)
     {
+        //Query para obtener todos los usuarios especialistas ordenados por promocion
         connection.query(
             'SELECT * FROM usuarios WHERE especialista = 1 ORDER BY destacado DESC LIMIT 10 OFFSET ?',
             [offset],
             function (err, resultados) {
+                //Creo array para almacenar los usuarios coincidentes
                 var usuarios = new Array();
+                //Creo un array para almacenar las Promises que rellenaran una variable de "usuarios"
                 var misPromesas = new Array();
+
+                //Recorro el array usuarios 
                 resultados.forEach(function(usuario){
+                    //Le agrego los valores obtenidos del query
                     usuarios[usuario.id] = usuario;
+                    //Creo una variable que obtenga todos los resultados de especializacion que coincidan con cada usuario
                     var especializaciones = getEspecializacionesUsuario(usuario.id);
+                    //Añado cada resultado de promesa a misPromesas
                     misPromesas.push(especializaciones);
-                    /*
-                    var promises = especializaciones.then(function(especializacion){
-                        usuario.especializaciones = especializacion;
-                    });*/
                     
                 });
 
+                //Luego que terminen todas las promesas de misPromesas recorro usuarios para añadirle la nueva variable
                 Promise.all(misPromesas)
                     .then((especializaciones) => {
-                        // values is an array of the resolved values
                         especializaciones.forEach(function(especializacion){
                             usuarios[especializacion[0].id_usuario].especializaciones = especializacion;
                         });
-                        
+                        //Resuelvo usuarios que ahora contiene los datos del usuario y su especializacion
                         resolve(usuarios);
                     })
+                    //Si ocurre algun error
                     .catch((error) => {
-                        // This catch block will not be executed
                         console.error(error);
                     });
 
@@ -489,10 +493,9 @@ export const viewsTodosLosUsuarios = (pagina) =>
 }
 
 function getEspecializacionesUsuario(id_usuario) {
-
     return new Promise (function(resolve)
     {
-
+        //Obtengo el nombre de la especializacion correspondiente por medio del id del usuario
         var sql = 'SELECT EU.*, IF(E.especializacion IS NULL, "", E.especializacion) as nombre FROM especializacion_usuario EU LEFT JOIN especializaciones E ON (E.id = EU.id_especializacion) WHERE id_usuario = ? ';
         connection.query(sql,
             [id_usuario],

@@ -119,6 +119,10 @@ body {
     font-size: 14px;
 }
 
+.terminos-condiciones{
+    cursor: pointer;
+}
+
 .labelRegistro2 {
     margin-block-end: 5px;
 }

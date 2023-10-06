@@ -74,11 +74,7 @@
           Contacto@ConectaOficios.com
         </textarea>
         <div class="content">
-          <div class="checkbox">
-            <label>
-              <input type="checkbox" id="aceptar-terminos"> Acepto los términos y condiciones
-            </label>
-          </div>
+  
 
           <div class="button text-end">
             <button id="boton-aceptar">Aceptar</button>
@@ -106,6 +102,13 @@
               </div>
               <input class="form-control" id="email" type="email" placeholder="Email (*)">
               <input class="form-control" id="password" type="password" placeholder="Contraseña (*)">
+              <div class="contenedorCheckbox">
+                <input class="checkbox" type="checkbox" id="aceptar-terminos"> 
+                <div>
+                  <label class="labelRegistro" for="aceptar-terminos">He leído y acepto los</label>
+                  <a class="terminos-condiciones" >Términos y Condiciones</a>
+                </div>
+              </div>
               <div class="contenedorCheckbox">
                 <input class="checkbox" type="checkbox" id="mostrarCampos">
                 <label class="labelRegistro" for="mostrarCampos">Quiero ofrecer mis servicios</label>
@@ -161,45 +164,54 @@
           }
         });
 
-        //Tras apretar "Crear cuenta" obtengo los valores de los inputs
-        $(".registrar").on("click", function () {
-
-          var especificaciones = new FormData();
-
-          especificaciones.append('nombre', $("#nombre").val());
-          especificaciones.append('apellido', $("#apellido").val());
-          especificaciones.append('contacto', $("#contacto").val());
-          especificaciones.append('email', $("#email").val());
-          especificaciones.append('password', $("#password").val());
-          especificaciones.append('trabaja', especialista);
-          especificaciones.append('direccion', $("#direccion").val());
-          especificaciones.append('descripcion', $("#descripcion").val());
-          especificaciones.append('especializacion_id', $("#categorias").val());
-
-          //Llamo la funcion enviandole los parametros obtenidos
-          console.log(especificaciones);
-          RegistrarUsuario(especificaciones);
-        })
-      </script>
-
-      <script>
         document.addEventListener("DOMContentLoaded", function () {
           const termsOverlay = document.getElementById("terminos");
           const acceptButton = document.getElementById("boton-aceptar");
-          const acceptCheckbox = document.getElementById("aceptar-terminos");
 
+        
+          $('.terminos-condiciones').on("click", function(){
           // Mostrar el cartel de términos y condiciones
           termsOverlay.style.display = "block";
+          })
 
           // Evento para ocultar el cartel cuando se hace clic en Aceptar
           acceptButton.addEventListener("click", function () {
-            if (acceptCheckbox.checked) {
-              termsOverlay.style.display = "none";
-            } else {
-              alert("Debes aceptar los términos y condiciones para continuar.");
-            }
+            termsOverlay.style.display = "none";
           });
         });
+
+        //Tras apretar "Crear cuenta" obtengo los valores de los inputs
+        $(".registrar").on("click", function () {
+
+          const acceptCheckbox = document.getElementById("aceptar-terminos");
+          if (!acceptCheckbox.checked) {
+            alert("Debes aceptar los términos y condiciones para continuar.");
+          } else {
+            var especificaciones = new FormData();
+
+            especificaciones.append('nombre', $("#nombre").val());
+            especificaciones.append('apellido', $("#apellido").val());
+            especificaciones.append('contacto', $("#contacto").val());
+            especificaciones.append('email', $("#email").val());
+            especificaciones.append('password', $("#password").val());
+            especificaciones.append('trabaja', especialista);
+            especificaciones.append('direccion', $("#direccion").val());
+            especificaciones.append('descripcion', $("#descripcion").val());
+            especificaciones.append('especializacion_id', $("#categorias").val());
+
+            //Llamo la funcion enviandole los parametros obtenidos
+            console.log(especificaciones);
+            RegistrarUsuario(especificaciones);
+          }
+        })
+        
+      </script>
+
+      <script>
+
+
+
+
       </script>
 
 </body>
