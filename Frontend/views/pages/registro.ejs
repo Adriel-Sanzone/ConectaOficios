@@ -74,15 +74,11 @@
           Contacto@ConectaOficios.com
         </textarea>
         <div class="content">
-  
-
           <div class="button text-end">
             <button id="boton-aceptar">Aceptar</button>
           </div>
         </div>
         <br>
-
-
       </div>
     </div>
 
@@ -116,19 +112,23 @@
               <div id="camposAdicionales" style="display: none;">
                 <input class="form-control" id="contacto" type="text" placeholder="Contacto (*)">
                 <input class="form-control" id="direccion" type="text" placeholder="Dirección (*)">
-                <label class="label-categoria" for="categorias">Selecciona una categoría:</label>
+                <label class="label-categoria" for="categorias">Selecciona tus especialidades: </label>
                 <select class="form-control select-categoria" id="categorias">
+
+                  <% var categoria_actual = especializacion[0].categoria; %>
+                  <option disabled class="selection-<%=especializacion[0].categoria%>"><%= especializacion[0].categoria %></option>
+                  
                   <% especializacion.forEach(function(c){ %>
-                    <option value="<%= c.id %>">
-                      <%= c.especializacion %>
-                    </option>
-                    <% }) %>
+                    <% if(c.categoria === categoria_actual) { %>
+                      <option value="<%= c.id %>"><%= c.especializacion %></option>
+                      <% } else {%>
+                        <% categoria_actual = c.categoria; %>
+                        <option disabled class="selection-<%=c.categoria%>"><%= c.categoria %></option>
+                        <option value="<%= c.id %>"><%= c.especializacion %></option>
+                    <% } %>
+                  <% }) %>
                 </select>
-                <label class="label-categoria" for="especializacion">Selecciona una especialización:</label>
-                <select class="form-control select-categoria" id="especializacion">
-                  <option value="Plomero">Plomero</option>
-                  <option value="Plomero">Plomero</option>
-                </select>
+               
                 <input class="form-control" id="descripcion" type="text" placeholder="Descripción">
               </div>
               <input class="form-control registrar" type="submit" value="Siguiente">

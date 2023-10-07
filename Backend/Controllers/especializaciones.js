@@ -5,12 +5,13 @@ export const viewEspecializaciones = () =>
     return new Promise (function(resolve)
     {
         connection.query(
-            'SELECT * FROM especializaciones',
+            'SELECT especializaciones.id, especializaciones.especializacion, categorias.categoria FROM especializaciones JOIN categorias ON especializaciones.id_categoria = categorias.id ORDER BY especializaciones.id_categoria ASC',
             function (err, results) {
                 resolve(results);
             }
         );
     });
+    
 }
 
 export const viewEspecializacionUsuario = () =>

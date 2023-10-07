@@ -299,19 +299,24 @@ export const RegistroUsuario = async (req, res) =>
                         res.status(500).json({ error: 'Error al obtener los datos' });
                     } else 
                     {
-                        //Devuelvo que NO hay error
-                        res.json({
-                            "error": 0,
+                        connection.query(
+                        'SELECT * FROM usuarios WHERE email = ? and password = ?',
+                        [email, password],
+                        function(err, usuario_registrado)
+                        {
+                            //Guardo los datos clave para validar en session de express
+                            req.session.idUsuario = usuario_registrado[0].id;
+    
+                            //Devuelvo que NO hay error
+                            res.json({
+                                "error": 0,
+                            })
                         })
-                        //Guardo los datos clave para validar en session de express
-                        // req.session.idUsuario = usuario.id;
-                        // req.session.token = token;
                     }
                 }
             );
         }
     })
-
 };
 
 export const AsignoEspecializacion = async (req, res) =>
@@ -352,7 +357,7 @@ export const AsignoEspecializacion = async (req, res) =>
 
 export const InsertoImagenPerfil = async (req, res) => 
 {
-    const {id_usuario} = req.session.idUsuario;
+    const id_usuario = (req.session.idUsuario || 0);
 
     //Obtengo el nombre de la imagen por multer
     const filename = '/Frontend/uploads/' + req.file.filename;
@@ -378,7 +383,7 @@ export const InsertoImagenPerfil = async (req, res) =>
 
 export const InsertoImagenPortada = async (req, res) => 
 {
-    const {id_usuario} = req.session.idUsuario;
+    const id_usuario = (req.session.idUsuario || 0);
 
     //Obtengo el nombre de la imagen por multer
     const filename = '/Frontend/uploads/' + req.file.filename;
@@ -486,7 +491,6 @@ export const viewsTodosLosUsuarios = (pagina) =>
                     .catch((error) => {
                         console.error(error);
                     });
-
             }
         );
     });
