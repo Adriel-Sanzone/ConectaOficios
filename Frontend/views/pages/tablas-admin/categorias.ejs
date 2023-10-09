@@ -2,13 +2,12 @@
 <html lang="en">
 
 <head>
-  <%- include ('../partials/head') %>
+  <%- include ('../../partials/head') %>
   <link rel="stylesheet" href="/Frontend/css/admin.css">
 </head>
 
 <body>
-
-  <%- include ('../partials/headerRegistro') %>
+  <%- include ('../../partials/headerRegistro') %>
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-3">
@@ -25,9 +24,26 @@
         </div>
       </div>
       <div class="col-md-9">
-        <h2>Bienvenido admin!!!🧚‍♀️🌺🌚🫧🔮</h2>
+        <div class="tablita">
+          <div class="head-tablita">
+            <p class="title">Tabla Categorías</p>
+            <div class="boton-agregar">
+              <a href="">Agregar<i class="fas fa-plus"></i></a>
+            </div>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th class=""></th>
+                <th class=""></th>
+                <th class="">Id</th>
+                <th class="">Categoria</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
       </div>
-
     </div>
   </div>
   </div>

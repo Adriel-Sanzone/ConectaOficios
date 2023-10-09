@@ -11,3 +11,5 @@ que el cuadro de terminos aparezca cuando se hace click en el
 footer en oficios no queda al final 
 no cargarn las img de oficios cuando se registra
 hacer funcional especializacion en registro y perfiles en oficios, perfil e index
+hacer funcional botones de oficios\
+hacer funcioanl tablas de admin
