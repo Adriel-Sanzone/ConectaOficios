@@ -9,11 +9,6 @@ router.get('/', function (req, res) {
     var idUsuario = (req.session.idUsuario || 0);
     var tokenUsuario = (req.session.token || 0);
 
-    console.log(req.session);
-    console.log("CARGADO:");
-    console.log(idUsuario);
-    console.log(tokenUsuario);
-
     var usuarioLogeado = UsuarioLogeado(idUsuario , tokenUsuario);
 
     var usuariosEspecialistas = viewUsuariosEspecialistas(0);
@@ -49,10 +44,8 @@ router.get('/oficios/pagina::pag', function (req, res) {
     var pagina = req.params.pag;
     var idUsuario = (req.session.idUsuario || 0);
     var tokenUsuario = (req.session.token || 0);
-    console.log(req.session);
-    console.log("CARGADO:");
-    console.log(idUsuario);
-    console.log(tokenUsuario);
+
+    var usuarioLogeado = UsuarioLogeado(idUsuario , tokenUsuario);
 
     //var usuariosEspecialistas = viewUsuariosEspecialistas(pagina);
     var usuariosEspecialistas = viewsTodosLosUsuarios(pagina);
@@ -60,13 +53,16 @@ router.get('/oficios/pagina::pag', function (req, res) {
     var especializaciones = viewEspecializaciones();
     usuariosEspecialistas.then(function(usuarios)
     {
-        console.log(usuarios);
         especializaciones.then(function(especializacion)
         {
-            res.render("../Frontend/views/pages/oficios", {
-                "usuariosEsp" : usuarios,
-                "especializacion" : especializacion,
-            });
+            usuarioLogeado.then(function(logeado)
+            {
+                res.render("../Frontend/views/pages/oficios", {
+                    "usuariosEsp" : usuarios,
+                    "especializacion" : especializacion,
+                    "usuarioLogeado": logeado,
+                });
+            })
         })
     }) 
 });
@@ -89,11 +85,6 @@ router.get('/perfil/:id', function (req, res) {
 
     var idUsuario = (req.session.idUsuario || 0);
     var tokenUsuario = (req.session.token || 0);
-
-    console.log(req.session);
-    console.log("CARGADO:");
-    console.log(idUsuario);
-    console.log(tokenUsuario);
 
     var usuarioLogeado = UsuarioLogeado(idUsuario , tokenUsuario);
 

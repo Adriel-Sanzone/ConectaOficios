@@ -41,7 +41,6 @@ export const getEspecializacionPerfil = (id_usuario) =>
                     console.log(err);
                 } else
                 {
-                    console.log(results);
                     resolve(results);
                 }
             }

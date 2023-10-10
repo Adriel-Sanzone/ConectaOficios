@@ -21,7 +21,12 @@ app.use(express.json());
 app.use(cors());
 
 //Configuro el session
-app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 }}))
+app.use(session({
+    secret: 'keyboard cat',
+    cookie: { maxAge: 60000 },
+    resave: false,
+    saveUninitialized: true
+  }));
 
 app.use(UsuariosRoutes);
 app.use(viewsRoutes);
