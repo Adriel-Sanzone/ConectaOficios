@@ -14,3 +14,4 @@ hacer funcional especializacion en registro y perfiles en oficios, perfil e inde
 hacer funcional botones de oficios\
 hacer funcioanl tablas de admin
 como hacer que un a dirija a una categoria filtrada en oficios
+el banner en oficios no dirige a destacar
