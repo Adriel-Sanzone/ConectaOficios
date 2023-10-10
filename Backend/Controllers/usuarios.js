@@ -210,8 +210,8 @@ export const RegistroUsuario = async (req, res) =>
 {
     //Obtengo los datos ingresados por el usuario
     let {nombre, apellido, contacto, email, password, especialista, direccion, descripcion} = req.body;
-    const perfil_sin_foto = '/Frontend/img/usuario-sin-foto.png';
-    const portada_sin_foto = '/Frontend/img/portada-sin-foto.png';
+    const perfil_sin_foto = '/Frontend/uploads/usuario-sin-foto.png';
+    const portada_sin_foto = '/Frontend/uploads/portada-sin-foto.png';
 
     //Si el espacio de email estaba vacio
     if(email == "")

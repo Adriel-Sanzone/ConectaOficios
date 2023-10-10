@@ -1,17 +1,12 @@
 hecer menu para movil
 como agregar estrellas a reseñas
 ponemos reseñas???????
-que se muestre la categoria elegida por el usuario en su perfil
 hacer barra de busqueda funcional o lista desplegable en header
 como dirigir a la categoria filtrada en la barra ----------
-overflow en oficios en persona cargada desde registro
 perfil esta todo comentado???
-agregar boton para cambiar de pagina en oficio (inicia en 0)
-que el cuadro de terminos aparezca cuando se hace click en el
-footer en oficios no queda al final 
+agregar boton para cambiar de pagina en oficio (inicia en 0)-----------------------------------
 no cargarn las img de oficios cuando se registra
 hacer funcional especializacion en registro y perfiles en oficios, perfil e index
 hacer funcional botones de oficios\
 hacer funcioanl tablas de admin
-como hacer que un a dirija a una categoria filtrada en oficios
 el banner en oficios no dirige a destacar

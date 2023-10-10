@@ -95,12 +95,15 @@ body {
 .inicio .imagen {
     padding: 0;
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
+    justify-content: center;
+    align-items: flex-end;
+    background-color: #EEF4F8;
+    border-radius: 20px;
+    max-height: 350px;
 }
 
 .inicio .imagen img {
-    max-height: 420px;
+    max-height: 400px;
 }
 
 /* tarjetas */
@@ -349,7 +352,7 @@ swiper-slide {
 
 /* ver mas */
 
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
 
     .inicio {
         flex-direction: column;
@@ -360,7 +363,7 @@ swiper-slide {
     }
 
     .inicio .presentacion h1 {
-        font-size: 45px;
+        font-size: 40px;
     }
 
     .inicio .presentacion a {
