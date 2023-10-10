@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include ('../../partials/head') %>
+  <link rel="stylesheet" href="/Frontend/css/admin.css">
+</head>
+
+<body>
+  <%- include ('../../partials/headerRegistro') %>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="aside">
+          <p id="toggleButton">Base de datos<i class="fas fa-chevron-down"></i></p>
+          <ul class="lista-secundaria" style="display: none;">
+            <li><a href="categorias">Categorías</a></li>
+            <li><a href="especializaciones">Especializaciones</a></li>
+            <li><a href="especializacionDeUsuario">Especializacion de Usuario</a></li>
+            <li><a href="proyectos">Proyectos</a></li>
+            <li><a href="resenias">Reseñas</a></li>
+            <li><a href="usuariosAdmin">Usuarios</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <div class="tablita">
+          <div class="head-tablita">
+            <p class="title">Tabla Categorías</p>
+            <div class="boton-agregar">
+              <a href="">Agregar<i class="fas fa-plus"></i></a>
+            </div>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th class=""></th>
+                <th class=""></th>
+                <th class="">Id</th>
+                <th class="">Id_Usuario</th>
+                <th class="">Id_Especializacion</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <script src="/Frontend/js/script.js"></script>
+</body>
+
+</html>

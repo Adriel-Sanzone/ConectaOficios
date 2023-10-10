@@ -95,7 +95,18 @@ input[type="checkbox"] {
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    margin-block-end: 5px;
+}
+
+.info-persona .nombre {
+    color: var(--text-color, #252B42);
+    text-decoration: none;
+    font-family: Montserrat;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.info-persona .nombre:hover {
+   color: #3b446b;
 }
 
 .personas .persona h4 {
@@ -112,12 +123,13 @@ input[type="checkbox"] {
     margin-inline-end: 10px;
 }
 
+
 .persona .imagen {
     max-width: 200px;
     max-height: 200px;
 }
 
-.persona .col-md-3{
+.persona .col-md-3 {
     padding: 0;
     display: flex;
     justify-content: flex-start;
@@ -196,6 +208,47 @@ input[type="checkbox"] {
 .persona button i {
     font-size: 24px;
     margin-inline-start: 10px;
+}
+
+.botones {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    padding-bottom: 30px;
+}
+
+.botones .anterior {
+    color: #737373;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    padding-right: 15px;
+}
+
+.botones .anterior:hover {
+    color: #E74040;
+}
+
+.botones .siguiente {
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background: var(--danger-color, #E74040);
+    color: var(--light-text-color, #FFF);
+    font-family: Montserrat;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.botones .siguiente:hover {
+    box-shadow: 0px 4px 27px 0px rgba(0, 0, 0, 0.25);
+    color: #FFF;
+}
+
+.botones .siguiente i {
+    padding-inline-start: 10px;
 }
 
 

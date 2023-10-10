@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include ('../../partials/head') %>
+  <link rel="stylesheet" href="/Frontend/css/admin.css">
+</head>
+
+<body>
+  <%- include ('../../partials/headerRegistro') %>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="aside">
+          <p id="toggleButton">Base de datos<i class="fas fa-chevron-down"></i></p>
+          <ul class="lista-secundaria" style="display: none;">
+            <li><a href="categorias">Categorías</a></li>
+            <li><a href="especializaciones">Especializaciones</a></li>
+            <li><a href="especializacionDeUsuario">Especializacion de Usuario</a></li>
+            <li><a href="proyectos">Proyectos</a></li>
+            <li><a href="resenias">Reseñas</a></li>
+            <li><a href="usuariosAdmin">Usuarios</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <div class="tablita">
+          <div class="head-tablita">
+            <p class="title">Tabla usuarios</p>
+            <div class="boton-agregar">
+              <a href="">Agregar<i class="fas fa-plus"></i></a>
+            </div>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th class="editar"></th>
+                <th class="eliminar"></th>
+                <th class="">Id</th>
+                <th class="">Email</th>
+                <th class="">Password</th>
+                <th class="">Nombre</th>
+                <th class="">Apellido</th>
+                <th class="">Contacto</th>
+                <th class="">Descripcion</th>
+                <th class="">Destacado</th>
+                <th class="">Especialista</th>
+                <th class="">Direccion</th>
+                <th class="">Token</th>
+                <th class="">Path</th>
+                <th class="">Path_portada</th>
+              </tr>
+            </thead>
+            <tbody>
+              <td class="editar">Editar</td>
+              <td class="eliminar">Eliminar</td>
+              <td class="">Id</td>
+              <td class="">Email</td>
+              <td class="">Password8888888888888</td>
+              <td class="">Nombre</td>
+              <td class="">Apellido</td>
+              <td class="">Contacto</td>
+              <td class="">Descripcion</td>
+              <td class="">Destacado</td>
+              <td class="">Especialista</td>
+              <td class="">Direccion</td>
+              <td class="">Token</td>
+              <td class="">Patd</td>
+              <td class="">Patd_portada</td>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <script src="/Frontend/js/script.js"></script>
+</body>
+
+</html>

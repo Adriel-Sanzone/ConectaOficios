@@ -114,5 +114,39 @@ router.get('/admin', function (req, res) {
     res.render('../Frontend/views/pages/admin')
 });
 
+router.get('/destacar', function (req, res) {
+    res.render('../Frontend/views/pages/destacar')
+});
+
+//tablas del admin
+
+router.get('/categorias', function (req, res) {
+    res.render('../Frontend/views/pages/tablas-admin/categorias')
+});
+
+router.get('/especializaciones', function (req, res) {
+    res.render('../Frontend/views/pages/tablas-admin/especializaciones')
+});
+
+router.get('/especializacionDeUsuario', function (req, res) {
+    res.render('../Frontend/views/pages/tablas-admin/especializacionDeUsuario')
+});
+
+router.get('/proyectos', function (req, res) {
+    res.render('../Frontend/views/pages/tablas-admin/proyectos')
+});
+
+router.get('/resenias', function (req, res) {
+    res.render('../Frontend/views/pages/tablas-admin/resenias')
+});
+
+router.get('/usuariosAdmin', function (req, res) {
+    res.render('../Frontend/views/pages/tablas-admin/usuariosAdmin')
+});
+
+
+
+
+
 
 export default router;
