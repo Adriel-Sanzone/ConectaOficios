@@ -25,6 +25,10 @@ header h3 a:hover {
     color: var(--azul);
 }
 
+header h4 {
+    margin-right: 8vh;
+}
+
 header nav a {
     text-decoration: none;
     margin: 10px;

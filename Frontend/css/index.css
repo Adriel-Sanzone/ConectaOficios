@@ -303,6 +303,18 @@ swiper-slide {
     margin-inline-start: 10px;
 }
 
+.nombre {
+    color: var(--text-color, #252B42);
+    text-decoration: none;
+    font-family: Montserrat;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.nombre:hover {
+   color: #3b446b;
+}
+
 
 /* carrusel */
 

@@ -69,20 +69,38 @@
             <!-- Muestro la descripcion del perfil sin validar nada -->
             <p><%= user.descripcion %></p>
              
-            <div class="d-flex">
-              <!-- Muestro el contacto y mail del perfil sin validar nada -->
-              <div class="whatsapp btn-perfil-inf">
-                <a href="https://wa.me/<%= user.contacto %>" target="_blank">
-                  <%= user.contacto %><i class="fab fa-whatsapp"></i>
-                </a>          
-              </div>
+            <% if (usuarioLogeado) { %>
+              <div class="d-flex">
+                <!-- Muestro el contacto y mail del perfil sin validar nada -->
+                <div class="whatsapp btn-perfil-inf">
+                  <a href="https://wa.me/<%= user.contacto %>" target="_blank">
+                    <%= user.contacto %><i class="fab fa-whatsapp"></i>
+                  </a>          
+                </div>
                 <div class="email btn-perfil-inf">
-                  <a href="mailto:<%= user.email %>" target="_blank">
-                    <%= user.email %><i class="far fa-envelope"></i>
-                  </a>
-                </div>        
+                    <a href="mailto:<%= user.email %>" target="_blank">
+                      <%= user.email %><i class="far fa-envelope"></i>
+                    </a>
+                  </div>        
+                </div>
               </div>
-            </div>
+            <% } else { %>
+              <div class="d-flex">
+                <!-- Muestro los botones sin que el usuario este logeado -->
+                <div class="whatsapp btn-perfil-inf">
+                  <a class="unloged">
+                  <i class="fab fa-whatsapp"></i>
+                  </a>          
+                </div>
+                <div class="email btn-perfil-inf">
+                    <a class="unloged">
+                    <i class="far fa-envelope"></i>
+                    </a>
+                  </div>        
+                </div>
+              </div>
+            <% } %>
+
           </div>
       </div>
     </div>
@@ -282,6 +300,11 @@
       <script src="/Frontend/js/script.js"></script>
 
       <script>
+
+        $(".unloged").on("click", function() {
+        alert("Inicia sesion para ver esta informacion.");
+        location.href = "/iniciarSesion";
+        });
 
         /* FORMULARIO PARA EDITAR NOMBRE Y DESCRIPCION*/
         document.getElementById('btn-editar').addEventListener('click', function () {

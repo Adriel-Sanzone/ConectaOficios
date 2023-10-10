@@ -118,13 +118,9 @@
         <swiper-slide>
           <div class="persona">
             <h4>Agua</h4>
-            <% if(c.path != ""){ %>
             <img class="img-fluid aspect-ratio-1-1" src="<%= c.path %>" alt="">
-            <% } else {; %>
-            <img class="img-fluid aspect-ratio-1-1" src="/Frontend/img/usuario-sin-foto.png" alt="">
-            <% }; %>
             <h3><%= e.especializacion %></h3>
-            <h5> <%= c.nombre %> <%= c.apellido %></h5>
+            <a class="nombre" href="/perfil/<%=c.id%>"><%= c.nombre %> <%= c.apellido %></a>
             <div class="descripcion">
               <p> <%= c.descripcion %> </p>
             </div>
@@ -134,6 +130,8 @@
             </div>
             <% if (usuarioLogeado) { %>
             <button> <%= c.contacto %> <i class="fab fa-whatsapp"></i></button>
+            <% } else { %>
+            <button class="unloged"><i class="fab fa-whatsapp"></i></button>
             <% } %>
           </div>
         </swiper-slide>
@@ -175,6 +173,11 @@
 
       ValidarUsuario(token, id);
     }) */
+    $(".unloged").on("click", function() {
+    alert("Inicia sesion para ver esta informacion.");
+    location.href = "/iniciarSesion";
+    });
+
   </script>
   <script>
     AOS.init();

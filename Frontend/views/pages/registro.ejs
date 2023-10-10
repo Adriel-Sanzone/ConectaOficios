@@ -99,31 +99,31 @@
             <input class="form-control" id="email" type="email" placeholder="Email (*)">
             <input class="form-control" id="password" type="password" placeholder="Contraseña (*)">
             <div class="contenedorCheckbox">
-              <input class="checkbox" type="checkbox" id="mostrarCampos">
-              <label class="labelRegistro" for="mostrarCampos">Quiero ofrecer mis servicios</label>
-            </div>
-            <div class="contenedorCheckbox">
               <input class="checkbox" type="checkbox" id="aceptar-terminos">
               <div>
                 <label class="labelRegistro" for="aceptar-terminos">He leído y acepto los</label>
                 <a class="terminos-condiciones">Términos y Condiciones</a>
               </div>
             </div>
+            <div class="contenedorCheckbox">
+              <input class="checkbox" type="checkbox" id="mostrarCampos">
+              <label class="labelRegistro" for="mostrarCampos">Quiero ofrecer mis servicios</label>
+            </div>
             <div id="camposAdicionales" style="display: none;">
               <input class="form-control" id="contacto" type="text" placeholder="Contacto (*)">
               <input class="form-control" id="direccion" type="text" placeholder="Dirección (*)">
               <label class="label-categoria" for="categorias">Selecciona tus especialidades: </label>
-              <select class="form-control select-categoria" id="categorias">
+              <select class="form-control select-categoria" id="categorias" multiple size="6">
 
                 <% var categoria_actual = especializacion[0].categoria; %>
-                <option disabled class="selection-<%=especializacion[0].categoria%>"><%= especializacion[0].categoria %></option>
+                <optgroup label="<%=especializacion[0].categoria%>">
 
                 <% especializacion.forEach(function(c){ %>
                 <% if(c.categoria === categoria_actual) { %>
                 <option value="<%= c.id %>"><%= c.especializacion %></option>
                 <% } else {%>
                 <% categoria_actual = c.categoria; %>
-                <option disabled class="selection-<%=c.categoria%>"><%= c.categoria %></option>
+                <optgroup label="<%=c.categoria%>">
                 <option value="<%= c.id %>"><%= c.especializacion %></option>
                 <% } %>
                 <% }) %>

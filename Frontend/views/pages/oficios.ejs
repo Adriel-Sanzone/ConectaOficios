@@ -69,7 +69,11 @@
                     <i class="fa-solid fa-location-dot"></i>
                     <p><%= c.direccion %></p>
                   </div>
-                  <button><%= c.contacto %> <i class="fab fa-whatsapp"></i></button>
+                  <% if (usuarioLogeado) { %>
+                  <button> <%= c.contacto %> <i class="fab fa-whatsapp"></i></button>
+                  <% } else { %>
+                  <button class="unloged"><i class="fab fa-whatsapp"></i></button>
+                  <% } %>
                 </div>
               </div>
             </div>
@@ -90,6 +94,12 @@
 
   <script src="/Frontend/js/script.js"></script>
   <script type="text/javascript">
+
+    $(".unloged").on("click", function() {
+    alert("Inicia sesion para ver esta informacion.");
+    location.href = "/iniciarSesion";
+    });
+
     $(document).ready(function() {
       // Obtengo todas las casillas de verificación
       const checkboxes = document.querySelectorAll('.checkbox-especializacion');
