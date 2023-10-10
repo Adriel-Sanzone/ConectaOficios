@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include ('../partials/head') %>
+  <link rel="stylesheet" href="/Frontend/css/destacar.css">
+</head>
+
+<body>
+  <%- include ('../partials/header') %>
+
+  <div class="container">
+
+    <div class="beneficios">
+      <div class="row">
+        <h3 class="col-md-12 text-center">Beneficios de destacarte</h3>
+        <div class="col-md-4">
+          <div class="beneficio">
+            <div class="icono">
+              <i class="fa-solid fa-person-dress-burst"></i>
+            </div>
+            <h4>Mayor Visibilidad</h4>
+            <p>Destacarte te coloca en una posición provilegiada, lo que significa más visibilidad y más oportunidades de trabajo.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="beneficio">
+            <div class="icono">
+              <i class="fa-solid fa-handshake-simple"></i>
+            </div>
+            <h4>Generación de Confianza</h4>
+            <p>Los usuarios confían en profesionales destacados, lo que puede resultar en más contrataciones y proyectos.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="beneficio">
+            <div class="icono">
+              <i class="fa-solid fa-phone-volume"></i>
+            </div>
+            <h4>Más Posibilidad de Ser Contactado</h4>
+            <p>Estar destacado aumenta tus posibilidades de recibir consultas y solicitudes de trabajo</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="form-contacto">
+      <div class="row">
+        <div class="col-md-5 text-center">
+          <div class="contacto">
+            <h3 class="titulo">¡Contactate!</h3>
+            <p>Un agente se comunicará con vos para darte toda la información que necesitas.</p>
+            <div>
+              <input class="form-control" id="nombre" type="text" placeholder="Nombre (*)">
+              <input class="form-control" id="email" type="email" placeholder="Email (*)">
+              <textarea id="mensaje" name="mensaje" rows="3" placeholder="Mensaje"></textarea>
+              <input class="form-control enviar" type="submit" value="Enviar">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%- include ('../partials/footer') %>
+</body>
+
+</html>

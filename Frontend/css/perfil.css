@@ -160,6 +160,8 @@ body {
     font-size: 16px;
     line-height: 20px;
     color: #737373;
+    max-height: 150px;
+    overflow: auto;
 }
 
 .perfil-inferior .btn-perfil-inf {

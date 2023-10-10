@@ -95,7 +95,18 @@ input[type="checkbox"] {
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    margin-block-end: 5px;
+}
+
+.info-persona .nombre {
+    color: var(--text-color, #252B42);
+    text-decoration: none;
+    font-family: Montserrat;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.info-persona .nombre:hover {
+   color: #3b446b;
 }
 
 .personas .persona h4 {
@@ -111,6 +122,7 @@ input[type="checkbox"] {
     line-height: 24px;
     margin-inline-end: 10px;
 }
+
 
 .persona .imagen {
     max-width: 200px;

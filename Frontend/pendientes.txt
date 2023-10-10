@@ -13,3 +13,4 @@ no cargarn las img de oficios cuando se registra
 hacer funcional especializacion en registro y perfiles en oficios, perfil e index
 hacer funcional botones de oficios\
 hacer funcioanl tablas de admin
+como hacer que un a dirija a una categoria filtrada en oficios

@@ -4,17 +4,17 @@
 
 <head>
   <%- include ('../partials/head') %>
-    <link rel="stylesheet" href="/Frontend/css/registro.css">
+  <link rel="stylesheet" href="/Frontend/css/registro.css">
 </head>
 
 <body>
 
   <%- include ('../partials/headerRegistro') %>
 
-    <div id="terminos" class="terminos">
-      <div class="container-terminos">
-        <h2>Términos y Condiciones</h2>
-        <textarea class="text" readonly>
+  <div id="terminos" class="terminos">
+    <div class="container-terminos">
+      <h2>Términos y Condiciones</h2>
+      <textarea class="text" readonly>
           Términos y Condiciones de Uso
 
           Estos Términos y Condiciones de Uso ("Términos") regulan el uso de la plataforma "Conecta Oficios" ("Plataforma"), que conecta a usuarios profesionales de oficios, en adelante denominados "Profesionales", con usuarios que requieren servicios, en adelante denominados "Clientes". Al acceder y utilizar esta Plataforma, usted acepta estar legalmente vinculado por estos Términos. Si no acepta estos Términos, no puede utilizar la Plataforma.
@@ -73,146 +73,143 @@
           Buenos Aires, Argentina
           Contacto@ConectaOficios.com
         </textarea>
-        <div class="content">
-          <div class="button text-end">
-            <button id="boton-aceptar">Aceptar</button>
-          </div>
+      <div class="content">
+        <div class="button text-end">
+          <button id="boton-aceptar">Aceptar</button>
         </div>
-        <br>
       </div>
+      <br>
     </div>
+  </div>
 
-    <div class="container">
-      <div class="row">
-        <div class="col-md-5">
-          <div class="registro">
-            <p class="titulo">Crear Cuenta</p>
-            <div>
-              <div class="row">
-                <div class="col-md-6">
-                  <input class="form-control" id="nombre" type="text" placeholder="Nombre (*)">
-                </div>
-                <div class="col-md-6">
-                  <input class="form-control" id="apellido" type="text" placeholder="Apellido (*)">
-                </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5">
+        <div class="registro">
+          <p class="titulo">Crear Cuenta</p>
+          <div>
+            <div class="row">
+              <div class="col-md-6">
+                <input class="form-control" id="nombre" type="text" placeholder="Nombre (*)">
               </div>
-              <input class="form-control" id="email" type="email" placeholder="Email (*)">
-              <input class="form-control" id="password" type="password" placeholder="Contraseña (*)">
-              <div class="contenedorCheckbox">
-                <input class="checkbox" type="checkbox" id="aceptar-terminos"> 
-                <div>
-                  <label class="labelRegistro" for="aceptar-terminos">He leído y acepto los</label>
-                  <a class="terminos-condiciones" >Términos y Condiciones</a>
-                </div>
+              <div class="col-md-6">
+                <input class="form-control" id="apellido" type="text" placeholder="Apellido (*)">
               </div>
-              <div class="contenedorCheckbox">
-                <input class="checkbox" type="checkbox" id="mostrarCampos">
-                <label class="labelRegistro" for="mostrarCampos">Quiero ofrecer mis servicios</label>
-              </div>
-              <div id="camposAdicionales" style="display: none;">
-                <input class="form-control" id="contacto" type="text" placeholder="Contacto (*)">
-                <input class="form-control" id="direccion" type="text" placeholder="Dirección (*)">
-                <label class="label-categoria" for="categorias">Selecciona tus especialidades: </label>
-                <select class="form-control select-categoria" id="categorias">
-
-                  <% var categoria_actual = especializacion[0].categoria; %>
-                  <option disabled class="selection-<%=especializacion[0].categoria%>"><%= especializacion[0].categoria %></option>
-                  
-                  <% especializacion.forEach(function(c){ %>
-                    <% if(c.categoria === categoria_actual) { %>
-                      <option value="<%= c.id %>"><%= c.especializacion %></option>
-                      <% } else {%>
-                        <% categoria_actual = c.categoria; %>
-                        <option disabled class="selection-<%=c.categoria%>"><%= c.categoria %></option>
-                        <option value="<%= c.id %>"><%= c.especializacion %></option>
-                    <% } %>
-                  <% }) %>
-                </select>
-               
-                <input class="form-control" id="descripcion" type="text" placeholder="Descripción">
-              </div>
-              <input class="form-control registrar" type="submit" value="Siguiente">
             </div>
-            <p>¿Ya tienes una cuenta?</p><a href="iniciarSesion">Iniciar sesión</a>
+            <input class="form-control" id="email" type="email" placeholder="Email (*)">
+            <input class="form-control" id="password" type="password" placeholder="Contraseña (*)">
+            <div class="contenedorCheckbox">
+              <input class="checkbox" type="checkbox" id="mostrarCampos">
+              <label class="labelRegistro" for="mostrarCampos">Quiero ofrecer mis servicios</label>
+            </div>
+            <div class="contenedorCheckbox">
+              <input class="checkbox" type="checkbox" id="aceptar-terminos">
+              <div>
+                <label class="labelRegistro" for="aceptar-terminos">He leído y acepto los</label>
+                <a class="terminos-condiciones">Términos y Condiciones</a>
+              </div>
+            </div>
+            <div id="camposAdicionales" style="display: none;">
+              <input class="form-control" id="contacto" type="text" placeholder="Contacto (*)">
+              <input class="form-control" id="direccion" type="text" placeholder="Dirección (*)">
+              <label class="label-categoria" for="categorias">Selecciona tus especialidades: </label>
+              <select class="form-control select-categoria" id="categorias">
+
+                <% var categoria_actual = especializacion[0].categoria; %>
+                <option disabled class="selection-<%=especializacion[0].categoria%>"><%= especializacion[0].categoria %></option>
+
+                <% especializacion.forEach(function(c){ %>
+                <% if(c.categoria === categoria_actual) { %>
+                <option value="<%= c.id %>"><%= c.especializacion %></option>
+                <% } else {%>
+                <% categoria_actual = c.categoria; %>
+                <option disabled class="selection-<%=c.categoria%>"><%= c.categoria %></option>
+                <option value="<%= c.id %>"><%= c.especializacion %></option>
+                <% } %>
+                <% }) %>
+              </select>
+
+              <input class="form-control" id="descripcion" type="text" placeholder="Descripción">
+            </div>
+            <input class="form-control registrar" type="submit" value="Siguiente">
           </div>
+          <p>¿Ya tienes una cuenta?</p><a href="iniciarSesion">Iniciar sesión</a>
         </div>
       </div>
     </div>
+  </div>
 
-    <!---inicio footer-->
+  <!---inicio footer-->
 
-    <%- include ('../partials/footer') %>
+  <%- include ('../partials/footer') %>
 
-      <!---fin footer-->
+  <!---fin footer-->
 
-      <script src="/Frontend/js/script.js"></script>
-      <script src="/Frontend/js/funciones_usuarios.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
-      <!-- Script para disparar la funcion que crea el usuario-->
-      <script type="text/javascript">
-        //Obtengo el valor de la checkbox en booleano
-        var checkbox = document.getElementById("mostrarCampos");
-        var especialista = 0;
+  <script src="/Frontend/js/script.js"></script>
+  <script src="/Frontend/js/funciones_usuarios.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <!-- Script para disparar la funcion que crea el usuario-->
+  <script type="text/javascript">
+    //Obtengo el valor de la checkbox en booleano
+    var checkbox = document.getElementById("mostrarCampos");
+    var especialista = 0;
 
-        checkbox.addEventListener("change", function () {
-          if (this.checked) {
-            especialista = 1;
-          } else {
-            especialista = 0;
-          }
-        });
+    checkbox.addEventListener("change", function() {
+      if (this.checked) {
+        especialista = 1;
+      } else {
+        especialista = 0;
+      }
+    });
 
-        document.addEventListener("DOMContentLoaded", function () {
-          const termsOverlay = document.getElementById("terminos");
-          const acceptButton = document.getElementById("boton-aceptar");
+    document.addEventListener("DOMContentLoaded", function() {
+      const termsOverlay = document.getElementById("terminos");
+      const acceptButton = document.getElementById("boton-aceptar");
 
-        
-          $('.terminos-condiciones').on("click", function(){
-          // Mostrar el cartel de términos y condiciones
-          termsOverlay.style.display = "block";
-          })
 
-          // Evento para ocultar el cartel cuando se hace clic en Aceptar
-          acceptButton.addEventListener("click", function () {
-            termsOverlay.style.display = "none";
-          });
-        });
+      $('.terminos-condiciones').on("click", function() {
+        // Mostrar el cartel de términos y condiciones
+        termsOverlay.style.display = "block";
+      })
 
-        //Tras apretar "Crear cuenta" obtengo los valores de los inputs
-        $(".registrar").on("click", function () {
+      // Evento para ocultar el cartel cuando se hace clic en Aceptar
+      acceptButton.addEventListener("click", function() {
+        termsOverlay.style.display = "none";
+      });
+    });
 
-          const acceptCheckbox = document.getElementById("aceptar-terminos");
-          if (!acceptCheckbox.checked) {
-            alert("Debes aceptar los términos y condiciones para continuar.");
-          } else {
-            var especificaciones = new FormData();
+    //Tras apretar "Crear cuenta" obtengo los valores de los inputs
+    $(".registrar").on("click", function() {
 
-            especificaciones.append('nombre', $("#nombre").val());
-            especificaciones.append('apellido', $("#apellido").val());
-            especificaciones.append('contacto', $("#contacto").val());
-            especificaciones.append('email', $("#email").val());
-            especificaciones.append('password', $("#password").val());
-            especificaciones.append('trabaja', especialista);
-            especificaciones.append('direccion', $("#direccion").val());
-            especificaciones.append('descripcion', $("#descripcion").val());
-            especificaciones.append('especializacion_id', $("#categorias").val());
+      const acceptCheckbox = document.getElementById("aceptar-terminos");
+      if (!acceptCheckbox.checked) {
+        alert("Debes aceptar los términos y condiciones para continuar.");
+      } else {
+        var especificaciones = new FormData();
 
-            //Llamo la funcion enviandole los parametros obtenidos
-            console.log(especificaciones);
-            RegistrarUsuario(especificaciones);
-          }
-        })
-        
-      </script>
+        especificaciones.append('nombre', $("#nombre").val());
+        especificaciones.append('apellido', $("#apellido").val());
+        especificaciones.append('contacto', $("#contacto").val());
+        especificaciones.append('email', $("#email").val());
+        especificaciones.append('password', $("#password").val());
+        especificaciones.append('trabaja', especialista);
+        especificaciones.append('direccion', $("#direccion").val());
+        especificaciones.append('descripcion', $("#descripcion").val());
+        especificaciones.append('especializacion_id', $("#categorias").val());
 
-      <script>
+        //Llamo la funcion enviandole los parametros obtenidos
+        console.log(especificaciones);
+        RegistrarUsuario(especificaciones);
+      }
+    })
+  </script>
+
+  <script>
 
 
 
 
-      </script>
+  </script>
 
 </body>
 

@@ -1,0 +1,134 @@
+header {
+    background-color: #FAFAFA !important;
+}
+
+.barra {
+    background-color: #FAFAFA !important;
+}
+
+body {
+    background-color: #ECECEC;
+}
+
+.beneficios {
+    background-color: #FAFAFA;
+    margin-top: 50px;
+    padding: 50px 100px;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.10);
+}
+
+.beneficios h3 {
+    color: #252B42;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    padding-bottom: 45px;
+}
+
+.beneficio .icono {
+    width: 150px;
+    height: 150px;
+    background-color: #ECECEC;
+    font-size: 54px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FF6723;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.10));
+    margin: auto;
+    margin-bottom: 15px;
+}
+
+.beneficio h4 {
+    color: #252B42;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+}
+
+.beneficio p {
+    color: #252B42;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+}
+
+.form-contacto {
+    border-radius: 5px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.10);
+    margin-top: 50px;
+    margin-bottom: 70px;
+    background-color: #FAFAFA;
+    margin-top: 50px;
+    text-align: center;
+    padding-block: 50px;
+}
+
+.contacto h3 {
+    color: #252B42;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 40px;
+    font-weight: 700;
+}
+
+.contacto p {
+    color: #737373;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    padding-bottom: 10px;
+}
+
+.contacto input {
+    margin-block-end: 20px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 17px;
+}
+
+.contacto textarea {
+    width: 100%;
+    margin-block-end: 20px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 17px;
+    resize: vertical;
+    border: 1px solid #ced4da;
+}
+
+.contacto .enviar {
+    border-radius: 10px;
+    background: #FF685B;
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    padding: 15px 20px;
+}
+
+.contacto .enviar:hover {
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.47);
+}
+
+footer {
+    background-color: #fafafa !important;
+}
