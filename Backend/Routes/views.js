@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import {viewUsuariosEspecialistas, UsuarioLogeado, getUsuario, viewsTodosLosUsuarios} from '../Controllers/usuarios.js'
+import {viewUsuariosEspecialistas, UsuarioLogeado, getUsuario, viewsTodosLosUsuarios, viewProyectos} from '../Controllers/usuarios.js'
 import { viewEspecializacionUsuario, viewEspecializaciones, getEspecializacionPerfil, viewEspecializacionesNueva } from '../Controllers/especializaciones.js';
 
 const router = Router();
@@ -95,18 +95,24 @@ router.get('/perfil/:id', function (req, res) {
     var idUsuario = (req.session.idUsuario || 0);
     var usuarioPerfil = getUsuario(idPerfil);
     var especializacionPerfil = getEspecializacionPerfil(idPerfil);
+    var proyectosPerfil = viewProyectos(idPerfil);
+
     usuarioPerfil.then(function(usuario)
     {
         especializacionPerfil.then(function(especializaciones)
         {
             usuarioLogeado.then(function(logeado)
             {
-                res.render('../Frontend/views/pages/perfil', {
-                    "user": usuario,
-                    "id": idUsuario,
-                    "especializaciones": especializaciones,
-                    "usuarioLogeado": logeado,
-                });
+                proyectosPerfil.then(function(proyectos)
+                {
+                    res.render('../Frontend/views/pages/perfil', {
+                        "user": usuario,
+                        "id": idUsuario,
+                        "especializaciones": especializaciones,
+                        "usuarioLogeado": logeado,
+                        "proyectos": proyectos,
+                    });
+                })
             })      
         })
   

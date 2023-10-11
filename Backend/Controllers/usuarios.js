@@ -36,6 +36,20 @@ export const viewUsuariosEspecialistas = (pagina) =>
     });
 }
 
+export const viewProyectos = (id_usuario) =>
+{
+    //Promesa para asegurarme de tener los datos antes de enviarlos
+    return new Promise (function(resolve)
+    {
+        connection.query(
+            'SELECT * FROM proyectos WHERE id_usuario = ?',
+            [id_usuario],
+            function (err, results) {
+                resolve(results);
+            }
+        );
+    });
+}
 export const UsuarioLogeandose = async (req, res) => 
 {
     //Obtengo los datos ingresados por el usuario
@@ -335,7 +349,7 @@ export const AsignoEspecializacion = async (req, res) =>
 
     //Si el espacio no esta vacio inserto la especialidad junto al id del usuario
 
-    //1,5,3
+    //Si el usuario carga mas de un trabajo, separo las distintas id y hago una consulta agregando cada trabajo seleccionado
     var especializaciones = id_especializacion.split(",");
     especializaciones.forEach(function(e){
         connection.query(
@@ -403,6 +417,34 @@ export const InsertoImagenPortada = async (req, res) =>
     );
 };
 
+export const AgregoProyecto = async (req, res) => 
+{
+    const id_usuario = (req.session.idUsuario || 0);
+    
+    const {titulo, descripcion} = req.body;
+
+    //Obtengo el nombre de la imagen por multer
+    const filename = '/Frontend/uploads/' + req.file.filename;
+   
+    //Inserto la ruta donde esta guardada la imagen en la base de datos
+    connection.query(
+        'INSERT proyectos (id_usuario, titulo, descripcion, path) VALUES (?,?,?,?)',
+        [id_usuario, titulo, descripcion, filename],
+        function (err, results) {
+            if (err) 
+            {
+                console.error(err);
+                res.status(500).json({ error: 'Error al cargar los datos' });
+            } else 
+            {
+                res.json({
+                    "error": 0,
+                });
+            }
+        }
+    );
+};
+
 function CrearToken()
 {
     var numero = Math.floor(Math.random() * 200000);
@@ -460,8 +502,6 @@ export const viewsTodosLosUsuarios = (pagina, categoria) =>
         if (categoria != "") sql += "AND EXISTS(SELECT EU.* FROM especializacion_usuario EU WHERE EU.id_especializacion = '"+categoria+"' AND EU.id_usuario = U.id) ";
         sql += "ORDER BY U.destacado DESC ";
         //sql += "LIMIT 10 OFFSET ?";
-        console.log(sql)
-        console.log(offset);
         connection.query(
             sql,
             [offset],

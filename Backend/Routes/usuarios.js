@@ -1,5 +1,5 @@
 import {Router} from 'express';
-import {getUsuarios , UsuarioLogeandose, UsuarioValidado, RegistroUsuario, InsertoImagenPerfil, AsignoEspecializacion, InsertoImagenPortada} from '../Controllers/usuarios.js'
+import {getUsuarios , UsuarioLogeandose, UsuarioValidado, RegistroUsuario, InsertoImagenPerfil, AsignoEspecializacion, InsertoImagenPortada, AgregoProyecto} from '../Controllers/usuarios.js'
 
 import multer from 'multer';
 
@@ -31,5 +31,6 @@ router.post('/asignoespecializacion' , AsignoEspecializacion);
 //Subida de archivo
 router.post('/insertoimagenperfil', upload.single("usuarioFoto"), InsertoImagenPerfil);
 router.post('/insertoimagenportada', upload.single("usuarioFoto"), InsertoImagenPortada);
+router.post('/agregoproyecto', upload.single("imagen"), AgregoProyecto);
 
 export default router;

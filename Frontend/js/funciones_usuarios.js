@@ -63,8 +63,6 @@ function RegistrarUsuario(especificaciones)
                                     alert(r.mensaje);
                                 } else
                                 {
-                                   /*  sessionStorage.setItem("IdUsuario" , r.usuario.id);
-                                    sessionStorage.setItem("Token" , r.token); */
                                     //Si trabaja, comienza el ajax para asignar el trabajo que se selecciono 
                                     if (r.usuario.especialista != 0)
                                     {
@@ -175,7 +173,8 @@ function ValidarUsuario()
 
 
 function InsertarImagenes(datosPerfil, datosPortada)
-{   //Comienzan los ajaxs para cargar ambas fotos al servidor y base de datos
+{   
+    //Comienzan los ajaxs para cargar ambas fotos al servidor y base de datos
     $.ajax(
         {
            "url": URL_BASE + "insertoimagenperfil",
@@ -200,6 +199,32 @@ function InsertarImagenes(datosPerfil, datosPortada)
                         location.href = "/";
                     }
                 })
+           }
+        })
+}
+
+function AgregarProyecto(datos)
+{
+
+    var titulo = datos.get('titulo');
+
+    if(titulo == "")
+    {
+      alert("Debe ingresar un titulo para el proyecto");
+      return false;
+    }
+    
+    $.ajax(
+        {
+           "url": URL_BASE + "agregoproyecto",
+           "type": "POST",
+           "processData": false,
+           "contentType": false,           
+           "dataType": "json",
+           "data": datos,
+           success: function(data)
+           {
+               alert("Proyecto agregado correctamente");
            }
         })
 }

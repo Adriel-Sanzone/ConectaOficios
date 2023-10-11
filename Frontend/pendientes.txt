@@ -5,8 +5,8 @@ hacer barra de busqueda funcional o lista desplegable en header
 como dirigir a la categoria filtrada en la barra ----------
 perfil esta todo comentado???
 agregar boton para cambiar de pagina en oficio (inicia en 0)-----------------------------------
-no cargarn las img de oficios cuando se registra
 hacer funcional especializacion en registro y perfiles en oficios, perfil e index
 hacer funcional botones de oficios\
 hacer funcioanl tablas de admin
-el banner en oficios no dirige a destacar
+arreglar estilo de ventanas emergentes cuando un usuario edita su perfil 
+agregar una foto de proyecto/trabajo default

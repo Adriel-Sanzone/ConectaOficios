@@ -155,62 +155,42 @@
       </div>
     </div>
 
-
+    <!-- Contador de cantidad de proyectos -->
+    <% var contados_proyectos = 0 %>
+    <% proyectos.forEach(function(p){ %>
+    <% contados_proyectos += 1 %>
+    <% }) %>
     <div class="container">
       <div class="contenido">
         <div class="contenedor-flecha">
-          <h5 class="titulo-resenia">Proyectos / Trabajos</h5>
+          <h5 class="titulo-resenia"> <%=contados_proyectos%>  Proyectos / Trabajos</h5>
           <i class="fas fa-chevron-down icono-perfil"></i>
         </div>
         <div class="contenedor-info " style="display:none">
-
-          <!-- HAY QUE HACER UNA TABLA PARA TRABAJOS/PROYECTOS DONDE PODER GUARDARLOS Y LLAMARLOS DINAMICAMENTE
-             <%/*trabajos.forEach((trabajo) => { %>
-                <div class="proyecto">
-                  <div class="proyectos-cuerpo d-flex">
-                    <div class="encabezado">
-                      <img src="<%= trabajo.imagen %>" alt="<%= trabajo.titulo %>">
-                    </div>
-                    <div class="cuerpo-proyecto">
-                      <h5 class="titulo">
-                        <%= trabajo.titulo %>
-                      </h5>
-                      <p class="text-proyecto"><%= trabajo.descripcion %></p>
-                    </div>
-                  </div>
-                  <div class="vector">
-                    <p></p>
-                  </div>
-                </div>
-            <% }); */%>
-          -->
-
           <!-- Muestro el boton de agregar trabajo solo si el usuario es el dueño del perfil -->
           <% if (user.id === id) { %>
             <button class="mb-5" id="btn-formulario-Trabajos" onclick="FormularioTrabajos()">Agregar Trabajo</button>
           <% } %>
 
+          <% proyectos.forEach(function(p){ %>
+          <% contados_proyectos += 1 %>
           <div class="proyecto">
             <div class="proyectos-cuerpo d-flex ">
               <div class="encabezado">
-                <img src="/Frontend/img/prueba-trabajador.jpg" alt="">
+                <img src="<%=p.path%>" alt="">
               </div>
               <div class="cuerpo-proyecto">
                 <h5 class="titulo">
-                  Titulo
+                  <%=p.titulo%>
                 </h5>
-                <p class="text-proyecto">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam ab
-                  explicabo
-                  quisquam exercitationem
-                  quaerat odit ad ipsa, repudiandae, fugiat quod nam distinctio quo non obcaecati illum eum atque.
-                  Officia,
-                  id.</p>
+                <p class="text-proyecto"><%=p.descripcion%></p>
               </div>
             </div>
             <div class="vector">
               <p></p>
             </div>
           </div>
+          <% }) %>
 
         </div>
       </div>
@@ -262,8 +242,8 @@
           <div class="text-center">
             <h3>Agregar trabajos</h3>
           </div>
-          <label for="imagen">Foto:</label>
-          <input type="file" id="imagen" name="imagen" accept="image/*">
+          <label for="imagen-proyecto">Foto:</label>
+          <input type="file" id="imagen-proyecto" name="imagen" accept="image/*">
 
           <label for="titulo">Título:</label>
           <input type="text" id="titulo" name="titulo">
@@ -271,7 +251,7 @@
           <label for="descripcion">Descripción:</label>
           <textarea id="descripcion" name="descripcion"></textarea>
           <div class="d-flex">
-            <button type="submit">Guardar</button>
+            <a id="guardar-proyecto" type="submit">Guardar</a>
             <button type="button" onclick="CerrarTrabajos()">Cancelar</button>
           </div>
         </form>
@@ -298,12 +278,31 @@
       <!-- FIN FORMULARIO NOMBRE/DESCRIPCION-->
 
       <script src="/Frontend/js/script.js"></script>
+      <script src="/Frontend/js/funciones_usuarios.js"></script>
+
+      <script>
+         $("#guardar-proyecto").on("click", function() {
+          
+          var fotoProyecto = $("#imagen-proyecto");
+
+          var especificaciones = new FormData();
+
+          especificaciones.append("imagen", fotoProyecto[0].files[0]);
+          especificaciones.append("titulo", $("#titulo").val())
+          especificaciones.append("descripcion", $("#descripcion").val())
+
+          console.log("MIS dato")
+          console.log(especificaciones)
+
+          AgregarProyecto(especificaciones);
+
+         })
+      </script>
 
       <script>
 
         $(".unloged").on("click", function() {
         alert("Inicia sesion para ver esta informacion.");
-        location.href = "/iniciarSesion";
         });
 
         /* FORMULARIO PARA EDITAR NOMBRE Y DESCRIPCION*/

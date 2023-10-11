@@ -23,12 +23,12 @@ export const viewEspecializacionesNueva = () =>
         connection.query(
             sql,
             function (err, results) {
-               //Creo array para almacenar los usuarios coincidentes
+               //Creo array para almacenar las categorias coincidentes
                var categorias = new Array();
-               //Creo un array para almacenar las Promises que rellenaran una variable de "usuarios"
+               //Creo un array para almacenar las Promises que rellenaran una variable de "categorias"
                var misPromesas = new Array();
 
-               //Recorro el array usuarios 
+               //Recorro el array categorias 
                results.forEach(function(categoria){
                     
                    //Le agrego los valores obtenidos del query
@@ -40,14 +40,13 @@ export const viewEspecializacionesNueva = () =>
                    
                });
 
-               //Luego que terminen todas las promesas de misPromesas recorro usuarios para añadirle la nueva variable
+               //Luego que terminen todas las promesas de misPromesas recorro categorias para añadirle la nueva variable
                Promise.all(misPromesas)
                    .then((especializaciones) => {
                        especializaciones.forEach(function(especializacion){
-                        console.log(especializacion);
                         categorias[especializacion[0].id_categoria].especializaciones = especializacion;
                        });
-                       //Resuelvo usuarios que ahora contiene los datos del usuario y su especializacion
+                       //Resuelvo categorias que ahora contiene los datos del especializacion y su categoria con id
                        resolve(categorias);
                    })
                    //Si ocurre algun error
@@ -97,7 +96,7 @@ export const getEspecializacionPerfil = (id_usuario) =>
 function getEspecializacionesByCategorias(id_categoria) {
     return new Promise (function(resolve)
     {
-        //Obtengo el nombre de la especializacion correspondiente por medio del id del usuario
+        //Obtengo la especializacion correspondiente por medio del id de la cateogira
         var sql = 'SELECT especializaciones.id, especializaciones.especializacion, categorias.categoria, especializaciones.id_categoria FROM especializaciones JOIN categorias ON especializaciones.id_categoria = categorias.id WHERE categorias.id = ? ORDER BY especializaciones.id_categoria ASC';
         connection.query(sql,
             [id_categoria],

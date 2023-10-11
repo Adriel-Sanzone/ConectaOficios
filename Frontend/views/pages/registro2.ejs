@@ -48,18 +48,16 @@
     //Tras apretar "Crear cuenta" obtengo los valores de los inputs
     $(".registrar").on("click", function() {
 
-      var id = sessionStorage.getItem("IdUsuario");
       var fotoPerfil = $("#imagen_perfil");
       var fotoPortada = $("#imagen_portada");
 
       var datosFotoPerfil = new FormData();
       datosFotoPerfil.append("usuarioFoto", fotoPerfil[0].files[0]);
-      datosFotoPerfil.append("id_usuario", id);
 
       var datosFotoPortada = new FormData();
       datosFotoPortada.append("usuarioFoto", fotoPortada[0].files[0]);
-      datosFotoPortada.append("id_usuario", id);
 
+      console.log(datosFotoPerfil);
       InsertarImagenes(datosFotoPerfil, datosFotoPortada);
     })
 
