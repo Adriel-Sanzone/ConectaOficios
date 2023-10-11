@@ -210,8 +210,8 @@ export const RegistroUsuario = async (req, res) =>
 {
     //Obtengo los datos ingresados por el usuario
     let {nombre, apellido, contacto, email, password, especialista, direccion, descripcion} = req.body;
-    const perfil_sin_foto = '/Frontend/img/usuario-sin-foto.png';
-    const portada_sin_foto = '/Frontend/img/portada-sin-foto.png';
+    const perfil_sin_foto = '/Frontend/uploads/usuario-sin-foto.png';
+    const portada_sin_foto = '/Frontend/uploads/portada-sin-foto.png';
 
     //Si el espacio de email estaba vacio
     if(email == "")
@@ -334,24 +334,20 @@ export const AsignoEspecializacion = async (req, res) =>
     };
 
     //Si el espacio no esta vacio inserto la especialidad junto al id del usuario
-    connection.query(
-        'INSERT INTO especializacion_usuario (id_usuario, id_especializacion) VALUES (?,?)',
-        [id_usuario, id_especializacion],
-        function(err, results)
-        {
-            if (err) 
-            {
-                console.error(err);
-                res.status(500).json({ error: 'Error al obtener los datos' });
-            } else 
-            {
-                //Devuelvo que NO hay error
-                res.json({
-                    "error": 0,
-                })
-            }    
-        }
-    )
+
+    //1,5,3
+    var especializaciones = id_especializacion.split(",");
+    especializaciones.forEach(function(e){
+        connection.query(
+            'INSERT INTO especializacion_usuario (id_usuario, id_especializacion) VALUES (?,?)',
+            [id_usuario, e],
+        )
+    });
+
+    res.json({
+        "error": 0,
+    });
+
 }
 
 
@@ -451,15 +447,23 @@ function ComprueboEmailExistente(email)
     });
 }
 
-export const viewsTodosLosUsuarios = (pagina) =>
+export const viewsTodosLosUsuarios = (pagina, categoria) =>
 {
     var offset = pagina * 10;
     //Promesa para asegurarme de tener los datos antes de enviarlos
     return new Promise (function(resolve)
     {
         //Query para obtener todos los usuarios especialistas ordenados por promocion
+        var sql = "SELECT U.* ";
+        sql += "FROM usuarios U ";
+        sql += "WHERE U.especialista = 1 ";
+        if (categoria != "") sql += "AND EXISTS(SELECT EU.* FROM especializacion_usuario EU WHERE EU.id_especializacion = '"+categoria+"' AND EU.id_usuario = U.id) ";
+        sql += "ORDER BY U.destacado DESC ";
+        //sql += "LIMIT 10 OFFSET ?";
+        console.log(sql)
+        console.log(offset);
         connection.query(
-            'SELECT * FROM usuarios WHERE especialista = 1 ORDER BY destacado DESC LIMIT 10 OFFSET ?',
+            sql,
             [offset],
             function (err, resultados) {
                 //Creo array para almacenar los usuarios coincidentes

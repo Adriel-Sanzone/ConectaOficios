@@ -7,7 +7,7 @@ header {
 }
 
 body {
-    background-color: #ECECEC;
+    background-color: #ECECEC !important;
 }
 
 .beneficios {

@@ -14,17 +14,24 @@
     <% } else { %>
     <%- include ('../partials/header') %>
     <% } %>
-
+    
   <div class="container">
     <div class="row">
       <div class="col-md-3">
         <div class="categorias">
           <p>Categorías</p>
           <% especializacion.forEach(function(c){ %>
-          <div class="categoria <%=c.especializacion%>">
-            <input data-id="<%= c.id %>" class="checkbox-especializacion" type="checkbox" id="checkbox-<%= c.id %>">
-            <label for="checkbox-<%= c.id %>"><%= c.especializacion %></label>
-          </div>
+            <div>
+              <div class="padre"><%= c.categoria %></div>
+              <div class="hijos">
+                <% c.especializaciones.forEach(function(e){ %>
+                  <div class="categoria <%=e.especializacion%>">
+                    <input data-id="<%= e.id %>" class="checkbox-especializacion" type="checkbox" id="checkbox-<%= e.id %>">
+                    <label for="checkbox-<%= e.id %>"><%= e.especializacion %></label>
+                  </div>
+                <% }) %>
+              </div>
+            </div>
           <% }) %>
 
         </div>
@@ -57,7 +64,6 @@
                 <div class="info-persona">
                   <% c.especializaciones.forEach(function(e){ %>
                   <div class="especialidades">
-                    <h4>Agua</h4>
                     <h3><%= e.nombre %></h3>
                   </div>
                   <% }) %>
@@ -102,42 +108,46 @@
 
     $(document).ready(function() {
       // Obtengo todas las casillas de verificación
-      const checkboxes = document.querySelectorAll('.checkbox-especializacion');
+      $(".checkbox-especializacion").on("change", function(){
+        var checkedElements = new Array();
+        $('.checkbox-especializacion:checked').each(function(i, e) {
+          checkedElements.push($(e).attr('data-id'))
 
-      checkboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', () => {
+        });
 
-          var checkedElements = new Array();
-          $('.checkbox-especializacion:checked').each(function(i, e) {
-            checkedElements.push($(e).attr('data-id'))
+        if (checkedElements.length == 0) {
+          $('.persona').show();
+          return false;
+        }
 
-          });
+        $('.persona').each(function(i, e) {
+          var especializacion = $(e).attr('data-especializacion');
 
-          if (checkedElements.length == 0) {
-            $('.persona').show();
-            return false;
-          }
+          var ArrayEspecializaciones = especializacion.split(',');
 
-          $('.persona').each(function(i, e) {
-            var especializacion = $(e).attr('data-especializacion');
-
-            var ArrayEspecializaciones = especializacion.split(',');
-
-            var contador = 0;
-            ArrayEspecializaciones.forEach(function(id_especializacion) {
-              if (checkedElements.includes(id_especializacion)) {
-                contador++;
-              }
-            });
-
-            if (contador == 0) {
-              $(e).hide();
-            } else {
-              $(e).show();
+          var contador = 0;
+          ArrayEspecializaciones.forEach(function(id_especializacion) {
+            if (checkedElements.includes(id_especializacion)) {
+              contador++;
             }
           });
+
+          if (contador == 0) {
+            $(e).hide();
+          } else {
+            $(e).show();
+          }
         });
       });
+
+      var categoriaSeleccionada = localStorage.getItem("categoriaSeleccionada");
+      if (categoriaSeleccionada != null) {
+        setTimeout(function() {
+          console.log(categoriaSeleccionada);
+          $('.checkbox-especializacion[data-id="'+categoriaSeleccionada+'"]').prop("checked", true).trigger("change");
+          localStorage.removeItem("categoriaSeleccionada");
+        },100);
+      }
     });
   </script>
 

@@ -103,7 +103,29 @@ document.addEventListener("DOMContentLoaded", function () {
     const suggestions = document.getElementById("suggestions");
 
     // Lista de categorías
-    const categorias = ["Plomero", "Electricista", "Pintor", "Jardinero", "Gasista"];
+    //const categorias = ["Plomero", "Electricista", "Pintor", "Jardinero", "Gasista"];
+    const categorias = [
+        {
+            "id": "1",
+            "nombre": "Plomero",
+        },
+        {
+            "id": "2",
+            "nombre": "Electricista",
+        },
+        {
+            "id": "3",
+            "nombre": "Pintor",
+        },
+        {
+            "id": "4",
+            "nombre": "Jardinero",
+        },
+        {
+            "id": "5",
+            "nombre": "Gasista",
+        },
+    ];
 
     // Función para mostrar las sugerencias
     function showSuggestions() {
@@ -111,15 +133,19 @@ document.addEventListener("DOMContentLoaded", function () {
         const inputValue = searchInput.value.toLowerCase();
 
         categorias.forEach((categoria) => {
-            if (categoria.toLowerCase().includes(inputValue)) {
-                const listItem = document.createElement("li");
-                listItem.classList.add("list-group-item");
-                listItem.textContent = categoria;
-                listItem.addEventListener("click", () => {
-                    // Redirige a la página de oficios
-                    window.location.href = `oficios?categoria=${encodeURIComponent(categoria)}`;
-                });
-                suggestions.appendChild(listItem);
+            if (categoria.nombre.toLowerCase().includes(inputValue)) {
+                if (inputValue != "") {
+                    const listItem = document.createElement("li");
+                    listItem.classList.add("list-group-item");
+                    listItem.textContent = categoria.nombre;
+                    listItem.addEventListener("click", () => {
+                        // Redirige a la página de oficios
+                        //window.location.href = `/oficios/0?categoria=${encodeURIComponent(categoria.id)}`;
+                        localStorage.setItem("categoriaSeleccionada", categoria.id);
+                        window.location.href = `/oficios/0/`;
+                    });
+                    suggestions.appendChild(listItem);
+                }
             }
         });
 

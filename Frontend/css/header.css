@@ -152,6 +152,11 @@ header div .registrarse i{
     background: var(--azul);
 }
 
+#search-input:focus{
+    border: none !important;
+    box-shadow: none !important;
+}
+
 @media (max-width: 828px) {
 
     /* header */

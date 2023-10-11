@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import {viewUsuariosEspecialistas, UsuarioLogeado, getUsuario, viewsTodosLosUsuarios} from '../Controllers/usuarios.js'
-import { viewEspecializacionUsuario, viewEspecializaciones, getEspecializacionPerfil } from '../Controllers/especializaciones.js';
+import { viewEspecializacionUsuario, viewEspecializaciones, getEspecializacionPerfil, viewEspecializacionesNueva } from '../Controllers/especializaciones.js';
 
 const router = Router();
 
@@ -39,8 +39,9 @@ router.get('/iniciarSesion', function (req, res) {
     res.render('../Frontend/views/pages/iniciarSesion')
 });
 
-router.get('/oficios/pagina::pag', function (req, res) {
+router.get('/oficios/:pag', function (req, res) {
 
+    var categoria = req.query.categoria || "";
     var pagina = req.params.pag;
     var idUsuario = (req.session.idUsuario || 0);
     var tokenUsuario = (req.session.token || 0);
@@ -48,13 +49,15 @@ router.get('/oficios/pagina::pag', function (req, res) {
     var usuarioLogeado = UsuarioLogeado(idUsuario , tokenUsuario);
 
     //var usuariosEspecialistas = viewUsuariosEspecialistas(pagina);
-    var usuariosEspecialistas = viewsTodosLosUsuarios(pagina);
+    var usuariosEspecialistas = viewsTodosLosUsuarios(pagina, categoria);
 
-    var especializaciones = viewEspecializaciones();
+    //var especializaciones = viewEspecializaciones();
+    var especializaciones = viewEspecializacionesNueva();
     usuariosEspecialistas.then(function(usuarios)
     {
         especializaciones.then(function(especializacion)
         {
+            console.log(especializacion);
             usuarioLogeado.then(function(logeado)
             {
                 res.render("../Frontend/views/pages/oficios", {
