@@ -165,7 +165,7 @@ input[type="checkbox"] {
 
 .persona .descripcion {
     max-height: 105px;
-    min-height: 105px;
+    
     padding-bottom: 10px;
     overflow: auto;
 }
