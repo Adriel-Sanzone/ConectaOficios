@@ -189,23 +189,29 @@
     border-radius: 5px;
     background: #D9D9D9;
     padding: 25px 50px;
-    margin-block: 30px;
+    margin-inline: 100px;
+    border-radius: 5px;
+    background: #FAFAFA;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
 }
 
 .head-tablita {
+    margin-inline: 100px;
+    margin-top: 60px;
     display: flex;
     flex-direction: row;
     align-content: center;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    padding-bottom: 40px;
+    padding-bottom: 20px;
 }
 
-.tablita .head-tablita p {
-    color: #000;
+.head-tablita p {
+    color: #252B42;
     font-family: Montserrat;
     font-size: 20px;
-    font-weight: 400;
+    font-style: normal;
+    font-weight: 700;
     margin: 0;
 }
 
@@ -229,31 +235,40 @@
 }
 
 table thead th {
-    color: #000;
+    color: #252B42;
     font-family: Montserrat;
     font-size: 14px;
     font-weight: 700;
-    padding-right: 20px;
+    padding-inline: 30px;
 }
 
 table tbody td {
-    background-color: #FFF;
-    padding-right: 30px;
+    color: #252B42;
+    padding-inline: 30px;
     font-size: 16px;
 }
 
 table tbody .editar {
-    color: #252B42;
+    color: #252b42;
     font-family: Montserrat;
     font-weight: 700;
     padding-inline: 10px;
+    font-size: 16px;
 }
 
 table tbody .eliminar {
-    color: #E74040;
+    color: #F57F25;
     font-family: Montserrat;
     font-weight: 700;
-    border: 2px solid #E74040;
     padding-inline: 10px;
     margin: 5px;
+    font-size: 16px;
+}
+table tbody .agregar{
+    color: #6A9C89;
+    font-family: Montserrat;
+    font-weight: 700;
+    padding-inline: 10px;
+    margin: 5px;
+    font-size: 16px;
 }
