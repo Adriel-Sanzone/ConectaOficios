@@ -283,6 +283,8 @@
       <script>
          $("#guardar-proyecto").on("click", function() {
 
+          var fotoProyecto = $("#imagen-proyecto");
+          
           var especificaciones = new FormData();
 
           especificaciones.append("imagen", fotoProyecto[0].files[0]);
