@@ -7,26 +7,30 @@
 </head>
 
 <body>
-  <%- include ('../../partials/headerRegistro') %>
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-3">
         <div class="aside">
-          <p id="toggleButton">Base de datos<i class="fas fa-chevron-down"></i></p>
+          <a href="/admin"><i class="fa-solid fa-house-chimney"></i>Inicio</a>
+          <p id="toggleButton"><i class="fa-solid fa-server"></i>Base de datos<i class="fas fa-chevron-down abajo"></i></p>
           <ul class="lista-secundaria" style="display: none;">
             <li><a href="categorias">Categorías</a></li>
             <li><a href="especializaciones">Especializaciones</a></li>
             <li><a href="especializacionDeUsuario">Especializacion de Usuario</a></li>
             <li><a href="proyectos">Proyectos</a></li>
-            <li><a href="resenias">Reseñas</a></li>
             <li><a href="usuariosAdmin">Usuarios</a></li>
           </ul>
         </div>
+        <div class="aside-usuario">
+          <a href="/index"><i class="fa-solid fa-arrow-left"></i>Cerrar Sesión</a>
+          <img class="img-fluid" src="/Frontend/uploads/fede.png" alt="">
+        </div>
       </div>
+
       <div class="col-md-9">
         <div class="tablita">
           <div class="head-tablita">
-            <p class="title">Tabla usuarios</p>
+            <p class="title">Tabla Usuarios</p>
             <div class="boton-agregar">
               <a href="">Agregar<i class="fas fa-plus"></i></a>
             </div>

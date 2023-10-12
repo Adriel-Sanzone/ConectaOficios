@@ -10,3 +10,4 @@ hacer funcional botones de oficios\
 hacer funcioanl tablas de admin
 arreglar estilo de ventanas emergentes cuando un usuario edita su perfil 
 agregar una foto de proyecto/trabajo default
+agregar header para usuario en admin

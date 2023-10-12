@@ -165,7 +165,6 @@ input[type="checkbox"] {
 
 .persona .descripcion {
     max-height: 105px;
-    
     padding-bottom: 10px;
     overflow: auto;
 }
@@ -173,7 +172,7 @@ input[type="checkbox"] {
 .persona .descripcion p {
     color: var(--gris);
     font-size: 14px;
-    padding-block-end: 7px;
+    margin: 0;
 }
 
 .personas .persona .ubicacion {
@@ -183,7 +182,6 @@ input[type="checkbox"] {
     font-size: 14px;
     font-weight: var(--bold);
     margin-block-end: 7px;
-    padding-top: 10px;
 }
 
 .personas .persona .ubicacion p {
@@ -203,11 +201,12 @@ input[type="checkbox"] {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    margin-inline-end: 10px;
+    margin-top: 10px;
 }
 
 .persona button i {
     font-size: 24px;
-    margin-inline-start: 10px;
 }
 
 .botones {

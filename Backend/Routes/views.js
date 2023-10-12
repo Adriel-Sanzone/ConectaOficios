@@ -145,17 +145,9 @@ router.get('/proyectos', function (req, res) {
     res.render('../Frontend/views/pages/tablas-admin/proyectos')
 });
 
-router.get('/resenias', function (req, res) {
-    res.render('../Frontend/views/pages/tablas-admin/resenias')
-});
-
 router.get('/usuariosAdmin', function (req, res) {
     res.render('../Frontend/views/pages/tablas-admin/usuariosAdmin')
 });
-
-
-
-
 
 
 export default router;

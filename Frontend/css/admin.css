@@ -1,10 +1,12 @@
 .col-md-3 {
-    background: #D9D9D9;
+    background: #252B42;
     min-height: 100vh;
-}
-
-.col-md-9{
-    padding-inline: 100px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    justify-content: space-between;
+    align-items: flex-start;
 }
 
 .aside {
@@ -12,14 +14,32 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    padding: 20px;
+    margin-top: 40px;
+    padding-left: 15px;
+}
+
+.aside a {
+    text-decoration: none;
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 16px;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0;
+    padding-bottom: 30px;
+}
+
+.aside a:hover {
+    color: #F57F25;
 }
 
 .aside p {
-    color: #000;
+    color: #FFF;
     font-family: Montserrat;
-    font-size: 14px;
-    font-weight: 700;
+    font-size: 16px;
     display: flex;
     flex-direction: row;
     align-content: center;
@@ -28,28 +48,140 @@
     margin: 0;
 }
 
-.aside p i {
-    margin-left: 10px;
+.aside p:hover {
+    color: #F57F25;
 }
 
+.aside i {
+    margin-right: 10px;
+    font-size: 15px;
+}
+
+.aside i:hover {
+    color: #F57F25;
+}
+
+.aside .abajo {
+    margin-left: 10px;
+    font-size: 12px;
+}
+
+.aside-usuario {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    margin-bottom: 15px;
+    padding-inline: 15px;
+}
+
+.aside-usuario a {
+    text-decoration: none;
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 16px;
+    border: 3px solid #fafafa;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+.aside-usuario a:hover {
+    color: #F57F25;
+    border: 3px solid #F57F25;
+}
+
+.aside-usuario i {
+    margin-right: 10px;
+}
+
+.aside-usuario img {
+    max-width: 55px;
+    border-radius: 50%;
+    border: 3px solid #fafafa;
+}
+
+.usuario {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 60px;
+}
+
+.usuario h3 {
+    color: #252B42;
+    font-family: Montserrat;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+}
+
+.tarjetitas{
+    margin-top: 40px;
+}
+
+.tarjetitas .col-md-4{
+    padding: 30px;
+}
+
+.tarjetita {
+    padding: 20px;
+    border-radius: 5px;
+    background: #FAFAFA;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 200px;
+}
+
+.tarjetita .numero {
+    color: #252B42;
+    font-family: Montserrat;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 80px;
+    margin: 0;
+}
+
+.tarjetita .titulo-tarjetita {
+    color: #252B42;
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+}
+
+/*                                              */
 #toggleButton {
     cursor: pointer;
 }
 
 .lista-secundaria a {
-    list-style: none;
-    color: #000;
+    color: #FFF;
     font-family: Montserrat;
-    font-size: 15px;
+    font-size: 14px;
+    margin: 0;
+    padding-top: 15px;
+    padding-bottom: 0px;
     text-decoration: none;
+    list-style: none;
 }
 
 .lista-secundaria a:hover {
-    color: #E74040;
+    color: #F57F25;
+}
+
+.lista-secundaria {
+    padding-left: 25px;
 }
 
 .lista-secundaria li {
     padding-bottom: 5px;
+    list-style-type: none
 }
 
 .tablita {
