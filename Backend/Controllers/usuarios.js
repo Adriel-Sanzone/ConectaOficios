@@ -220,6 +220,15 @@ export const UsuarioLogeado = (id, token) =>
     });
 }
 
+export const CerrarSesion = async (req, res) => 
+{
+    req.session.idUsuario = 0;
+    req.session.token = 0;
+    res.json({
+        "mensaje": "Sesion cerrada",
+    });
+};
+
 export const RegistroUsuario = async (req, res) => 
 {
     //Obtengo los datos ingresados por el usuario
@@ -364,7 +373,6 @@ export const AsignoEspecializacion = async (req, res) =>
 
 }
 
-
 export const InsertoImagenPerfil = async (req, res) => 
 {
     const id_usuario = (req.session.idUsuario || 0);
@@ -419,12 +427,20 @@ export const InsertoImagenPortada = async (req, res) =>
 
 export const AgregoProyecto = async (req, res) => 
 {
+    var filename = '/Frontend/uploads/';
+
+    if (!req.file || !req.file.filename) {
+        filename += "proyecto-default.jpg"
+    } else
+    {
+        filename += req.file.filename;
+    }
+    
     const id_usuario = (req.session.idUsuario || 0);
     
     const {titulo, descripcion} = req.body;
 
     //Obtengo el nombre de la imagen por multer
-    const filename = '/Frontend/uploads/' + req.file.filename;
    
     //Inserto la ruta donde esta guardada la imagen en la base de datos
     connection.query(
@@ -440,6 +456,72 @@ export const AgregoProyecto = async (req, res) =>
                 res.json({
                     "error": 0,
                 });
+            }
+        }
+    );
+};
+
+export const EditoPerfil = async (req, res) => 
+{
+    const id_usuario = (req.session.idUsuario || 0);
+
+    //Obtengo los datos ingresados por el usuario
+    let {nombre, apellido, contacto, direccion, descripcion} = req.body;
+
+    //Si el espacio de nombre estaba vacio
+    if(nombre == "")
+    {
+        res.json({
+            "error": 1,
+            "mensaje": "El nombre esta vacio",
+        });
+        return false;
+    };
+    //Si el espacio de apellido estaba vacio
+    if(apellido == "")
+    {
+        res.json({
+            "error": 1,
+            "mensaje": "El apellido esta vacio",
+        });
+        return false;
+    };
+    //Si el espacio de contacto estaba vacio
+    if(contacto == "")
+    {
+        res.json({
+            "error": 1,
+            "mensaje": "El contacto esta vacio",
+        });
+        return false;
+    };
+    //Si el espacio de direccion estaba vacio habiendo marcado que quiere ser especialista
+    if(direccion == "")
+    {
+        res.json({
+            "error": 1,
+            "mensaje": "El direccion esta vacio",
+        });
+        return false;
+    };
+
+    //Creo la consulta para cambiar los datos del usuario
+    connection.query(
+        'UPDATE usuarios SET nombre = ?, apellido = ?, contacto = ?, direccion = ?, descripcion = ? WHERE id = ?',
+        [nombre, apellido, contacto, direccion, descripcion, id_usuario],
+
+        function (err, results) 
+        {
+            if (err) 
+            {
+                console.error(err);
+                res.status(500).json({ error: 'Error al obtener los datos' });
+            } else 
+            {
+                //Devuelvo que NO hay error
+                res.json({
+                    "error": 0,
+                })
             }
         }
     );

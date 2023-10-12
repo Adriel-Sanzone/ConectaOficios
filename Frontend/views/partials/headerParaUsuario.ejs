@@ -53,7 +53,7 @@
               <a class="nav-link" href="#">Hacerse Premium</a>
             </li>
             <li class="nav-item fixed-bottom text-end">
-              <a class="nav-link" href="#">Cerrar Sesion</a>
+              <a id="cerrar-sesion" class="nav-link" href="#">Cerrar Sesion</a>
             </li>
 
         </div>
@@ -79,3 +79,10 @@
   </div>
 </div>
 </div>
+
+<script src="/Frontend/js/funciones_usuarios.js"></script>
+<script>
+  $("#cerrar-sesion").on("click", function(){
+    CerrarSesion();
+  })
+</script>

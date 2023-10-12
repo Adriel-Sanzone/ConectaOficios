@@ -249,7 +249,7 @@
           <input type="text" id="titulo" name="titulo">
 
           <label for="descripcion">Descripción:</label>
-          <textarea id="descripcion" name="descripcion"></textarea>
+          <textarea id="descripcion" name="descripcion-proyecto"></textarea>
           <div class="d-flex">
             <a id="guardar-proyecto" type="submit">Guardar</a>
             <button type="button" onclick="CerrarTrabajos()">Cancelar</button>
@@ -270,8 +270,8 @@
           <label for="direccion">Direccion:</label>
           <input value="<%= user.direccion %>" type="text" id="direccion" name="direccion">
           <label for="descripcion">Descripción:</label>
-          <textarea value="<%= user.descripcion %>"  id="descripcion" name="descripcion"></textarea>
-          <button type="submit">Guardar</button>
+          <textarea value="<%= user.descripcion %>"  id="descripcion-perfil" name="descripcion"></textarea>
+          <a id="guardar-cambios-perfil" type="submit">Guardar</a>
           <button type="button" onclick="cerrarFormulario()">Cancelar</button>
         </form>
       </div>
@@ -282,21 +282,31 @@
 
       <script>
          $("#guardar-proyecto").on("click", function() {
-          
-          var fotoProyecto = $("#imagen-proyecto");
 
           var especificaciones = new FormData();
 
           especificaciones.append("imagen", fotoProyecto[0].files[0]);
           especificaciones.append("titulo", $("#titulo").val())
-          especificaciones.append("descripcion", $("#descripcion").val())
-
-          console.log("MIS dato")
-          console.log(especificaciones)
+          especificaciones.append("descripcion", $("#descripcion-proyecto").val())
 
           AgregarProyecto(especificaciones);
 
          })
+
+         $("#guardar-cambios-perfil").on("click", function() {
+
+          var especificaciones = new FormData();
+
+          especificaciones.append("nombre", $("#nombre").val())
+          especificaciones.append("apellido", $("#apellido").val())
+          especificaciones.append("contacto", $("#contacto").val())
+          especificaciones.append("direccion", $("#direccion").val())
+          especificaciones.append("descripcion", $("#descripcion-perfil").val())
+
+          EditoPerfil(especificaciones);
+
+         })
+
       </script>
 
       <script>

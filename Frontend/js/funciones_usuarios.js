@@ -145,30 +145,28 @@ function BuscarUsuario(especificaciones)
 
 function ValidarUsuario() 
 {
-    //if (id != null && id != 0) {
-        $.ajax({
-            "url": URL_BASE + "usuariovalidado",
-            "type": "POST",
-            "dataType": "json",
-            "data": 
+    $.ajax({
+        "url": URL_BASE + "usuariovalidado",
+        "type": "POST",
+        "dataType": "json",
+        "data": 
+        {
+        },
+        success: function (r) 
+        {
+            if (r.error != 0) 
             {
-            },
-            success: function (r) 
+                console.log("error");
+                alert(r.mensaje);
+                sessionStorage.setItem("IdUsuario", "");
+                sessionStorage.setItem("Token", "");
+                location.href = "/iniciarSesion";
+            } else 
             {
-                if (r.error != 0) 
-                {
-                    console.log("error");
-                    alert(r.mensaje);
-                    sessionStorage.setItem("IdUsuario", "");
-                    sessionStorage.setItem("Token", "");
-                    location.href = "/iniciarSesion";
-                } else 
-                {
-                    console.log("validado");
-                }
+                console.log("validado");
             }
-        });
-    //} 
+        }
+    });
 }
 
 
@@ -227,4 +225,61 @@ function AgregarProyecto(datos)
                alert("Proyecto agregado correctamente");
            }
         })
+}
+
+function CerrarSesion()
+{
+    $.ajax({
+        "url": URL_BASE + "cerrarsesion",
+        "type": "POST",
+        "dataType": "json",
+        "data": 
+        {
+        },
+        success: function (r) 
+        {
+            alert(r.mensaje);
+            location.href="/";
+        }
+    });
+}
+
+function EditoPerfil(datos) {
+    //Creo bandera para que no registre ajaxs mientras hay uno en ejecucion
+    if (window.Enviando == 1) return false;
+    window.Enviando = 1;
+
+    var nombre = datos.get('nombre');
+    var apellido = datos.get('apellido');
+    var contacto = datos.get('contacto');
+    var direccion = datos.get('direccion');
+    var descripcion = datos.get('descripcion');
+
+    //Comienzo el ajax para registrar los datos inciales
+    $.ajax(
+    {
+        "url": URL_BASE + "editoperfil",
+        "type": "POST",
+        "dataType": "json",
+        "data":
+        {
+            "nombre": nombre,
+            "apellido": apellido,
+            "contacto": contacto,
+            "direccion": direccion,
+            "descripcion": descripcion,
+        },
+        success: function (r) 
+        {
+            window.Enviando = 0;
+            if (r.error == 1) 
+            {
+                alert(r.mensaje);
+            } else
+            {
+                alert("Perfil modificado exitosamente");
+                location.reload();
+            }
+        }
+    })
 }
