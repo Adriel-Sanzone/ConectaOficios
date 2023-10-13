@@ -42,7 +42,15 @@
                 <th class="">Categoria</th>
               </tr>
             </thead>
-            <tbody></tbody>
+            <tbody class="post">
+              <% datos.categorias.forEach(function(categoria) { %>
+              <td class="agregar">Agregar</td>
+              <td class="editar">Editar</td>
+              <td class="eliminar">Eliminar</td>
+              <td class=""><%= categoria.id %></td>
+              <td class=""><%= categoria.categoria %></td>
+              <% }); %>
+            </tbody>
           </table>
         </div>
       </div>
