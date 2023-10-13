@@ -26,7 +26,11 @@ header h3 a:hover {
 }
 
 header h4 {
-    margin-right: 8vh;
+    margin: 0;
+    font-size: 16px;
+    color: #252B42;
+    font-family: Montserrat;
+    padding-left: 15px;
 }
 
 header nav a {
@@ -97,25 +101,16 @@ header div .registrarse:hover {
     color: #FFF;
 }
 
-header div .registrarse i{
+header div .registrarse i {
     padding-inline-start: 10px;
 }
 
 /* header para usuari0 */
-.imagenParaUsuario {
-
-    min-width: 65px;
-    max-width: 65px;
-    max-height: 65px;
-    min-width: 65px;
-}
 
 .imagenParaUsuario img {
     border-radius: 50%;
-    max-width: 60px;
-    min-width: 60px;
-    max-height: 60px;
-    min-width: 60px;
+    height: 50px;
+    width: 50px;
     box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.47);
 }
 
@@ -152,9 +147,32 @@ header div .registrarse i{
     background: var(--azul);
 }
 
-#search-input:focus{
+#search-input:focus {
     border: none !important;
     box-shadow: none !important;
+}
+
+.imagenParaUsuario {
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.offcanvas {
+    max-width: 300px;
+}
+
+.offcanvas-body a {
+    color: #252B42;
+}
+
+.offcanvas-body .cerrar{
+    text-decoration: none;
+    color: var(--naranja);
+    font-family: Montserrat;
+    font-size: 16px;
+}
+.nav-item i{
+    margin-right: 10px;
 }
 
 @media (max-width: 828px) {
