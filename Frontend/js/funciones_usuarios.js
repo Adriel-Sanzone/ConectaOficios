@@ -285,3 +285,46 @@ function EditoPerfil(datos) {
         }
     })
 }
+
+function EditarImagenes(datos)
+{
+    //Creo bandera para que no registre ajaxs mientras hay uno en ejecucion
+    if (window.Enviando == 1) return false;
+    window.Enviando = 1;
+    if (datos.get("tipo") == "perfil")
+    {
+        $.ajax(
+        {
+            "url": URL_BASE + "insertoimagenperfil",
+            "type": "POST",
+            "processData": false,
+            "contentType": false,           
+            "dataType": "json",
+            "data": datos,
+            success: function(data)
+            {
+                window.Enviando = 0;
+                alert("Foto actualizada correctamente");
+                location.reload;
+            }
+        })
+
+    } else
+    {
+        $.ajax(
+        {
+            "url": URL_BASE + "insertoimagenportada",
+            "type": "POST",
+            "processData": false,
+            "contentType": false,
+            "dataType": "json",
+            "data": datos,
+            success: function (data) 
+            {
+                window.Enviando = 0;
+                alert("Foto actualizada correctamente");
+                location.reload;
+            }
+        })
+    }
+}

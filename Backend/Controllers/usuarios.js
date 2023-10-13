@@ -376,10 +376,18 @@ export const AsignoEspecializacion = async (req, res) =>
 
 export const InsertoImagenPerfil = async (req, res) => 
 {
+    //Obtengo el nombre de la imagen por multer
+    var filename = '/Frontend/uploads/';
+
+    if (!req.file || !req.file.filename) {
+        filename += "usuario-sin-foto.png"
+    } else
+    {
+        filename += req.file.filename;
+    }
+
     const id_usuario = (req.session.idUsuario || 0);
 
-    //Obtengo el nombre de la imagen por multer
-    const filename = '/Frontend/uploads/' + req.file.filename;
 
     //Inserto la ruta donde esta guardada la imagen en la base de datos
     connection.query(
@@ -402,10 +410,18 @@ export const InsertoImagenPerfil = async (req, res) =>
 
 export const InsertoImagenPortada = async (req, res) => 
 {
+    //Obtengo el nombre de la imagen por multer
+    var filename = '/Frontend/uploads/';
+
+    if (!req.file || !req.file.filename) {
+        filename += "portada-sin-foto.png"
+    } else
+    {
+        filename += req.file.filename;
+    }
+
     const id_usuario = (req.session.idUsuario || 0);
 
-    //Obtengo el nombre de la imagen por multer
-    const filename = '/Frontend/uploads/' + req.file.filename;
 
     //Inserto la ruta donde esta guardada la imagen en la base de datos
     connection.query(

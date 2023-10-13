@@ -125,6 +125,10 @@ document.addEventListener("DOMContentLoaded", function () {
             "id": "5",
             "nombre": "Gasista",
         },
+        {
+            "id": "6",
+            "nombre": "Tecnologías",
+        }
     ];
 
     // Función para mostrar las sugerencias

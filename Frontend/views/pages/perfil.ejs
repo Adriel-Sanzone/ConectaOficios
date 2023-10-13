@@ -106,14 +106,14 @@
     </div>
 
     <!-- Contador de cantidad de proyectos -->
-    <% var contados_proyectos = 0 %>
+    <% var contador_proyectos = 0 %>
     <% proyectos.forEach(function(p){ %>
-    <% contados_proyectos += 1 %>
+    <% contador_proyectos += 1 %>
     <% }) %>
     <div class="container">
       <div class="contenido">
         <div class="contenedor-flecha">
-          <h5 class="titulo-resenia"> <%=contados_proyectos%>  Proyectos / Trabajos</h5>
+          <h5 class="titulo-resenia"> <%=contador_proyectos%>  Proyectos / Trabajos</h5>
           <i class="fas fa-chevron-down icono-perfil"></i>
         </div>
         <div class="contenedor-info " style="display:none">
@@ -123,7 +123,6 @@
           <% } %>
 
           <% proyectos.forEach(function(p){ %>
-          <% contados_proyectos += 1 %>
           <div class="proyecto">
             <div class="proyectos-cuerpo d-flex ">
               <div class="encabezado">
@@ -178,10 +177,11 @@
           </select>
 
           <label for="archivo">Seleccionar archivo:</label>
-          <input type="file" id="archivo" name="archivo" accept="image/*">
+          <input type="file" id="nueva-foto" name="archivo" accept="image/*">
 
-          <button type="submit">Guardar</button>
+          <a type="submit" id="guardar-imagen">Guardar</a>
           <button type="button" onclick="CerrarFotos()">Cancelar</button>
+          <a type="submit" id="eliminar-imagen">Eliminar</a>
         </form>
       </div>
       <!-- FIN FORMULARIO PARA FOTOS PERFIL Y PORTADA--->
@@ -198,8 +198,8 @@
           <label for="titulo">Título:</label>
           <input type="text" id="titulo" name="titulo">
 
-          <label for="descripcion">Descripción:</label>
-          <textarea id="descripcion" name="descripcion-proyecto"></textarea>
+          <label for="descripcion-proyecto">Descripción:</label>
+          <textarea id="descripcion-proyecto" name="descripcion-proyecto"></textarea>
           <div class="d-flex">
             <a id="guardar-proyecto" type="submit">Guardar</a>
             <button type="button" onclick="CerrarTrabajos()">Cancelar</button>
@@ -241,20 +241,28 @@
       <script src="/Frontend/js/funciones_usuarios.js"></script>
 
       <script>
-         $("#guardar-proyecto").on("click", function() {
 
-          var fotoProyecto = $("#imagen-proyecto");
-          
-          var especificaciones = new FormData();
+          $("#guardar-imagen").on("click", function() { 
+            
+            var fotoPerfil = $("#nueva-foto");
 
-          especificaciones.append("imagen", fotoProyecto[0].files[0]);
-          especificaciones.append("titulo", $("#titulo").val())
-          especificaciones.append("descripcion", $("#descripcion-proyecto").val())
+            var especificaciones = new FormData();
+            especificaciones.append("usuarioFoto", fotoPerfil[0].files[0])
+            especificaciones.append("tipo", $("#tipo").val())
 
-          AgregarProyecto(especificaciones);
+            EditarImagenes(especificaciones);
 
-         })
+          })
 
+          $("#eliminar-imagen").on("click", function() { 
+
+            var especificaciones = new FormData();
+            especificaciones.append("usuarioFoto", undefined);
+            especificaciones.append("tipo", $("#tipo").val())
+
+            EditarImagenes(especificaciones);
+
+          })
 
           var checkbox = document.getElementById("mostrarCampos");
           var valorDataTrabaja = $(".contenedorCheckbox").data("trabaja");
@@ -267,20 +275,37 @@
             }
           });
 
-         $("#guardar-cambios-perfil").on("click", function() {
+          $("#guardar-cambios-perfil").on("click", function() {
+          
+            var especificaciones = new FormData();
+
+            especificaciones.append("nombre", $("#nombre").val())
+            especificaciones.append("apellido", $("#apellido").val())
+            especificaciones.append("contacto", $("#contacto").val())
+            especificaciones.append("direccion", $("#direccion").val())
+            especificaciones.append("descripcion", $("#descripcion-perfil").val())
+            especificaciones.append("especialista", valorDataTrabaja)
+
+            EditoPerfil(especificaciones);
+
+          })
+
+         $("#guardar-proyecto").on("click", function() {
+
+          var fotoProyecto = $("#imagen-proyecto");
           
           var especificaciones = new FormData();
 
-          especificaciones.append("nombre", $("#nombre").val())
-          especificaciones.append("apellido", $("#apellido").val())
-          especificaciones.append("contacto", $("#contacto").val())
-          especificaciones.append("direccion", $("#direccion").val())
-          especificaciones.append("descripcion", $("#descripcion-perfil").val())
-          especificaciones.append("especialista", valorDataTrabaja)
+          especificaciones.append("imagen", fotoProyecto[0].files[0]);
+          especificaciones.append("titulo", $("#titulo").val())
+          especificaciones.append("descripcion", $("#descripcion-proyecto").val())
 
-          EditoPerfil(especificaciones);
+          console.log($("#descripcion-proyecto").val())
+
+          AgregarProyecto(especificaciones);
 
          })
+
 
       </script>
 
