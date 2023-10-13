@@ -12,30 +12,26 @@
 
   <nav class="navbar">
     <div class="container-fluid">
+
       <a class="navbar-brand" href="#"></a>
       <h4 class="bienvenido">¡Hola, <%= usuarioLogeado.nombre %>!</h4>
       <div class="imagenParaUsuario">
-        <button class="navbar-toggler " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
-          aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-
+        <button class="navbar-toggler " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
           <img class="img-fluid" src="<%= usuarioLogeado.path %>" alt="">
-
         </button>
-
       </div>
+
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
         <div class="offcanvas-header ">
           <div class="imagenParaUsuario d-flex ">
             <img class="img-fluid" src="<%= usuarioLogeado.path %>" alt="">
-            <div class="px-3">
 
-              <h4>
-                <%= usuarioLogeado.nombre %>
-                  <%= usuarioLogeado.apellido %>
-              </h4>
-            </div>
+            <h4>
+              <%= usuarioLogeado.nombre %>
+              <%= usuarioLogeado.apellido %>
+            </h4>
+
           </div>
-
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
@@ -44,20 +40,14 @@
               <a class="nav-link active" aria-current="page" href="/perfil/<%= usuarioLogeado.id %>">Mi perfil</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Oficios</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Acerca De</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Hacerse Premium</a>
+              <a class="nav-link" href="/destacar">Hacerse Premium</a>
             </li>
             <li class="nav-item fixed-bottom text-end">
-              <a id="cerrar-sesion" class="nav-link" href="#">Cerrar Sesion</a>
+              <a id="cerrar-sesion" class="nav-link cerrar" href="#"><i class="fa-solid fa-arrow-left"></i>Cerrar Sesion</a>
             </li>
-
         </div>
       </div>
+
     </div>
   </nav>
 
@@ -82,7 +72,7 @@
 
 <script src="/Frontend/js/funciones_usuarios.js"></script>
 <script>
-  $("#cerrar-sesion").on("click", function(){
+  $("#cerrar-sesion").on("click", function() {
     CerrarSesion();
   })
 </script>
