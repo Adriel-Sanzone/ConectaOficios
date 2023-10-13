@@ -50,6 +50,7 @@ export const viewProyectos = (id_usuario) =>
         );
     });
 }
+
 export const UsuarioLogeandose = async (req, res) => 
 {
     //Obtengo los datos ingresados por el usuario
@@ -466,7 +467,7 @@ export const EditoPerfil = async (req, res) =>
     const id_usuario = (req.session.idUsuario || 0);
 
     //Obtengo los datos ingresados por el usuario
-    let {nombre, apellido, contacto, direccion, descripcion} = req.body;
+    let {nombre, apellido, contacto, direccion, descripcion, especialista} = req.body;
 
     //Si el espacio de nombre estaba vacio
     if(nombre == "")
@@ -507,8 +508,8 @@ export const EditoPerfil = async (req, res) =>
 
     //Creo la consulta para cambiar los datos del usuario
     connection.query(
-        'UPDATE usuarios SET nombre = ?, apellido = ?, contacto = ?, direccion = ?, descripcion = ? WHERE id = ?',
-        [nombre, apellido, contacto, direccion, descripcion, id_usuario],
+        'UPDATE usuarios SET nombre = ?, apellido = ?, contacto = ?, direccion = ?, descripcion = ?, especialista = ? WHERE id = ?',
+        [nombre, apellido, contacto, direccion, descripcion, especialista, id_usuario],
 
         function (err, results) 
         {

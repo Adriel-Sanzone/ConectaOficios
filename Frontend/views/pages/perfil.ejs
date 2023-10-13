@@ -265,12 +265,22 @@
           <input value="<%= user.nombre %>" type="text" id="nombre" name="nombre">
           <label for="apellido">Apellido:</label>
           <input value="<%= user.apellido %>" type="text" id="apellido" name="apellido">
-          <label for="contacto">Contacto:</label>
-          <input value="<%= user.contacto %>" type="text" id="contacto" name="contacto">
-          <label for="direccion">Direccion:</label>
-          <input value="<%= user.direccion %>" type="text" id="direccion" name="direccion">
-          <label for="descripcion">Descripción:</label>
-          <textarea value="<%= user.descripcion %>"  id="descripcion-perfil" name="descripcion"></textarea>
+          <div class="contenedorCheckbox" data-trabaja="<%=user.especialista%>">
+            <% if(user.especialista){ %>
+              <input class="checkbox" type="checkbox" id="mostrarCampos" checked> 
+            <% } else { %>
+              <input class="checkbox" type="checkbox" id="mostrarCampos" > 
+            <% } %>
+            <label class="labelRegistro" for="mostrarCampos">Quiero ofrecer mis servicios</label>
+          </div>
+          <div id="camposAdicionales">
+            <label for="contacto">Contacto:</label>
+            <input value="<%= user.contacto %>" type="text" id="contacto" name="contacto">
+            <label for="direccion">Direccion:</label>
+            <input value="<%= user.direccion %>" type="text" id="direccion" name="direccion">
+            <label for="descripcion">Descripción:</label>
+            <textarea value="<%= user.descripcion %>"  id="descripcion-perfil" name="descripcion"></textarea>
+          </div>
           <a id="guardar-cambios-perfil" type="submit">Guardar</a>
           <button type="button" onclick="cerrarFormulario()">Cancelar</button>
         </form>
@@ -295,8 +305,20 @@
 
          })
 
-         $("#guardar-cambios-perfil").on("click", function() {
 
+          var checkbox = document.getElementById("mostrarCampos");
+          var valorDataTrabaja = $(".contenedorCheckbox").data("trabaja");
+          
+          checkbox.addEventListener("change", function() {
+            if (this.checked) {
+              valorDataTrabaja = 1;
+            } else {
+              valorDataTrabaja = 0;
+            }
+          });
+
+         $("#guardar-cambios-perfil").on("click", function() {
+          
           var especificaciones = new FormData();
 
           especificaciones.append("nombre", $("#nombre").val())
@@ -304,6 +326,7 @@
           especificaciones.append("contacto", $("#contacto").val())
           especificaciones.append("direccion", $("#direccion").val())
           especificaciones.append("descripcion", $("#descripcion-perfil").val())
+          especificaciones.append("especialista", valorDataTrabaja)
 
           EditoPerfil(especificaciones);
 

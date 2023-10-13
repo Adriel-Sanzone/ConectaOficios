@@ -254,6 +254,7 @@ function EditoPerfil(datos) {
     var contacto = datos.get('contacto');
     var direccion = datos.get('direccion');
     var descripcion = datos.get('descripcion');
+    var especialista = datos.get('especialista')
 
     //Comienzo el ajax para registrar los datos inciales
     $.ajax(
@@ -268,6 +269,7 @@ function EditoPerfil(datos) {
             "contacto": contacto,
             "direccion": direccion,
             "descripcion": descripcion,
+            "especialista": especialista,
         },
         success: function (r) 
         {
