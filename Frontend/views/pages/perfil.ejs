@@ -46,9 +46,16 @@
               <!-- Muestro todas las especializaciones del usuario con un for -->
               <div class="categorias text-end">
                 <a href="oficios" target="_blank" class="btn-categorias">Agua</a>
-                <% especializaciones.forEach(function(d){ %>
+                <% perfilEsp.forEach(function(d){ %>
                 <a href="oficios" target="_blank" class="text"><%= d.especializacion %></a>
                 <% }) %>
+                <% if (user.id === id && user.especialista != 0) { %>
+                <button class="btn btn-especializaciones ml-3 editar-portada" id="btn-especializaciones">
+                  <a class="btn ">
+                    <i class="fa-solid fa-pen-to-square "></i>
+                  </a>
+                </button>
+                <% } %>
               </div>
           </div>
         </div>
@@ -185,8 +192,37 @@
         </form>
       </div>
       <!-- FIN FORMULARIO PARA FOTOS PERFIL Y PORTADA--->
-
+      
       <!---FORMULARIO PARA AGERGAR TRABAJOS-->
+      <div id="FormularioEspecializaciones" class="FormularioEspecializaciones" style="display: none;">
+        <form>
+          <div class="text-center">
+            <h3>ESPECIALIZACIONES</h3>
+          </div>
+          <select class="form-control select-categoria" id="especializaciones" multiple size="6">
+
+            <% var categoria_actual = especializacion[0].categoria; %>
+            <optgroup label="<%=especializacion[0].categoria%>">
+
+            <% especializacion.forEach(function(c){ %>
+            <% if(c.categoria === categoria_actual) { %>
+            <option value="<%= c.id %>"><%= c.especializacion %></option>
+            <% } else {%>
+            <% categoria_actual = c.categoria; %>
+            <optgroup label="<%=c.categoria%>">
+            <option value="<%= c.id %>"><%= c.especializacion %></option>
+            <% } %>
+            <% }) %>
+          </select>
+            <a id="agregar-especialidades" type="submit">Guardar</a>
+            <button type="button" onclick="CerrarEspecializaciones()">Cancelar</button>
+            <a type="submit" id="eliminar-especialidades">Eliminar</a>
+          </div>
+        </form>
+      </div>
+      <!---FIN FORMULARIO TRABAJOS-->
+
+      <!---FORMULARIO PARA AGERGAR PROYECTOS-->
       <div id="FormularioTrabajos" class="FormularioTrabajos" style="display: none;">
         <form>
           <div class="text-center">
@@ -206,7 +242,7 @@
           </div>
         </form>
       </div>
-      <!---FIN FORMULARIO TRABAJOS-->
+      <!---FIN FORMULARIO PROYECTOS-->
 
       <!-- FORMULARIO NOMBRE/DESCRIPCION-->
       <div id="formulario-editar" class="formulario-editar">
@@ -264,6 +300,21 @@
 
           })
 
+          $("#agregar-especialidades").on("click", function() { 
+
+            var esp = $("#especializaciones").val();
+            console.log(esp)
+            esp.forEach(function(e){
+              console.log(e);
+            })
+            
+          })
+
+          $("#eliminar-especialidades").on("click", function() { 
+            console.log($("#especializaciones").val())
+
+          })
+
           var checkbox = document.getElementById("mostrarCampos");
           var valorDataTrabaja = $(".contenedorCheckbox").data("trabaja");
           
@@ -318,6 +369,12 @@
         /* FORMULARIO PARA EDITAR NOMBRE Y DESCRIPCION*/
         document.getElementById('btn-editar').addEventListener('click', function () {
           mostrarFormulario();
+        });
+
+        /* FORMULARIO PARA AGREGAR ESPECIALIZACIONES */
+        document.getElementById('btn-especializaciones').addEventListener('click', function () {
+          console.log('Mostrar 1');
+          FormularioEspecializaciones();
         });
 
         /* FORMULARIO PARA EDITAR FOTOS PERFIL Y PORTADA*/
