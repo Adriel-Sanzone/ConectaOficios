@@ -95,6 +95,14 @@ router.get('/perfil/:id', function (req, res) {
             usuarioLogeado.then(function (logeado) {
                 proyectosPerfil.then(function (proyectos) {
                     especializaciones.then(function (especializacion) {
+                                            
+                        console.log("user")
+                        console.log(usuario)
+                        console.log("perfilEsp")
+                        console.log(perfilEsp)
+                        console.log("especializacion")
+                        console.log(especializacion)
+
                         res.render('../Frontend/views/pages/perfil', {
                             "user": usuario,
                             "id": idUsuario,

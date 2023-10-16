@@ -44,10 +44,13 @@
               <img class="img-fluid" src="<%= user.path %>" alt="perfil del usuario">
 
               <!-- Muestro todas las especializaciones del usuario con un for -->
-              <div class="categorias text-end">
-                <a href="oficios" target="_blank" class="btn-categorias">Agua</a>
-                <% perfilEsp.forEach(function(d){ %>
-                <a href="oficios" target="_blank" class="text"><%= d.especializacion %></a>
+              
+              <div class="categorias text-end" >
+                <% perfilEsp.forEach(function(e){ %>
+                <div class="esp-perfil" data-especializaciones-perfil="<%= e.id_especializacion %>">
+                  <a href="oficios" target="_blank" class="btn-categorias"><%= e.categoria %></a>
+                  <a href="oficios" target="_blank" class="text"><%= e.especializacion %></a>          
+                </div>
                 <% }) %>
                 <% if (user.id === id && user.especialista != 0) { %>
                 <button class="btn btn-especializaciones ml-3 editar-portada" id="btn-especializaciones">
@@ -302,8 +305,17 @@
 
           $("#agregar-especialidades").on("click", function() { 
 
+            //Creo una variable array para almacenar las especializaciones del perfil
+            var especializacionesPerfil = [];
+            //recorro los distintos <div> que muestran una especializacion y la agrego al array
+            $(".esp-perfil").each(function() {
+              especializacionesPerfil.push($(this).data("especializaciones-perfil"));
+            });
+
+            //Uno todos los elementos del array en una unica variable separando cada elemento con ","
+            var espPerfil = especializacionesPerfil.join(",");
+            
             var esp = $("#especializaciones").val();
-            console.log(esp)
             esp.forEach(function(e){
               console.log(e);
             })
