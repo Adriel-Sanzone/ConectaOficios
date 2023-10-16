@@ -97,7 +97,6 @@ function CerrarTrabajos() {
 }
 
 function FormularioEspecializaciones() {
-    console.log('Mostrar 2');
     const FormularioEspecializaciones = document.getElementById("FormularioEspecializaciones");
     FormularioEspecializaciones.style.display = "block";
 }

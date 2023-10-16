@@ -306,25 +306,59 @@
           $("#agregar-especialidades").on("click", function() { 
 
             //Creo una variable array para almacenar las especializaciones del perfil
-            var especializacionesPerfil = [];
+            var espPerfil = [];
+
+            var espElegidas = $("#especializaciones").val();
+            
             //recorro los distintos <div> que muestran una especializacion y la agrego al array
             $(".esp-perfil").each(function() {
-              especializacionesPerfil.push($(this).data("especializaciones-perfil"));
+              espPerfil.push(($(this).data("especializaciones-perfil")).toString());
             });
 
-            //Uno todos los elementos del array en una unica variable separando cada elemento con ","
-            var espPerfil = especializacionesPerfil.join(",");
-            
-            var esp = $("#especializaciones").val();
-            esp.forEach(function(e){
-              console.log(e);
+            var contador = 0
+            espElegidas.forEach(function(ee){
+              espPerfil.forEach(function(ep){
+                if(ee === ep)
+                {
+                  espElegidas.splice(contador, 1)
+                }
+              })
+              contador += 1;
             })
-            
+
+            //Uno todos los elementos del array en una unica variable separando cada elemento con ","
+            var espElegidas = espElegidas.join(",");
+
+            AgregoEspecializacion(espElegidas);
+
           })
 
           $("#eliminar-especialidades").on("click", function() { 
-            console.log($("#especializaciones").val())
 
+            //Creo una variable array para almacenar las especializaciones del perfil
+            var espPerfil = [];
+
+            var espElegidas = $("#especializaciones").val();
+
+            //recorro los distintos <div> que muestran una especializacion y la agrego al array
+            $(".esp-perfil").each(function() {
+              espPerfil.push(($(this).data("especializaciones-perfil")).toString());
+            });
+
+            //Filtro las especializades elegidas que coincidan con las del perfil
+            espElegidas = espElegidas.filter(function(ee) {
+              return espPerfil.includes(ee);
+            });
+
+            if(espPerfil.length == espElegidas.length)
+            {
+              alert("No puedes eliminar todas tus especializaciones")
+            } else
+            {
+              //Uno todos los elementos del array en una unica variable separando cada elemento con ","
+              var espElegidas = espElegidas.join(",");
+              EliminoEspecializaciones(espElegidas);
+            }       
           })
 
           var checkbox = document.getElementById("mostrarCampos");
@@ -385,7 +419,6 @@
 
         /* FORMULARIO PARA AGREGAR ESPECIALIZACIONES */
         document.getElementById('btn-especializaciones').addEventListener('click', function () {
-          console.log('Mostrar 1');
           FormularioEspecializaciones();
         });
 
