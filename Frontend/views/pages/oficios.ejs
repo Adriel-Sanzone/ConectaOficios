@@ -43,7 +43,7 @@
           <% usuariosEsp.forEach(function(c){ %>
           <% var especializacionesTexto = ''; %>
           <% c.especializaciones.forEach(function(e){ %>
-          <% especializacionesTexto =+ e.id_especializacion+',' %>
+          <% especializacionesTexto += e.id_especializacion+',' %>
           <% }) %>
           <div class="persona " data-especializacion="<%=  especializacionesTexto.substring(0, especializacionesTexto.length - 1); %>">
             <div class="row">
