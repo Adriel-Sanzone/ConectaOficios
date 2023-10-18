@@ -305,7 +305,7 @@ function EditarImagenes(datos)
             {
                 window.Enviando = 0;
                 alert("Foto actualizada correctamente");
-                location.reload;
+                location.reload();
             }
         })
 
@@ -323,8 +323,52 @@ function EditarImagenes(datos)
             {
                 window.Enviando = 0;
                 alert("Foto actualizada correctamente");
-                location.reload;
+                location.reload();
             }
         })
     }
+}
+
+function AgregoEspecializacion(datos)
+{
+    $.ajax(
+    {
+        "url": URL_BASE + "asignoespecializacion",
+        "type": "POST",
+        "dataType": "json",
+        "data": 
+        {
+            "id_especializacion": datos,
+        },
+        success: function(r)
+        {
+            if (r.error != 1)
+            {
+                alert("Especializaciones agregadas correctamente");
+                location.reload();
+            }
+        }
+    })
+}
+
+function EliminoEspecializaciones(datos)
+{
+    $.ajax(
+        {
+            "url": URL_BASE + "eliminoespecializacion",
+            "type": "POST",
+            "dataType": "json",
+            "data": 
+            {
+                "id_especializacion": datos,
+            },
+            success: function(r)
+            {
+                if (r.error != 1)
+                {
+                    alert("Especializaciones eliminadas correctamente");
+                    location.reload();
+                }
+            }
+        })
 }

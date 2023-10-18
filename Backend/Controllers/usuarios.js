@@ -347,6 +347,12 @@ export const AsignoEspecializacion = async (req, res) =>
 {
     let {id_usuario, id_especializacion} = req.body;
 
+    if (id_usuario == undefined)
+    {
+        id_usuario = (req.session.idUsuario || 0);
+    }
+
+
     //Si el espacio de especializacion estaba vacio
     if(id_especializacion == "")
     {
@@ -364,6 +370,37 @@ export const AsignoEspecializacion = async (req, res) =>
     especializaciones.forEach(function(e){
         connection.query(
             'INSERT INTO especializacion_usuario (id_usuario, id_especializacion) VALUES (?,?)',
+            [id_usuario, e],
+        )
+    });
+
+    res.json({
+        "error": 0,
+    });
+
+}
+
+export const EliminoEspecializacion = async (req, res) =>
+{
+    let {id_especializacion} = req.body;
+
+    let id_usuario = (req.session.idUsuario || 0);
+
+    //Si el espacio de especializacion estaba vacio
+    if(id_especializacion == "")
+    {
+        res.json({
+            "error": 1,
+            "mensaje": "No se selecciono especializacion",
+        });
+        return false;
+    };
+
+    //Si el usuario carga mas de un trabajo, separo las distintas id y hago una consulta agregando cada trabajo seleccionado
+    var especializaciones = id_especializacion.split(",");
+    especializaciones.forEach(function(e){
+        connection.query(
+            'DELETE FROM especializacion_usuario WHERE id_usuario = ? AND id_especializacion = ?',
             [id_usuario, e],
         )
     });
