@@ -1,13 +1,7 @@
 hecer menu para movil
-como agregar estrellas a reseñas
-ponemos reseñas???????
-hacer barra de busqueda funcional o lista desplegable en header
-como dirigir a la categoria filtrada en la barra ----------
 perfil esta todo comentado???
 agregar boton para cambiar de pagina en oficio (inicia en 0)-----------------------------------
 hacer funcional especializacion en registro y perfiles en oficios, perfil e index
-hacer funcional botones de oficios\
 hacer funcioanl tablas de admin
 arreglar estilo de ventanas emergentes cuando un usuario edita su perfil 
 agregar una foto de proyecto/trabajo default
-agregar header para usuario en admin

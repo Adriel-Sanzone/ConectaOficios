@@ -17,6 +17,8 @@
 
 body {
     background: var(--grisClaro);
+    font-family: var(--fuente);
+    color: var(--azul);
 }
 
 .container {
@@ -28,7 +30,7 @@ body {
 
 .contenedor-info {
     display: none;
-  }
+}
 
 /* styles.css */
 .icono-estrella {
@@ -150,7 +152,7 @@ body {
     line-height: normal;
     margin-top: 0;
     margin-bottom: 5px;
-    
+
 }
 
 .perfil-inferior p {
@@ -175,12 +177,12 @@ body {
 }
 
 .perfil-inferior .whatsapp {
-    cursor:pointer;
+    cursor: pointer;
     border: 1px solid #FF685B;
 }
 
 .perfil-inferior .email {
-    cursor:pointer;
+    cursor: pointer;
     border: 1px solid #252B42;
 }
 
@@ -266,43 +268,100 @@ body {
     z-index: 1000;
 }
 
-  .formulario-editar form {
-    text-align: center;
-  }
-  
-  .formulario-editar label {
+.formulario-editar form {
+
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    align-items: stretch;
+    justify-content: center;
+}
+
+.formulario-editar .nombres {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.contenedorCheckbox {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20px;
+}
+
+#camposAdicionales {
+    padding-top: 15px
+}
+
+.labelRegistro {
+    margin: 0 !important;
+    padding-left: 10px;
+}
+
+.formulario-editar{
+    border-radius: 5px;
+}
+
+.formulario-editar label {
     display: block;
-    margin-bottom: 5px;
     font-weight: bold;
-  }
-  
-  .formulario-editar input[type="text"],
-  .formulario-editar textarea {
+}
+
+.formulario-editar input[type="text"],
+.formulario-editar textarea {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
-  }
-  
-  .formulario-editar button {
-    background-color: #007bff;
+}
+
+.formulario-editar .botones a {
+    background-color: #dc3545;
     color: #fff;
     padding: 10px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-  }
-  
-  .formulario-editar button[type="button"] {
-    background-color: #dc3545;
-  }
+    text-decoration: none;
+    margin-left: 5px;
+}
 
-  .formulario-editar label,
+.formulario-editar .botones a:hover {
+    box-shadow: 0px 4px 27px 0px rgba(0, 0, 0, 0.25);
+    color: #FFF;
+}
+
+.formulario-editar button {
+    color: #252B42;
+    cursor: pointer;
+    border: none;
+    background-color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    margin: 0;
+}
+
+.formulario-editar label,
 .formulario-editar input[type="text"],
 .formulario-editar textarea,
 .formulario-editar button {
-  margin-bottom: 15px;
+    margin-bottom: 5px;
+}
+
+.descripcion {
+    padding-top: 15px;
+}
+
+.botones {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -316,34 +375,34 @@ body {
     padding: 20px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     z-index: 1000;
-  }
-  
-  .FormularioTrabajos label,
-  .FormularioTrabajos input,
-  .FormularioTrabajos textarea,
-  .FormularioTrabajos button {
+}
+
+.FormularioTrabajos label,
+.FormularioTrabajos input,
+.FormularioTrabajos textarea,
+.FormularioTrabajos button {
     display: block;
     margin-bottom: 10px;
-  }
-  
-  .FormularioTrabajos label {
+}
+
+.FormularioTrabajos label {
     font-weight: bold;
-  }
-  
-  .FormularioTrabajos input[type="file"] {
+}
+
+.FormularioTrabajos input[type="file"] {
     width: 100%;
-  }
-  
-  .FormularioTrabajos input[type="text"],
-  .FormularioTrabajos textarea {
+}
+
+.FormularioTrabajos input[type="text"],
+.FormularioTrabajos textarea {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
-  }
-  
-  .FormularioTrabajos button[type="submit"] {
+}
+
+.FormularioTrabajos button[type="submit"] {
     background-color: #007BFF;
     color: white;
     border: none;
@@ -351,13 +410,13 @@ body {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
-  }
-  
-  .FormularioTrabajos button[type="submit"]:hover {
+}
+
+.FormularioTrabajos button[type="submit"]:hover {
     background-color: #0056b3;
-  }
-  
-  .FormularioTrabajos button[type="button"] {
+}
+
+.FormularioTrabajos button[type="button"] {
     background-color: #dc3545;
     color: white;
     border: none;
@@ -365,12 +424,12 @@ body {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
-  }
-  
-  .FormularioTrabajos button[type="button"]:hover {
+}
+
+.FormularioTrabajos button[type="button"]:hover {
     background-color: #c82333;
-  }
-  
+}
+
 
 
 /* Estilos para el formulario de edición de fotos */
@@ -386,41 +445,59 @@ body {
     z-index: 1000;
     text-align: center;
     max-width: 400px;
-  }
-  
-  .editar-fotos h2 {
+    border-radius: 5px;
+}
+
+.editar-fotos h4 {
     margin-top: 0;
+    margin-bottom: 20px;
     font-size: 20px;
-  }
-  
-  .editar-fotos label {
+}
+
+.editar-fotos label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
-  }
-  
-  .editar-fotos select,
-  .editar-fotos input[type="file"] {
+}
+
+.editar-fotos select,
+.editar-fotos input[type="file"] {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 4px;
-  }
-  
-  .editar-fotos button {
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
+}
+
+.editar-fotos .foto {
+    margin-bottom: 30px !important;
+}
+
+.editar-fotos button {
+    color: #252B42;
     cursor: pointer;
-  }
-  
-  .editar-fotos button[type="button"] {
-    background-color: #dc3545;
-  }
-  
+    border: none;
+    background-color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.editar-fotos .guardar {
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background: var(--danger-color, #E74040);
+    color: var(--light-text-color, #FFF);
+    font-family: Montserrat;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.editar-fotos .guardar:hover {
+    box-shadow: 0px 4px 27px 0px rgba(0, 0, 0, 0.25);
+    color: #FFF;
+}
+
 
 /*Contenedores*/
 
@@ -547,7 +624,7 @@ body {
     color: #737373;
 }
 
-.location iframe{
+.location iframe {
     max-width: 665px;
     max-height: 300px;
 }

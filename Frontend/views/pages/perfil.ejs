@@ -4,52 +4,52 @@
 <head>
 
   <%- include ('../partials/head') %>
-    <link rel="stylesheet" href="/Frontend/css/perfil.css">
+  <link rel="stylesheet" href="/Frontend/css/perfil.css">
 
 
 </head>
 
 <body>
 
-    <% if (usuarioLogeado) { %>
-    <%- include ('../partials/headerParaUsuario') %>
-    <% } else { %>
-    <%- include ('../partials/header') %>
-    <% } %>
+  <% if (usuarioLogeado) { %>
+  <%- include ('../partials/headerParaUsuario') %>
+  <% } else { %>
+  <%- include ('../partials/header') %>
+  <% } %>
 
-    <div class="container">
-      <div class="perfil-principal contenido">
-        <div class="row">
+  <div class="container">
+    <div class="perfil-principal contenido">
+      <div class="row">
 
-          <div class="col-md-12">
-            <div class="text-end editar-portada">
-              <!-- Si el usuario que entra es el dueño del perfil, puede editar -->
-              <% if (user.id === id) { %>
-              <a class="btn" id="btn-editar-fotos">
-                <i class="fa-solid fa-pen-to-square"></i>
-              </a>
-              <% } %>
+        <div class="col-md-12">
+          <div class="text-end editar-portada">
+            <!-- Si el usuario que entra es el dueño del perfil, puede editar -->
+            <% if (user.id === id) { %>
+            <a class="btn" id="btn-editar-fotos">
+              <i class="fa-solid fa-pen-to-square"></i>
+            </a>
+            <% } %>
 
-            </div>
-            <div class="portada">
-              <!-- Muestro la foto de portada sin validar nada, cualquiera que entre la ve -->
-                <img class="img-fluid" src="<%= user.path_portada %>" alt="Portada del usuario">
-            </div>
           </div>
+          <div class="portada">
+            <!-- Muestro la foto de portada sin validar nada, cualquiera que entre la ve -->
+            <img class="img-fluid" src="<%= user.path_portada %>" alt="Portada del usuario">
+          </div>
+        </div>
 
-          <div class="col-md-12">
+        <div class="col-md-12">
 
-            <div class="perfil">
-              <!-- Muestro la foto de perfil sin validar nada, cualquiera que entre la ve -->
-              <img class="img-fluid" src="<%= user.path %>" alt="perfil del usuario">
+          <div class="perfil">
+            <!-- Muestro la foto de perfil sin validar nada, cualquiera que entre la ve -->
+            <img class="img-fluid" src="<%= user.path %>" alt="perfil del usuario">
 
-              <!-- Muestro todas las especializaciones del usuario con un for -->
-              <div class="categorias text-end">
-                <a href="oficios" target="_blank" class="btn-categorias">Agua</a>
-                <% especializaciones.forEach(function(d){ %>
-                <a href="oficios" target="_blank" class="text"><%= d.especializacion %></a>
-                <% }) %>
-              </div>
+            <!-- Muestro todas las especializaciones del usuario con un for -->
+            <div class="categorias text-end">
+              <a href="oficios" target="_blank" class="btn-categorias">Agua</a>
+              <% especializaciones.forEach(function(d){ %>
+              <a href="oficios" target="_blank" class="text"><%= d.especializacion %></a>
+              <% }) %>
+            </div>
           </div>
         </div>
 
@@ -59,360 +59,376 @@
             <!-- Muestro el nombre y apellido del perfil sin validar nada -->
             <h1><%= user.nombre %> <%= user.apellido %></h1>
             <% if (user.id === id) { %>
-              <button class="btn btn-editar ml-3 editar-portada" id="btn-editar">
-                <a class="btn ">
-                  <i class="fa-solid fa-pen-to-square "></i>
-                </a>
-              </button>
+            <button class="btn btn-editar ml-3 editar-portada" id="btn-editar">
+              <a class="btn ">
+                <i class="fa-solid fa-pen-to-square "></i>
+              </a>
+            </button>
             <% } %>
           </div>
-            <!-- Muestro la descripcion del perfil sin validar nada -->
-            <p><%= user.descripcion %></p>
-             
-            <% if (usuarioLogeado) { %>
-              <div class="d-flex">
-                <!-- Muestro el contacto y mail del perfil sin validar nada -->
-                <div class="whatsapp btn-perfil-inf">
-                  <a href="https://wa.me/<%= user.contacto %>" target="_blank">
-                    <%= user.contacto %><i class="fab fa-whatsapp"></i>
-                  </a>          
-                </div>
-                <div class="email btn-perfil-inf">
-                    <a href="mailto:<%= user.email %>" target="_blank">
-                      <%= user.email %><i class="far fa-envelope"></i>
-                    </a>
-                  </div>        
-                </div>
-              </div>
-            <% } else { %>
-              <div class="d-flex">
-                <!-- Muestro los botones sin que el usuario este logeado -->
-                <div class="whatsapp btn-perfil-inf">
-                  <a class="unloged">
-                  <i class="fab fa-whatsapp"></i>
-                  </a>          
-                </div>
-                <div class="email btn-perfil-inf">
-                    <a class="unloged">
-                    <i class="far fa-envelope"></i>
-                    </a>
-                  </div>        
-                </div>
-              </div>
-            <% } %>
+          <!-- Muestro la descripcion del perfil sin validar nada -->
+          <p><%= user.descripcion %></p>
 
-          </div>
-      </div>
-    </div>
-
-    <!-- Contador de cantidad de proyectos -->
-    <% var contador_proyectos = 0 %>
-    <% proyectos.forEach(function(p){ %>
-    <% contador_proyectos += 1 %>
-    <% }) %>
-    <div class="container">
-      <div class="contenido">
-        <div class="contenedor-flecha">
-          <h5 class="titulo-resenia"> <%=contador_proyectos%>  Proyectos / Trabajos</h5>
-          <i class="fas fa-chevron-down icono-perfil"></i>
-        </div>
-        <div class="contenedor-info " style="display:none">
-          <!-- Muestro el boton de agregar trabajo solo si el usuario es el dueño del perfil -->
-          <% if (user.id === id) { %>
-            <button class="mb-5" id="btn-formulario-Trabajos" onclick="FormularioTrabajos()">Agregar Trabajo</button>
-          <% } %>
-
-          <% proyectos.forEach(function(p){ %>
-          <div class="proyecto">
-            <div class="proyectos-cuerpo d-flex ">
-              <div class="encabezado">
-                <img src="<%=p.path%>" alt="">
-              </div>
-              <div class="cuerpo-proyecto">
-                <h5 class="titulo">
-                  <%=p.titulo%>
-                </h5>
-                <p class="text-proyecto"><%=p.descripcion%></p>
-              </div>
-            </div>
-            <div class="vector">
-              <p></p>
-            </div>
-          </div>
-          <% }) %>
-
-        </div>
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="contenido">
-        <div class="contenedor-flecha">
-          <h5 class="titulo-resenia">Ubicación</h5>
-          <i class="fas fa-chevron-down icono-perfil"></i>
-        </div>
-        <div class="contenedor-info">
-          <p id="coordenadas">Latitud: Desconocida, Longitud: Desconocida</p>
-          <div class="location d-flex">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d817.9736236228513!2d-60.03290813548677!3d-34.90909711665791!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bebad1ec18ed01%3A0x27eea2ba52fe3f42!2sFacultad%20de%20Psicolog%C3%ADa%20%7C%20Sede%20Chivilcoy!5e0!3m2!1ses-419!2sar!4v1694909701433!5m2!1ses-419!2sar"
-              width="665px" height="300" style="border:0;" allowfullscreen="" loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"></iframe>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <%- include ('../partials/footer') %>
-
-      <!--FORMULARIO PARA FOTOS PERFIL Y PORTADA--->
-      <div id="editar-fotos" class="editar-fotos">
-        <form>
-          <h2>Editar Foto de Perfil o Portada</h2>
-
-          <label for="tipo">Seleccionar tipo de foto:</label>
-          <select id="tipo" name="tipo">
-            <option value="perfil">Perfil</option>
-            <option value="portada">Portada</option>
-          </select>
-
-          <label for="archivo">Seleccionar archivo:</label>
-          <input type="file" id="nueva-foto" name="archivo" accept="image/*">
-
-          <a type="submit" id="guardar-imagen">Guardar</a>
-          <button type="button" onclick="CerrarFotos()">Cancelar</button>
-          <a type="submit" id="eliminar-imagen">Eliminar</a>
-        </form>
-      </div>
-      <!-- FIN FORMULARIO PARA FOTOS PERFIL Y PORTADA--->
-
-      <!---FORMULARIO PARA AGERGAR TRABAJOS-->
-      <div id="FormularioTrabajos" class="FormularioTrabajos" style="display: none;">
-        <form>
-          <div class="text-center">
-            <h3>Agregar trabajos</h3>
-          </div>
-          <label for="imagen-proyecto">Foto:</label>
-          <input type="file" id="imagen-proyecto" name="imagen" accept="image/*">
-
-          <label for="titulo">Título:</label>
-          <input type="text" id="titulo" name="titulo">
-
-          <label for="descripcion-proyecto">Descripción:</label>
-          <textarea id="descripcion-proyecto" name="descripcion-proyecto"></textarea>
+          <% if (usuarioLogeado) { %>
           <div class="d-flex">
-            <a id="guardar-proyecto" type="submit">Guardar</a>
-            <button type="button" onclick="CerrarTrabajos()">Cancelar</button>
+            <!-- Muestro el contacto y mail del perfil sin validar nada -->
+            <div class="whatsapp btn-perfil-inf">
+              <a href="https://wa.me/<%= user.contacto %>" target="_blank">
+                <%= user.contacto %><i class="fab fa-whatsapp"></i>
+              </a>
+            </div>
+            <div class="email btn-perfil-inf">
+              <a href="mailto:<%= user.email %>" target="_blank">
+                <%= user.email %><i class="far fa-envelope"></i>
+              </a>
+            </div>
           </div>
-        </form>
+        </div>
+        <% } else { %>
+        <div class="d-flex">
+          <!-- Muestro los botones sin que el usuario este logeado -->
+          <div class="whatsapp btn-perfil-inf">
+            <a class="unloged">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+          </div>
+          <div class="email btn-perfil-inf">
+            <a class="unloged">
+              <i class="far fa-envelope"></i>
+            </a>
+          </div>
+        </div>
       </div>
-      <!---FIN FORMULARIO TRABAJOS-->
+      <% } %>
 
-      <!-- FORMULARIO NOMBRE/DESCRIPCION-->
-      <div id="formulario-editar" class="formulario-editar">
-        <form>
-          <label for="nombre">Nombre:</label>
-          <input value="<%= user.nombre %>" type="text" id="nombre" name="nombre">
-          <label for="apellido">Apellido:</label>
-          <input value="<%= user.apellido %>" type="text" id="apellido" name="apellido">
-          <div class="contenedorCheckbox" data-trabaja="<%=user.especialista%>">
-            <% if(user.especialista){ %>
-              <input class="checkbox" type="checkbox" id="mostrarCampos" checked> 
-            <% } else { %>
-              <input class="checkbox" type="checkbox" id="mostrarCampos" > 
-            <% } %>
-            <label class="labelRegistro" for="mostrarCampos">Quiero ofrecer mis servicios</label>
+    </div>
+  </div>
+  </div>
+
+  <!-- Contador de cantidad de proyectos -->
+  <% var contador_proyectos = 0 %>
+  <% proyectos.forEach(function(p){ %>
+  <% contador_proyectos += 1 %>
+  <% }) %>
+  <div class="container">
+    <div class="contenido">
+      <div class="contenedor-flecha">
+        <h5 class="titulo-resenia"> <%=contador_proyectos%> Proyectos / Trabajos</h5>
+        <i class="fas fa-chevron-down icono-perfil"></i>
+      </div>
+      <div class="contenedor-info " style="display:none">
+        <!-- Muestro el boton de agregar trabajo solo si el usuario es el dueño del perfil -->
+        <% if (user.id === id) { %>
+        <button class="mb-5" id="btn-formulario-Trabajos" onclick="FormularioTrabajos()">Agregar Trabajo</button>
+        <% } %>
+
+        <% proyectos.forEach(function(p){ %>
+        <div class="proyecto">
+          <div class="proyectos-cuerpo d-flex ">
+            <div class="encabezado">
+              <img src="<%=p.path%>" alt="">
+            </div>
+            <div class="cuerpo-proyecto">
+              <h5 class="titulo">
+                <%=p.titulo%>
+              </h5>
+              <p class="text-proyecto"><%=p.descripcion%></p>
+            </div>
           </div>
-          <div id="camposAdicionales">
+          <div class="vector">
+            <p></p>
+          </div>
+        </div>
+        <% }) %>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="contenido">
+      <div class="contenedor-flecha">
+        <h5 class="titulo-resenia">Ubicación</h5>
+        <i class="fas fa-chevron-down icono-perfil"></i>
+      </div>
+      <div class="contenedor-info">
+        <p id="coordenadas">Latitud: Desconocida, Longitud: Desconocida</p>
+        <div class="location d-flex">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d817.9736236228513!2d-60.03290813548677!3d-34.90909711665791!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bebad1ec18ed01%3A0x27eea2ba52fe3f42!2sFacultad%20de%20Psicolog%C3%ADa%20%7C%20Sede%20Chivilcoy!5e0!3m2!1ses-419!2sar!4v1694909701433!5m2!1ses-419!2sar" width="665px" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%- include ('../partials/footer') %>
+
+  <!--FORMULARIO PARA FOTOS PERFIL Y PORTADA--->
+  <div id="editar-fotos" class="editar-fotos">
+    <form>
+      <h4>Editar Foto de Perfil/Portada</h4>
+
+      <label for="tipo">Seleccionar foto a editar:</label>
+      <select id="tipo" name="tipo">
+        <option value="perfil">Perfil</option>
+        <option value="portada">Portada</option>
+      </select>
+
+      <label for="archivo">Seleccionar foto:</label>
+      <input class="foto" type="file" id="nueva-foto" name="archivo" accept="image/*">
+
+      <button type="button" onclick="CerrarFotos()">Cancelar</button>
+      <a type="submit" id="guardar-imagen" class="guardar">Guardar</a>
+    </form>
+  </div>
+  <!-- FIN FORMULARIO PARA FOTOS PERFIL Y PORTADA--->
+
+  <!---FORMULARIO PARA AGERGAR TRABAJOS-->
+  <div id="FormularioTrabajos" class="FormularioTrabajos" style="display: none;">
+    <form>
+      <div class="text-center">
+        <h3>Agregar trabajos</h3>
+      </div>
+      <label for="imagen-proyecto">Foto:</label>
+      <input type="file" id="imagen-proyecto" name="imagen" accept="image/*">
+
+      <label for="titulo">Título:</label>
+      <input type="text" id="titulo" name="titulo">
+
+      <label for="descripcion-proyecto">Descripción:</label>
+      <textarea id="descripcion-proyecto" name="descripcion-proyecto"></textarea>
+      <div class="d-flex">
+        <a id="guardar-proyecto" type="submit">Guardar</a>
+        <button type="button" onclick="CerrarTrabajos()">Cancelar</button>
+      </div>
+    </form>
+  </div>
+  <!---FIN FORMULARIO TRABAJOS-->
+
+  <!-- FORMULARIO NOMBRE/DESCRIPCION-->
+  <div id="formulario-editar" class="formulario-editar">
+    <form>
+      <div class="nombres">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="nombre-form">
+              <label for="nombre">Nombre:</label>
+              <input value="<%= user.nombre %>" type="text" id="nombre" name="nombre">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="apellido">
+              <label for="apellido">Apellido:</label>
+              <input value="<%= user.apellido %>" type="text" id="apellido" name="apellido">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="camposAdicionales">
+        <div class="row">
+          <div class="col-md-6">
             <label for="contacto">Contacto:</label>
             <input value="<%= user.contacto %>" type="text" id="contacto" name="contacto">
+          </div>
+          <div class="col-md-6">
             <label for="direccion">Direccion:</label>
             <input value="<%= user.direccion %>" type="text" id="direccion" name="direccion">
-            <label for="descripcion">Descripción:</label>
-            <textarea value="<%= user.descripcion %>"  id="descripcion-perfil" name="descripcion"></textarea>
           </div>
-          <a id="guardar-cambios-perfil" type="submit">Guardar</a>
-          <button type="button" onclick="cerrarFormulario()">Cancelar</button>
-        </form>
+        </div>
       </div>
-      <!-- FIN FORMULARIO NOMBRE/DESCRIPCION-->
 
-      <script src="/Frontend/js/script.js"></script>
-      <script src="/Frontend/js/funciones_usuarios.js"></script>
+      <div class="descripcion">
+        <label for="descripcion">Descripción:</label>
+        <textarea value="<%= user.descripcion %>" id="descripcion-perfil" name="descripcion"></textarea>
+      </div>
 
-      <script>
+      <div class="contenedorCheckbox" data-trabaja="<%=user.especialista%>">
+        <% if(user.especialista){ %>
+        <input class="checkbox" type="checkbox" id="mostrarCampos" checked>
+        <% } else { %>
+        <input class="checkbox" type="checkbox" id="mostrarCampos">
+        <% } %>
+        <label class="labelRegistro" for="mostrarCampos">Quiero ofrecer mis servicios</label>
+      </div>
+    </form>
+    <div class="botones">
+      <button type="button" onclick="cerrarFormulario()">Cancelar</button>
+      <a id="guardar-cambios-perfil" type="submit">Guardar</a>
+    </div>
+  </div>
+  <!-- FIN FORMULARIO NOMBRE/DESCRIPCION-->
 
-          $("#guardar-imagen").on("click", function() { 
-            
-            var fotoPerfil = $("#nueva-foto");
+  <script src="/Frontend/js/script.js"></script>
+  <script src="/Frontend/js/funciones_usuarios.js"></script>
 
-            var especificaciones = new FormData();
-            especificaciones.append("usuarioFoto", fotoPerfil[0].files[0])
-            especificaciones.append("tipo", $("#tipo").val())
+  <script>
+    $("#guardar-imagen").on("click", function() {
 
-            EditarImagenes(especificaciones);
+      var fotoPerfil = $("#nueva-foto");
 
-          })
+      var especificaciones = new FormData();
+      especificaciones.append("usuarioFoto", fotoPerfil[0].files[0])
+      especificaciones.append("tipo", $("#tipo").val())
 
-          $("#eliminar-imagen").on("click", function() { 
+      EditarImagenes(especificaciones);
 
-            var especificaciones = new FormData();
-            especificaciones.append("usuarioFoto", undefined);
-            especificaciones.append("tipo", $("#tipo").val())
+    })
 
-            EditarImagenes(especificaciones);
+    $("#eliminar-imagen").on("click", function() {
 
-          })
+      var especificaciones = new FormData();
+      especificaciones.append("usuarioFoto", undefined);
+      especificaciones.append("tipo", $("#tipo").val())
 
-          var checkbox = document.getElementById("mostrarCampos");
-          var valorDataTrabaja = $(".contenedorCheckbox").data("trabaja");
-          
-          checkbox.addEventListener("change", function() {
-            if (this.checked) {
-              valorDataTrabaja = 1;
-            } else {
-              valorDataTrabaja = 0;
+      EditarImagenes(especificaciones);
+
+    })
+
+    var checkbox = document.getElementById("mostrarCampos");
+    var valorDataTrabaja = $(".contenedorCheckbox").data("trabaja");
+
+    checkbox.addEventListener("change", function() {
+      if (this.checked) {
+        valorDataTrabaja = 1;
+      } else {
+        valorDataTrabaja = 0;
+      }
+    });
+
+    $("#guardar-cambios-perfil").on("click", function() {
+
+      var especificaciones = new FormData();
+
+      especificaciones.append("nombre", $("#nombre").val())
+      especificaciones.append("apellido", $("#apellido").val())
+      especificaciones.append("contacto", $("#contacto").val())
+      especificaciones.append("direccion", $("#direccion").val())
+      especificaciones.append("descripcion", $("#descripcion-perfil").val())
+      especificaciones.append("especialista", valorDataTrabaja)
+
+      EditoPerfil(especificaciones);
+
+    })
+
+    $("#guardar-proyecto").on("click", function() {
+
+      var fotoProyecto = $("#imagen-proyecto");
+
+      var especificaciones = new FormData();
+
+      especificaciones.append("imagen", fotoProyecto[0].files[0]);
+      especificaciones.append("titulo", $("#titulo").val())
+      especificaciones.append("descripcion", $("#descripcion-proyecto").val())
+
+      console.log($("#descripcion-proyecto").val())
+
+      AgregarProyecto(especificaciones);
+
+    })
+  </script>
+
+  <script>
+    $(".unloged").on("click", function() {
+      alert("Inicia sesion para ver esta informacion.");
+    });
+
+    /* FORMULARIO PARA EDITAR NOMBRE Y DESCRIPCION*/
+    document.getElementById('btn-editar').addEventListener('click', function() {
+      mostrarFormulario();
+    });
+
+    /* FORMULARIO PARA EDITAR FOTOS PERFIL Y PORTADA*/
+    document.getElementById('btn-editar-fotos').addEventListener('click', function() {
+      EditarFotos();
+    });
+
+    /* FORMULARIO PARA AGREGAR TRABAJOS/PROYECTOS */
+    document.getElementById('btn-formulario-trabajos').addEventListener('click', function() {
+      FormularioTrabajos();
+    });
+
+    /* FUNCION PARA OBTENER LAS COORDENADAS Y COLOCARLAS JUNTO AL MAPA EN TIEMPO REAL*/
+    function obtenerCoordenadas() {
+      if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            const latitud = position.coords.latitude;
+            const longitud = position.coords.longitude;
+
+            // Actualiza el contenido del elemento coordenadas
+            const coordenadasElement = document.getElementById("coordenadas");
+            if (coordenadasElement) {
+              coordenadasElement.textContent = `Latitud: ${latitud}, Longitud: ${longitud}`;
+            }
+          },
+          function(error) {
+            switch (error.code) {
+              case error.PERMISSION_DENIED:
+                alert("El usuario ha denegado el permiso de geolocalización.");
+                break;
+              case error.POSITION_UNAVAILABLE:
+                alert("La información de ubicación no está disponible.");
+                break;
+              case error.TIMEOUT:
+                alert("Se ha agotado el tiempo de espera para obtener la ubicación.");
+                break;
+              case error.UNKNOWN_ERROR:
+                alert("Se ha producido un error desconocido.");
+                break;
             }
           });
-
-          $("#guardar-cambios-perfil").on("click", function() {
-          
-            var especificaciones = new FormData();
-
-            especificaciones.append("nombre", $("#nombre").val())
-            especificaciones.append("apellido", $("#apellido").val())
-            especificaciones.append("contacto", $("#contacto").val())
-            especificaciones.append("direccion", $("#direccion").val())
-            especificaciones.append("descripcion", $("#descripcion-perfil").val())
-            especificaciones.append("especialista", valorDataTrabaja)
-
-            EditoPerfil(especificaciones);
-
-          })
-
-         $("#guardar-proyecto").on("click", function() {
-
-          var fotoProyecto = $("#imagen-proyecto");
-          
-          var especificaciones = new FormData();
-
-          especificaciones.append("imagen", fotoProyecto[0].files[0]);
-          especificaciones.append("titulo", $("#titulo").val())
-          especificaciones.append("descripcion", $("#descripcion-proyecto").val())
-
-          console.log($("#descripcion-proyecto").val())
-
-          AgregarProyecto(especificaciones);
-
-         })
+      } else {
+        alert("Geolocalización no compatible en este navegador.");
+      }
+    }
 
 
-      </script>
+    window.onload = obtenerCoordenadas;
+  </script>
 
-      <script>
 
-        $(".unloged").on("click", function() {
-        alert("Inicia sesion para ver esta informacion.");
-        });
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const iconos = document.querySelectorAll('.icono-perfil');
+      const contenedoresInfo = document.querySelectorAll('.contenedor-info');
 
-        /* FORMULARIO PARA EDITAR NOMBRE Y DESCRIPCION*/
-        document.getElementById('btn-editar').addEventListener('click', function () {
-          mostrarFormulario();
-        });
-
-        /* FORMULARIO PARA EDITAR FOTOS PERFIL Y PORTADA*/
-        document.getElementById('btn-editar-fotos').addEventListener('click', function () {
-          EditarFotos();
-        });
-
-        /* FORMULARIO PARA AGREGAR TRABAJOS/PROYECTOS */
-        document.getElementById('btn-formulario-trabajos').addEventListener('click', function () {
-          FormularioTrabajos();
-        });
-
-        /* FUNCION PARA OBTENER LAS COORDENADAS Y COLOCARLAS JUNTO AL MAPA EN TIEMPO REAL*/
-        function obtenerCoordenadas() {
-          if ("geolocation" in navigator) {
-            navigator.geolocation.getCurrentPosition(function (position) {
-              const latitud = position.coords.latitude;
-              const longitud = position.coords.longitude;
-
-              // Actualiza el contenido del elemento coordenadas
-              const coordenadasElement = document.getElementById("coordenadas");
-              if (coordenadasElement) {
-                coordenadasElement.textContent = `Latitud: ${latitud}, Longitud: ${longitud}`;
-              }
-            },
-              function (error) {
-                switch (error.code) {
-                  case error.PERMISSION_DENIED:
-                    alert("El usuario ha denegado el permiso de geolocalización.");
-                    break;
-                  case error.POSITION_UNAVAILABLE:
-                    alert("La información de ubicación no está disponible.");
-                    break;
-                  case error.TIMEOUT:
-                    alert("Se ha agotado el tiempo de espera para obtener la ubicación.");
-                    break;
-                  case error.UNKNOWN_ERROR:
-                    alert("Se ha producido un error desconocido.");
-                    break;
-                }
-              });
+      iconos.forEach((icono, index) => {
+        icono.addEventListener('click', () => {
+          if (contenedoresInfo[index].style.display === 'none' || contenedoresInfo[index].style.display === '') {
+            contenedoresInfo[index].style.display = 'block';
           } else {
-            alert("Geolocalización no compatible en este navegador.");
+            contenedoresInfo[index].style.display = 'none';
           }
-        }
-
-
-        window.onload = obtenerCoordenadas;
-      </script>
-
-
-      <script>
-        document.addEventListener("DOMContentLoaded", function () {
-          const iconos = document.querySelectorAll('.icono-perfil');
-          const contenedoresInfo = document.querySelectorAll('.contenedor-info');
-
-          iconos.forEach((icono, index) => {
-            icono.addEventListener('click', () => {
-              if (contenedoresInfo[index].style.display === 'none' || contenedoresInfo[index].style.display === '') {
-                contenedoresInfo[index].style.display = 'block';
-              } else {
-                contenedoresInfo[index].style.display = 'none';
-              }
-            });
-          });
         });
-      </script>
+      });
+    });
+  </script>
 
-      <script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
 
-        document.addEventListener("DOMContentLoaded", function (){
+      const estrellas = document.querySelectorAll('.icono-estrella');
 
-          const estrellas = document.querySelectorAll('.icono-estrella');
-  
-          estrellas.forEach((estrella, index) => {
-            estrella.addEventListener('click', () => {
-              const currentColor = estrella.getAttribute('data-color');
-  
-              // Si la estrella actual está seleccionada, desmarcar todas las estrellas
-              if (currentColor === '#FF6723') {
-                for (let i = 0; i < estrellas.length; i++) {
-                  estrellas[i].style.color = '#737373';
-                  estrellas[i].setAttribute('data-color', '#737373');
-                }
-              } else {
-                // Marcar la estrella actual y las anteriores
-                for (let i = 0; i <= index; i++) {
-                  estrellas[i].style.color = '#FF6723';
-                  estrellas[i].setAttribute('data-color', '#FF6723');
-                }
-              }
-            });
-          });
+      estrellas.forEach((estrella, index) => {
+        estrella.addEventListener('click', () => {
+          const currentColor = estrella.getAttribute('data-color');
+
+          // Si la estrella actual está seleccionada, desmarcar todas las estrellas
+          if (currentColor === '#FF6723') {
+            for (let i = 0; i < estrellas.length; i++) {
+              estrellas[i].style.color = '#737373';
+              estrellas[i].setAttribute('data-color', '#737373');
+            }
+          } else {
+            // Marcar la estrella actual y las anteriores
+            for (let i = 0; i <= index; i++) {
+              estrellas[i].style.color = '#FF6723';
+              estrellas[i].setAttribute('data-color', '#FF6723');
+            }
+          }
         });
-      </script>
+      });
+    });
+  </script>
 
 
 </body>
