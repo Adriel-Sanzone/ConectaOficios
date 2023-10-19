@@ -45,9 +45,18 @@
 
             <!-- Muestro todas las especializaciones del usuario con un for -->
             <div class="categorias text-end">
-              <% especializaciones.forEach(function(d){ %>
-              <a href="oficios" target="_blank" class="text"><%= d.especializacion %></a>
-              <% }) %>
+               <% perfilEsp.forEach(function(e){ %>
+                <div class="esp-perfil" data-especializaciones-perfil="<%= e.id_especializacion %>">
+                  <a href="oficios" target="_blank" class="text"><%= e.especializacion %></a>          
+                </div>
+                <% }) %>
+              <% if (user.id === id && user.especialista != 0) { %>
+                <button class="btn btn-especializaciones ml-3 editar-portada" id="btn-especializaciones">
+                  <a class="btn ">
+                    <i class="fa-solid fa-pen-to-square "></i>
+                  </a>
+                </button>
+              <% } %>
             </div>
           </div>
         </div>
@@ -184,6 +193,35 @@
   <!-- FIN FORMULARIO PARA FOTOS PERFIL Y PORTADA--->
 
   <!---FORMULARIO PARA AGERGAR TRABAJOS-->
+  <div id="FormularioEspecializaciones" class="FormularioEspecializaciones" style="display: none;">
+    <form>
+      <div class="text-center">
+        <h3>ESPECIALIZACIONES</h3>
+      </div>
+      <select class="form-control select-categoria" id="especializaciones" multiple size="6">
+
+        <% var categoria_actual = especializacion[0].categoria; %>
+        <optgroup label="<%=especializacion[0].categoria%>">
+
+        <% especializacion.forEach(function(c){ %>
+        <% if(c.categoria === categoria_actual) { %>
+        <option value="<%= c.id %>"><%= c.especializacion %></option>
+        <% } else {%>
+        <% categoria_actual = c.categoria; %>
+        <optgroup label="<%=c.categoria%>">
+        <option value="<%= c.id %>"><%= c.especializacion %></option>
+        <% } %>
+        <% }) %>
+      </select>
+        <a id="agregar-especialidades" type="submit">Guardar</a>
+        <button type="button" onclick="CerrarEspecializaciones()">Cancelar</button>
+        <a type="submit" id="eliminar-especialidades">Eliminar</a>
+      </div>
+    </form>
+  </div>
+  <!---FIN FORMULARIO TRABAJOS-->
+
+  <!---FORMULARIO PARA AGERGAR PROYECTOS-->
   <div id="FormularioTrabajos" class="FormularioTrabajos" style="display: none;">
     <form>
       <h4 class="titulo-form text-center">Editar Trabajos/Proyectos</h4>
@@ -203,7 +241,7 @@
 
     </form>
   </div>
-  <!---FIN FORMULARIO TRABAJOS-->
+  <!---FIN FORMULARIO PROYECTOS-->
 
   <!-- FORMULARIO NOMBRE/DESCRIPCION-->
   <div id="formulario-editar" class="formulario-editar">
@@ -286,6 +324,64 @@
 
     })
 
+    $("#agregar-especialidades").on("click", function() { 
+
+      //Creo una variable array para almacenar las especializaciones del perfil
+      var espPerfil = [];
+
+      var espElegidas = $("#especializaciones").val();
+
+      //recorro los distintos <div> que muestran una especializacion y la agrego al array
+      $(".esp-perfil").each(function() {
+        espPerfil.push(($(this).data("especializaciones-perfil")).toString());
+      });
+
+      var contador = 0
+      espElegidas.forEach(function(ee){
+        espPerfil.forEach(function(ep){
+          if(ee === ep)
+          {
+            espElegidas.splice(contador, 1)
+          }
+        })
+        contador += 1;
+      })
+
+      //Uno todos los elementos del array en una unica variable separando cada elemento con ","
+      var espElegidas = espElegidas.join(",");
+
+      AgregoEspecializacion(espElegidas);
+
+      })
+
+      $("#eliminar-especialidades").on("click", function() { 
+
+      //Creo una variable array para almacenar las especializaciones del perfil
+      var espPerfil = [];
+
+      var espElegidas = $("#especializaciones").val();
+
+      //recorro los distintos <div> que muestran una especializacion y la agrego al array
+      $(".esp-perfil").each(function() {
+        espPerfil.push(($(this).data("especializaciones-perfil")).toString());
+      });
+
+      //Filtro las especializades elegidas que coincidan con las del perfil
+      espElegidas = espElegidas.filter(function(ee) {
+        return espPerfil.includes(ee);
+      });
+
+      if(espPerfil.length == espElegidas.length)
+      {
+        alert("No puedes eliminar todas tus especializaciones")
+      } else
+      {
+        //Uno todos los elementos del array en una unica variable separando cada elemento con ","
+        var espElegidas = espElegidas.join(",");
+        EliminoEspecializaciones(espElegidas);
+      }       
+    })
+
     var checkbox = document.getElementById("mostrarCampos");
     var valorDataTrabaja = $(".contenedorCheckbox").data("trabaja");
 
@@ -342,6 +438,11 @@
     /* FORMULARIO PARA EDITAR FOTOS PERFIL Y PORTADA*/
     document.getElementById('btn-editar-fotos').addEventListener('click', function() {
       EditarFotos();
+    });
+
+    /* FORMULARIO PARA AGREGAR ESPECIALIZACIONES */
+    document.getElementById('btn-especializaciones').addEventListener('click', function () {
+        FormularioEspecializaciones();
     });
 
     /* FORMULARIO PARA AGREGAR TRABAJOS/PROYECTOS */
