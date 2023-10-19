@@ -305,7 +305,7 @@ function EditarImagenes(datos)
             {
                 window.Enviando = 0;
                 alert("Foto actualizada correctamente");
-                location.reload;
+                location.reload();
             }
         })
 
@@ -323,7 +323,7 @@ function EditarImagenes(datos)
             {
                 window.Enviando = 0;
                 alert("Foto actualizada correctamente");
-                location.reload;
+                location.reload();
             }
         })
     }
