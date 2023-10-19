@@ -195,7 +195,7 @@ input[type="checkbox"] {
     color: var(--gris);
     font-size: 14px;
     font-weight: var(--bold);
-    margin-block-end: 7px;
+    margin-block-end: 15px;
 }
 
 .personas .persona .ubicacion p {
@@ -226,6 +226,27 @@ input[type="checkbox"] {
 
 .persona button i {
     font-size: 24px;
+}
+
+.ver-perfil{
+    padding: 10px 20px;
+    border-radius: 37px;
+    border: 1px solid var(--azul);
+    background-color: var(--blanco);
+    color: var(--primary-color, #252B42);
+    font-size: 14px;
+    font-weight: var(--bold);
+    text-decoration: none;
+}
+
+.ver-perfil:hover {
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
+    color: #252B42;
+}
+
+
+.ver-perfil i{
+    padding-left: 10px;
 }
 
 .botones {

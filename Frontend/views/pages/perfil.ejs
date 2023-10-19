@@ -45,17 +45,17 @@
 
             <!-- Muestro todas las especializaciones del usuario con un for -->
             <div class="categorias text-end">
-               <% perfilEsp.forEach(function(e){ %>
-                <div class="esp-perfil" data-especializaciones-perfil="<%= e.id_especializacion %>">
-                  <a href="oficios" target="_blank" class="text"><%= e.especializacion %></a>          
-                </div>
-                <% }) %>
+              <% perfilEsp.forEach(function(e){ %>
+              <div class="esp-perfil" data-especializaciones-perfil="<%= e.id_especializacion %>">
+                <a href="oficios" target="_blank" class="text"><%= e.especializacion %></a>
+              </div>
+              <% }) %>
               <% if (user.id === id && user.especialista != 0) { %>
-                <button class="btn btn-especializaciones ml-3 editar-portada" id="btn-especializaciones">
-                  <a class="btn ">
-                    <i class="fa-solid fa-pen-to-square "></i>
-                  </a>
-                </button>
+              <button class="btn btn-especializaciones ml-3 editar-portada" id="btn-especializaciones">
+                <a class="btn ">
+                  <i class="fa-solid fa-pen-to-square "></i>
+                </a>
+              </button>
               <% } %>
             </div>
           </div>
@@ -96,14 +96,12 @@
         <div class="d-flex">
           <!-- Muestro los botones sin que el usuario este logeado -->
           <div class="whatsapp btn-perfil-inf">
-            <a class="unloged">
-              <i class="fab fa-whatsapp"></i>
-            </a>
+            <a class="unloged"></a>
+            <i class="fab fa-whatsapp"></i>
           </div>
           <div class="email btn-perfil-inf">
-            <a class="unloged">
-              <i class="far fa-envelope"></i>
-            </a>
+            <a class="unloged"></a>
+            <i class="far fa-envelope"></i>
           </div>
         </div>
       </div>
@@ -192,32 +190,29 @@
   </div>
   <!-- FIN FORMULARIO PARA FOTOS PERFIL Y PORTADA--->
 
-  <!---FORMULARIO PARA AGERGAR TRABAJOS-->
+  <!---FORMULARIO PARA AGERGAR ESPECIALIZACIONES-->
   <div id="FormularioEspecializaciones" class="FormularioEspecializaciones" style="display: none;">
     <form>
-      <div class="text-center">
-        <h3>ESPECIALIZACIONES</h3>
-      </div>
+      <h4 class="titulo-form text-center">Editar Especializaciones</h4>
       <select class="form-control select-categoria" id="especializaciones" multiple size="6">
-
         <% var categoria_actual = especializacion[0].categoria; %>
         <optgroup label="<%=especializacion[0].categoria%>">
-
-        <% especializacion.forEach(function(c){ %>
-        <% if(c.categoria === categoria_actual) { %>
-        <option value="<%= c.id %>"><%= c.especializacion %></option>
-        <% } else {%>
-        <% categoria_actual = c.categoria; %>
+          <% especializacion.forEach(function(c){ %>
+          <% if(c.categoria === categoria_actual) { %>
+          <option value="<%= c.id %>"><%= c.especializacion %></option>
+          <% } else {%>
+          <% categoria_actual = c.categoria; %>
         <optgroup label="<%=c.categoria%>">
-        <option value="<%= c.id %>"><%= c.especializacion %></option>
-        <% } %>
-        <% }) %>
+          <option value="<%= c.id %>"><%= c.especializacion %></option>
+          <% } %>
+          <% }) %>
       </select>
-        <a id="agregar-especialidades" type="submit">Guardar</a>
-        <button type="button" onclick="CerrarEspecializaciones()">Cancelar</button>
-        <a type="submit" id="eliminar-especialidades">Eliminar</a>
+      <div class="botones">
+        <button type="button" onclick="CerrarTrabajos()">Cancelar</button>
+        <a id="guardar-cambios-perfil" type="submit" class="guardar">Guardar</a>
       </div>
-    </form>
+  </div>
+  </form>
   </div>
   <!---FIN FORMULARIO TRABAJOS-->
 
@@ -324,7 +319,7 @@
 
     })
 
-    $("#agregar-especialidades").on("click", function() { 
+    $("#agregar-especialidades").on("click", function() {
 
       //Creo una variable array para almacenar las especializaciones del perfil
       var espPerfil = [];
@@ -337,10 +332,9 @@
       });
 
       var contador = 0
-      espElegidas.forEach(function(ee){
-        espPerfil.forEach(function(ep){
-          if(ee === ep)
-          {
+      espElegidas.forEach(function(ee) {
+        espPerfil.forEach(function(ep) {
+          if (ee === ep) {
             espElegidas.splice(contador, 1)
           }
         })
@@ -352,9 +346,9 @@
 
       AgregoEspecializacion(espElegidas);
 
-      })
+    })
 
-      $("#eliminar-especialidades").on("click", function() { 
+    $("#eliminar-especialidades").on("click", function() {
 
       //Creo una variable array para almacenar las especializaciones del perfil
       var espPerfil = [];
@@ -371,15 +365,13 @@
         return espPerfil.includes(ee);
       });
 
-      if(espPerfil.length == espElegidas.length)
-      {
+      if (espPerfil.length == espElegidas.length) {
         alert("No puedes eliminar todas tus especializaciones")
-      } else
-      {
+      } else {
         //Uno todos los elementos del array en una unica variable separando cada elemento con ","
         var espElegidas = espElegidas.join(",");
         EliminoEspecializaciones(espElegidas);
-      }       
+      }
     })
 
     var checkbox = document.getElementById("mostrarCampos");
@@ -441,8 +433,8 @@
     });
 
     /* FORMULARIO PARA AGREGAR ESPECIALIZACIONES */
-    document.getElementById('btn-especializaciones').addEventListener('click', function () {
-        FormularioEspecializaciones();
+    document.getElementById('btn-especializaciones').addEventListener('click', function() {
+      FormularioEspecializaciones();
     });
 
     /* FORMULARIO PARA AGREGAR TRABAJOS/PROYECTOS */

@@ -194,6 +194,7 @@ body {
     font-weight: 700;
     text-decoration: none;
     color: var(--azul);
+    padding-right: 10px;
 }
 
 .perfil-inferior .whatsapp a {
@@ -202,10 +203,10 @@ body {
     font-weight: 700;
     text-decoration: none;
     color: var(--naranjaOscuro);
+    padding-right: 10px;
 }
 
 .email i {
-    padding-left: 10px;
     font-size: 20px;
 }
 
@@ -218,8 +219,8 @@ body {
 }
 
 .perfil-inferior .whatsapp i {
-    padding-left: 10px;
     font-size: 20px;
+    color: #FF685B;
 }
 
 .perfil-inferior .perfil-inferior button h6 {
@@ -413,14 +414,18 @@ body {
     padding: 20px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     z-index: 1000;
+    border-radius: 5px;
 }
   
 .FormularioEspecializaciones label,
 .FormularioEspecializaciones input,
-.FormularioEspecializaciones textarea,
-.FormularioEspecializaciones button {
+.FormularioEspecializaciones textarea {
 display: block;
 margin-bottom: 10px;
+}
+
+.FormularioEspecializaciones select{
+    margin-bottom: 15px;
 }
 
 .FormularioEspecializaciones label {
@@ -438,34 +443,6 @@ padding: 10px;
 border: 1px solid #ccc;
 border-radius: 4px;
 font-size: 16px;
-}
-
-.FormularioEspecializaciones button[type="submit"] {
-background-color: #007BFF;
-color: white;
-border: none;
-border-radius: 4px;
-padding: 10px 20px;
-font-size: 16px;
-cursor: pointer;
-}
-
-.FormularioEspecializaciones button[type="submit"]:hover {
-background-color: #0056b3;
-}
-
-.FormularioEspecializaciones button[type="button"] {
-background-color: #dc3545;
-color: white;
-border: none;
-border-radius: 4px;
-padding: 10px 20px;
-font-size: 16px;
-cursor: pointer;
-}
-
-.FormularioEspecializaciones button[type="button"]:hover {
-background-color: #c82333;
 }
 
 /* Estilos para el formulario de edición de fotos */

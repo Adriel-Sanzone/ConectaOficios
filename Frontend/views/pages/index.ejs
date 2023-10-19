@@ -130,7 +130,7 @@
             <% if (usuarioLogeado) { %>
             <button><span class="btn-text"><%= c.contacto %></span><i class="fab fa-whatsapp"></i></button>
             <% } else { %>
-            <button class="unloged"><i class="fab fa-whatsapp"></i></button>
+            <a class="ver-perfil" href="/perfil/<%=c.id%>" target="_blank">Ir al Perfil<i class="fa-solid fa-arrow-right"></i></a>
             <% } %>
           </div>
         </swiper-slide>
@@ -160,7 +160,7 @@
 
   <!---fin footer-->
 
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> 
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-element-bundle.min.js"></script>
   <script src="/Frontend/js/script.js"></script>
   <script src="/Frontend/js/funciones_usuarios.js"></script>
@@ -173,9 +173,8 @@
       ValidarUsuario(token, id);
     }) */
     $(".unloged").on("click", function() {
-    alert("Inicia sesion para ver esta informacion.");
+      alert("Inicia sesion para ver esta informacion.");
     });
-
   </script>
   <script>
     AOS.init();
