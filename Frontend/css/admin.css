@@ -249,7 +249,7 @@ table tbody td {
 }
 
 table tbody .editar {
-    color: #252b42;
+    color: #bfc818;
     font-family: Montserrat;
     font-weight: 700;
     padding-inline: 10px;
@@ -257,7 +257,7 @@ table tbody .editar {
 }
 
 table tbody .eliminar {
-    color: #F57F25;
+    color: #E74040;
     font-family: Montserrat;
     font-weight: 700;
     padding-inline: 10px;
@@ -265,7 +265,7 @@ table tbody .eliminar {
     font-size: 16px;
 }
 table tbody .agregar{
-    color: #6A9C89;
+    color: #71a773;
     font-family: Montserrat;
     font-weight: 700;
     padding-inline: 10px;

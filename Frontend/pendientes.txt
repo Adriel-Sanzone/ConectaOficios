@@ -5,3 +5,4 @@ hacer funcional especializacion en registro y perfiles en oficios, perfil e inde
 hacer funcioanl tablas de admin
 arreglar estilo de ventanas emergentes cuando un usuario edita su perfil 
 agregar una foto de proyecto/trabajo default
+no anda boton de whatsapp en oficios

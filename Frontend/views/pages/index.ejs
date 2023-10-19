@@ -117,7 +117,6 @@
         <% if(e.id === d.id_especializacion){ %>
         <swiper-slide>
           <div class="persona">
-            <h4>Agua</h4>
             <img class="img-fluid aspect-ratio-1-1" src="<%= c.path %>" alt="">
             <h3><%= e.especializacion %></h3>
             <a class="nombre" href="/perfil/<%=c.id%>"><%= c.nombre %> <%= c.apellido %></a>
@@ -129,7 +128,7 @@
               <p> <%= c.direccion %></p>
             </div>
             <% if (usuarioLogeado) { %>
-            <button> <%= c.contacto %> <i class="fab fa-whatsapp"></i></button>
+            <button><span class="btn-text"><%= c.contacto %></span><i class="fab fa-whatsapp"></i></button>
             <% } else { %>
             <button class="unloged"><i class="fab fa-whatsapp"></i></button>
             <% } %>

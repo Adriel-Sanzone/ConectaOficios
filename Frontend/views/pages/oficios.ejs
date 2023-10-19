@@ -9,29 +9,29 @@
 
 <body>
 
-    <% if (usuarioLogeado) { %>
-    <%- include ('../partials/headerParaUsuario') %>
-    <% } else { %>
-    <%- include ('../partials/header') %>
-    <% } %>
-    
+  <% if (usuarioLogeado) { %>
+  <%- include ('../partials/headerParaUsuario') %>
+  <% } else { %>
+  <%- include ('../partials/header') %>
+  <% } %>
+
   <div class="container">
     <div class="row">
       <div class="col-md-3">
         <div class="categorias">
-          <p>Categorías</p>
-          <% especializacion.forEach(function(c){ %>
-            <div>
-              <div class="padre"><%= c.categoria %></div>
-              <div class="hijos">
-                <% c.especializaciones.forEach(function(e){ %>
-                  <div class="categoria <%=e.especializacion%>">
-                    <input data-id="<%= e.id %>" class="checkbox-especializacion" type="checkbox" id="checkbox-<%= e.id %>">
-                    <label for="checkbox-<%= e.id %>"><%= e.especializacion %></label>
-                  </div>
-                <% }) %>
+
+          <% especializacion.forEach(function(c, index){ %>
+          <div>
+            <div class="padre" onclick="mostrarHijo(<%= index %>)"><%= c.categoria %><i class="fas fa-chevron-down abajo"></i></div>
+            <div class="hijos" id="hijo<%= index %>" style="display: none;">
+              <% c.especializaciones.forEach(function(e){ %>
+              <div class="categoria <%= e.especializacion %>">
+                <input data-id="<%= e.id %>" class="checkbox-especializacion" type="checkbox" id="checkbox-<%= e.id %>">
+                <label for="checkbox-<%= e.id %>"><%= e.especializacion %></label>
               </div>
+              <% }) %>
             </div>
+          </div>
           <% }) %>
 
         </div>
@@ -76,7 +76,7 @@
                     <p><%= c.direccion %></p>
                   </div>
                   <% if (usuarioLogeado) { %>
-                  <button> <%= c.contacto %> <i class="fab fa-whatsapp"></i></button>
+                  <button><span class="btn-text"><%= c.contacto %></span><i class="fab fa-whatsapp"></i></button>
                   <% } else { %>
                   <button class="unloged"><i class="fab fa-whatsapp"></i></button>
                   <% } %>
@@ -91,7 +91,8 @@
           <a class="anterior" href="">Anterior</a>
           <a class="siguiente" href="">Siguiente<i class="fa-solid fa-arrow-right"></i></a>
         </div>
-      </div><!--colmd9 -->
+      </div>
+      <!--colmd9 -->
     </div> <!-- row -->
 
   </div>
@@ -99,15 +100,27 @@
   <%- include ('../partials/footer') %>
 
   <script src="/Frontend/js/script.js"></script>
-  <script type="text/javascript">
 
+  <script>
+    function mostrarHijo(index) {
+        const hijo = document.getElementById(`hijo${index}`);
+        if (hijo.style.display === 'none' || hijo.style.display === '') {
+            hijo.style.display = 'block';
+        } else {
+            hijo.style.display = 'none';
+        }
+    }
+</script>
+
+
+  <script type="text/javascript">
     $(".unloged").on("click", function() {
-    alert("Inicia sesion para ver esta informacion.");
+      alert("Inicia sesion para ver esta informacion.");
     });
 
     $(document).ready(function() {
       // Obtengo todas las casillas de verificación
-      $(".checkbox-especializacion").on("change", function(){
+      $(".checkbox-especializacion").on("change", function() {
         var checkedElements = new Array();
         $('.checkbox-especializacion:checked').each(function(i, e) {
           checkedElements.push($(e).attr('data-id'))
@@ -143,9 +156,9 @@
       if (categoriaSeleccionada != null) {
         setTimeout(function() {
           console.log(categoriaSeleccionada);
-          $('.checkbox-especializacion[data-id="'+categoriaSeleccionada+'"]').prop("checked", true).trigger("change");
+          $('.checkbox-especializacion[data-id="' + categoriaSeleccionada + '"]').prop("checked", true).trigger("change");
           localStorage.removeItem("categoriaSeleccionada");
-        },100);
+        }, 100);
       }
     });
   </script>

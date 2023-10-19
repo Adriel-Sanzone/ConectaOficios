@@ -238,7 +238,7 @@ swiper-slide {
     min-height: 200px;
     border-radius: 50%;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.20);
-    margin-block: 10px;
+    margin-bottom: 10px;
 }
 
 .persona .aspect-ratio-1-1 {
@@ -301,6 +301,10 @@ swiper-slide {
     align-items: center;
     margin-inline-end: 10px;
     margin-top: 10px;
+}
+
+.persona button span{
+    margin-right: 10px;
 }
 
 .persona button i {

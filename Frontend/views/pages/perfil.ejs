@@ -45,7 +45,6 @@
 
             <!-- Muestro todas las especializaciones del usuario con un for -->
             <div class="categorias text-end">
-              <a href="oficios" target="_blank" class="btn-categorias">Agua</a>
               <% especializaciones.forEach(function(d){ %>
               <a href="oficios" target="_blank" class="text"><%= d.especializacion %></a>
               <% }) %>
@@ -119,7 +118,9 @@
       <div class="contenedor-info " style="display:none">
         <!-- Muestro el boton de agregar trabajo solo si el usuario es el dueño del perfil -->
         <% if (user.id === id) { %>
-        <button class="mb-5" id="btn-formulario-Trabajos" onclick="FormularioTrabajos()">Agregar Trabajo</button>
+        <div class="boton-agregar-trabajo">
+          <button id="btn-formulario-Trabajos" onclick="FormularioTrabajos()"><i class="fa-solid fa-plus"></i>Agregar Trabajo</button>
+        </div>
         <% } %>
 
         <% proyectos.forEach(function(p){ %>
@@ -165,7 +166,7 @@
   <!--FORMULARIO PARA FOTOS PERFIL Y PORTADA--->
   <div id="editar-fotos" class="editar-fotos">
     <form>
-      <h4>Editar Foto de Perfil/Portada</h4>
+      <h4 class="titulo-form text-center">Editar Foto de Perfil/Portada</h4>
 
       <label for="tipo">Seleccionar foto a editar:</label>
       <select id="tipo" name="tipo">
@@ -185,9 +186,7 @@
   <!---FORMULARIO PARA AGERGAR TRABAJOS-->
   <div id="FormularioTrabajos" class="FormularioTrabajos" style="display: none;">
     <form>
-      <div class="text-center">
-        <h3>Agregar trabajos</h3>
-      </div>
+      <h4 class="titulo-form text-center">Editar Trabajos/Proyectos</h4>
       <label for="imagen-proyecto">Foto:</label>
       <input type="file" id="imagen-proyecto" name="imagen" accept="image/*">
 
@@ -196,10 +195,12 @@
 
       <label for="descripcion-proyecto">Descripción:</label>
       <textarea id="descripcion-proyecto" name="descripcion-proyecto"></textarea>
-      <div class="d-flex">
-        <a id="guardar-proyecto" type="submit">Guardar</a>
+
+      <div class="botones">
         <button type="button" onclick="CerrarTrabajos()">Cancelar</button>
+        <a id="guardar-cambios-perfil" type="submit" class="guardar">Guardar</a>
       </div>
+
     </form>
   </div>
   <!---FIN FORMULARIO TRABAJOS-->
@@ -207,6 +208,7 @@
   <!-- FORMULARIO NOMBRE/DESCRIPCION-->
   <div id="formulario-editar" class="formulario-editar">
     <form>
+      <h4 class="titulo-form">Editar Datos Personales</h4>
       <div class="nombres">
         <div class="row">
           <div class="col-md-6">
@@ -253,7 +255,7 @@
     </form>
     <div class="botones">
       <button type="button" onclick="cerrarFormulario()">Cancelar</button>
-      <a id="guardar-cambios-perfil" type="submit">Guardar</a>
+      <a id="guardar-cambios-perfil" type="submit" class="guardar">Guardar</a>
     </div>
   </div>
   <!-- FIN FORMULARIO NOMBRE/DESCRIPCION-->

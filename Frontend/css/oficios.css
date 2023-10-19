@@ -51,12 +51,21 @@ body {
     padding-block: 20px;
     padding-inline: 35px;
     border-radius: 5px;
+    color: #252B42;
 }
 
-.categorias p {
-    color: var(--gris);
+.padre {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 10px;
+    cursor: pointer;
+}
+
+.padre i {
+    margin-left: 5px;
     font-size: 14px;
-    margin-bottom: 10px;
 }
 
 .categorias .categoria {
@@ -64,7 +73,6 @@ body {
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    padding-bottom: 10px;
 }
 
 .categorias label {
@@ -91,10 +99,15 @@ input[type="checkbox"] {
 }
 
 .persona .especialidades {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
+    display: inline-block;
+    padding-right: 5px;
+}
+
+.persona .especialidades h3{
+    background-color: #fd5243;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #FAFAFA !important;
 }
 
 .info-persona .nombre {
@@ -103,10 +116,11 @@ input[type="checkbox"] {
     font-family: Montserrat;
     font-size: 24px;
     font-weight: 700;
+    display: block;
 }
 
 .info-persona .nombre:hover {
-   color: #3b446b;
+    color: #3b446b;
 }
 
 .personas .persona h4 {
@@ -204,6 +218,11 @@ input[type="checkbox"] {
     margin-inline-end: 10px;
     margin-top: 10px;
 }
+
+.persona button span {
+    margin-right: 10px;
+}
+
 
 .persona button i {
     font-size: 24px;

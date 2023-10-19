@@ -173,16 +173,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // FIN BARRA
 
+
+/// display en admin aside
 document.addEventListener('DOMContentLoaded', function () {
     const toggleButton = document.getElementById('toggleButton');
     const listaSecundaria = document.querySelector('.lista-secundaria');
-  
+
     toggleButton.addEventListener('click', function () {
-      if (listaSecundaria.style.display === 'none' || listaSecundaria.style.display === '') {
-        listaSecundaria.style.display = 'block';
-      } else {
-        listaSecundaria.style.display = 'none';
-      }
+        if (listaSecundaria.style.display === 'none' || listaSecundaria.style.display === '') {
+            listaSecundaria.style.display = 'block';
+        } else {
+            listaSecundaria.style.display = 'none';
+        }
     });
-  });
-  
+});
+
+// //display en categorias de oficios
+// document.addEventListener('DOMContentLoaded', function () {
+//     const toggleButton = document.querySelector('.padre');
+//     const listaSecundaria = document.querySelector('.hijos');
+
+//     toggleButton.addEventListener('click', function () {
+//         if (listaSecundaria.style.display === 'none' || listaSecundaria.style.display === '') {
+//             listaSecundaria.style.display = 'block';
+//         } else {
+//             listaSecundaria.style.display = 'none';
+//         }
+//     });
+// });

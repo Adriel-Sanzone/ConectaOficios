@@ -10,6 +10,10 @@ body {
     background-color: #ECECEC !important;
 }
 
+.col-md-4{
+    padding-inline: 50px !important;
+}
+
 .beneficios {
     background-color: #FAFAFA;
     margin-top: 50px;
@@ -27,11 +31,12 @@ body {
     font-style: normal;
     font-weight: 700;
     padding-bottom: 45px;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.10);
 }
 
 .beneficio .icono {
-    width: 150px;
-    height: 150px;
+    width: 130px;
+    height: 130px;
     background-color: #ECECEC;
     font-size: 54px;
     border-radius: 50%;
@@ -39,7 +44,6 @@ body {
     justify-content: center;
     align-items: center;
     color: #FF6723;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.10));
     margin: auto;
     margin-bottom: 15px;
 }
@@ -48,7 +52,7 @@ body {
     color: #252B42;
     text-align: center;
     font-family: Montserrat;
-    font-size: 24px;
+    font-size: 20px;
     font-style: normal;
     font-weight: 700;
 }
