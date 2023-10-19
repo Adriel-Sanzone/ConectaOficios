@@ -44,21 +44,11 @@
             <img class="img-fluid" src="<%= user.path %>" alt="perfil del usuario">
 
             <!-- Muestro todas las especializaciones del usuario con un for -->
-
             <div class="categorias text-end">
-              <% perfilEsp.forEach(function(e){ %>
-              <div class="esp-perfil" data-especializaciones-perfil="<%= e.id_especializacion %>">
-                <a href="oficios" target="_blank" class="btn-categorias"><%= e.categoria %></a>
-                <a href="oficios" target="_blank" class="text"><%= e.especializacion %></a>
-              </div>
+              <a href="oficios" target="_blank" class="btn-categorias">Agua</a>
+              <% especializaciones.forEach(function(d){ %>
+              <a href="oficios" target="_blank" class="text"><%= d.especializacion %></a>
               <% }) %>
-              <% if (user.id === id && user.especialista != 0) { %>
-              <button class="btn btn-especializaciones ml-3 editar-portada" id="btn-especializaciones">
-                <a class="btn ">
-                  <i class="fa-solid fa-pen-to-square "></i>
-                </a>
-              </button>
-              <% } %>
             </div>
           </div>
         </div>
@@ -79,163 +69,39 @@
           <!-- Muestro la descripcion del perfil sin validar nada -->
           <p><%= user.descripcion %></p>
 
-        </div>
-      </div>
-    </div>
-
-    <!-- Contador de cantidad de proyectos -->
-    <% var contador_proyectos = 0 %>
-    <% proyectos.forEach(function(p){ %>
-    <% contador_proyectos += 1 %>
-    <% }) %>
-    <div class="container">
-      <div class="contenido">
-        <div class="contenedor-flecha">
-          <h5 class="titulo-resenia"> <%=contador_proyectos%> Proyectos / Trabajos</h5>
-          <i class="fas fa-chevron-down icono-perfil"></i>
-        </div>
-        <div class="contenedor-info " style="display:none">
-          <!-- Muestro el boton de agregar trabajo solo si el usuario es el dueño del perfil -->
-          <% if (user.id === id) { %>
-          <button class="mb-5" id="btn-formulario-Trabajos" onclick="FormularioTrabajos()">Agregar Trabajo</button>
-          <% } %>
-
-          <% proyectos.forEach(function(p){ %>
-          <div class="proyecto">
-            <div class="proyectos-cuerpo d-flex ">
-              <div class="encabezado">
-                <img src="<%=p.path%>" alt="">
-              </div>
-              <div class="cuerpo-proyecto">
-                <h5 class="titulo">
-                  <%=p.titulo%>
-                </h5>
-                <p class="text-proyecto"><%=p.descripcion%></p>
-              </div>
+          <% if (usuarioLogeado) { %>
+          <div class="d-flex">
+            <!-- Muestro el contacto y mail del perfil sin validar nada -->
+            <div class="whatsapp btn-perfil-inf">
+              <a href="https://wa.me/<%= user.contacto %>" target="_blank">
+                <%= user.contacto %><i class="fab fa-whatsapp"></i>
+              </a>
             </div>
-            <div class="vector">
-              <p></p>
+            <div class="email btn-perfil-inf">
+              <a href="mailto:<%= user.email %>" target="_blank">
+                <%= user.email %><i class="far fa-envelope"></i>
+              </a>
             </div>
           </div>
-          <% }) %>
-
         </div>
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="contenido">
-        <div class="contenedor-flecha">
-          <h5 class="titulo-resenia">Ubicación</h5>
-          <i class="fas fa-chevron-down icono-perfil"></i>
-        </div>
-        <div class="contenedor-info">
-          <p id="coordenadas">Latitud: Desconocida, Longitud: Desconocida</p>
-          <div class="location d-flex">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d817.9736236228513!2d-60.03290813548677!3d-34.90909711665791!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bebad1ec18ed01%3A0x27eea2ba52fe3f42!2sFacultad%20de%20Psicolog%C3%ADa%20%7C%20Sede%20Chivilcoy!5e0!3m2!1ses-419!2sar!4v1694909701433!5m2!1ses-419!2sar" width="665px" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <% } else { %>
+        <div class="d-flex">
+          <!-- Muestro los botones sin que el usuario este logeado -->
+          <div class="whatsapp btn-perfil-inf">
+            <a class="unloged">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+          </div>
+          <div class="email btn-perfil-inf">
+            <a class="unloged">
+              <i class="far fa-envelope"></i>
+            </a>
           </div>
         </div>
       </div>
+      <% } %>
+
     </div>
-
-    <%- include ('../partials/footer') %>
-
-    <!--FORMULARIO PARA FOTOS PERFIL Y PORTADA--->
-    <div id="editar-fotos" class="editar-fotos">
-      <form>
-        <h2>Editar Foto de Perfil o Portada</h2>
-
-        <label for="tipo">Seleccionar tipo de foto:</label>
-        <select id="tipo" name="tipo">
-          <option value="perfil">Perfil</option>
-          <option value="portada">Portada</option>
-        </select>
-
-        <label for="archivo">Seleccionar archivo:</label>
-        <input type="file" id="nueva-foto" name="archivo" accept="image/*">
-
-        <a type="submit" id="guardar-imagen">Guardar</a>
-        <button type="button" onclick="CerrarFotos()">Cancelar</button>
-        <a type="submit" id="eliminar-imagen">Eliminar</a>
-      </form>
-    </div>
-    <!-- FIN FORMULARIO PARA FOTOS PERFIL Y PORTADA--->
-
-    <!---FORMULARIO PARA AGERGAR TRABAJOS-->
-    <div id="FormularioEspecializaciones" class="FormularioEspecializaciones" style="display: none;">
-      <form>
-        <div class="text-center">
-          <h3>ESPECIALIZACIONES</h3>
-        </div>
-        <select class="form-control select-categoria" id="especializaciones" multiple size="6">
-
-          <% var categoria_actual = especializacion[0].categoria; %>
-          <optgroup label="<%=especializacion[0].categoria%>">
-
-            <% especializacion.forEach(function(c){ %>
-            <% if(c.categoria === categoria_actual) { %>
-            <option value="<%= c.id %>"><%= c.especializacion %></option>
-            <% } else {%>
-            <% categoria_actual = c.categoria; %>
-          <optgroup label="<%=c.categoria%>">
-            <option value="<%= c.id %>"><%= c.especializacion %></option>
-            <% } %>
-            <% }) %>
-        </select>
-        <a id="agregar-especialidades" type="submit">Guardar</a>
-        <button type="button" onclick="CerrarEspecializaciones()">Cancelar</button>
-        <a type="submit" id="eliminar-especialidades">Eliminar</a>
-    </div>
-    </form>
-  </div>
-  <!---FIN FORMULARIO TRABAJOS-->
-
-  <!---FORMULARIO PARA AGERGAR PROYECTOS-->
-  <div id="FormularioTrabajos" class="FormularioTrabajos" style="display: none;">
-    <form>
-      <div class="text-center">
-        <h3>Agregar trabajos</h3>
-      </div>
-      <label for="imagen-proyecto">Foto:</label>
-      <input type="file" id="imagen-proyecto" name="imagen" accept="image/*">
-
-      <label for="titulo">Título:</label>
-      <input type="text" id="titulo" name="titulo">
-
-      <label for="descripcion-proyecto">Descripción:</label>
-      <textarea id="descripcion-proyecto" name="descripcion-proyecto"></textarea>
-      <div class="d-flex">
-        <!-- Muestro el contacto y mail del perfil sin validar nada -->
-        <div class="whatsapp btn-perfil-inf">
-          <a href="https://wa.me/<%= user.contacto %>" target="_blank">
-            <%= user.contacto %><i class="fab fa-whatsapp"></i>
-          </a>
-        </div>
-        <div class="email btn-perfil-inf">
-          <a href="mailto:<%= user.email %>" target="_blank">
-            <%= user.email %><i class="far fa-envelope"></i>
-          </a>
-        </div>
-      </div>
-  </div>
-  <% } else { %>
-  <div class="d-flex">
-    <!-- Muestro los botones sin que el usuario este logeado -->
-    <div class="whatsapp btn-perfil-inf">
-      <a class="unloged">
-        <i class="fab fa-whatsapp"></i>
-      </a>
-    </div>
-    <div class="email btn-perfil-inf">
-      <a class="unloged">
-        <i class="far fa-envelope"></i>
-      </a>
-    </div>
-  </div>
-  </div>
-  <!---FIN FORMULARIO PROYECTOS-->
-
-  </div>
   </div>
   </div>
 
@@ -410,98 +276,65 @@
 
     $("#eliminar-imagen").on("click", function() {
 
-        var especificaciones = new FormData();
-        especificaciones.append("usuarioFoto", undefined);
-        especificaciones.append("tipo", $("#tipo").val())
+      var especificaciones = new FormData();
+      especificaciones.append("usuarioFoto", undefined);
+      especificaciones.append("tipo", $("#tipo").val())
 
-        $("#agregar-especialidades").on("click", function() {
+      EditarImagenes(especificaciones);
 
-          //Creo una variable array para almacenar las especializaciones del perfil
-          var espPerfil = [];
+    })
 
-          var espElegidas = $("#especializaciones").val();
+    var checkbox = document.getElementById("mostrarCampos");
+    var valorDataTrabaja = $(".contenedorCheckbox").data("trabaja");
 
-          //recorro los distintos <div> que muestran una especializacion y la agrego al array
-          $(".esp-perfil").each(function() {
-            espPerfil.push(($(this).data("especializaciones-perfil")).toString());
-          });
-
-          var contador = 0
-          espElegidas.forEach(function(ee) {
-            espPerfil.forEach(function(ep) {
-              if (ee === ep) {
-                espElegidas.splice(contador, 1)
-              }
-            })
-            contador += 1;
-          })
-
-          //Uno todos los elementos del array en una unica variable separando cada elemento con ","
-          var espElegidas = espElegidas.join(",");
-
-          AgregoEspecializacion(espElegidas);
-
-        })
-
-        $("#eliminar-especialidades").on("click", function() {
-
-          //Creo una variable array para almacenar las especializaciones del perfil
-          var espPerfil = [];
-
-          var espElegidas = $("#especializaciones").val();
-
-          //recorro los distintos <div> que muestran una especializacion y la agrego al array
-          $(".esp-perfil").each(function() {
-            espPerfil.push(($(this).data("especializaciones-perfil")).toString());
-          });
-
-          //Filtro las especializades elegidas que coincidan con las del perfil
-          espElegidas = espElegidas.filter(function(ee) {
-            return espPerfil.includes(ee);
-          });
-
-          if (espPerfil.length == espElegidas.length) {
-            alert("No puedes eliminar todas tus especializaciones")
-          } else {
-            //Uno todos los elementos del array en una unica variable separando cada elemento con ","
-            var espElegidas = espElegidas.join(",");
-            EliminoEspecializaciones(espElegidas);
-          }
-        })
-
-        var checkbox = document.getElementById("mostrarCampos");
-        var valorDataTrabaja = $(".contenedorCheckbox").data("trabaja");
-
-        checkbox.addEventListener("change", function() {
-          if (this.checked) {
-            valorDataTrabaja = 1;
-          } else {
-            valorDataTrabaja = 0;
-          }
-        });
+    checkbox.addEventListener("change", function() {
+      if (this.checked) {
+        valorDataTrabaja = 1;
       } else {
-        alert("Geolocalización no compatible en este navegador.");
+        valorDataTrabaja = 0;
       }
-    }
+    });
 
+    $("#guardar-cambios-perfil").on("click", function() {
 
-    window.onload = obtenerCoordenadas;
+      var especificaciones = new FormData();
+
+      especificaciones.append("nombre", $("#nombre").val())
+      especificaciones.append("apellido", $("#apellido").val())
+      especificaciones.append("contacto", $("#contacto").val())
+      especificaciones.append("direccion", $("#direccion").val())
+      especificaciones.append("descripcion", $("#descripcion-perfil").val())
+      especificaciones.append("especialista", valorDataTrabaja)
+
+      EditoPerfil(especificaciones);
+
+    })
+
+    $("#guardar-proyecto").on("click", function() {
+
+      var fotoProyecto = $("#imagen-proyecto");
+
+      var especificaciones = new FormData();
+
+      especificaciones.append("imagen", fotoProyecto[0].files[0]);
+      especificaciones.append("titulo", $("#titulo").val())
+      especificaciones.append("descripcion", $("#descripcion-proyecto").val())
+
+      console.log($("#descripcion-proyecto").val())
+
+      AgregarProyecto(especificaciones);
+
+    })
   </script>
 
-
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
-    const iconos = document.querySelectorAll('.icono-perfil');
-    const contenedoresInfo = document.querySelectorAll('.contenedor-info');
+    $(".unloged").on("click", function() {
+      alert("Inicia sesion para ver esta informacion.");
+    });
 
     /* FORMULARIO PARA EDITAR NOMBRE Y DESCRIPCION*/
     document.getElementById('btn-editar').addEventListener('click', function() {
       mostrarFormulario();
-    });
-
-    /* FORMULARIO PARA AGREGAR ESPECIALIZACIONES */
-    document.getElementById('btn-especializaciones').addEventListener('click', function() {
-      FormularioEspecializaciones();
     });
 
     /* FORMULARIO PARA EDITAR FOTOS PERFIL Y PORTADA*/
@@ -544,10 +377,29 @@
             }
           });
       } else {
-        contenedoresInfo[index].style.display = 'none';
+        alert("Geolocalización no compatible en este navegador.");
       }
-    });
-    });
+    }
+
+
+    window.onload = obtenerCoordenadas;
+  </script>
+
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const iconos = document.querySelectorAll('.icono-perfil');
+      const contenedoresInfo = document.querySelectorAll('.contenedor-info');
+
+      iconos.forEach((icono, index) => {
+        icono.addEventListener('click', () => {
+          if (contenedoresInfo[index].style.display === 'none' || contenedoresInfo[index].style.display === '') {
+            contenedoresInfo[index].style.display = 'block';
+          } else {
+            contenedoresInfo[index].style.display = 'none';
+          }
+        });
+      });
     });
   </script>
 

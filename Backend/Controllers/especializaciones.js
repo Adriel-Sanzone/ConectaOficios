@@ -76,14 +76,8 @@ export const getEspecializacionPerfil = (id_usuario) =>
 {
     return new Promise(function(resolve)
     {
-        var sql = "SELECT eu.id_especializacion, e.especializacion, c.categoria ";
-        sql += "FROM especializacion_usuario eu ";
-        sql += "INNER JOIN especializaciones e ON eu.id_especializacion = e.id ";
-        sql += "INNER JOIN categorias c ON e.id_categoria = c.id ";
-        sql += "WHERE eu.id_usuario = ? ";
-
         connection.query(
-            sql,
+            'SELECT especializaciones.especializacion FROM especializacion_usuario INNER JOIN especializaciones ON especializacion_usuario.id_especializacion = especializaciones.id WHERE especializacion_usuario.id_usuario = ?',
             [id_usuario],
             function(err, results)
             {

@@ -301,7 +301,7 @@ body {
     padding-left: 10px;
 }
 
-.formulario-editar {
+.formulario-editar{
     border-radius: 5px;
 }
 
@@ -429,76 +429,6 @@ body {
 .FormularioTrabajos button[type="button"]:hover {
     background-color: #c82333;
 }
-
-
-
-/*----------------*/
-.FormularioEspecializaciones {
-    display: flex;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-}
-
-.FormularioEspecializaciones label,
-.FormularioEspecializaciones input,
-.FormularioEspecializaciones textarea,
-.FormularioEspecializaciones button {
-    display: block;
-    margin-bottom: 10px;
-}
-
-.FormularioEspecializaciones label {
-    font-weight: bold;
-}
-
-.FormularioEspecializaciones input[type="file"] {
-    width: 100%;
-}
-
-.FormularioEspecializaciones input[type="text"],
-.FormularioEspecializaciones textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-}
-
-.FormularioEspecializaciones button[type="submit"] {
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-.FormularioEspecializaciones button[type="submit"]:hover {
-    background-color: #0056b3;
-}
-
-.FormularioEspecializaciones button[type="button"] {
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-.FormularioEspecializaciones button[type="button"]:hover {
-    background-color: #c82333;
-}
-
-
 
 
 

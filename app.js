@@ -23,7 +23,7 @@ app.use(cors());
 //Configuro el session
 app.use(session({
     secret: 'keyboard cat',
-    cookie: { maxAge: 9000000000 },
+    cookie: { maxAge: 600000 },
     resave: false,
     saveUninitialized: true,
   }));

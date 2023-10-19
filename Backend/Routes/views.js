@@ -88,30 +88,18 @@ router.get('/perfil/:id', function (req, res) {
     var usuarioPerfil = getUsuario(idPerfil);
     var especializacionPerfil = getEspecializacionPerfil(idPerfil);
     var proyectosPerfil = viewProyectos(idPerfil);
-    var especializaciones = viewEspecializaciones()
 
     usuarioPerfil.then(function (usuario) {
-        especializacionPerfil.then(function (perfilEsp) {
+        especializacionPerfil.then(function (especializaciones) {
             usuarioLogeado.then(function (logeado) {
                 proyectosPerfil.then(function (proyectos) {
-                    especializaciones.then(function (especializacion) {
-                                            
-                        console.log("user")
-                        console.log(usuario)
-                        console.log("perfilEsp")
-                        console.log(perfilEsp)
-                        console.log("especializacion")
-                        console.log(especializacion)
-
-                        res.render('../Frontend/views/pages/perfil', {
-                            "user": usuario,
-                            "id": idUsuario,
-                            "perfilEsp": perfilEsp,
-                            "usuarioLogeado": logeado,
-                            "proyectos": proyectos,
-                            "especializacion": especializacion,
-                        });
-                    })
+                    res.render('../Frontend/views/pages/perfil', {
+                        "user": usuario,
+                        "id": idUsuario,
+                        "especializaciones": especializaciones,
+                        "usuarioLogeado": logeado,
+                        "proyectos": proyectos,
+                    });
                 })
             })
         })

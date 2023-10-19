@@ -96,16 +96,6 @@ function CerrarTrabajos() {
     formulario.style.display = 'none';
 }
 
-function FormularioEspecializaciones() {
-    const FormularioEspecializaciones = document.getElementById("FormularioEspecializaciones");
-    FormularioEspecializaciones.style.display = "block";
-}
-
-function CerrarEspecializaciones() {
-    var FormularioEspecializaciones = document.getElementById('FormularioEspecializaciones');
-    FormularioEspecializaciones.style.display = 'none';
-}
-
 
 // BARRA
 document.addEventListener("DOMContentLoaded", function () {
