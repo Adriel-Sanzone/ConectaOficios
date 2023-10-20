@@ -82,12 +82,14 @@
             <!-- Muestro el contacto y mail del perfil sin validar nada -->
             <div class="whatsapp btn-perfil-inf">
               <a href="https://wa.me/<%= user.contacto %>" target="_blank">
-                <%= user.contacto %><i class="fab fa-whatsapp"></i>
+                <i class="fab fa-whatsapp"></i>
+                <%= user.contacto %>
               </a>
             </div>
             <div class="email btn-perfil-inf">
               <a href="mailto:<%= user.email %>" target="_blank">
-                <%= user.email %><i class="far fa-envelope"></i>
+                <i class="far fa-envelope"></i>
+                <%= user.email %>
               </a>
             </div>
           </div>
@@ -209,7 +211,7 @@
       </select>
       <div class="botones">
         <button type="button" onclick="CerrarTrabajos()">Cancelar</button>
-        <a id="guardar-cambios-perfil" type="submit" class="guardar">Guardar</a>
+        <a id="agrego-especializacion" type="submit" class="guardar">Guardar</a>
       </div>
   </div>
   </form>
@@ -231,7 +233,7 @@
 
       <div class="botones">
         <button type="button" onclick="CerrarTrabajos()">Cancelar</button>
-        <a id="guardar-cambios-perfil" type="submit" class="guardar">Guardar</a>
+        <a id="guardar-proyecto" type="submit" class="guardar">Guardar</a>
       </div>
 
     </form>
@@ -319,7 +321,7 @@
 
     })
 
-    $("#agregar-especialidades").on("click", function() {
+    $("#agrego-especializacion").on("click", function() {
 
       //Creo una variable array para almacenar las especializaciones del perfil
       var espPerfil = [];
