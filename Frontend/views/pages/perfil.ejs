@@ -4,7 +4,7 @@
 <head>
 
   <%- include ('../partials/head') %>
-  <link rel="stylesheet" href="/Frontend/css/perfil.css">
+    <link rel="stylesheet" href="/Frontend/css/perfil.css">
 
 
 </head>
@@ -12,526 +12,559 @@
 <body>
 
   <% if (usuarioLogeado) { %>
-  <%- include ('../partials/headerParaUsuario') %>
-  <% } else { %>
-  <%- include ('../partials/header') %>
-  <% } %>
-
-  <div class="container">
-    <div class="perfil-principal contenido">
-      <div class="row">
-
-        <div class="col-md-12">
-          <div class="text-end editar-portada">
-            <!-- Si el usuario que entra es el dueño del perfil, puede editar -->
-            <% if (user.id === id) { %>
-            <a class="btn" id="btn-editar-fotos">
-              <i class="fa-solid fa-pen-to-square"></i>
-            </a>
-            <% } %>
-
-          </div>
-          <div class="portada">
-            <!-- Muestro la foto de portada sin validar nada, cualquiera que entre la ve -->
-            <img class="img-fluid" src="<%= user.path_portada %>" alt="Portada del usuario">
-          </div>
-        </div>
-
-        <div class="col-md-12">
-
-          <div class="perfil">
-            <!-- Muestro la foto de perfil sin validar nada, cualquiera que entre la ve -->
-            <img class="img-fluid" src="<%= user.path %>" alt="perfil del usuario">
-
-            <!-- Muestro todas las especializaciones del usuario con un for -->
-            <div class="categorias text-end">
-              <% perfilEsp.forEach(function(e){ %>
-              <div class="esp-perfil" data-especializaciones-perfil="<%= e.id_especializacion %>">
-                <a href="oficios" target="_blank" class="text"><%= e.especializacion %></a>
-              </div>
-              <% }) %>
-              <% if (user.id === id && user.especialista != 0) { %>
-              <button class="btn btn-especializaciones ml-3 editar-portada" id="btn-especializaciones">
-                <a class="btn ">
-                  <i class="fa-solid fa-pen-to-square "></i>
-                </a>
-              </button>
-              <% } %>
-            </div>
-          </div>
-        </div>
-
-
-        <div class="perfil-inferior">
-          <div class="d-flex align-items-center mb-3">
-            <!-- Muestro el nombre y apellido del perfil sin validar nada -->
-            <h1><%= user.nombre %> <%= user.apellido %></h1>
-            <% if (user.id === id) { %>
-            <button class="btn btn-editar ml-3 editar-portada" id="btn-editar">
-              <a class="btn ">
-                <i class="fa-solid fa-pen-to-square "></i>
-              </a>
-            </button>
-            <% } %>
-          </div>
-          <!-- Muestro la descripcion del perfil sin validar nada -->
-          <p><%= user.descripcion %></p>
-
-          <% if (usuarioLogeado) { %>
-          <div class="d-flex">
-            <!-- Muestro el contacto y mail del perfil sin validar nada -->
-            <div class="whatsapp btn-perfil-inf">
-              <a href="https://wa.me/<%= user.contacto %>" target="_blank">
-                <i class="fab fa-whatsapp"></i>
-                <%= user.contacto %>
-              </a>
-            </div>
-            <div class="email btn-perfil-inf">
-              <a href="mailto:<%= user.email %>" target="_blank">
-                <i class="far fa-envelope"></i>
-                <%= user.email %>
-              </a>
-            </div>
-          </div>
-        </div>
-        <% } else { %>
-        <div class="d-flex">
-          <!-- Muestro los botones sin que el usuario este logeado -->
-          <div class="whatsapp btn-perfil-inf">
-            <a class="unloged"></a>
-            <i class="fab fa-whatsapp"></i>
-          </div>
-          <div class="email btn-perfil-inf">
-            <a class="unloged"></a>
-            <i class="far fa-envelope"></i>
-          </div>
-        </div>
-      </div>
-      <% } %>
-
-    </div>
-  </div>
-  </div>
-
-  <!-- Contador de cantidad de proyectos -->
-  <% var contador_proyectos = 0 %>
-  <% proyectos.forEach(function(p){ %>
-  <% contador_proyectos += 1 %>
-  <% }) %>
-  <div class="container">
-    <div class="contenido">
-      <div class="contenedor-flecha">
-        <h5 class="titulo-resenia"> <%=contador_proyectos%> Proyectos / Trabajos</h5>
-        <i class="fas fa-chevron-down icono-perfil"></i>
-      </div>
-      <div class="contenedor-info " style="display:none">
-        <!-- Muestro el boton de agregar trabajo solo si el usuario es el dueño del perfil -->
-        <% if (user.id === id) { %>
-        <div class="boton-agregar-trabajo">
-          <button id="btn-formulario-Trabajos" onclick="FormularioTrabajos()"><i class="fa-solid fa-plus"></i>Agregar Trabajo</button>
-        </div>
-        <% } %>
-
-        <% proyectos.forEach(function(p){ %>
-        <div class="proyecto">
-          <div class="proyectos-cuerpo d-flex ">
-            <div class="encabezado">
-              <img src="<%=p.path%>" alt="">
-            </div>
-            <div class="cuerpo-proyecto">
-              <h5 class="titulo">
-                <%=p.titulo%>
-              </h5>
-              <p class="text-proyecto"><%=p.descripcion%></p>
-            </div>
-          </div>
-          <div class="vector">
-            <p></p>
-          </div>
-        </div>
-        <% }) %>
-
-      </div>
-    </div>
-  </div>
-
-  <div class="container">
-    <div class="contenido">
-      <div class="contenedor-flecha">
-        <h5 class="titulo-resenia">Ubicación</h5>
-        <i class="fas fa-chevron-down icono-perfil"></i>
-      </div>
-      <div class="contenedor-info">
-        <p id="coordenadas">Latitud: Desconocida, Longitud: Desconocida</p>
-        <div class="location d-flex">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d817.9736236228513!2d-60.03290813548677!3d-34.90909711665791!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bebad1ec18ed01%3A0x27eea2ba52fe3f42!2sFacultad%20de%20Psicolog%C3%ADa%20%7C%20Sede%20Chivilcoy!5e0!3m2!1ses-419!2sar!4v1694909701433!5m2!1ses-419!2sar" width="665px" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <%- include ('../partials/footer') %>
-
-  <!--FORMULARIO PARA FOTOS PERFIL Y PORTADA--->
-  <div id="editar-fotos" class="editar-fotos">
-    <form>
-      <h4 class="titulo-form text-center">Editar Foto de Perfil/Portada</h4>
-
-      <label for="tipo">Seleccionar foto a editar:</label>
-      <select id="tipo" name="tipo">
-        <option value="perfil">Perfil</option>
-        <option value="portada">Portada</option>
-      </select>
-
-      <label for="archivo">Seleccionar foto:</label>
-      <input class="foto" type="file" id="nueva-foto" name="archivo" accept="image/*">
-
-      <button type="button" onclick="CerrarFotos()">Cancelar</button>
-      <a type="submit" id="guardar-imagen" class="guardar">Guardar</a>
-    </form>
-  </div>
-  <!-- FIN FORMULARIO PARA FOTOS PERFIL Y PORTADA--->
-
-  <!---FORMULARIO PARA AGERGAR ESPECIALIZACIONES-->
-  <div id="FormularioEspecializaciones" class="FormularioEspecializaciones" style="display: none;">
-    <form>
-      <h4 class="titulo-form text-center">Editar Especializaciones</h4>
-      <select class="form-control select-categoria" id="especializaciones" multiple size="6">
-        <% var categoria_actual = especializacion[0].categoria; %>
-        <optgroup label="<%=especializacion[0].categoria%>">
-          <% especializacion.forEach(function(c){ %>
-          <% if(c.categoria === categoria_actual) { %>
-          <option value="<%= c.id %>"><%= c.especializacion %></option>
-          <% } else {%>
-          <% categoria_actual = c.categoria; %>
-        <optgroup label="<%=c.categoria%>">
-          <option value="<%= c.id %>"><%= c.especializacion %></option>
+    <%- include ('../partials/headerParaUsuario') %>
+      <% } else { %>
+        <%- include ('../partials/header') %>
           <% } %>
-          <% }) %>
-      </select>
-      <div class="botones">
-        <button type="button" onclick="CerrarEspecializaciones()">Cancelar</button>
-        <a id="agrego-especializacion" type="submit" class="guardar">Guardar</a>
-        <a id="eliminar-especialidades" type="submit" class="guardar">Eliminar</a>
-      </div>
-  </div>
-  </form>
-  </div>
-  <!---FIN FORMULARIO TRABAJOS-->
 
-  <!---FORMULARIO PARA AGERGAR PROYECTOS-->
-  <div id="FormularioTrabajos" class="FormularioTrabajos" style="display: none;">
-    <form>
-      <h4 class="titulo-form text-center">Editar Trabajos/Proyectos</h4>
-      <label for="imagen-proyecto">Foto:</label>
-      <input type="file" id="imagen-proyecto" name="imagen" accept="image/*">
+            <div class="container">
+              <div class="perfil-principal contenido">
+                <div class="row">
 
-      <label for="titulo">Título:</label>
-      <input type="text" id="titulo" name="titulo">
+                  <div class="col-md-12">
+                    <div class="text-end editar-portada">
+                      <!-- Si el usuario que entra es el dueño del perfil, puede editar -->
+                      <% if (user.id===id) { %>
+                        <a class="btn" id="btn-editar-fotos">
+                          <i class="fa-solid fa-pen-to-square"></i>
+                        </a>
+                        <% } %>
 
-      <label for="descripcion-proyecto">Descripción:</label>
-      <textarea id="descripcion-proyecto" name="descripcion-proyecto"></textarea>
+                    </div>
+                    <div class="portada">
+                      <!-- Muestro la foto de portada sin validar nada, cualquiera que entre la ve -->
+                      <img class="img-fluid" src="<%= user.path_portada %>" alt="Portada del usuario">
+                    </div>
+                  </div>
 
-      <div class="botones">
-        <button type="button" onclick="CerrarTrabajos()">Cancelar</button>
-        <a id="guardar-proyecto" type="submit" class="guardar">Guardar</a>
-      </div>
+                  <div class="col-md-12">
 
-    </form>
-  </div>
-  <!---FIN FORMULARIO PROYECTOS-->
+                    <div class="perfil">
+                      <!-- Muestro la foto de perfil sin validar nada, cualquiera que entre la ve -->
+                      <img class="img-fluid" src="<%= user.path %>" alt="perfil del usuario">
 
-  <!-- FORMULARIO NOMBRE/DESCRIPCION-->
-  <div id="formulario-editar" class="formulario-editar">
-    <form>
-      <h4 class="titulo-form">Editar Datos Personales</h4>
-      <div class="nombres">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="nombre-form">
-              <label for="nombre">Nombre:</label>
-              <input value="<%= user.nombre %>" type="text" id="nombre" name="nombre">
+                      <!-- Muestro todas las especializaciones del usuario con un for -->
+                      <div class="categorias text-end">
+                        <% perfilEsp.forEach(function(e){ %>
+                          <div class="esp-perfil" data-especializaciones-perfil="<%= e.id_especializacion %>">
+                            <a href="oficios" target="_blank" class="text">
+                              <%= e.especializacion %>
+                            </a>
+                          </div>
+                          <% }) %>
+                            <% if (user.id===id && user.especialista !=0) { %>
+                              <button class="btn btn-especializaciones ml-3 editar-portada" id="btn-especializaciones">
+                                <a class="btn ">
+                                  <i class="fa-solid fa-pen-to-square "></i>
+                                </a>
+                              </button>
+                              <% } %>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="perfil-inferior">
+                    <div class="d-flex align-items-center mb-3">
+                      <!-- Muestro el nombre y apellido del perfil sin validar nada -->
+                      <h1>
+                        <%= user.nombre %>
+                          <%= user.apellido %>
+                      </h1>
+                      <% if (user.id===id) { %>
+                        <button class="btn btn-editar ml-3 editar-portada" id="btn-editar">
+                          <a class="btn ">
+                            <i class="fa-solid fa-pen-to-square "></i>
+                          </a>
+                        </button>
+                        <% } %>
+                    </div>
+                    <!-- Muestro la descripcion del perfil sin validar nada -->
+                    <p>
+                      <%= user.descripcion %>
+                    </p>
+
+                    <% if (usuarioLogeado) { %>
+                      <div class="d-flex">
+                        <!-- Muestro el contacto y mail del perfil sin validar nada -->
+                        <div class="whatsapp btn-perfil-inf">
+                          <a href="https://wa.me/<%= user.contacto %>" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                            <%= user.contacto %>
+                          </a>
+                        </div>
+                        <div class="email btn-perfil-inf">
+                          <a href="mailto:<%= user.email %>" target="_blank">
+                            <i class="far fa-envelope"></i>
+                            <%= user.email %>
+                          </a>
+                        </div>
+                      </div>
+                  </div>
+                  <% } else { %>
+                    <div class="d-flex">
+                      <!-- Muestro los botones sin que el usuario este logeado -->
+                      <div class="whatsapp btn-perfil-inf">
+                        <a class="unloged"></a>
+                        <i class="fab fa-whatsapp"></i>
+                      </div>
+                      <div class="email btn-perfil-inf">
+                        <a class="unloged"></a>
+                        <i class="far fa-envelope"></i>
+                      </div>
+                    </div>
+                </div>
+                <% } %>
+
+              </div>
             </div>
-          </div>
-          <div class="col-md-6">
-            <div class="apellido">
-              <label for="apellido">Apellido:</label>
-              <input value="<%= user.apellido %>" type="text" id="apellido" name="apellido">
             </div>
-          </div>
-        </div>
-      </div>
 
-      <div id="camposAdicionales">
-        <div class="row">
-          <div class="col-md-6">
-            <label for="contacto">Contacto:</label>
-            <input value="<%= user.contacto %>" type="text" id="contacto" name="contacto">
-          </div>
-          <div class="col-md-6">
-            <label for="direccion">Direccion:</label>
-            <input value="<%= user.direccion %>" type="text" id="direccion" name="direccion">
-          </div>
-        </div>
-      </div>
+            <!-- Contador de cantidad de proyectos -->
+            <% var contador_proyectos=0 %>
+              <% proyectos.forEach(function(p){ %>
+                <% contador_proyectos +=1 %>
+                  <% }) %>
+                    <div class="container">
+                      <div class="contenido">
+                        <div class="contenedor-flecha">
+                          <h5 class="titulo-resenia">
+                            <%=contador_proyectos%> Proyectos / Trabajos
+                          </h5>
+                          <i class="fas fa-chevron-down icono-perfil"></i>
+                        </div>
+                        <div class="contenedor-info " style="display:none">
+                          <!-- Muestro el boton de agregar trabajo solo si el usuario es el dueño del perfil -->
+                          <% if (user.id===id) { %>
+                            <div class="boton-agregar-trabajo">
+                              <button id="btn-formulario-Trabajos" onclick="FormularioTrabajos()"><i
+                                  class="fa-solid fa-plus"></i>Agregar Trabajo</button>
+                            </div>
 
-      <div class="descripcion">
-        <label for="descripcion">Descripción:</label>
-        <textarea value="<%= user.descripcion %>" id="descripcion-perfil" name="descripcion"></textarea>
-      </div>
+                            <% } %>
 
-      <div class="contenedorCheckbox" data-trabaja="<%=user.especialista%>">
-        <% if(user.especialista){ %>
-        <input class="checkbox" type="checkbox" id="mostrarCampos" checked>
-        <% } else { %>
-        <input class="checkbox" type="checkbox" id="mostrarCampos">
-        <% } %>
-        <label class="labelRegistro" for="mostrarCampos">Quiero ofrecer mis servicios</label>
-      </div>
-    </form>
-    <div class="botones">
-      <button type="button" onclick="cerrarFormulario()">Cancelar</button>
-      <a id="guardar-cambios-perfil" type="submit" class="guardar">Guardar</a>
-    </div>
-  </div>
-  <!-- FIN FORMULARIO NOMBRE/DESCRIPCION-->
+                              <% proyectos.forEach(function(p){ %>
+                                <div class="proyecto">
+                                  <div class="proyectos-cuerpo d-flex ">
+                                    <div class="boton-eliminar-trabajo">                                   
+                                      <button id="btn-formulario-Trabajos" onclick="FormularioEliminarTrabajos()">
+                                        <i class="fa-solid fa-x" style="color: #ff0000;">
+                                        </i>
+                                      </button>
+                                  </div>
+                                    <div class="encabezado">
+                                      <img src="<%=p.path%>" alt="">
+                                    </div>
+                                    <div class="cuerpo-proyecto">
 
-  <script src="/Frontend/js/script.js"></script>
-  <script src="/Frontend/js/funciones_usuarios.js"></script>
+                                      <div>
+                                        <h5 class="titulo">
+                                          <%=p.titulo%>
+                                        </h5>
+                                      </div>
+                                      
+                                      <div>
+                                        <p class="text-proyecto">
+                                          <%=p.descripcion%>
+                                        </p>
+                                      </div>
+                                    </div>
+                                  </div>
 
-  <script>
-    $("#guardar-imagen").on("click", function() {
+                                </div>
+                                <% }) %>
 
-      var fotoPerfil = $("#nueva-foto");
+                        </div>
+                      </div>
+                    </div>
 
-      var especificaciones = new FormData();
-      especificaciones.append("usuarioFoto", fotoPerfil[0].files[0])
-      especificaciones.append("tipo", $("#tipo").val())
+                    <div class="container">
+                      <div class="contenido">
+                        <div class="contenedor-flecha">
+                          <h5 class="titulo-resenia">Ubicación</h5>
+                          <i class="fas fa-chevron-down icono-perfil"></i>
+                        </div>
+                        <div class="contenedor-info">
+                          <p id="coordenadas">Latitud: Desconocida, Longitud: Desconocida</p>
+                          <div class="location d-flex">
+                            <iframe
+                              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d817.9736236228513!2d-60.03290813548677!3d-34.90909711665791!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bebad1ec18ed01%3A0x27eea2ba52fe3f42!2sFacultad%20de%20Psicolog%C3%ADa%20%7C%20Sede%20Chivilcoy!5e0!3m2!1ses-419!2sar!4v1694909701433!5m2!1ses-419!2sar"
+                              width="665px" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+                              referrerpolicy="no-referrer-when-downgrade"></iframe>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
 
-      EditarImagenes(especificaciones);
+                    <%- include ('../partials/footer') %>
 
-    })
+                      <!--FORMULARIO PARA FOTOS PERFIL Y PORTADA--->
+                      <div id="editar-fotos" class="editar-fotos">
+                        <form>
+                          <h4 class="titulo-form text-center">Editar Foto de Perfil/Portada</h4>
 
-    $("#eliminar-imagen").on("click", function() {
+                          <label for="tipo">Seleccionar foto a editar:</label>
+                          <select id="tipo" name="tipo">
+                            <option value="perfil">Perfil</option>
+                            <option value="portada">Portada</option>
+                          </select>
 
-      var especificaciones = new FormData();
-      especificaciones.append("usuarioFoto", undefined);
-      especificaciones.append("tipo", $("#tipo").val())
+                          <label for="archivo">Seleccionar foto:</label>
+                          <input class="foto" type="file" id="nueva-foto" name="archivo" accept="image/*">
 
-      EditarImagenes(especificaciones);
+                          <button type="button" onclick="CerrarFotos()">Cancelar</button>
+                          <a type="submit" id="guardar-imagen" class="guardar">Guardar</a>
+                        </form>
+                      </div>
+                      <!-- FIN FORMULARIO PARA FOTOS PERFIL Y PORTADA--->
 
-    })
+                      <!---FORMULARIO PARA AGERGAR ESPECIALIZACIONES-->
+                      <div id="FormularioEspecializaciones" class="FormularioEspecializaciones" style="display: none;">
+                        <form>
+                          <h4 class="titulo-form text-center">Editar Especializaciones</h4>
+                          <select class="form-control select-categoria" id="especializaciones" multiple size="6">
+                            <% var categoria_actual=especializacion[0].categoria; %>
+                              <optgroup label="<%=especializacion[0].categoria%>">
+                                <% especializacion.forEach(function(c){ %>
+                                  <% if(c.categoria===categoria_actual) { %>
+                                    <option value="<%= c.id %>">
+                                      <%= c.especializacion %>
+                                    </option>
+                                    <% } else {%>
+                                      <% categoria_actual=c.categoria; %>
+                              <optgroup label="<%=c.categoria%>">
+                                <option value="<%= c.id %>">
+                                  <%= c.especializacion %>
+                                </option>
+                                <% } %>
+                                  <% }) %>
+                          </select>
+                          <div class="botones">
+                            <button type="button" onclick="CerrarEspecializaciones()">Cancelar</button>
+                            <a id="agrego-especializacion" type="submit" class="guardar">Guardar</a>
+                            <a id="eliminar-especialidades" type="submit" class="guardar">Eliminar</a>
+                          </div>
+                      </div>
+                      </form>
+                      </div>
+                      <!---FIN FORMULARIO ESPESCIALIZACIONES-->
 
-    $("#agrego-especializacion").on("click", function() {
-
-      //Creo una variable array para almacenar las especializaciones del perfil
-      var espPerfil = [];
-
-      var espElegidas = $("#especializaciones").val();
-
-      //recorro los distintos <div> que muestran una especializacion y la agrego al array
-      $(".esp-perfil").each(function() {
-        espPerfil.push(($(this).data("especializaciones-perfil")).toString());
-      });
-
-      console.log("espElegidas")
-      console.log(espElegidas)
-      console.log("espPerfil")
-      console.log(espPerfil)
-
-      var contador = 0
-      espElegidas.forEach(function(ee) {
-        espPerfil.forEach(function(ep) {
-          if (ee === ep) {
-            espElegidas.splice(contador, 1)
-          }
-        })
-        contador += 1;
-      })
-
-      //Uno todos los elementos del array en una unica variable separando cada elemento con ","
-      var espElegidas = espElegidas.join(",");
-
-      AgregoEspecializacion(espElegidas);
-
-    })
-
-    $("#eliminar-especialidades").on("click", function() {
-
-      //Creo una variable array para almacenar las especializaciones del perfil
-      var espPerfil = [];
-
-      var espElegidas = $("#especializaciones").val();
-
-      //recorro los distintos <div> que muestran una especializacion y la agrego al array
-      $(".esp-perfil").each(function() {
-        espPerfil.push(($(this).data("especializaciones-perfil")).toString());
-      });
-
-      //Filtro las especializades elegidas que coincidan con las del perfil
-      espElegidas = espElegidas.filter(function(ee) {
-        return espPerfil.includes(ee);
-      });
-
-      if (espPerfil.length == espElegidas.length) {
-        alert("No puedes eliminar todas tus especializaciones")
-      } else {
-        //Uno todos los elementos del array en una unica variable separando cada elemento con ","
-        var espElegidas = espElegidas.join(",");
-        EliminoEspecializaciones(espElegidas);
-      }
-    })
-
-    var checkbox = document.getElementById("mostrarCampos");
-    var valorDataTrabaja = $(".contenedorCheckbox").data("trabaja");
-
-    checkbox.addEventListener("change", function() {
-      if (this.checked) {
-        valorDataTrabaja = 1;
-      } else {
-        valorDataTrabaja = 0;
-      }
-    });
-
-    $("#guardar-cambios-perfil").on("click", function() {
-
-      var especificaciones = new FormData();
-
-      especificaciones.append("nombre", $("#nombre").val())
-      especificaciones.append("apellido", $("#apellido").val())
-      especificaciones.append("contacto", $("#contacto").val())
-      especificaciones.append("direccion", $("#direccion").val())
-      especificaciones.append("descripcion", $("#descripcion-perfil").val())
-      especificaciones.append("especialista", valorDataTrabaja)
-
-      EditoPerfil(especificaciones);
-
-    })
-
-    $("#guardar-proyecto").on("click", function() {
-
-      var fotoProyecto = $("#imagen-proyecto");
-
-      var especificaciones = new FormData();
-
-      especificaciones.append("imagen", fotoProyecto[0].files[0]);
-      especificaciones.append("titulo", $("#titulo").val())
-      especificaciones.append("descripcion", $("#descripcion-proyecto").val())
-
-      console.log($("#descripcion-proyecto").val())
-
-      AgregarProyecto(especificaciones);
-
-    })
-  </script>
-
-  <script>
-    $(".unloged").on("click", function() {
-      alert("Inicia sesion para ver esta informacion.");
-    });
-
-    /* FORMULARIO PARA EDITAR NOMBRE Y DESCRIPCION*/
-    document.getElementById('btn-editar').addEventListener('click', function() {
-      mostrarFormulario();
-    });
-
-    /* FORMULARIO PARA EDITAR FOTOS PERFIL Y PORTADA*/
-    document.getElementById('btn-editar-fotos').addEventListener('click', function() {
-      EditarFotos();
-    });
-
-    /* FORMULARIO PARA AGREGAR ESPECIALIZACIONES */
-    document.getElementById('btn-especializaciones').addEventListener('click', function() {
-      FormularioEspecializaciones();
-    });
-
-    /* FORMULARIO PARA AGREGAR TRABAJOS/PROYECTOS */
-    document.getElementById('btn-formulario-trabajos').addEventListener('click', function() {
-      FormularioTrabajos();
-    });
-
-    /* FUNCION PARA OBTENER LAS COORDENADAS Y COLOCARLAS JUNTO AL MAPA EN TIEMPO REAL*/
-    function obtenerCoordenadas() {
-      if ("geolocation" in navigator) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-            const latitud = position.coords.latitude;
-            const longitud = position.coords.longitude;
-
-            // Actualiza el contenido del elemento coordenadas
-            const coordenadasElement = document.getElementById("coordenadas");
-            if (coordenadasElement) {
-              coordenadasElement.textContent = `Latitud: ${latitud}, Longitud: ${longitud}`;
-            }
-          },
-          function(error) {
-            switch (error.code) {
-              case error.PERMISSION_DENIED:
-                alert("El usuario ha denegado el permiso de geolocalización.");
-                break;
-              case error.POSITION_UNAVAILABLE:
-                alert("La información de ubicación no está disponible.");
-                break;
-              case error.TIMEOUT:
-                alert("Se ha agotado el tiempo de espera para obtener la ubicación.");
-                break;
-              case error.UNKNOWN_ERROR:
-                alert("Se ha producido un error desconocido.");
-                break;
-            }
-          });
-      } else {
-        alert("Geolocalización no compatible en este navegador.");
-      }
-    }
+                      <!---FORMULARIO PARA AGERGAR PROYECTOS-->
+                      <div id="FormularioTrabajos" class="FormularioTrabajos" style="display: none;">
+                        <form>
+                          <h4 class="titulo-form text-center">Editar Trabajos/Proyectos</h4>
+                          <label for="imagen-proyecto">Foto:</label>
+                          <input type="file" id="imagen-proyecto" name="imagen" accept="image/*">
 
 
-    window.onload = obtenerCoordenadas;
-  </script>
+                          <label for="titulo">Título:</label>
+                          <input type="text" id="titulo" name="titulo">
+
+                          <label for="descripcion-proyecto">Descripción:</label>
+                          <textarea id="descripcion-proyecto" name="descripcion-proyecto"></textarea>
+
+                          <div class="botones">
+                            <button type="button" onclick="CerrarTrabajos()">Cancelar</button>
+                            <a id="guardar-proyecto" type="submit" class="guardar">Guardar</a>
+                          </div>
+
+                        </form>
+                      </div>
+                      <!---FIN FORMULARIO PROYECTOS-->
+
+                      <!-- FORMULARIO NOMBRE/DESCRIPCION-->
+                      <div id="formulario-editar" class="formulario-editar">
+                        <form>
+                          <h4 class="titulo-form">Editar Datos Personales</h4>
+                          <div class="nombres">
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="nombre-form">
+                                  <label for="nombre">Nombre:</label>
+                                  <input value="<%= user.nombre %>" type="text" id="nombre" name="nombre">
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="apellido">
+                                  <label for="apellido">Apellido:</label>
+                                  <input value="<%= user.apellido %>" type="text" id="apellido" name="apellido">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div id="camposAdicionales">
+                            <div class="row">
+                              <div class="col-md-6">
+                                <label for="contacto">Contacto:</label>
+                                <input value="<%= user.contacto %>" type="text" id="contacto" name="contacto">
+                              </div>
+                              <div class="col-md-6">
+                                <label for="direccion">Direccion:</label>
+                                <input value="<%= user.direccion %>" type="text" id="direccion" name="direccion">
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="descripcion">
+                            <label for="descripcion">Descripción:</label>
+                            <textarea value="<%= user.descripcion %>" id="descripcion-perfil"
+                              name="descripcion"></textarea>
+                          </div>
+
+                          <div class="contenedorCheckbox" data-trabaja="<%=user.especialista%>">
+                            <% if(user.especialista){ %>
+                              <input class="checkbox" type="checkbox" id="mostrarCampos" checked>
+                              <% } else { %>
+                                <input class="checkbox" type="checkbox" id="mostrarCampos">
+                                <% } %>
+                                  <label class="labelRegistro" for="mostrarCampos">Quiero ofrecer mis servicios</label>
+                          </div>
+                        </form>
+                        <div class="botones">
+                          <button type="button" onclick="cerrarFormulario()">Cancelar</button>
+                          <a id="guardar-cambios-perfil" type="submit" class="guardar">Guardar</a>
+                        </div>
+                      </div>
+                      <!-- FIN FORMULARIO NOMBRE/DESCRIPCION-->
+
+                      <script src="/Frontend/js/script.js"></script>
+                      <script src="/Frontend/js/funciones_usuarios.js"></script>
+
+                      <script>
+                        $("#guardar-imagen").on("click", function () {
+
+                          var fotoPerfil = $("#nueva-foto");
+
+                          var especificaciones = new FormData();
+                          especificaciones.append("usuarioFoto", fotoPerfil[0].files[0])
+                          especificaciones.append("tipo", $("#tipo").val())
+
+                          EditarImagenes(especificaciones);
+
+                        })
+
+                        $("#eliminar-imagen").on("click", function () {
+
+                          var especificaciones = new FormData();
+                          especificaciones.append("usuarioFoto", undefined);
+                          especificaciones.append("tipo", $("#tipo").val())
+
+                          EditarImagenes(especificaciones);
+
+                        })
+
+                        $("#agrego-especializacion").on("click", function () {
+
+                          //Creo una variable array para almacenar las especializaciones del perfil
+                          var espPerfil = [];
+
+                          var espElegidas = $("#especializaciones").val();
+
+                          //recorro los distintos <div> que muestran una especializacion y la agrego al array
+                          $(".esp-perfil").each(function () {
+                            espPerfil.push(($(this).data("especializaciones-perfil")).toString());
+                          });
+
+                          console.log("espElegidas")
+                          console.log(espElegidas)
+                          console.log("espPerfil")
+                          console.log(espPerfil)
+
+                          var contador = 0
+                          espElegidas.forEach(function (ee) {
+                            espPerfil.forEach(function (ep) {
+                              if (ee === ep) {
+                                espElegidas.splice(contador, 1)
+                              }
+                            })
+                            contador += 1;
+                          })
+
+                          //Uno todos los elementos del array en una unica variable separando cada elemento con ","
+                          var espElegidas = espElegidas.join(",");
+
+                          AgregoEspecializacion(espElegidas);
+
+                        })
+
+                        $("#eliminar-especialidades").on("click", function () {
+
+                          //Creo una variable array para almacenar las especializaciones del perfil
+                          var espPerfil = [];
+
+                          var espElegidas = $("#especializaciones").val();
+
+                          //recorro los distintos <div> que muestran una especializacion y la agrego al array
+                          $(".esp-perfil").each(function () {
+                            espPerfil.push(($(this).data("especializaciones-perfil")).toString());
+                          });
+
+                          //Filtro las especializades elegidas que coincidan con las del perfil
+                          espElegidas = espElegidas.filter(function (ee) {
+                            return espPerfil.includes(ee);
+                          });
+
+                          if (espPerfil.length == espElegidas.length) {
+                            alert("No puedes eliminar todas tus especializaciones")
+                          } else {
+                            //Uno todos los elementos del array en una unica variable separando cada elemento con ","
+                            var espElegidas = espElegidas.join(",");
+                            EliminoEspecializaciones(espElegidas);
+                          }
+                        })
+
+                        var checkbox = document.getElementById("mostrarCampos");
+                        var valorDataTrabaja = $(".contenedorCheckbox").data("trabaja");
+
+                        checkbox.addEventListener("change", function () {
+                          if (this.checked) {
+                            valorDataTrabaja = 1;
+                          } else {
+                            valorDataTrabaja = 0;
+                          }
+                        });
+
+                        $("#guardar-cambios-perfil").on("click", function () {
+
+                          var especificaciones = new FormData();
+
+                          especificaciones.append("nombre", $("#nombre").val())
+                          especificaciones.append("apellido", $("#apellido").val())
+                          especificaciones.append("contacto", $("#contacto").val())
+                          especificaciones.append("direccion", $("#direccion").val())
+                          especificaciones.append("descripcion", $("#descripcion-perfil").val())
+                          especificaciones.append("especialista", valorDataTrabaja)
+
+                          EditoPerfil(especificaciones);
+
+                        })
+
+                        $("#guardar-proyecto").on("click", function () {
+
+                          var fotoProyecto = $("#imagen-proyecto");
+
+                          var especificaciones = new FormData();
+
+                          especificaciones.append("imagen", fotoProyecto[0].files[0]);
+                          especificaciones.append("titulo", $("#titulo").val())
+                          especificaciones.append("descripcion", $("#descripcion-proyecto").val())
+
+                          console.log($("#descripcion-proyecto").val())
+
+                          AgregarProyecto(especificaciones);
+
+                        })
+                      </script>
+
+                      <script>
+                        $(".unloged").on("click", function () {
+                          alert("Inicia sesion para ver esta informacion.");
+                        });
+
+                        /* FORMULARIO PARA EDITAR NOMBRE Y DESCRIPCION*/
+                        document.getElementById('btn-editar').addEventListener('click', function () {
+                          mostrarFormulario();
+                        });
+
+                        /* FORMULARIO PARA EDITAR FOTOS PERFIL Y PORTADA*/
+                        document.getElementById('btn-editar-fotos').addEventListener('click', function () {
+                          EditarFotos();
+                        });
+
+                        /* FORMULARIO PARA AGREGAR ESPECIALIZACIONES */
+                        document.getElementById('btn-especializaciones').addEventListener('click', function () {
+                          FormularioEspecializaciones();
+                        });
+
+                        /* FORMULARIO PARA AGREGAR TRABAJOS/PROYECTOS */
+                        document.getElementById('btn-formulario-trabajos').addEventListener('click', function () {
+                          FormularioTrabajos();
+                        });
 
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const iconos = document.querySelectorAll('.icono-perfil');
-      const contenedoresInfo = document.querySelectorAll('.contenedor-info');
+                        /* FUNCION PARA OBTENER LAS COORDENADAS Y COLOCARLAS JUNTO AL MAPA EN TIEMPO REAL*/
+                        function obtenerCoordenadas() {
+                          if ("geolocation" in navigator) {
+                            navigator.geolocation.getCurrentPosition(function (position) {
+                              const latitud = position.coords.latitude;
+                              const longitud = position.coords.longitude;
 
-      iconos.forEach((icono, index) => {
-        icono.addEventListener('click', () => {
-          if (contenedoresInfo[index].style.display === 'none' || contenedoresInfo[index].style.display === '') {
-            contenedoresInfo[index].style.display = 'block';
-          } else {
-            contenedoresInfo[index].style.display = 'none';
-          }
-        });
-      });
-    });
-  </script>
+                              // Actualiza el contenido del elemento coordenadas
+                              const coordenadasElement = document.getElementById("coordenadas");
+                              if (coordenadasElement) {
+                                coordenadasElement.textContent = `Latitud: ${latitud}, Longitud: ${longitud}`;
+                              }
+                            },
+                              function (error) {
+                                switch (error.code) {
+                                  case error.PERMISSION_DENIED:
+                                    alert("El usuario ha denegado el permiso de geolocalización.");
+                                    break;
+                                  case error.POSITION_UNAVAILABLE:
+                                    alert("La información de ubicación no está disponible.");
+                                    break;
+                                  case error.TIMEOUT:
+                                    alert("Se ha agotado el tiempo de espera para obtener la ubicación.");
+                                    break;
+                                  case error.UNKNOWN_ERROR:
+                                    alert("Se ha producido un error desconocido.");
+                                    break;
+                                }
+                              });
+                          } else {
+                            alert("Geolocalización no compatible en este navegador.");
+                          }
+                        }
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
 
-      const estrellas = document.querySelectorAll('.icono-estrella');
+                        window.onload = obtenerCoordenadas;
+                      </script>
 
-      estrellas.forEach((estrella, index) => {
-        estrella.addEventListener('click', () => {
-          const currentColor = estrella.getAttribute('data-color');
 
-          // Si la estrella actual está seleccionada, desmarcar todas las estrellas
-          if (currentColor === '#FF6723') {
-            for (let i = 0; i < estrellas.length; i++) {
-              estrellas[i].style.color = '#737373';
-              estrellas[i].setAttribute('data-color', '#737373');
-            }
-          } else {
-            // Marcar la estrella actual y las anteriores
-            for (let i = 0; i <= index; i++) {
-              estrellas[i].style.color = '#FF6723';
-              estrellas[i].setAttribute('data-color', '#FF6723');
-            }
-          }
-        });
-      });
-    });
-  </script>
+                      <script>
+                        document.addEventListener("DOMContentLoaded", function () {
+                          const iconos = document.querySelectorAll('.icono-perfil');
+                          const contenedoresInfo = document.querySelectorAll('.contenedor-info');
+
+                          iconos.forEach((icono, index) => {
+                            icono.addEventListener('click', () => {
+                              if (contenedoresInfo[index].style.display === 'none' || contenedoresInfo[index].style.display === '') {
+                                contenedoresInfo[index].style.display = 'block';
+                              } else {
+                                contenedoresInfo[index].style.display = 'none';
+                              }
+                            });
+                          });
+                        });
+                      </script>
+
+                      <script>
+                        document.addEventListener("DOMContentLoaded", function () {
+
+                          const estrellas = document.querySelectorAll('.icono-estrella');
+
+                          estrellas.forEach((estrella, index) => {
+                            estrella.addEventListener('click', () => {
+                              const currentColor = estrella.getAttribute('data-color');
+
+                              // Si la estrella actual está seleccionada, desmarcar todas las estrellas
+                              if (currentColor === '#FF6723') {
+                                for (let i = 0; i < estrellas.length; i++) {
+                                  estrellas[i].style.color = '#737373';
+                                  estrellas[i].setAttribute('data-color', '#737373');
+                                }
+                              } else {
+                                // Marcar la estrella actual y las anteriores
+                                for (let i = 0; i <= index; i++) {
+                                  estrellas[i].style.color = '#FF6723';
+                                  estrellas[i].setAttribute('data-color', '#FF6723');
+                                }
+                              }
+                            });
+                          });
+                        });
+                      </script>
 
 
 </body>

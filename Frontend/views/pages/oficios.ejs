@@ -23,7 +23,7 @@
           <% especializacion.forEach(function(c, index){ %>
           <div>
             <div class="padre" onclick="mostrarHijo(<%= index %>)"><%= c.categoria %><i class="fas fa-chevron-down abajo"></i></div>
-            <div class="hijos" id="hijo<%= index %>" style="display: none;">
+            <div class="hijos mx-4" id="hijo<%= index %>" style="display: none;">
               <% c.especializaciones.forEach(function(e){ %>
               <div class="categoria <%= e.especializacion %>">
                 <input data-id="<%= e.id %>" class="checkbox-especializacion" type="checkbox" id="checkbox-<%= e.id %>">
@@ -64,10 +64,18 @@
                 <div class="info-persona">
                   <% c.especializaciones.forEach(function(e){ %>
                   <div class="especialidades">
-                    <h3><%= e.nombre %></h3>
+                    <h3>
+                      <%= e.nombre %>
+                    </h3>
+                    
                   </div>
                   <% }) %>
-                  <a class="nombre" href="/perfil/<%=c.id%>"><%= c.nombre %> <%= c.apellido %></a>
+                  <a class="nombre" href="/perfil/<%=c.id%>">
+                    <%= c.nombre %> <%= c.apellido %>
+                    <% if (c.destacado != 0) { %>
+                      <i class="fa-solid fa-star" style="color: #ffc800;"></i>
+                        <% }; %>
+                  </a>
                   <div class="descripcion">
                     <p><%= c.descripcion %></p>
                   </div>

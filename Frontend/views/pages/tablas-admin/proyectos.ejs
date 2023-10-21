@@ -35,9 +35,9 @@
           <table>
             <thead>
               <tr>
-                <th class="agregar"></th>
+                <!-- <th class="agregar"></th>
                 <th class="editar"></th>
-                <th class="eliminar"></th>
+                <th class="eliminar"></th> -->
                 <th class="">Id</th>
                 <th class="">Id_usuario</th>
                 <th class="">Titulo</th>
@@ -45,7 +45,18 @@
                 <th class="">Path</th>
               </tr>
             </thead>
-            <tbody></tbody>
+            <tbody>
+              <% proyectos.forEach(function(proyectos) { %>
+                <tr>
+                  <td><%= proyectos.id %></td>
+                  <td><%= proyectos.id_usuario %></td>
+                  <td><%= proyectos.titulo %></td>
+                  <td><%= proyectos.descripcion %></td>
+                  <td><%= proyectos.path %></td>
+
+                </tr>
+              <% }); %>
+            </tbody>
           </table>
         </div>
       </div>

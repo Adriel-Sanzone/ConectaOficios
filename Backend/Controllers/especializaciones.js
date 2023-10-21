@@ -14,6 +14,7 @@ export const viewEspecializaciones = () =>
     
 }
 
+
 export const viewEspecializacionesNueva = () =>
 {
     return new Promise (function(resolve)

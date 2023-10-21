@@ -642,6 +642,32 @@ font-size: 16px;
     color: #E74040;
 }
 
+
+.boton-eliminar-trabajo {
+    margin-right: 10px;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.boton-eliminar-trabajo button {
+    border: 2px solid #e74040;
+    background-color: #fafafa;
+    border-radius: 5px;
+    font-weight: 700;
+    color: #e74040;
+    
+}
+
+.boton-eliminar-trabajo button:hover {
+    box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.10);
+}
+
+.boton-eliminar-trabajo i {
+    
+    color: #E74040;
+}
+
 /* ubicacion */
 
 .ubi-info {
