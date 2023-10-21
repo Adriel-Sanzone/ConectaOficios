@@ -580,50 +580,6 @@ export const EditoPerfil = async (req, res) =>
     );
 };
 
-function CrearToken()
-{
-    var numero = Math.floor(Math.random() * 200000);
-    var token = md5(numero);
-
-    //Creo y retorno una promesa para esperar la ejecucion de la consulta a la base de datos. Una vez terminado puedo obter el resultado por el resolve (se devuelve el valor indicado) o por reject (si es rechazada)
-    return new Promise(function(resolve)
-    {
-        connection.query('SELECT * FROM usuarios WHERE token = ?' , 
-        [token],
-        function(err, results)
-        {
-            if(results[0] === undefined)
-            {
-                //Una vez finalizado y sin encontrar token repetido, resuelvo la promesa devolviendo "token"
-                resolve(token);
-            } else
-            {
-                //Una vez finalizado y encontrando un token repetido, resuelvo la promesa llamando nuevamente la funcion
-                resolve(CrearToken);
-            }
-        })
-    });
-}
-
-function ComprueboEmailExistente(email)
-{
-    return new Promise(function(resolve)
-    {
-        connection.query('SELECT * FROM usuarios WHERE email = ?',
-        [email],
-        function(err, results)
-        {
-            if (results[0] === undefined)
-            {
-                resolve(0);
-            } else
-            {
-                resolve(1);
-            }
-        });
-    });
-}
-
 export const viewsTodosLosUsuarios = (pagina, categoria) =>
 {
     var offset = pagina * 10;
@@ -672,6 +628,50 @@ export const viewsTodosLosUsuarios = (pagina, categoria) =>
                     });
             }
         );
+    });
+}
+
+function CrearToken()
+{
+    var numero = Math.floor(Math.random() * 200000);
+    var token = md5(numero);
+
+    //Creo y retorno una promesa para esperar la ejecucion de la consulta a la base de datos. Una vez terminado puedo obter el resultado por el resolve (se devuelve el valor indicado) o por reject (si es rechazada)
+    return new Promise(function(resolve)
+    {
+        connection.query('SELECT * FROM usuarios WHERE token = ?' , 
+        [token],
+        function(err, results)
+        {
+            if(results[0] === undefined)
+            {
+                //Una vez finalizado y sin encontrar token repetido, resuelvo la promesa devolviendo "token"
+                resolve(token);
+            } else
+            {
+                //Una vez finalizado y encontrando un token repetido, resuelvo la promesa llamando nuevamente la funcion
+                resolve(CrearToken);
+            }
+        })
+    });
+}
+
+function ComprueboEmailExistente(email)
+{
+    return new Promise(function(resolve)
+    {
+        connection.query('SELECT * FROM usuarios WHERE email = ?',
+        [email],
+        function(err, results)
+        {
+            if (results[0] === undefined)
+            {
+                resolve(0);
+            } else
+            {
+                resolve(1);
+            }
+        });
     });
 }
 
