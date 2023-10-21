@@ -210,8 +210,9 @@
           <% }) %>
       </select>
       <div class="botones">
-        <button type="button" onclick="CerrarTrabajos()">Cancelar</button>
+        <button type="button" onclick="CerrarEspecializaciones()">Cancelar</button>
         <a id="agrego-especializacion" type="submit" class="guardar">Guardar</a>
+        <a id="eliminar-especialidades" type="submit" class="guardar">Eliminar</a>
       </div>
   </div>
   </form>
@@ -332,6 +333,11 @@
       $(".esp-perfil").each(function() {
         espPerfil.push(($(this).data("especializaciones-perfil")).toString());
       });
+
+      console.log("espElegidas")
+      console.log(espElegidas)
+      console.log("espPerfil")
+      console.log(espPerfil)
 
       var contador = 0
       espElegidas.forEach(function(ee) {
