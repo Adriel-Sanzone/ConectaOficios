@@ -35,16 +35,16 @@
           <table>
             <thead>
               <tr>
-                <th class="agregar"></th>
+                <!-- <th class="agregar"></th>
                 <th class="editar"></th>
-                <th class="eliminar"></th>
+                <th class="eliminar"></th> -->
                 <th class="">Id</th>
                 <th class="">Email</th>
                 <th class="">Password</th>
                 <th class="">Nombre</th>
                 <th class="">Apellido</th>
                 <th class="">Contacto</th>
-                <th class="">Descripcion</th>
+                <!-- <th class="">Descripcion</th> -->
                 <th class="">Destacado</th>
                 <th class="">Especialista</th>
                 <th class="">Direccion</th>
@@ -54,22 +54,27 @@
               </tr>
             </thead>
             <tbody>
-              <td class="agregar">Agregar</td>
-              <td class="editar">Editar</td>
-              <td class="eliminar">Eliminar</td>
-              <td class="">Id</td>
-              <td class="">Email</td>
-              <td class="">Password8888888888888</td>
-              <td class="">Nombre</td>
-              <td class="">Apellido</td>
-              <td class="">Contacto</td>
-              <td class="">Descripcion</td>
-              <td class="">Destacado</td>
-              <td class="">Especialista</td>
-              <td class="">Direccion</td>
-              <td class="">Token</td>
-              <td class="">Patd</td>
-              <td class="">Patd_portada</td>
+              <% usuariosAdmin.forEach(function(usuariosAdmin) { %>
+                <tr>
+                  <!-- <td class="agregar"></td>
+                  <td class="editar"></td>
+                  <td class="eliminar"></td> -->
+                  <td><%= usuariosAdmin.id %></td>
+                  <td><%= usuariosAdmin.email %></td>
+                  <td><%= usuariosAdmin.password %></td>
+                  <td><%= usuariosAdmin.nombre %></td>
+                  <td><%= usuariosAdmin.apellido %></td>
+                  <td><%= usuariosAdmin.contacto %></td>
+                  <!-- <td><%= usuariosAdmin.descripcion %></td> lo comento porque se hacia mucho texto--> 
+                  <td><%= usuariosAdmin.destacado %></td>
+                  <td><%= usuariosAdmin.especialista %></td>
+                  <td><%= usuariosAdmin.direccion %></td>
+                  <td><%= usuariosAdmin.token %></td>
+                  <td><%= usuariosAdmin.path %></td>
+                  <td><%= usuariosAdmin.path_portada %></td>
+
+                </tr>
+              <% }); %>
             </tbody>
           </table>
         </div>

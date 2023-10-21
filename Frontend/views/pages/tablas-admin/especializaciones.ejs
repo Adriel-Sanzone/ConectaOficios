@@ -35,15 +35,24 @@
           <table>
             <thead>
               <tr>
-                <th class="agregar"></th>
+                <!-- <th class="agregar"></th>
                 <th class="editar"></th>
-                <th class="eliminar"></th>
+                <th class="eliminar"></th>- -->
                 <th class="">Id</th>
                 <th class="">Especializacion</th>
                 <th class="">Id_categoria</th>
               </tr>
             </thead>
-            <tbody></tbody>
+            <tbody>
+              <% especializaciones.forEach(function(especializacion) { %>
+                <tr>
+                  <td><%= especializacion.id %></td>
+                  <td><%= especializacion.especializacion %></td>
+                  <td><%= especializacion.id_categoria %></td>
+
+                </tr>
+              <% }); %>
+            </tbody>
           </table>
         </div>
 

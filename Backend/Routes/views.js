@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { viewUsuariosEspecialistas, UsuarioLogeado, getUsuario, viewsTodosLosUsuarios, viewProyectos } from '../Controllers/usuarios.js'
 import { viewEspecializacionUsuario, viewEspecializaciones, getEspecializacionPerfil, viewEspecializacionesNueva } from '../Controllers/especializaciones.js';
+import { connection } from '../Database/connection.js';
 
 const router = Router();
 
@@ -95,7 +96,7 @@ router.get('/perfil/:id', function (req, res) {
             usuarioLogeado.then(function (logeado) {
                 proyectosPerfil.then(function (proyectos) {
                     especializaciones.then(function (especializacion) {
-                                            
+
                         console.log("user")
                         console.log(usuario)
                         console.log("perfilEsp")
@@ -121,8 +122,56 @@ router.get('/perfil/:id', function (req, res) {
 
 
 router.get('/admin', function (req, res) {
-    res.render('../Frontend/views/pages/admin')
+    let cantCategorias, cantEspecializaciones, cantUsuarios;
+
+    // Consulta SQL para contar los registros en las tablas
+    const queryCategorias = 'SELECT COUNT(*) AS total FROM categorias';
+    connection.query(queryCategorias, (error1, results1) => {
+        if (error1) {
+            console.error('Error al contar los registros en categorias:', error1);
+            res.status(500).send('Error al contar los registros en categorias');
+            return;
+        }
+        cantCategorias = results1[0].total;
+
+        
+        const queryEspecializaciones = 'SELECT COUNT(*) AS total FROM especializaciones';
+        connection.query(queryEspecializaciones, (error2, results2) => {
+            if (error2) {
+                console.error('Error al contar los registros en especializaciones:', error2);
+                res.status(500).send('Error al contar los registros en especializaciones');
+                return;
+            }
+            cantEspecializaciones = results2[0].total;
+
+            
+            const queryUsuarios = 'SELECT COUNT(*) AS total FROM usuarios';
+            connection.query(queryUsuarios, (error3, results3) => {
+                if (error3) {
+                    console.error('Error al contar los registros en usuarios:', error3);
+                    res.status(500).send('Error al contar los registros en usuarios');
+                    return;
+                }
+                cantUsuarios = results3[0].total;
+
+                
+                res.render('../Frontend/views/pages/admin.ejs', {
+                    cantCategorias,
+                    cantEspecializaciones,
+                    cantUsuarios,
+                });
+            });
+        });
+    });
 });
+
+
+
+
+
+
+
+
 
 router.get('/destacar', function (req, res) {
     res.render('../Frontend/views/pages/destacar')
@@ -130,8 +179,17 @@ router.get('/destacar', function (req, res) {
 
 //tablas del admin
 
-router.get('/categorias', function (req, res) {
-    res.render('../Frontend/views/pages/tablas-admin/categorias')
+
+
+router.get('/categorias', (req, res) => {
+    connection.query('SELECT * FROM categorias', (error, results) => {
+        if (error) {
+            console.error('Error al obtener los nombres de las tablas:', error);
+            res.status(500).send('Error al obtener los nombres de las tablas');
+            return;
+        }
+        res.render('../Frontend/views/pages/tablas-admin/categorias', { categorias: results }); // Renderiza la vista EJS con los nombres de las tablas
+    });
 });
 
 // router.get('/categorias', (req, res) => {
@@ -148,21 +206,52 @@ router.get('/categorias', function (req, res) {
 //     })
 // })
 
-router.get('/especializaciones', function (req, res) {
-    res.render('../Frontend/views/pages/tablas-admin/especializaciones')
+router.get('/especializaciones', (req, res) => {
+    connection.query('SELECT * FROM especializaciones', (error, results) => {
+        if (error) {
+            console.error('Error al obtener los nombres de las tablas:', error);
+            res.status(500).send('Error al obtener los nombres de las tablas');
+            return;
+        }
+        res.render('../Frontend/views/pages/tablas-admin/especializaciones', { especializaciones: results }); // Renderiza la vista EJS con los nombres de las tablas
+    });
 });
+
 
 router.get('/especializacionDeUsuario', function (req, res) {
-    res.render('../Frontend/views/pages/tablas-admin/especializacionDeUsuario')
+    connection.query('SELECT * FROM especializacion_usuario', (error, results) => {
+        if (error) {
+            console.error('Error al obtener los nombres de las tablas:', error);
+            res.status(500).send('Error al obtener los nombres de las tablas');
+            return;
+        }
+        res.render('../Frontend/views/pages/tablas-admin/especializacionDeUsuario', { especializacionUsuario: results }); // Renderiza la vista EJS con los nombres de las tablas
+    });
+
 });
 
-router.get('/proyectos', function (req, res) {
-    res.render('../Frontend/views/pages/tablas-admin/proyectos')
+
+router.get('/proyectos', (req, res) => {
+    connection.query('SELECT * FROM proyectos', (error, results) => {
+        if (error) {
+            console.error('Error al obtener los nombres de las tablas:', error);
+            res.status(500).send('Error al obtener los nombres de las tablas');
+            return;
+        }
+        res.render('../Frontend/views/pages/tablas-admin/proyectos', { proyectos: results }); // Renderiza la vista EJS con los nombres de las tablas
+    });
 });
 
-router.get('/usuariosAdmin', function (req, res) {
-    res.render('../Frontend/views/pages/tablas-admin/usuariosAdmin')
-});
 
+router.get('/usuariosAdmin', (req, res) => {
+    connection.query('SELECT * FROM usuarios', (error, results) => {
+        if (error) {
+            console.error('Error al obtener los nombres de las tablas:', error);
+            res.status(500).send('Error al obtener los nombres de las tablas');
+            return;
+        }
+        res.render('../Frontend/views/pages/tablas-admin/usuariosAdmin', { usuariosAdmin: results }); // Renderiza la vista EJS con los nombres de las tablas
+    });
+});
 
 export default router;

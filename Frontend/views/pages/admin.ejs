@@ -3,19 +3,20 @@
 
 <head>
   <%- include ('../partials/head') %>
-  <link rel="stylesheet" href="/Frontend/css/admin.css">
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="/Frontend/css/admin.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 
 <body>
 
   <div class="container-fluid">
     <div class="row">
-      
+
       <div class="col-md-3">
         <div class="aside">
           <a href="/admin"><i class="fa-solid fa-house-chimney"></i>Inicio</a>
-          <p id="toggleButton"><i class="fa-solid fa-server"></i>Base de datos<i class="fas fa-chevron-down abajo"></i></p>
+          <p id="toggleButton"><i class="fa-solid fa-server"></i>Base de datos<i class="fas fa-chevron-down abajo"></i>
+          </p>
           <ul class="lista-secundaria" style="display: none;">
             <li><a href="categorias">Categorías</a></li>
             <li><a href="especializaciones">Especializaciones</a></li>
@@ -39,19 +40,25 @@
             <div class="row">
               <div class="col-md-4">
                 <div class="tarjetita" data-aos="fade-up" data-aos-duration="2000">
-                  <p class="numero">27</p>
+                  <p class="numero">
+                    <%= cantUsuarios %>
+                  </p>
                   <p class="titulo-tarjetita">Usuarios</p>
                 </div>
               </div>
               <div class="col-md-4" data-aos="fade-up" data-aos-duration="2000">
                 <div class="tarjetita">
-                  <p class="numero">5</p>
+                  <p class="numero">
+                    <%= cantCategorias %>
+                  </p>
                   <p class="titulo-tarjetita">Categorías</p>
                 </div>
               </div>
               <div class="col-md-4" data-aos="fade-up" data-aos-duration="2000">
                 <div class="tarjetita">
-                  <p class="numero">10</p>
+                  <p class="numero">
+                    <%= cantEspecializaciones %>
+                  </p>
                   <p class="titulo-tarjetita">Especializaciones</p>
                 </div>
               </div>

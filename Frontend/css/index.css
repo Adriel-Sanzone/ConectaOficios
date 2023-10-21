@@ -279,7 +279,7 @@ swiper-slide {
     color: var(--gris);
     font-size: 14px;
     font-weight: var(--bold);
-    margin-block-end: 7px;
+    margin-bottom: 20px;
 }
 
 .persona .ubicacion p {
@@ -301,6 +301,26 @@ swiper-slide {
     align-items: center;
     margin-inline-end: 10px;
     margin-top: 10px;
+}
+
+.persona .ver-perfil{
+    padding: 10px 20px;
+    border-radius: 37px;
+    border: 1px solid var(--azul);
+    background-color: var(--blanco);
+    color: var(--primary-color, #252B42);
+    font-size: 14px;
+    font-weight: var(--bold);
+    text-decoration: none;
+}
+
+.ver-perfil:hover {
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
+}
+
+
+.persona .ver-perfil i{
+    padding-left: 10px;
 }
 
 .persona button span{
