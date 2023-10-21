@@ -254,7 +254,8 @@ function EditoPerfil(datos) {
     var contacto = datos.get('contacto');
     var direccion = datos.get('direccion');
     var descripcion = datos.get('descripcion');
-    var especialista = datos.get('especialista')
+    var especialista = datos.get('especialista');
+    var espElegidas = datos.get('espElegidas');
 
     //Comienzo el ajax para registrar los datos inciales
     $.ajax(
@@ -277,10 +278,12 @@ function EditoPerfil(datos) {
             if (r.error == 1) 
             {
                 alert(r.mensaje);
+                return false;
             } else
             {
                 alert("Perfil modificado exitosamente");
-                location.reload();
+                AgregoEspecializacion(espElegidas)
+                return true;
             }
         }
     })

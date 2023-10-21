@@ -540,7 +540,7 @@ export const EditoPerfil = async (req, res) =>
         return false;
     };
     //Si el espacio de contacto estaba vacio
-    if(contacto == "")
+    if(contacto == "" && especialista == 1)
     {
         res.json({
             "error": 1,
@@ -549,11 +549,11 @@ export const EditoPerfil = async (req, res) =>
         return false;
     };
     //Si el espacio de direccion estaba vacio habiendo marcado que quiere ser especialista
-    if(direccion == "")
+    if(direccion == "" && especialista == 1)
     {
         res.json({
             "error": 1,
-            "mensaje": "El direccion esta vacio",
+            "mensaje": "La direccion esta vacio",
         });
         return false;
     };

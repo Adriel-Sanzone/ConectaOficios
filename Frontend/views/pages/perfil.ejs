@@ -222,26 +222,33 @@
                       <div id="FormularioEspecializaciones" class="FormularioEspecializaciones" style="display: none;">
                         <form>
                           <h4 class="titulo-form text-center">Editar Especializaciones</h4>
-                          <select class="form-control select-categoria" id="especializaciones" multiple size="6">
+                          <select class="form-control select-categoria" id="elimino-especializaciones" multiple size="6">
+                            <% var especializaciones_perfil = [] %>
+                            <% perfilEsp.forEach(function(ep) { %>
+                                <% especializaciones_perfil.push(ep.id_especializacion) %>
+                            <% }) %>
                             <% var categoria_actual=especializacion[0].categoria; %>
                               <optgroup label="<%=especializacion[0].categoria%>">
                                 <% especializacion.forEach(function(c){ %>
                                   <% if(c.categoria===categoria_actual) { %>
-                                    <option value="<%= c.id %>">
-                                      <%= c.especializacion %>
-                                    </option>
-                                    <% } else {%>
+                                    <% if (especializaciones_perfil.includes(c.id)) { %>
+                                      <option value="<%= c.id %>" > <%= c.especializacion %> | Asignada </option>
+                                    <% } else { %> 
+                                    <option value="<%= c.id %>" disabled> <%= c.especializacion %> </option>
+                                    <% }} else {%>
                                       <% categoria_actual=c.categoria; %>
                               <optgroup label="<%=c.categoria%>">
-                                <option value="<%= c.id %>">
-                                  <%= c.especializacion %>
-                                </option>
+                                
+                                <% if (especializaciones_perfil.includes(c.id)) { %>
+                                  <option value="<%= c.id %>" > <%= c.especializacion %> | Asignada</option>
+                                <% } else { %> 
+                                <option value="<%= c.id %>" disabled> <%= c.especializacion %> </option>
+                                <% } %>
                                 <% } %>
                                   <% }) %>
                           </select>
                           <div class="botones">
                             <button type="button" onclick="CerrarEspecializaciones()">Cancelar</button>
-                            <a id="agrego-especializacion" type="submit" class="guardar">Guardar</a>
                             <a id="eliminar-especialidades" type="submit" class="guardar">Eliminar</a>
                           </div>
                       </div>
@@ -292,8 +299,41 @@
                               </div>
                             </div>
                           </div>
+                          <div class="contenedorCheckbox" data-trabaja="<%=user.especialista%>">
+                            <% if(user.especialista){ %>
+                              <input class="checkbox" type="checkbox" id="mostrarCampos" checked>
+                              <% } else { %>
+                                <input class="checkbox" type="checkbox" id="mostrarCampos">
+                                <% } %>
+                                  <label class="labelRegistro" for="mostrarCampos">Quiero ofrecer mis servicios</label>
+                          </div>
 
                           <div id="camposAdicionales">
+                            <select class="form-control select-categoria" id="especializaciones" multiple size="6">
+                              <% var especializaciones_perfil = [] %>
+                              <% perfilEsp.forEach(function(ep) { %>
+                                  <% especializaciones_perfil.push(ep.id_especializacion) %>
+                              <% }) %>
+                              <% var categoria_actual=especializacion[0].categoria; %>
+                                <optgroup label="<%=especializacion[0].categoria%>">
+                                  <% especializacion.forEach(function(c){ %>
+                                    <% if(c.categoria===categoria_actual) { %>
+                                      <% if (especializaciones_perfil.includes(c.id)) { %>
+                                        <option value="<%= c.id %>" disabled> <%= c.especializacion %> | Asignada </option>
+                                      <% } else { %> 
+                                      <option value="<%= c.id %>"> <%= c.especializacion %> </option>
+                                      <% }} else {%>
+                                        <% categoria_actual=c.categoria; %>
+                                <optgroup label="<%=c.categoria%>">
+                                  
+                                  <% if (especializaciones_perfil.includes(c.id)) { %>
+                                    <option value="<%= c.id %>" disabled> <%= c.especializacion %> | Asignada</option>
+                                  <% } else { %> 
+                                  <option value="<%= c.id %>"> <%= c.especializacion %> </option>
+                                  <% } %>
+                                  <% } %>
+                                    <% }) %>
+                            </select>
                             <div class="row">
                               <div class="col-md-6">
                                 <label for="contacto">Contacto:</label>
@@ -304,22 +344,13 @@
                                 <input value="<%= user.direccion %>" type="text" id="direccion" name="direccion">
                               </div>
                             </div>
+                            <div class="descripcion">
+                              <label for="descripcion">Descripción:</label>
+                              <textarea data-predeterminado="<%= user.descripcion %>" id="descripcion-perfil"
+                                name="descripcion"></textarea>
+                            </div>
                           </div>
-
-                          <div class="descripcion">
-                            <label for="descripcion">Descripción:</label>
-                            <textarea value="<%= user.descripcion %>" id="descripcion-perfil"
-                              name="descripcion"></textarea>
-                          </div>
-
-                          <div class="contenedorCheckbox" data-trabaja="<%=user.especialista%>">
-                            <% if(user.especialista){ %>
-                              <input class="checkbox" type="checkbox" id="mostrarCampos" checked>
-                              <% } else { %>
-                                <input class="checkbox" type="checkbox" id="mostrarCampos">
-                                <% } %>
-                                  <label class="labelRegistro" for="mostrarCampos">Quiero ofrecer mis servicios</label>
-                          </div>
+                  
                         </form>
                         <div class="botones">
                           <button type="button" onclick="cerrarFormulario()">Cancelar</button>
@@ -354,46 +385,12 @@
 
                         })
 
-                        $("#agrego-especializacion").on("click", function () {
-
-                          //Creo una variable array para almacenar las especializaciones del perfil
-                          var espPerfil = [];
-
-                          var espElegidas = $("#especializaciones").val();
-
-                          //recorro los distintos <div> que muestran una especializacion y la agrego al array
-                          $(".esp-perfil").each(function () {
-                            espPerfil.push(($(this).data("especializaciones-perfil")).toString());
-                          });
-
-                          console.log("espElegidas")
-                          console.log(espElegidas)
-                          console.log("espPerfil")
-                          console.log(espPerfil)
-
-                          var contador = 0
-                          espElegidas.forEach(function (ee) {
-                            espPerfil.forEach(function (ep) {
-                              if (ee === ep) {
-                                espElegidas.splice(contador, 1)
-                              }
-                            })
-                            contador += 1;
-                          })
-
-                          //Uno todos los elementos del array en una unica variable separando cada elemento con ","
-                          var espElegidas = espElegidas.join(",");
-
-                          AgregoEspecializacion(espElegidas);
-
-                        })
-
                         $("#eliminar-especialidades").on("click", function () {
 
                           //Creo una variable array para almacenar las especializaciones del perfil
                           var espPerfil = [];
 
-                          var espElegidas = $("#especializaciones").val();
+                          var espElegidas = $("#elimino-especializaciones").val();
 
                           //recorro los distintos <div> que muestran una especializacion y la agrego al array
                           $(".esp-perfil").each(function () {
@@ -429,14 +426,27 @@
 
                           var especificaciones = new FormData();
 
+                          var espElegidas = $("#especializaciones").val();
+                          console.log("espElegidas")
+                          console.log(espElegidas)
+                          espElegidas = espElegidas.join(",")
+
+
                           especificaciones.append("nombre", $("#nombre").val())
                           especificaciones.append("apellido", $("#apellido").val())
                           especificaciones.append("contacto", $("#contacto").val())
                           especificaciones.append("direccion", $("#direccion").val())
                           especificaciones.append("descripcion", $("#descripcion-perfil").val())
                           especificaciones.append("especialista", valorDataTrabaja)
+                          especificaciones.append("espElegidas", espElegidas)
 
-                          EditoPerfil(especificaciones);
+                          if (espElegidas == "" && valorDataTrabaja == 1) {
+                            alert("No se han seleccionado especializaciones nuevas")
+                            return false;
+                          } else {
+                            EditoPerfil(especificaciones);                            
+                          } 
+
 
                         })
 
@@ -464,6 +474,15 @@
 
                         /* FORMULARIO PARA EDITAR NOMBRE Y DESCRIPCION*/
                         document.getElementById('btn-editar').addEventListener('click', function () {
+                          // Obtén una referencia al elemento textarea
+                          var textarea = document.getElementById("descripcion-perfil");
+
+                          // Establece el valor predeterminado que deseas dentro del textarea
+                          var mensajePredeterminado = $("#descripcion-perfil").data("predeterminado");
+
+                          // Asigna el valor predeterminado al textarea
+                          textarea.value = mensajePredeterminado;
+
                           mostrarFormulario();
                         });
 
