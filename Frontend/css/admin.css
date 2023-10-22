@@ -272,6 +272,18 @@ table tbody .editar button {
     border-radius: 5px;
 }
 
+table tbody .editar button:hover{
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.15);
+}
+
+table tbody .agregar button:hover{
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.15);
+}
+
+table tbody .eliminar button:hover{
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.15);
+}
+
 .editar i {
     margin-left: 5px;
 }
