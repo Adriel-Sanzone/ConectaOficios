@@ -1,3 +1,22 @@
+:root {
+    /* fuentes(letras) */
+    --fuente: 'Montserrat', sans-serif;
+    --regular: 400;
+    --bold: 700;
+    /* colores */
+    --blanco: #FAFAFA;
+    --blanco2: #fff;
+    --naranja: #FF685B;
+    --naranjaOscuro: #E74040;
+    --azul: #252B42;
+    --gris: #737373;
+    --celeste: #EEF4F8;
+}
+
+body {
+    font-family: var(--fuente);
+}
+
 header {
     background-color: #FAFAFA !important;
 }
@@ -24,7 +43,7 @@ body {
 }
 
 .beneficios h3 {
-    color: #252B42;
+    color: var(--naranjaOscuro);
     text-align: center;
     font-family: Montserrat;
     font-size: 40px;
@@ -32,6 +51,13 @@ body {
     font-weight: 700;
     padding-bottom: 45px;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.10);
+}
+
+.beneficios .h3{
+    padding-inline: 15px;
+    margin-bottom: 0;
+    font-size: 35px;
+    color: var(--naranjaOscuro);
 }
 
 .beneficio .icono {
@@ -43,13 +69,13 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #FF6723;
+    color: var(--gris);
     margin: auto;
     margin-bottom: 15px;
 }
 
 .beneficio h4 {
-    color: #252B42;
+    color: #585858;
     text-align: center;
     font-family: Montserrat;
     font-size: 20px;
@@ -58,7 +84,7 @@ body {
 }
 
 .beneficio p {
-    color: #252B42;
+    color:var(--gris);
     text-align: center;
     font-family: Montserrat;
     font-size: 14px;
@@ -119,12 +145,12 @@ body {
 
 .contacto .enviar {
     border-radius: 10px;
-    background: #FF685B;
+    background: var(--naranjaOscuro);
     color: #FFF;
     font-family: Montserrat;
     font-size: 17px;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 700;
     line-height: normal;
     padding: 15px 20px;
 }

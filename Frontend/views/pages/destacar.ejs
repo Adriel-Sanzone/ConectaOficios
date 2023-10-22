@@ -5,6 +5,7 @@
   <%- include ('../partials/head') %>
   <link rel="stylesheet" href="/Frontend/css/destacar.css">
   <link rel="stylesheet" href="/Frontend/css/index.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 
 <body>
@@ -14,7 +15,7 @@
 
     <div class="beneficios">
       <div class="row">
-        <h3 class="col-md-12 text-center">Beneficios de destacarte</h3>
+        <h3 class="col-md-12 text-center">Beneficios de destacarte<i class="fa-solid fa-star h3" data-aos="zoom-out" data-aos-duration="1500"></i></i></h3>
         <div class="col-md-4">
           <div class="beneficio">
             <div class="icono">
@@ -64,6 +65,10 @@
     </div>
   </div>
   <%- include ('../partials/footer') %>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init(); // Inicializar AOS
+  </script>
 </body>
 
 </html>
