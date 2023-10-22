@@ -35,11 +35,9 @@
           <table>
             <thead>
               <tr>
-                <!--
                 <th class="agregar"></th>
                 <th class="editar"></th>
                 <th class="eliminar"></th>
-                -->
                 <th class="">Id</th>
                 <th class="">Id_Usuario</th>
                 <th class="">Id_Especializacion</th>
@@ -48,10 +46,12 @@
             <tbody>
               <% especializacionUsuario.forEach(function(e) { %>
                 <tr>
+                  <td class="boton"><div class="agregar"><button>Agregar<i class="fa-solid fa-plus"></i></button></div></td>
+                  <td class="boton"><div class="editar"><button>Editar<i class="fa-regular fa-pen-to-square"></i></button></div></td>
+                  <td class="boton"><div class="eliminar"><button>Eliminar<i class="fa-solid fa-ban"></i></button></div></td>
                   <td><%= e.id %></td>
                   <td><%= e.id_usuario %></td>
                   <td><%= e.id_especializacion %></td>
-
                 </tr>
               <% }); %>
             </tbody>

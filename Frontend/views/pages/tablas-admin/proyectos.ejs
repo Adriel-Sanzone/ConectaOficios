@@ -35,9 +35,9 @@
           <table>
             <thead>
               <tr>
-                <!-- <th class="agregar"></th>
+                <th class="agregar"></th>
                 <th class="editar"></th>
-                <th class="eliminar"></th> -->
+                <th class="eliminar"></th>
                 <th class="">Id</th>
                 <th class="">Id_usuario</th>
                 <th class="">Titulo</th>
@@ -48,12 +48,14 @@
             <tbody>
               <% proyectos.forEach(function(proyectos) { %>
                 <tr>
+                  <td class="boton"><div class="agregar"><button>Agregar<i class="fa-solid fa-plus"></i></button></div></td>
+                  <td class="boton"><div class="editar"><button>Editar<i class="fa-regular fa-pen-to-square"></i></button></div></td>
+                  <td class="boton"><div class="eliminar"><button>Eliminar<i class="fa-solid fa-ban"></i></button></div></td>
                   <td><%= proyectos.id %></td>
                   <td><%= proyectos.id_usuario %></td>
                   <td><%= proyectos.titulo %></td>
                   <td><%= proyectos.descripcion %></td>
                   <td><%= proyectos.path %></td>
-
                 </tr>
               <% }); %>
             </tbody>

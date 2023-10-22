@@ -103,7 +103,7 @@ input[type="checkbox"] {
     padding-right: 5px;
 }
 
-.persona .especialidades h3{
+.persona .especialidades h3 {
     background-color: #fd5243;
     padding: 5px 10px;
     border-radius: 5px;
@@ -117,6 +117,16 @@ input[type="checkbox"] {
     font-size: 24px;
     font-weight: 700;
     display: block;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.nombre i {
+    margin-left: 10px;
+    font-size: 17px;
+    color: #fd5243;
 }
 
 .info-persona .nombre:hover {
@@ -179,7 +189,7 @@ input[type="checkbox"] {
 
 .persona .descripcion {
     max-height: 105px;
-    padding-bottom: 10px;
+    padding-bottom: 5px;
     overflow: auto;
 }
 
@@ -195,7 +205,7 @@ input[type="checkbox"] {
     color: var(--gris);
     font-size: 14px;
     font-weight: var(--bold);
-    margin-block-end: 15px;
+    margin-block-end: 20px;
 }
 
 .personas .persona .ubicacion p {
@@ -228,12 +238,13 @@ input[type="checkbox"] {
     font-size: 24px;
 }
 
-.ver-perfil{
+.ver-perfil {
+    margin-top: 5px;
     padding: 10px 20px;
-    border-radius: 37px;
-    border: 1px solid var(--azul);
+    border-radius: 10px;
+    border: 2px solid #fd5243;
     background-color: var(--blanco);
-    color: var(--primary-color, #252B42);
+    color: var(--primary-color, #fd5243);
     font-size: 14px;
     font-weight: var(--bold);
     text-decoration: none;
@@ -241,11 +252,11 @@ input[type="checkbox"] {
 
 .ver-perfil:hover {
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
-    color: #252B42;
+    color: #fd5243;
 }
 
 
-.ver-perfil i{
+.ver-perfil i {
     padding-left: 10px;
 }
 
