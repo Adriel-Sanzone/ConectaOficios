@@ -39,7 +39,7 @@
 
         <div class="col-md-12">
 
-          <div class="perfil">
+          <div class="perfil" data-perfil-id="<%= user.id %>">
             <!-- Muestro la foto de perfil sin validar nada, cualquiera que entre la ve -->
             <img class="img-fluid" src="<%= user.path %>" alt="perfil del usuario">
 
@@ -87,14 +87,14 @@
           <% if (usuarioLogeado) { %>
           <div class="d-flex">
             <!-- Muestro el contacto y mail del perfil sin validar nada -->
-            <div class="whatsapp btn-perfil-inf">
-              <a href="https://wa.me/<%= user.contacto %>" target="_blank">
+            <div class="whatsapp btn-perfil-inf" id="wsLoged" data-numero-ws="<%=user.contacto%>">
+              <a>
                 <i class="fab fa-whatsapp"></i>
                 <%= user.contacto %>
               </a>
             </div>
-            <div class="email btn-perfil-inf">
-              <a href="mailto:<%= user.email %>" target="_blank">
+            <div class="email btn-perfil-inf" id="emailLoged" data-email="<%=user.email%>">
+              <a href="mailto:<%= user.email %>" >
                 <i class="far fa-envelope"></i>
                 <%= user.email %>
               </a>
@@ -118,6 +118,60 @@
 
     </div>
   </div>
+  </div>
+
+  <div class="container">
+    <div class="resenias contenido">
+      <div class="contenedor-flecha">
+        <h5 class="titulo-resenia">Reseñas</h5>
+        <i class="fas fa-chevron-down icono-perfil"></i>
+      </div>
+      <div class="contenedor-info">
+        <% if(puedeReseñar) {%>
+        <div class="boton-agregar-reseña">
+          <button id="btn-formulario-Reseña" onclick="FormularioReseña()"><i class="fa-solid fa-plus"></i>Agregar Reseña</button>
+        </div>
+        <% } %>
+        <div class="resenia">
+          <div class="encabezado">
+            <h4 class="nombre">Maria Rosa</h4>
+            <i class="far fa-window-minimize barra"></i>
+            <div class="estrellas">
+              <i class="fas fa-star icono-estrella" data-color="#737373"></i>
+              <i class="fas fa-star icono-estrella" data-color="#737373"></i>
+              <i class="fas fa-star icono-estrella" data-color="#737373"></i>
+              <i class="fas fa-star icono-estrella" data-color="#737373"></i>
+              <i class="fas fa-star icono-estrella" data-color="#737373"></i>
+            </div>
+          </div>
+          <div class="cuerpo">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam blanditiis molestias quam! Voluptas
+              suscipit laborum praesentium exercitationem consequuntur laudantium enim nemo asperiores perferendis
+              numquam, id voluptatem nulla soluta molestias eveniet.</p>
+          </div>
+          <hr>
+        </div>
+        <div class="resenia">
+          <div class="encabezado">
+            <h4 class="nombre">Maria Rosa</h4>
+            <i class="far fa-window-minimize barra"></i>
+            <div class="estrellas">
+              <i class="fas fa-star icono-estrella" data-color="#737373"></i>
+              <i class="fas fa-star icono-estrella" data-color="#737373"></i>
+              <i class="fas fa-star icono-estrella" data-color="#737373"></i>
+              <i class="fas fa-star icono-estrella" data-color="#737373"></i>
+              <i class="fas fa-star icono-estrella" data-color="#737373"></i>
+            </div>
+          </div>
+          <div class="cuerpo">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam blanditiis molestias quam! Voluptas
+              suscipit laborum praesentium exercitationem consequuntur laudantium enim nemo asperiores perferendis
+              numquam, id voluptatem nulla soluta molestias eveniet.</p>
+          </div>
+          <hr>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Contador de cantidad de proyectos -->
@@ -366,6 +420,33 @@
   <script src="/Frontend/js/funciones_usuarios.js"></script>
 
   <script>
+
+    $("#wsLoged").on("click" , function(){
+
+      var numeros = ($("#wsLoged").data("numero-ws")).match(/\d+/g);
+
+      var numerosUnidos = numeros.join(''); // Convierte el array de números en un solo string
+
+      var redirigir = "https://wa.me/" + numerosUnidos;
+
+      var perfil_id = $(".perfil").data("perfil-id")
+
+      HabilitoReseña(perfil_id, redirigir);
+
+    })
+
+    $("#emailLoged").on("click" , function(){
+
+      var email = $("#emailLoged").data("email");
+
+      var redirigir = "mailto:" + email;
+
+      var perfil_id = $(".perfil").data("perfil-id")
+
+      HabilitoReseña(perfil_id, redirigir);
+
+    })
+
     $("#guardar-imagen").on("click", function() {
 
       var fotoPerfil = $("#nueva-foto");

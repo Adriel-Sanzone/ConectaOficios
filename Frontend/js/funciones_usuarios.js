@@ -169,7 +169,6 @@ function ValidarUsuario()
     });
 }
 
-
 function InsertarImagenes(datosPerfil, datosPortada)
 {   
     //Comienzan los ajaxs para cargar ambas fotos al servidor y base de datos
@@ -357,22 +356,42 @@ function AgregoEspecializacion(datos)
 function EliminoEspecializaciones(datos)
 {
     $.ajax(
+    {
+        "url": URL_BASE + "eliminoespecializacion",
+        "type": "POST",
+        "dataType": "json",
+        "data": 
         {
-            "url": URL_BASE + "eliminoespecializacion",
-            "type": "POST",
-            "dataType": "json",
-            "data": 
+            "id_especializacion": datos,
+        },
+        success: function(r)
+        {
+            if (r.error != 1)
             {
-                "id_especializacion": datos,
-            },
-            success: function(r)
-            {
-                if (r.error != 1)
-                {
-                    alert("Especializaciones eliminadas correctamente");
-                    location.reload();
-                }
+                alert("Especializaciones eliminadas correctamente");
+                location.reload();
             }
-        })
+        }
+    })
 }
 
+function HabilitoReseña(perfil_id, redirigir)
+{
+    $.ajax(
+    {
+        "url": URL_BASE + "habilitoresenia",
+        "type": "POST",
+        "dataType": "json",
+        "data": 
+        {
+            "id_perfil": perfil_id,
+        },
+        success: function(r)
+        {
+            if (r.error != 1)
+            {
+                window.open(redirigir, '_blank'); 
+            }
+        }
+    })
+}

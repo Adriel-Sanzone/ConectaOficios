@@ -51,6 +51,27 @@ export const viewProyectos = (id_usuario) =>
     });
 }
 
+export const getReseñaHabilitada = (id_usuario, id_perfil) =>
+{
+    return new Promise (function(resolve)
+    {
+        connection.query(
+            'SELECT * FROM reseña_habilitada WHERE id_reseñador = ? AND id_reseñado = ?',
+            [id_usuario, id_perfil],
+            function(err, results)
+            {
+                if (results[0] === undefined)
+                {
+                    resolve(false)
+                } else
+                {
+                    resolve(true);
+                }
+            }
+        )
+    });
+}
+
 export const UsuarioLogeandose = async (req, res) => 
 {
     //Obtengo los datos ingresados por el usuario
@@ -630,6 +651,54 @@ export const viewsTodosLosUsuarios = (pagina, categoria) =>
         );
     });
 }
+
+export const HabilitoReseña = async (req, res) => 
+{
+    const id_usuario = (req.session.idUsuario || 0);
+    
+    const {id_perfil} = req.body;
+
+    if(id_usuario != id_perfil)
+    {
+        connection.query(
+            'SELECT * FROM reseña_habilitada WHERE id_reseñador = ? AND id_reseñado = ?',
+            [id_usuario, id_perfil],
+            function(err, results)
+            {
+                if (results[0] === undefined)
+                {
+                    connection.query(
+                        'INSERT reseña_habilitada (id_reseñador, id_reseñado) VALUES (?,?)',
+                        [id_usuario, id_perfil],
+                        function (err, a) {
+                            if (err) 
+                            {
+                                console.error(err);
+                                res.status(500).json({ error: 'Error al cargar los datos' });
+                            } else 
+                            {
+                                res.json({
+                                    "error": 0,
+                                });
+                            }
+                        }
+                    );
+                } else
+                {
+                    res.json({
+                        "error": 0,
+                    }); 
+                }
+            }
+        )
+    } else
+    {
+        res.json({
+            "error": 0,
+        }); 
+    }
+
+};
 
 function CrearToken()
 {

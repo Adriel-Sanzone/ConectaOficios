@@ -86,7 +86,7 @@
                     <p><%= c.direccion %></p>
                   </div>
                   <% if (usuarioLogeado) { %>
-                  <a><span class="btn-text"><%= c.contacto %></span><i class="fab fa-whatsapp"></i></a>
+                  <button><i class="fab fa-whatsapp"></i><span class="btn-text"><%= c.contacto %></span></button>
                   <% } else { %>
                   <a class="ver-perfil" href="/perfil/<%=c.id%>" target="_blank">Ir al Perfil<i class="fa-solid fa-arrow-right"></i></a>
                   <% } %>
