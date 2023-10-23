@@ -9,7 +9,11 @@
 </head>
 
 <body>
+  <% if (usuarioLogeado) { %>
+  <%- include ('../partials/headerParaUsuario') %>
+  <% } else { %>
   <%- include ('../partials/header') %>
+  <% } %>
 
   <div class="container">
 

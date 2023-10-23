@@ -1,13 +1,10 @@
 hecer menu para movil
 perfil esta todo comentado???
 agregar boton para cambiar de pagina en oficio (inicia en 0)-----------------------------------
-hacer funcional especializacion en registro y perfiles en oficios, perfil e index
 hacer funcioanl tablas de admin
 arreglar estilo de ventanas emergentes cuando un usuario edita su perfil 
 agregar una foto de proyecto/trabajo default
 no anda boton de whatsapp en oficios
-si estas logueado y apretas hacerse premium se desloguea
 wsp en index no anda
-hacer que perfiles destacados aparezcan primeros en oficios
 NUEVA 21/10/2023:
     -Agregar funcionalidad al boton de eliminar proyecto en el perfil del usuario

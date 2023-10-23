@@ -31,7 +31,6 @@ router.get('/', function (req, res) {
     })
 });
 
-
 router.get('/iniciarSesion', function (req, res) {
     res.render('../Frontend/views/pages/iniciarSesion')
 });
@@ -52,8 +51,13 @@ router.get('/oficios/:pag', function (req, res) {
     var especializaciones = viewEspecializacionesNueva();
     usuariosEspecialistas.then(function (usuarios) {
         especializaciones.then(function (especializacion) {
-            console.log(especializacion);
             usuarioLogeado.then(function (logeado) {
+
+                usuarios.sort(function(a, b){
+                    return a.destacado - b.destacado;
+                })
+                usuarios.reverse();
+
                 res.render("../Frontend/views/pages/oficios", {
                     "usuariosEsp": usuarios,
                     "especializacion": especializacion,
@@ -120,7 +124,6 @@ router.get('/perfil/:id', function (req, res) {
     })
 });
 
-
 router.get('/admin', function (req, res) {
     let cantCategorias, cantEspecializaciones, cantUsuarios;
 
@@ -165,21 +168,21 @@ router.get('/admin', function (req, res) {
     });
 });
 
-
-
-
-
-
-
-
-
 router.get('/destacar', function (req, res) {
-    res.render('../Frontend/views/pages/destacar')
+
+    var idUsuario = (req.session.idUsuario || 0);
+    var tokenUsuario = (req.session.token || 0);
+
+    var usuarioLogeado = UsuarioLogeado(idUsuario, tokenUsuario);
+
+    usuarioLogeado.then(function (userLogeado) {
+    res.render('../Frontend/views/pages/destacar', {
+        "usuarioLogeado": userLogeado,
+    })
+    })
 });
 
 //tablas del admin
-
-
 
 router.get('/categorias', (req, res) => {
     connection.query('SELECT * FROM categorias', (error, results) => {
@@ -217,7 +220,6 @@ router.get('/especializaciones', (req, res) => {
     });
 });
 
-
 router.get('/especializacionDeUsuario', function (req, res) {
     connection.query('SELECT * FROM especializacion_usuario', (error, results) => {
         if (error) {
@@ -230,7 +232,6 @@ router.get('/especializacionDeUsuario', function (req, res) {
 
 });
 
-
 router.get('/proyectos', (req, res) => {
     connection.query('SELECT * FROM proyectos', (error, results) => {
         if (error) {
@@ -241,7 +242,6 @@ router.get('/proyectos', (req, res) => {
         res.render('../Frontend/views/pages/tablas-admin/proyectos', { proyectos: results }); // Renderiza la vista EJS con los nombres de las tablas
     });
 });
-
 
 router.get('/usuariosAdmin', (req, res) => {
     connection.query('SELECT * FROM usuarios', (error, results) => {
