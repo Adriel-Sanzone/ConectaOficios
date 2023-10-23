@@ -62,6 +62,7 @@ router.get('/oficios/:pag', function (req, res) {
                     "usuariosEsp": usuarios,
                     "especializacion": especializacion,
                     "usuarioLogeado": logeado,
+                    "pag": pagina,
                 });
             })
         })

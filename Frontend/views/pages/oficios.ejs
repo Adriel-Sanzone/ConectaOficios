@@ -37,10 +37,12 @@
         </div>
       </div>
       <div class="col-md-9">
-        <div class="personas">
+        <div class="personas" id="personas" data-pagina="<%= pag %>">
           <%- include ('../partials/banner-anuncio') %>
           <!---Llamo a los trabajadores destacados-->
+          <% var contador = 0 %>
           <% usuariosEsp.forEach(function(c){ %>
+          <% if(contador >= pag*10 && contador < (pag*10+10) ) { %>
           <% var especializacionesTexto = ''; %>
           <% c.especializaciones.forEach(function(e){ %>
           <% especializacionesTexto += e.id_especializacion+',' %>
@@ -92,12 +94,18 @@
               </div>
             </div>
           </div>
+          <% } %>
+          <% contador += 1 %>
           <% }) %>
+          <% if(contador < (pag*10+10)) { %>
+             <!--AGREGAR ESTILO -->
+            <h1 id="fin" data-fin="1" >NO HAY MAS USUARIOS</h1>
+          <% } %>
           <!---Llamo a los trabajadores NO destacados-->
         </div>
         <div class="botones">
-          <a class="anterior" href="">Anterior</a>
-          <a class="siguiente" href="">Siguiente<i class="fa-solid fa-arrow-right"></i></a>
+          <a class="anterior" >Anterior</a>
+          <a class="siguiente" >Siguiente<i class="fa-solid fa-arrow-right"></i></a>
         </div>
       </div>
       <!--colmd9 -->
@@ -109,7 +117,26 @@
 
   <script src="/Frontend/js/script.js"></script>
 
-  <script>
+  <script type="text/javascript">
+
+    var pagina = $("#personas").data("pagina");
+
+    $(".anterior").on("click", function(){
+      if(pagina > 0)
+      {
+        pagina -= 1;
+        window.location.href="/oficios/" + pagina;
+      }
+    })
+    $(".siguiente").on("click", function(){
+      if($("#fin").data("fin") != 1)
+      {
+        pagina += 1;
+        window.location.href="/oficios/" + pagina;
+      }
+    })
+    
+
     function mostrarHijo(index) {
       const hijo = document.getElementById(`hijo${index}`);
       if (hijo.style.display === 'none' || hijo.style.display === '') {
@@ -118,10 +145,7 @@
         hijo.style.display = 'none';
       }
     }
-  </script>
 
-
-  <script type="text/javascript">
     $(".unloged").on("click", function() {
       alert("Inicia sesion para ver esta informacion.");
     });
