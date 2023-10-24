@@ -106,6 +106,16 @@ function CerrarEspecializaciones() {
     FormularioEspecializaciones.style.display = 'none';
 }
 
+function FormularioReseña() {
+    const FormularioReseña = document.getElementById("FormularioReseña");
+    FormularioReseña.style.display = "block";
+}
+
+function CerrarReseña() {
+    var FormularioReseña = document.getElementById('FormularioReseña');
+    FormularioReseña.style.display = 'none';
+}
+
 
 
 // BARRA

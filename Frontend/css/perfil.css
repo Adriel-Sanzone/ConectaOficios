@@ -405,6 +405,42 @@ body {
     font-size: 16px;
 }
 
+.FormularioReseña {
+    display: flex;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.FormularioReseña label,
+.FormularioReseña input,
+.FormularioReseña textarea {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.FormularioReseña label {
+    font-weight: bold;
+}
+
+.FormularioReseña input[type="file"] {
+    width: 100%;
+}
+
+.FormularioReseña input[type="text"],
+.FormularioReseña textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
 .FormularioEspecializaciones {
     display: flex;
     position: fixed;

@@ -129,7 +129,7 @@
       <div class="contenedor-info">
         <% if(puedeReseñar) {%>
         <div class="boton-agregar-reseña">
-          <button id="btn-formulario-Reseña" onclick="FormularioReseña()"><i class="fa-solid fa-plus"></i>Agregar Reseña</button>
+          <button id="btn-formulario-reseña" onclick="FormularioReseña()"><i class="fa-solid fa-plus"></i>Agregar Reseña</button>
         </div>
         <% } %>
         <div class="resenia">
@@ -307,6 +307,32 @@
   </div>
   <!---FIN FORMULARIO ESPESCIALIZACIONES-->
 
+   <!---FORMULARIO PARA AGERGAR RESÑEA-->
+   <div id="FormularioReseña" class="FormularioReseña" style="display: none;">
+    <form>
+      <h4 class="titulo-form text-center">Agregar Reseña</h4>
+
+      <label for="estrellas">Puntuacion:</label>
+      <div class="estrellas" id="estrellas">
+        <i class="fas fa-star icono-estrella" id="estrella1" data-color="#737373"></i>
+        <i class="fas fa-star icono-estrella" id="estrella2" data-color="#737373"></i>
+        <i class="fas fa-star icono-estrella" id="estrella3" data-color="#737373"></i>
+        <i class="fas fa-star icono-estrella" id="estrella4" data-color="#737373"></i>
+        <i class="fas fa-star icono-estrella" id="estrella5" data-color="#737373"></i>
+      </div>
+
+      <label for="descripcion-reseña">Descripción:</label>
+      <textarea id="descripcion-reseña" name="descripcion-reseña"></textarea>
+
+      <div class="botones">
+        <button type="button" onclick="CerrarReseña()">Cancelar</button>
+        <a id="guardar-reseña" type="submit" class="guardar">Guardar</a>
+      </div>
+
+    </form>
+  </div>
+  <!---FIN FORMULARIO RESEÑA-->
+
   <!---FORMULARIO PARA AGERGAR PROYECTOS-->
   <div id="FormularioTrabajos" class="FormularioTrabajos" style="display: none;">
     <form>
@@ -420,6 +446,33 @@
   <script src="/Frontend/js/funciones_usuarios.js"></script>
 
   <script>
+
+    var puntuacion = 0;
+    $("#estrella1").on("click", function()
+    {
+      puntuacion = 1;
+      console.log(puntuacion)
+    })
+    $("#estrella2").on("click", function()
+    {
+      puntuacion = 2;
+      console.log(puntuacion)
+    })
+    $("#estrella3").on("click", function()
+    {
+      puntuacion = 3;
+      console.log(puntuacion)
+    })
+    $("#estrella4").on("click", function()
+    {
+      puntuacion = 4;
+      console.log(puntuacion)
+    })
+    $("#estrella5").on("click", function()
+    {
+      puntuacion = 5;
+      console.log(puntuacion)
+    })
 
     $("#wsLoged").on("click" , function(){
 
@@ -585,6 +638,11 @@
       FormularioTrabajos();
     });
 
+    /* FORMULARIO PARA AGREGAR RESEÑA */
+    document.getElementById('btn-formulario-reseña').addEventListener('click', function() {
+      FormularioReseña();
+    });
+
 
     /* FUNCION PARA OBTENER LAS COORDENADAS Y COLOCARLAS JUNTO AL MAPA EN TIEMPO REAL*/
     function obtenerCoordenadas() {
@@ -643,30 +701,31 @@
   </script>
 
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function() {
+  const estrellas = document.querySelectorAll('.icono-estrella');
 
-      const estrellas = document.querySelectorAll('.icono-estrella');
+  estrellas.forEach((estrella, index) => {
+    estrella.addEventListener('click', () => {
+      const currentColor = estrella.getAttribute('data-color');
 
-      estrellas.forEach((estrella, index) => {
-        estrella.addEventListener('click', () => {
-          const currentColor = estrella.getAttribute('data-color');
-
-          // Si la estrella actual está seleccionada, desmarcar todas las estrellas
-          if (currentColor === '#FF6723') {
-            for (let i = 0; i < estrellas.length; i++) {
-              estrellas[i].style.color = '#737373';
-              estrellas[i].setAttribute('data-color', '#737373');
-            }
-          } else {
-            // Marcar la estrella actual y las anteriores
-            for (let i = 0; i <= index; i++) {
-              estrellas[i].style.color = '#FF6723';
-              estrellas[i].setAttribute('data-color', '#FF6723');
-            }
-          }
-        });
-      });
+      // Si la estrella actual está apagada, enciende esta y las anteriores
+      if (currentColor === '#737373') {
+        for (let i = 0; i <= index; i++) {
+          estrellas[i].style.color = '#FF6723';
+          estrellas[i].setAttribute('data-color', '#FF6723');
+        }
+      } else {
+        // Si la estrella actual está encendida, apaga las siguientes
+        for (let i = index + 1; i < estrellas.length; i++) {
+          estrellas[i].style.color = '#737373';
+          estrellas[i].setAttribute('data-color', '#737373');
+        }
+      }
     });
+  });
+});
+
+
   </script>
 
 

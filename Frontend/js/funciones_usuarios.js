@@ -222,6 +222,7 @@ function AgregarProyecto(datos)
            success: function(data)
            {
                alert("Proyecto agregado correctamente");
+               location.reload();
            }
         })
 }
