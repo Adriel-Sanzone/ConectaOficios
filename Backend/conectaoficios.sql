@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-10-2023 a las 02:30:29
+-- Tiempo de generación: 24-10-2023 a las 04:15:01
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -140,8 +140,17 @@ CREATE TABLE `reseñas` (
   `id_reseñado` int(11) NOT NULL,
   `fecha` date NOT NULL,
   `puntuacion` int(11) NOT NULL,
-  `descripcion` int(11) NOT NULL
+  `descripcion` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `reseñas`
+--
+
+INSERT INTO `reseñas` (`id`, `id_reseñador`, `id_reseñado`, `fecha`, `puntuacion`, `descripcion`) VALUES
+(1, 60, 39, '2023-10-24', 2, '0'),
+(2, 60, 37, '2023-10-24', 4, 'muy bueno'),
+(3, 60, 35, '2023-10-24', 1, 'pesimo servicio');
 
 -- --------------------------------------------------------
 
@@ -161,7 +170,8 @@ CREATE TABLE `reseña_habilitada` (
 
 INSERT INTO `reseña_habilitada` (`id`, `id_reseñador`, `id_reseñado`) VALUES
 (3, 60, 39),
-(4, 60, 37);
+(4, 60, 37),
+(5, 60, 35);
 
 -- --------------------------------------------------------
 
@@ -204,7 +214,7 @@ INSERT INTO `usuarios` (`id`, `email`, `password`, `nombre`, `apellido`, `contac
 (41, 'sebastian.ramos@email.com', '202cb962ac59075b964b07152d234b70', 'Sebastián', 'Ramos', '', '', 0, 0, '', '5958a34223bb53b9e193b7d340e2d612', '/Frontend/img/usuario-sin-foto.png', '/Frontend/uploads/portada-sin-foto.png'),
 (58, 'dasdasd', '7815696ecbf1c96e6894b779456d330e', 'asd', 'asda', '', '', 0, 0, '', '94cef2bb9a2116c8940eaacff86cb93f', '/Frontend/uploads/usuario-sin-foto.png', '/Frontend/uploads/portada-sin-foto.png'),
 (59, 'asdasd', 'ec02c59dee6faaca3189bace969c22d3', 'dsadasd', 'asdasd', '', '', 0, 0, '', '90cf07de174e021e8eef01f8d46fdc87', '/Frontend/uploads/1697010468014.gatofino.jpg', '/Frontend/uploads/1697010468025.bigsale logo.jpg'),
-(60, 'aaa', '202cb962ac59075b964b07152d234b70', 'aaa', 'aaa', 'aaa', 'aaaaaa', 0, 1, 'aaa', 'f04d6b963e0ddbb969eaf67331d49020', '/Frontend/uploads/usuario-sin-foto.png', '/Frontend/uploads/portada-sin-foto.png'),
+(60, 'aaa', '202cb962ac59075b964b07152d234b70', 'aaa', 'aaa', 'aaa', 'aaaaaa', 0, 1, 'aaa', 'ff2a46c64b3ba3d65cd3b0a85d7a4d72', '/Frontend/uploads/usuario-sin-foto.png', '/Frontend/uploads/portada-sin-foto.png'),
 (61, 'bbbb', 'd3b61ce9e1533f7849ece871723aa5a3', 'bbb', 'bbbb', '', '', 0, 0, '', '0d9cbe7a8314660ec8776cb9ae3d9588', '/Frontend/uploads/usuario-sin-foto.png', '/Frontend/uploads/portada-sin-foto.png'),
 (62, 'ccc', '202cb962ac59075b964b07152d234b70', 'cc', 'ccc', '', '', 0, 0, '', '1da3062db8cbccea261dee3d9319fc87', '/Frontend/uploads/usuario-sin-foto.png', '/Frontend/uploads/portada-sin-foto.png'),
 (63, 'ddd', '202cb962ac59075b964b07152d234b70', 'ddd', 'ddd', '', '', 0, 0, '', '767dc733c9fac126af9c8d4cb4ad7d40', '/Frontend/uploads/usuario-sin-foto.png', '/Frontend/uploads/portada-sin-foto.png'),
@@ -288,13 +298,13 @@ ALTER TABLE `proyectos`
 -- AUTO_INCREMENT de la tabla `reseñas`
 --
 ALTER TABLE `reseñas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `reseña_habilitada`
 --
 ALTER TABLE `reseña_habilitada`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`

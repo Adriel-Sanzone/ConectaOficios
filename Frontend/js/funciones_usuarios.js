@@ -396,3 +396,27 @@ function HabilitoReseña(perfil_id, redirigir)
         }
     })
 }
+
+function AñadirReseña(perfil_id, descripcion, puntuacion)
+{
+    $.ajax(
+        {
+            "url": URL_BASE + "agregoresenia",
+            "type": "POST",
+            "dataType": "json",
+            "data": 
+            {
+                "id_perfil": perfil_id,
+                "descripcion": descripcion,
+                "puntuacion": puntuacion,
+            },
+            success: function(r)
+            {
+                if (r.error != 1)
+                {
+                    alert("Reseña agregada correctamente");
+                    location.reload();
+                }
+            }
+        })
+}

@@ -127,49 +127,59 @@
         <i class="fas fa-chevron-down icono-perfil"></i>
       </div>
       <div class="contenedor-info">
+        <% reseñas.forEach(function(r) { %>
+        <% if(r.id_reseñador == puedeReseñar) {%>
+        <% puedeReseñar = false; %>
+        <% } %>
+        <% }) %>
         <% if(puedeReseñar) {%>
         <div class="boton-agregar-reseña">
           <button id="btn-formulario-reseña" onclick="FormularioReseña()"><i class="fa-solid fa-plus"></i>Agregar Reseña</button>
         </div>
         <% } %>
+        <% reseñas.forEach(function(r){ %>
+       
         <div class="resenia">
+          <p> <%= r.fecha %> </p>
           <div class="encabezado">
-            <h4 class="nombre">Maria Rosa</h4>
+            <h4 class="nombre"><%= r.nombre %> <%= r.apellido %></h4>
             <i class="far fa-window-minimize barra"></i>
             <div class="estrellas">
-              <i class="fas fa-star icono-estrella" data-color="#737373"></i>
-              <i class="fas fa-star icono-estrella" data-color="#737373"></i>
-              <i class="fas fa-star icono-estrella" data-color="#737373"></i>
-              <i class="fas fa-star icono-estrella" data-color="#737373"></i>
-              <i class="fas fa-star icono-estrella" data-color="#737373"></i>
+
+              <i class="fas fa-star" style="color: #FF6723"></i>
+
+              <% if(r.puntuacion < 2) { %>
+              <i class="fas fa-star" style="color: #737373"></i>
+              <% } else { %> 
+                <i class="fas fa-star" style="color: #FF6723"></i>
+              <% } %>
+              
+              <% if(r.puntuacion < 3) { %>
+              <i class="fas fa-star" style="color: #737373"></i>
+              <% } else { %> 
+                <i class="fas fa-star" style="color: #FF6723"></i>
+              <% } %>
+                
+              <% if(r.puntuacion < 4) { %>
+              <i class="fas fa-star" style="color: #737373"></i>
+              <% } else { %> 
+                <i class="fas fa-star" style="color: #FF6723"></i>
+              <% } %>
+                
+              <% if(r.puntuacion < 5) { %>
+              <i class="fas fa-star" style="color: #737373"></i>
+              <% } else { %> 
+                <i class="fas fa-star" style="color: #FF6723"></i>
+              <% } %>
+ 
             </div>
           </div>
           <div class="cuerpo">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam blanditiis molestias quam! Voluptas
-              suscipit laborum praesentium exercitationem consequuntur laudantium enim nemo asperiores perferendis
-              numquam, id voluptatem nulla soluta molestias eveniet.</p>
+            <p><%= r.descripcion %></p>
           </div>
           <hr>
         </div>
-        <div class="resenia">
-          <div class="encabezado">
-            <h4 class="nombre">Maria Rosa</h4>
-            <i class="far fa-window-minimize barra"></i>
-            <div class="estrellas">
-              <i class="fas fa-star icono-estrella" data-color="#737373"></i>
-              <i class="fas fa-star icono-estrella" data-color="#737373"></i>
-              <i class="fas fa-star icono-estrella" data-color="#737373"></i>
-              <i class="fas fa-star icono-estrella" data-color="#737373"></i>
-              <i class="fas fa-star icono-estrella" data-color="#737373"></i>
-            </div>
-          </div>
-          <div class="cuerpo">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam blanditiis molestias quam! Voluptas
-              suscipit laborum praesentium exercitationem consequuntur laudantium enim nemo asperiores perferendis
-              numquam, id voluptatem nulla soluta molestias eveniet.</p>
-          </div>
-          <hr>
-        </div>
+        <% }) %>
       </div>
     </div>
   </div>
@@ -472,6 +482,15 @@
     {
       puntuacion = 5;
       console.log(puntuacion)
+    })
+
+    $("#guardar-reseña").on("click", function(){
+
+      var perfil_id = $(".perfil").data("perfil-id")
+
+      var descripcionReseña = $("#descripcion-reseña").val();
+
+      AñadirReseña(perfil_id, descripcionReseña, puntuacion);
     })
 
     $("#wsLoged").on("click" , function(){

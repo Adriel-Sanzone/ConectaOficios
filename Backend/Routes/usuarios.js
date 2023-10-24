@@ -1,5 +1,5 @@
 import {Router} from 'express';
-import {getUsuarios , UsuarioLogeandose, UsuarioValidado, RegistroUsuario, InsertoImagenPerfil, AsignoEspecializacion, InsertoImagenPortada, AgregoProyecto, CerrarSesion, EditoPerfil, EliminoEspecializacion, HabilitoReseña} from '../Controllers/usuarios.js'
+import {getUsuarios , UsuarioLogeandose, UsuarioValidado, RegistroUsuario, InsertoImagenPerfil, AsignoEspecializacion, InsertoImagenPortada, AgregoProyecto, CerrarSesion, EditoPerfil, EliminoEspecializacion, HabilitoReseña, AgregoReseña} from '../Controllers/usuarios.js'
 
 import multer from 'multer';
 
@@ -32,6 +32,7 @@ router.post('/eliminoespecializacion' , EliminoEspecializacion)
 router.post('/cerrarsesion', CerrarSesion);
 router.post('/editoperfil', EditoPerfil);
 router.post('/habilitoresenia', HabilitoReseña);
+router.post('/agregoresenia', AgregoReseña);
 //Subida de archivo
 router.post('/insertoimagenperfil', upload.single("usuarioFoto"), InsertoImagenPerfil);
 router.post('/insertoimagenportada', upload.single("usuarioFoto"), InsertoImagenPortada);

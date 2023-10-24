@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { viewUsuariosEspecialistas, UsuarioLogeado, getUsuario, viewsTodosLosUsuarios, viewProyectos, getReseñaHabilitada } from '../Controllers/usuarios.js'
+import { viewUsuariosEspecialistas, UsuarioLogeado, getUsuario, viewsTodosLosUsuarios, viewProyectos, getReseñaHabilitada, viewReseñasPerfil} from '../Controllers/usuarios.js'
 import { viewEspecializacionUsuario, viewEspecializaciones, getEspecializacionPerfil, viewEspecializacionesNueva } from '../Controllers/especializaciones.js';
 import { connection } from '../Database/connection.js';
 
@@ -96,30 +96,34 @@ router.get('/perfil/:id', function (req, res) {
     var proyectosPerfil = viewProyectos(idPerfil);
     var especializaciones = viewEspecializaciones();
     var reseñaHabilitada = getReseñaHabilitada(idUsuario,idPerfil);
+    var reseñasPerfil = viewReseñasPerfil(idPerfil);
 
     usuarioPerfil.then(function (usuario) {
         especializacionPerfil.then(function (perfilEsp) {
             usuarioLogeado.then(function (logeado) {
                 proyectosPerfil.then(function (proyectos) {
                     especializaciones.then(function (especializacion) {
-                        reseñaHabilitada.then(function(habilitada){
-
-                            console.log("user")
-                            console.log(usuario)
-                            console.log("perfilEsp")
-                            console.log(perfilEsp)
-                            console.log("especializacion")
-                            console.log(especializacion)
-    
-                            res.render('../Frontend/views/pages/perfil', {
-                                "user": usuario,
-                                "id": idUsuario,
-                                "perfilEsp": perfilEsp,
-                                "usuarioLogeado": logeado,
-                                "proyectos": proyectos,
-                                "especializacion": especializacion,
-                                "puedeReseñar": habilitada,
-                            });
+                        reseñaHabilitada.then(function(habilitada) { 
+                            reseñasPerfil.then(function(reseñas) {
+                                
+                                console.log("user")
+                                console.log(usuario)
+                                console.log("perfilEsp")
+                                console.log(perfilEsp)
+                                console.log("especializacion")
+                                console.log(especializacion)
+        
+                                res.render('../Frontend/views/pages/perfil', {
+                                    "user": usuario,
+                                    "id": idUsuario,
+                                    "perfilEsp": perfilEsp,
+                                    "usuarioLogeado": logeado,
+                                    "proyectos": proyectos,
+                                    "especializacion": especializacion,
+                                    "puedeReseñar": habilitada,
+                                    "reseñas": reseñas,
+                                });
+                            })
                         })
                     })
                 })

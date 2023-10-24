@@ -36,14 +36,35 @@ export const viewUsuariosEspecialistas = (pagina) =>
     });
 }
 
-export const viewProyectos = (id_usuario) =>
+export const viewProyectos = (id_perfil) =>
 {
     //Promesa para asegurarme de tener los datos antes de enviarlos
     return new Promise (function(resolve)
     {
         connection.query(
             'SELECT * FROM proyectos WHERE id_usuario = ?',
-            [id_usuario],
+            [id_perfil],
+            function (err, results) {
+                resolve(results);
+            }
+        );
+    });
+}
+
+export const viewReseñasPerfil = (id_perfil) =>
+{
+    //Promesa para asegurarme de tener los datos antes de enviarlos
+    return new Promise (function(resolve)
+    {
+        var sql = "";
+        sql += "SELECT r.id, r.id_reseñador, u.nombre, u.apellido, r.fecha, r.puntuacion, r.descripcion "
+        sql += "FROM reseñas r "
+        sql += "INNER JOIN usuarios u ON r.id_reseñador = u.id " 
+        sql += "WHERE r.id_reseñado = ? "
+        
+        connection.query(
+            sql,
+            [id_perfil],
             function (err, results) {
                 resolve(results);
             }
@@ -65,7 +86,7 @@ export const getReseñaHabilitada = (id_usuario, id_perfil) =>
                     resolve(false)
                 } else
                 {
-                    resolve(true);
+                    resolve(id_usuario);
                 }
             }
         )
@@ -698,6 +719,34 @@ export const HabilitoReseña = async (req, res) =>
         }); 
     }
 
+};
+
+export const AgregoReseña = async (req, res) => 
+{
+    const id_usuario = (req.session.idUsuario || 0);
+    
+    const {id_perfil, descripcion, puntuacion} = req.body;
+
+    const fechaHoy = new Date();
+    const fechaFormateada = fechaHoy.toISOString().split('T')[0]; // Formatear la fecha a 'AAAA-MM-DD'
+
+    connection.query(
+        'INSERT reseñas (id_reseñador, id_reseñado, fecha, puntuacion, descripcion) VALUES (?,?,?,?,?)',
+        [id_usuario, id_perfil, fechaFormateada, puntuacion, descripcion],
+        function(err, results)
+        {
+            if (err) 
+            {
+                console.error(err);
+                res.status(500).json({ error: 'Error al cargar los datos' });
+            } else 
+            {
+                res.json({
+                    "error": 0,
+                });
+            }
+        }
+    )
 };
 
 function CrearToken()
