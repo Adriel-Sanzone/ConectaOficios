@@ -1,6 +1,7 @@
 import { validateRequestWithBody } from 'twilio/lib/webhooks/webhooks.js';
 import {connection} from '../Database/connection.js';
 import md5 from 'md5';
+import moment from 'moment';
 
 export const getUsuarios = async (req, res) => 
 {
@@ -66,7 +67,12 @@ export const viewReseñasPerfil = (id_perfil) =>
             sql,
             [id_perfil],
             function (err, results) {
-                resolve(results);
+                var salida = new Array();
+                for (var i = 0 ; i < results.length; i++){
+                    results[i].fecha = moment(results[i].fecha).format("DD/MM/YYYY")
+                    salida.push(results[i]);
+                }
+                resolve(salida);
             }
         );
     });
@@ -581,6 +587,21 @@ export const EditoPerfil = async (req, res) =>
         });
         return false;
     };
+    if (especialista == 0)
+    {
+        connection.query(
+            'DELETE FROM especializacion_usuario WHERE id_usuario = ?',
+            [id_usuario],
+            function(err, result)
+            {
+                if (err) 
+                {
+                    console.error(err);
+                    res.status(500).json({ error: 'Error al obtener los datos' });
+                }
+            }
+        )
+    }
     //Si el espacio de contacto estaba vacio
     if(contacto == "" && especialista == 1)
     {

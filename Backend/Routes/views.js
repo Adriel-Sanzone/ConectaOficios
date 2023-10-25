@@ -24,6 +24,7 @@ router.get('/', function (req, res) {
                         "especializacion": especializacion,
                         "especializacionUsuario": userEspecializacion,
                         "usuarioLogeado": userLogeado,
+                        "user_id": idUsuario,
                     });
                 })
             })
@@ -63,6 +64,7 @@ router.get('/oficios/:pag', function (req, res) {
                     "especializacion": especializacion,
                     "usuarioLogeado": logeado,
                     "pag": pagina,
+                    "user_id": idUsuario,
                 });
             })
         })

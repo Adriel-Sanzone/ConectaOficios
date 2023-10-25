@@ -387,7 +387,11 @@
         </div>
       </div>
 
-      <div id="camposAdicionales">
+      <% if(user.especialista){ %>
+      <div id="camposAdicionales" style="display:block">
+      <% } else { %>
+      <div id="camposAdicionales" style="display:none">
+      <% } %>
 
         <div class="row">
           <div class="col-md-6">

@@ -213,6 +213,39 @@ input[type="checkbox"] {
     padding-left: 10px;
 }
 
+.btn-perfil-inf {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px 20px;
+    border-radius: 37px;
+    margin-bottom: 30px;
+    margin-right: 15px;
+}
+
+.whatsapp {
+    cursor: pointer;
+    border: 2px solid #FF685B;
+}
+
+.whatsapp a {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--naranjaOscuro);
+    padding-right: 10px;
+}
+
+.whatsapp:hover {
+    box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.10);
+}
+
+.whatsapp i {
+    font-size: 20px;
+    color: #FF685B;
+}
+
 .personas .persona button {
     padding: 10px 20px;
     border-radius: 37px;

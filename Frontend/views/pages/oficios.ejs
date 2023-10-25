@@ -15,7 +15,7 @@
   <%- include ('../partials/header') %>
   <% } %>
 
-  <div class="container">
+  <div class="container" class="perfil" data-perfil-id="<%= user_id %>">
     <div class="row">
       <div class="col-md-3">
         <div class="categorias">
@@ -63,7 +63,7 @@
                 </div>
               </div>
               <div class="col-md-9">
-                <div class="info-persona">
+                <div class="info-persona" data-id="<%= c.id %>">
                   <% c.especializaciones.forEach(function(e){ %>
                   <div class="especialidades">
                     <h3>
@@ -86,7 +86,12 @@
                     <p><%= c.direccion %></p>
                   </div>
                   <% if (usuarioLogeado) { %>
-                  <button><i class="fab fa-whatsapp"></i><span class="btn-text"><%= c.contacto %></span></button>
+                  <div class="whatsapp btn-perfil-inf wsLoged" data-numero-ws="<%=c.contacto%>">
+                    <a>
+                      <i class="fab fa-whatsapp"></i>
+                      <%= c.contacto %>
+                    </a>
+                  </div>
                   <% } else { %>
                   <a class="ver-perfil" href="/perfil/<%=c.id%>" target="_blank">Ir al Perfil<i class="fa-solid fa-arrow-right"></i></a>
                   <% } %>
@@ -118,6 +123,22 @@
   <script src="/Frontend/js/script.js"></script>
 
   <script type="text/javascript">
+
+    $(".wsLoged").on("click" , function(e){
+
+      var numeros = ($(e.currentTarget).data("numero-ws")).match(/\d+/g);
+      var idPersona = $(e.currentTarget).parent().attr('data-id');
+
+      var numerosUnidos = numeros.join(''); // Convierte el array de números en un solo string
+
+      var redirigir = "https://wa.me/" + numerosUnidos;
+
+      console.log(redirigir)
+      console.log(idPersona)
+
+      HabilitoReseña(idPersona, redirigir);
+
+    })
 
     var pagina = $("#personas").data("pagina");
 
