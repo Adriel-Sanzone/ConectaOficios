@@ -32,10 +32,10 @@
           <p class="title">Tabla Especializacion de Usuario</p>
         </div>
         <div class="tablita">
+          <div class="agregar"><button>Agregar<i class="fa-solid fa-plus"></i></button></div>
           <table>
             <thead>
               <tr>
-                <th class="agregar"></th>
                 <th class="editar"></th>
                 <th class="eliminar"></th>
                 <th class="">Id</th>
@@ -46,7 +46,6 @@
             <tbody>
               <% especializacionUsuario.forEach(function(e) { %>
                 <tr>
-                  <td class="boton"><div class="agregar"><button>Agregar<i class="fa-solid fa-plus"></i></button></div></td>
                   <td class="boton"><div class="editar"><button>Editar<i class="fa-regular fa-pen-to-square"></i></button></div></td>
                   <td class="boton"><div class="eliminar"><button>Eliminar<i class="fa-solid fa-ban"></i></button></div></td>
                   <td><%= e.id %></td>

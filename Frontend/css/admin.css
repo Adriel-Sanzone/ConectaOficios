@@ -272,15 +272,15 @@ table tbody .editar button {
     border-radius: 5px;
 }
 
-table tbody .editar button:hover{
+table tbody .editar button:hover {
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.15);
 }
 
-table tbody .agregar button:hover{
+table tbody .agregar button:hover {
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.15);
 }
 
-table tbody .eliminar button:hover{
+table tbody .eliminar button:hover {
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.15);
 }
 
@@ -307,12 +307,17 @@ table tbody .eliminar button {
     margin-left: 5px;
 }
 
+.agregar {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding-bottom: 20px;
+}
 
-table tbody .agregar button {
+.agregar button {
     color: #71a773;
     font-family: Montserrat;
     font-weight: 700;
-    margin: 5px;
     font-size: 16px;
     display: flex;
     border: none;
