@@ -37,77 +37,11 @@
         </div>
       </div>
       <div class="col-md-9">
+        <%- include ('../partials/banner-anuncio') %>
         <div class="personas" id="personas" data-pagina="<%= pag %>">
-          <%- include ('../partials/banner-anuncio') %>
-          <!---Llamo a los trabajadores destacados-->
-          <% var contador = 0 %>
-          <% usuariosEsp.forEach(function(c){ %>
-          <% if(contador >= pag*10 && contador < (pag*10+10) ) { %>
-          <% var especializacionesTexto = ''; %>
-          <% c.especializaciones.forEach(function(e){ %>
-          <% especializacionesTexto += e.id_especializacion+',' %>
-          <% }) %>
-          <div class="persona " data-especializacion="<%=  especializacionesTexto.substring(0, especializacionesTexto.length - 1); %>">
-            <div class="row">
-              <div class="col-md-3">
-                <div class="imagen">
-                  <% if(c.path != ""){ %>
-                  <div class="imagen-container">
-                    <img class="img-fluid" src="<%= c.path %>">
-                  </div>
-                  <% } else {; %>
-                  <div class="imagen-container">
-                    <img class="img-fluid" src="Frontend/img/usuario-sin-foto.png">
-                  </div>
-                  <% }; %>
-                </div>
-              </div>
-              <div class="col-md-9">
-                <div class="info-persona" data-id="<%= c.id %>">
-                  <% c.especializaciones.forEach(function(e){ %>
-                  <div class="especialidades">
-                    <h3>
-                      <%= e.nombre %>
-                    </h3>
-
-                  </div>
-                  <% }) %>
-                  <a class="nombre" href="/perfil/<%=c.id%>">
-                    <%= c.nombre %> <%= c.apellido %>
-                    <% if (c.destacado != 0) { %>
-                    <i class="fa-solid fa-star"></i>
-                    <% }; %>
-                  </a>
-                  <div class="descripcion">
-                    <p><%= c.descripcion %></p>
-                  </div>
-                  <div class="ubicacion">
-                    <i class="fa-solid fa-location-dot"></i>
-                    <p><%= c.direccion %></p>
-                  </div>
-                  <% if (usuarioLogeado) { %>
-                  <div class="whatsapp btn-perfil-inf wsLoged" data-numero-ws="<%=c.contacto%>">
-                    <a>
-                      <i class="fab fa-whatsapp"></i>
-                      <%= c.contacto %>
-                    </a>
-                  </div>
-                  <% } else { %>
-                  <a class="ver-perfil" href="/perfil/<%=c.id%>" target="_blank">Ir al Perfil<i class="fa-solid fa-arrow-right"></i></a>
-                  <% } %>
-                </div>
-              </div>
-            </div>
-          </div>
-          <% } %>
-          <% contador += 1 %>
-          <% }) %>
-          <% if(contador < (pag*10+10)) { %>
-             <!--AGREGAR ESTILO -->
-            <h1 id="fin" data-fin="1" >NO HAY MAS USUARIOS</h1>
-          <% } %>
-          <!---Llamo a los trabajadores NO destacados-->
         </div>
+        <!--AGREGAR ESTILO -->
+       <h1 id="fin" data-fin="1" style="display: none;">NO HAY MAS USUARIOS</h1>
         <div class="botones">
           <a class="anterior" >Anterior</a>
           <a class="siguiente" >Siguiente<i class="fa-solid fa-arrow-right"></i></a>
@@ -121,6 +55,7 @@
   <%- include ('../partials/footer') %>
 
   <script src="/Frontend/js/script.js"></script>
+  <script src="/Frontend/js/funciones_usuarios.js"></script>
 
   <script type="text/javascript">
 
@@ -172,14 +107,24 @@
     });
 
     $(document).ready(function() {
+
+      AgregoEspecialistasElegidos("()", pagina);
+
       // Obtengo todas las casillas de verificación
       $(".checkbox-especializacion").on("change", function() {
         var checkedElements = new Array();
         $('.checkbox-especializacion:checked').each(function(i, e) {
           checkedElements.push($(e).attr('data-id'))
-
+          console.log(checkedElements) //ACA OBTENGO LOS IDs DE ESPECIALIZACIONES
         });
 
+        var espElegidasArray = "(" + checkedElements.join(", ") + ")";
+
+        console.log(pagina)
+        console.log(espElegidasArray)
+
+        AgregoEspecialistasElegidos(espElegidasArray, pagina);
+/* 
         if (checkedElements.length == 0) {
           $('.persona').show();
           return false;
@@ -202,7 +147,7 @@
           } else {
             $(e).show();
           }
-        });
+        }); */
       });
 
       var categoriaSeleccionada = localStorage.getItem("categoriaSeleccionada");
