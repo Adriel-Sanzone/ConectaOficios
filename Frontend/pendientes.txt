@@ -9,3 +9,6 @@ wsp en index no anda
 NUEVA 21/10/2023:
     -Agregar funcionalidad al boton de eliminar proyecto en el perfil del usuario
 arreglar botones en oficios e index.
+
+descipcion de rese;as no se cargan
+whatsapp desde oficios no anda

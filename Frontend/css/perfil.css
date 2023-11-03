@@ -202,7 +202,7 @@ body {
     font-style: normal;
     font-weight: 700;
     text-decoration: none;
-    color: var(--naranjaOscuro);
+    color: #FF685B;
     padding-right: 10px;
 }
 
@@ -532,6 +532,22 @@ font-size: 16px;
     font-size: 14px;
 }
 
+.boton-agregar-reseña button{
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background: var(--danger-color, #E74040);
+    color: var(--light-text-color, #FFF);
+    font-family: Montserrat;
+    font-size: 14px;
+    font-weight: 700;
+    border: none;
+}
+
+.boton-agregar-reseña button i{
+   margin-right: 10px;
+}
+
 .guardar {
     text-decoration: none;
     padding: 10px 20px;
@@ -579,6 +595,11 @@ font-size: 16px;
     margin-bottom: 20px;
 }
 
+.resenia p {
+    margin-bottom: 5px;
+    font-size:15px ;
+}
+
 .nombre {
     font-family: 'Montserrat';
     font-style: normal;
@@ -600,7 +621,11 @@ font-size: 16px;
 
 .encabezado .barra {
     padding-inline: 20px;
-    margin-bottom: 4px !important;
+   padding-bottom: 0;
+}
+
+.FormularioReseña label{
+    margin-bottom: 0;
 }
 
 .estrellas i {

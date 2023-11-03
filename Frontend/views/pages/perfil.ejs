@@ -134,7 +134,7 @@
         <% }) %>
         <% if(puedeReseñar) {%>
         <div class="boton-agregar-reseña">
-          <button id="btn-formulario-reseña" onclick="FormularioReseña()"><i class="fa-solid fa-plus"></i>Agregar Reseña</button>
+          <button class="guardar" id="btn-formulario-reseña" onclick="FormularioReseña()"><i class="fa-solid fa-plus"></i>Agregar Reseña</button>
         </div>
         <% } %>
         <% reseñas.forEach(function(r){ %>
@@ -143,7 +143,7 @@
           <p> <%= r.fecha %> </p>
           <div class="encabezado">
             <h4 class="nombre"><%= r.nombre %> <%= r.apellido %></h4>
-            <i class="far fa-window-minimize barra"></i>
+            <p class="barra">-</p>
             <div class="estrellas">
 
               <i class="fas fa-star" style="color: #FF6723"></i>
