@@ -36,15 +36,10 @@
 
         </div>
       </div>
-      <div class="col-md-9">
+      <div class="col-md-9" id="tablero">
         <%- include ('../partials/banner-anuncio') %>
         <div class="personas" id="personas" data-pagina="<%= pag %>">
-        </div>
-        <!--AGREGAR ESTILO -->
-       <h1 id="fin" data-fin="1" style="display: none;">NO HAY MAS USUARIOS</h1>
-        <div class="botones">
-          <a class="anterior" >Anterior</a>
-          <a class="siguiente" >Siguiente<i class="fa-solid fa-arrow-right"></i></a>
+          <!--ACA SE AGREGAN LAS TARJETAS "PERSONA" EN funciones_usuarios.js EN AgregoEspecialistasElegidos(ids, pag) -->
         </div>
       </div>
       <!--colmd9 -->
@@ -59,40 +54,6 @@
 
   <script type="text/javascript">
 
-    $(".wsLoged").on("click" , function(e){
-
-      var numeros = ($(e.currentTarget).data("numero-ws")).match(/\d+/g);
-      var idPersona = $(e.currentTarget).parent().attr('data-id');
-
-      var numerosUnidos = numeros.join(''); // Convierte el array de números en un solo string
-
-      var redirigir = "https://wa.me/" + numerosUnidos;
-
-      console.log(redirigir)
-      console.log(idPersona)
-
-      HabilitoReseña(idPersona, redirigir);
-
-    })
-
-    var pagina = $("#personas").data("pagina");
-
-    $(".anterior").on("click", function(){
-      if(pagina > 0)
-      {
-        pagina -= 1;
-        window.location.href="/oficios/" + pagina;
-      }
-    })
-    $(".siguiente").on("click", function(){
-      if($("#fin").data("fin") != 1)
-      {
-        pagina += 1;
-        window.location.href="/oficios/" + pagina;
-      }
-    })
-    
-
     function mostrarHijo(index) {
       const hijo = document.getElementById(`hijo${index}`);
       if (hijo.style.display === 'none' || hijo.style.display === '') {
@@ -102,53 +63,47 @@
       }
     }
 
-    $(".unloged").on("click", function() {
-      alert("Inicia sesion para ver esta informacion.");
-    });
-
     $(document).ready(function() {
+
+      var pagina = $("#personas").data("pagina");
 
       AgregoEspecialistasElegidos("()", pagina);
 
+      var espElegidasArray = "()"
+
+      $(".unloged").on("click", function() {
+        alert("Inicia sesion para ver esta informacion.");
+      });
+
       // Obtengo todas las casillas de verificación
       $(".checkbox-especializacion").on("change", function() {
+
         var checkedElements = new Array();
         $('.checkbox-especializacion:checked').each(function(i, e) {
-          checkedElements.push($(e).attr('data-id'))
-          console.log(checkedElements) //ACA OBTENGO LOS IDs DE ESPECIALIZACIONES
+          checkedElements.push($(e).attr('data-id'))    //ACA OBTENGO LOS IDs DE ESPECIALIZACIONES
+          console.log(checkedElements) 
         });
-
-        var espElegidasArray = "(" + checkedElements.join(", ") + ")";
-
-        console.log(pagina)
-        console.log(espElegidasArray)
+        espElegidasArray = "(" + checkedElements.join(", ") + ")"; 
 
         AgregoEspecialistasElegidos(espElegidasArray, pagina);
-/* 
-        if (checkedElements.length == 0) {
-          $('.persona').show();
-          return false;
-        }
-
-        $('.persona').each(function(i, e) {
-          var especializacion = $(e).attr('data-especializacion');
-
-          var ArrayEspecializaciones = especializacion.split(',');
-
-          var contador = 0;
-          ArrayEspecializaciones.forEach(function(id_especializacion) {
-            if (checkedElements.includes(id_especializacion)) {
-              contador++;
-            }
-          });
-
-          if (contador == 0) {
-            $(e).hide();
-          } else {
-            $(e).show();
-          }
-        }); */
+        
       });
+
+      $(".anterior").on("click", function(){
+      if(pagina > 0)
+      {
+        pagina -= 1;
+        AgregoEspecialistasElegidos(espElegidasArray, pagina);
+      }
+    })
+
+    $(".siguiente").on("click", function(){
+      //if($("#fin").data("fin") != 1)
+      {
+        pagina += 1;
+        AgregoEspecialistasElegidos(espElegidasArray, pagina);
+      }
+    })
 
       var categoriaSeleccionada = localStorage.getItem("categoriaSeleccionada");
       if (categoriaSeleccionada != null) {
@@ -159,6 +114,7 @@
         }, 100);
       }
     });
+
   </script>
 
 </body>

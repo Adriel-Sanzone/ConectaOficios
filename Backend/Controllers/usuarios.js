@@ -764,7 +764,6 @@ export const getEspecialistasElegidos = (req, res) =>
     );
 }
 
-
 export const HabilitoReseña = async (req, res) => 
 {
     const id_usuario = (req.session.idUsuario || 0);
