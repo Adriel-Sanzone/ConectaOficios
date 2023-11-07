@@ -531,7 +531,7 @@ function AgregoEspecialistasElegidos(ids, pag)
 
                     elemento +=
                     `
-                    <div class="whatsapp btn-perfil-inf wsLoged col-md-4" onclick="preHabilitoReseña(this)" data-numero-ws="${c.contacto}">
+                    <div class="whatsapp btn-perfil-inf wsLoged" onclick="preHabilitoReseña(this)" data-numero-ws="${c.contacto}">
                         <a class="numeroColor">
                         <i class="fab fa-whatsapp"></i>
                         ${c.contacto}

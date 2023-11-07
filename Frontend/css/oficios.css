@@ -214,9 +214,7 @@ input[type="checkbox"] {
 }
 
 .btn-perfil-inf {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+    display: inline;
     padding: 10px 20px;
     border-radius: 37px;
     margin-bottom: 30px;
@@ -234,7 +232,6 @@ input[type="checkbox"] {
     font-weight: 700;
     text-decoration: none;
     color: var(--naranjaOscuro);
-    padding-right: 10px;
 }
 
 .whatsapp:hover {
