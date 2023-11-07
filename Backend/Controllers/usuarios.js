@@ -694,6 +694,76 @@ export const viewsTodosLosUsuarios = (pagina, categoria) =>
     });
 }
 
+export const getEspecialistasElegidos = (req, res) =>
+{
+    const {ids_especializaciones, pag} = req.body;
+
+    var idUsuario = (req.session.idUsuario || 0);
+    var tokenUsuario = (req.session.token || 0);
+
+    var offset = pag * 10;
+    //Query para obtener todos los usuarios especialistas ordenados por promocion
+    var sql = "SELECT U.* ";
+    sql += "FROM usuarios U ";
+    sql += "WHERE U.especialista = 1 ";
+    if (ids_especializaciones != "()") sql += "AND EXISTS(SELECT EU.* FROM especializacion_usuario EU WHERE EU.id_especializacion IN "+ids_especializaciones+" AND EU.id_usuario = U.id) ";
+    sql += "ORDER BY U.destacado DESC ";
+    sql += "LIMIT 10 OFFSET ?";
+    console.log("SQL")
+    console.log(sql)
+    console.log("OFFSET")
+    console.log(offset)
+    connection.query(
+        sql,
+        [offset],
+        function (err, resultados) {
+
+            //Creo array para almacenar los usuarios coincidentes
+            var usuarios = new Array();
+            //Creo un array para almacenar las Promises que rellenaran una variable de "usuarios"
+            var misPromesas = new Array();
+
+            //Recorro el array usuarios 
+            resultados.forEach(function(usuario){
+                //Le agrego los valores obtenidos del query
+                usuarios[usuario.id] = usuario;
+                //Creo una variable que obtenga todos los resultados de especializacion que coincidan con cada usuario
+                var especializaciones = getEspecializacionesUsuario(usuario.id);
+                //Añado cada resultado de promesa a misPromesas
+                misPromesas.push(especializaciones);
+                
+            });
+
+            //Luego que terminen todas las promesas de misPromesas recorro usuarios para añadirle la nueva variable
+            Promise.all(misPromesas)
+                .then((especializaciones) => {
+                    especializaciones.forEach(function(especializacion){
+                        usuarios[especializacion[0].id_usuario].especializaciones = especializacion;
+                    });
+                    //Devuelvo usuarios que ahora contiene los datos del usuario y su especializacion
+                    
+                    //ELIMINO LOS NULLS
+                    usuarios = usuarios.filter(function(elemento) {
+                        return elemento !== null;
+                    });
+
+                    let estalogeado = UsuarioLogeado(idUsuario, tokenUsuario);
+                    estalogeado.then(function(loged){
+                        res.json({
+                            "usuarios": usuarios,
+                            "logeado": loged,
+                        });
+                    })
+
+                })
+                //Si ocurre algun error
+                .catch((error) => {
+                    console.error(error);
+                });
+        }
+    );
+}
+
 export const HabilitoReseña = async (req, res) => 
 {
     const id_usuario = (req.session.idUsuario || 0);

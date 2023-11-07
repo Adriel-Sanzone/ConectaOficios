@@ -378,6 +378,17 @@ function EliminoEspecializaciones(datos)
     })
 }
 
+function preHabilitoReseña(e) {
+    var numeros = ($(e).data("numero-ws")).match(/\d+/g);
+    var idPersona = $(e).parent().attr('data-id');
+  
+    var numerosUnidos = numeros.join(''); // Convierte el array de números en un solo string
+  
+    var redirigir = "https://wa.me/" + numerosUnidos;
+  
+    HabilitoReseña(idPersona, redirigir);	
+  }
+
 function HabilitoReseña(perfil_id, redirigir)
 {
     $.ajax(
@@ -421,4 +432,180 @@ function AñadirReseña(perfil_id, descripcion, puntuacion)
                 }
             }
         })
+}
+
+function AgregoEspecialistasElegidos(ids, pag)
+{
+    $.ajax(         //Ajax para traer los productos de mi base de datos y ponerlos en la pagina
+    {    
+        "url": URL_BASE + "especialistaselegidos",
+        "type": "POST", 
+        "dataType": "json",
+        "data": 
+        {
+            "ids_especializaciones": ids,
+            "pag": pag,
+        },
+        "success": function(r)
+        {
+            var contador; 
+
+            $("#personas").empty();             //vacío mi tabla antes de mostrar los productos cargados
+            $("#tablero #fin").remove();     
+            $("#tablero .botones").remove();         
+
+            r.usuarios.forEach(function(c, index){    //recorro el array que devuelve el success que contiene la info de mis productos, lo almaceno en item
+               
+                contador = index;
+
+                let elemento =         //creo una variable elemento la cual tiene el codigo html necesario para agregar una fila a mi tabla de la pagina con el contenido de un producto
+                `
+                    <div class="persona" data-numero-personas="${r.usuarios.length}" >
+                    <div class="row">
+                    <div class="col-md-3">
+                    <div class="imagen">
+                `
+
+                if(c.path != ""){ 
+                    elemento +=
+                    `
+                    <div class="imagen-container">
+                        <img class="img-fluid" src="${c.path}"
+                    </div>
+                    `
+                } else {
+                    elemento +=
+                    `
+                    <div class="imagen-container">
+                        <img class="img-fluid" src="Frontend/img/usuario-sin-foto.png">
+                    </div>
+                    `
+                }; 
+
+                elemento +=
+                `
+                    </div>
+                    </div>
+                    </div>
+                    <div class="col-md-9">
+                      <div class="info-persona" data-id="${c.id}">
+                `
+                c.especializaciones.forEach(function(e){ 
+
+                    elemento += 
+                    `
+                    <div class="especialidades">
+                        <h3>
+                        ${e.nombre}
+                        </h3>
+                    </div>
+                    `
+                }) 
+
+                elemento +=
+                `
+                    <a class="nombre" href="/perfil/${c.id}">
+                        ${c.nombre} ${c.apellido}
+                `
+                if (c.destacado != 0) { 
+
+                    elemento +=
+                    `
+                    <i class="fa-solid fa-star"></i>
+                    `
+                };
+
+                elemento +=
+                `
+                    </a>
+                    <div class="descripcion">
+                        <p>${c.descripcion}</p>
+                    </div>
+                    <div class="ubicacion">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <p>${c.direccion}</p>
+                    </div>
+                `
+
+                if (r.logeado) { 
+
+                    elemento +=
+                    `
+                    <div class="whatsapp btn-perfil-inf wsLoged" onclick="preHabilitoReseña(this)" data-numero-ws="${c.contacto}">
+                        <a>
+                        <i class="fab fa-whatsapp"></i>
+                        ${c.contacto}
+                        </a>
+                    </div>
+                    `
+                } else { 
+                
+                    elemento +=
+                    `
+                    <a class="ver-perfil" href="/perfil/${c.id}">Ir al Perfil<i class="fa-solid fa-arrow-right"></i></a>
+                    `
+                }
+
+                elemento +=
+                ` 
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                `
+                
+            
+                $("#personas").append(elemento);  //agrego la variable elemento al div de personas
+
+            })
+
+            if(contador < 9)
+            {
+                if(pag > 0)
+                {
+                    var fin_usuarios =
+                    `
+                        <h1 id="fin" data-fin="1">NO HAY MAS USUARIOS</h1>
+                        <div class="botones">
+                          <a class="anterior" onclick="AgregoEspecialistasElegidos('${ids}' , ${pag-1})">Anterior</a>
+                          <a class="siguiente" >Siguiente<i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    `
+                } else
+                {
+                    var fin_usuarios =
+                    `
+                        <h1 id="fin" data-fin="1">NO HAY MAS USUARIOS</h1>
+                        <div class="botones">
+                          <a class="anterior">Anterior</a>
+                          <a class="siguiente" >Siguiente<i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    `
+                }
+            } else
+            {
+                if(pag > 0)
+                {
+                    var fin_usuarios =
+                    `
+                        <div class="botones">
+                          <a class="anterior" onclick="AgregoEspecialistasElegidos('${ids}',${pag-1})" >Anterior</a>
+                          <a class="siguiente" onclick="AgregoEspecialistasElegidos('${ids}',${pag+1})" >Siguiente<i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    `
+                } else
+                {
+                    var fin_usuarios =
+                    `
+                        <div class="botones">
+                          <a class="anterior" >Anterior</a>
+                          <a class="siguiente" onclick="AgregoEspecialistasElegidos('${ids}',${pag+1})" >Siguiente<i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    `
+                }
+            }
+            $("#tablero").append(fin_usuarios);
+
+        }
+    })
 }
