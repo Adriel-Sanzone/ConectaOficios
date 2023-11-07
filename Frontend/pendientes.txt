@@ -7,5 +7,5 @@ agregar una foto de proyecto/trabajo default
 no anda boton de whatsapp en oficios
 wsp en index no anda
 NUEVA 21/10/2023:
-    -Agregar funcionalidad al boton de eliminar proyecto en el perfil del usuario
+    -Agregar funcionalidad al boton npxde eliminar proyecto en el perfil del usuario
 arreglar botones en oficios e index.
