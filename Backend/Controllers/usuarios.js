@@ -717,7 +717,6 @@ export const getEspecialistasElegidos = (req, res) =>
         sql,
         [offset],
         function (err, resultados) {
-
             //Creo array para almacenar los usuarios coincidentes
             var usuarios = new Array();
             //Creo un array para almacenar las Promises que rellenaran una variable de "usuarios"
@@ -731,7 +730,6 @@ export const getEspecialistasElegidos = (req, res) =>
                 var especializaciones = getEspecializacionesUsuario(usuario.id);
                 //Añado cada resultado de promesa a misPromesas
                 misPromesas.push(especializaciones);
-                
             });
 
             //Luego que terminen todas las promesas de misPromesas recorro usuarios para añadirle la nueva variable
@@ -740,18 +738,25 @@ export const getEspecialistasElegidos = (req, res) =>
                     especializaciones.forEach(function(especializacion){
                         usuarios[especializacion[0].id_usuario].especializaciones = especializacion;
                     });
-                    //Devuelvo usuarios que ahora contiene los datos del usuario y su especializacion
-                    
-                    //ELIMINO LOS NULLS
-                    usuarios = usuarios.filter(function(elemento) {
-                        return elemento !== null;
-                    });
+
+                    var nuevosUsuarios = new Array();
+
+                    for (var i = 0; i < usuarios.length; i++) {
+                        if (usuarios[i] !== undefined) {
+                            nuevosUsuarios.push(usuarios[i]);
+                        }
+                    }
+
+                    nuevosUsuarios.sort((a,b) => (a.destacado < b.destacado) ? 1 : ((b.destacado < a.destacado) ? -1 : 0))
+
+                    console.log(nuevosUsuarios);
 
                     let estalogeado = UsuarioLogeado(idUsuario, tokenUsuario);
                     estalogeado.then(function(loged){
                         res.json({
-                            "usuarios": usuarios,
                             "logeado": loged,
+                            "usuarios": nuevosUsuarios,
+                            "error": 0,
                         });
                     })
 
@@ -760,8 +765,8 @@ export const getEspecialistasElegidos = (req, res) =>
                 .catch((error) => {
                     console.error(error);
                 });
-        }
-    );
+        }
+    );
 }
 
 export const HabilitoReseña = async (req, res) => 
