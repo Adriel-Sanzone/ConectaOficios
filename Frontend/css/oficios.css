@@ -266,6 +266,9 @@ input[type="checkbox"] {
     margin-right: 10px;
 }
 
+.numeroColor{
+    color:#fd5243;
+}
 
 .persona button i {
     font-size: 24px;
