@@ -1,14 +1,16 @@
+-------------header
 hecer menu para movil
-perfil esta todo comentado???
-agregar boton para cambiar de pagina en oficio (inicia en 0)-----------------------------------
-hacer funcioanl tablas de admin
-arreglar estilo de ventanas emergentes cuando un usuario edita su perfil 
-agregar una foto de proyecto/trabajo default
-no anda boton de whatsapp en oficios
-wsp en index no anda
-NUEVA 21/10/2023:
-    -Agregar funcionalidad al boton npxde eliminar proyecto en el perfil del usuario
-arreglar botones en oficios e index.
 
-descipcion de rese;as no se cargan
-whatsapp desde oficios no anda
+-------------admin
+hacer funcional lo de editar tablas desde admin
+poner seguridad, que no entren con /admin
+
+-------------oficios
+sacar el no hay mas usuarios
+si es la pagina 0 sacar el boton de anterior, si es la ultima pagina sacar el boton de siguiente
+
+-------------perfil
+en los proyectos aparece la X para eliminar aunque no hayas iniciado sesion
+las reseñas no se cargan correctamente aparece en la descripcion un cero nomas
+si apretas la categoria que se muestra en el perfil arriba te manda a un perfil random
+si no es mucho pedirr si el usuario no es trabajador que en su perfil no aparezan los container de resenias y proyecto

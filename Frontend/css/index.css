@@ -395,7 +395,7 @@ swiper-slide {
 }
 
 .ver-mas a {
-    border-radius: 37px;
+    border-radius: 5px;
     background: var(--azul);
     padding: 15px 20px;
     color: var(--blanco2) !important;
