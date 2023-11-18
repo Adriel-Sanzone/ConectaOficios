@@ -9,7 +9,7 @@ import viewsRoutes from './Backend/Routes/views.js';
 const app = express();
 
 app.set('view engine', 'ejs');
-app.set('port' , 3000);
+app.set('port' , 65002);
 
 //Para que funcione la carpeta de uploads (evita que la url sea la ubicacion de la carpeta sea una ruta express)
 app.use('/uploads', express.static('uploads'));
