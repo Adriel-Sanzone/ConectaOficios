@@ -269,6 +269,37 @@ export const UsuarioLogeado = (id, token) =>
     });
 }
 
+export const AdminLogeado = (id, token) =>
+{
+    //Creo promesa para comprobar que el usuario este logeado
+    return new Promise (function(resolve)
+    {
+        //Compruebo el id y token del session de express con la base de datos
+        var res;
+        connection.query(
+            'SELECT * FROM usuarios WHERE id = ? AND token = ?',
+            [id, token],
+            function (err, results) 
+            {
+                if (err) 
+                {
+                    console.error(err);
+                    res.status(500).json({ error: 'Error al obtener los datos' });
+                } else 
+                {
+                    if(results[0] === undefined || results[0].id > 5)
+                    {
+                        resolve(false);
+                    } else  //Si encuentro un usuario con el mismo token que el de la session de express y es menor del id 5 (es admin)
+                    {
+                        resolve(results[0]);
+                    }
+                }
+            }
+        );
+    });
+}
+
 export const CerrarSesion = async (req, res) => 
 {
     req.session.idUsuario = 0;
@@ -825,7 +856,7 @@ export const AgregoReseña = async (req, res) =>
 
     const fechaHoy = new Date();
     const fechaFormateada = fechaHoy.toISOString().split('T')[0]; // Formatear la fecha a 'AAAA-MM-DD'
-
+    
     connection.query(
         'INSERT reseñas (id_reseñador, id_reseñado, fecha, puntuacion, descripcion) VALUES (?,?,?,?,?)',
         [id_usuario, id_perfil, fechaFormateada, puntuacion, descripcion],

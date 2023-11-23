@@ -24,17 +24,18 @@
             <li><a href="proyectos">Proyectos</a></li>
             <li><a href="usuariosAdmin">Usuarios</a></li>
           </ul>
+          <a href="/"><i class="fa-solid fa-house-chimney"></i>Volver a la pagina</a>
         </div>
         <div class="aside-usuario">
-          <a href="/"><i class="fa-solid fa-arrow-left"></i>Cerrar Sesión</a>
-          <img class="img-fluid" src="/Frontend/uploads/fede.png" alt="">
+          <a onclick="CerrarSesion()"><p><i class="fa-solid fa-arrow-left"></i>Cerrar Sesión</p></a>
+          <img class="img-fluid" src="<%= adminLogeado.path %>" alt="">
         </div>
       </div>
 
       <div class="col-md-9">
         <div class="container">
           <div class="usuario">
-            <h3>¡Bienvenido Fede!<i class="fa-solid fa-hand-peace"></i></h3>
+            <h3>¡Bienvenido <%= adminLogeado.nombre %>!<i class="fa-solid fa-hand-peace"></i></h3>
           </div>
           <div class="tarjetitas">
             <div class="row">
@@ -49,9 +50,9 @@
               <div class="col-md-4" data-aos="fade-up" data-aos-duration="2000">
                 <div class="tarjetita">
                   <p class="numero">
-                    <%= cantCategorias %>
+                    <%= cantDestacados %>
                   </p>
-                  <p class="titulo-tarjetita">Categorías</p>
+                  <p class="titulo-tarjetita">Destacados</p>
                 </div>
               </div>
               <div class="col-md-4" data-aos="fade-up" data-aos-duration="2000">
@@ -72,8 +73,10 @@
   </div>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="/Frontend/js/script.js"></script>
+  <script src="/Frontend/js/funciones_usuarios.js"></script>
   <script>
     AOS.init();
+    VerificoAdmin();
   </script>
 </body>
 

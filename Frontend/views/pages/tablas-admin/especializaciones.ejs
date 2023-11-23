@@ -20,10 +20,11 @@
             <li><a href="proyectos">Proyectos</a></li>
             <li><a href="usuariosAdmin">Usuarios</a></li>
           </ul>
+          <a href="/"><i class="fa-solid fa-house-chimney"></i>Volver a la pagina</a>
         </div>
         <div class="aside-usuario">
-          <a href="/index"><i class="fa-solid fa-arrow-left"></i>Cerrar Sesión</a>
-          <img class="img-fluid" src="/Frontend/uploads/fede.png" alt="">
+          <a onclick="CerrarSesion()"><p><i class="fa-solid fa-arrow-left"></i>Cerrar Sesión</p></a>
+          <img class="img-fluid" src="<%= adminLogeado.path %>" alt="">
         </div>
       </div>
 
@@ -62,6 +63,7 @@
   </div>
   </div>
   <script src="/Frontend/js/script.js"></script>
+  <script src="/Frontend/js/funciones_usuarios.js"></script>
 </body>
 
 </html>

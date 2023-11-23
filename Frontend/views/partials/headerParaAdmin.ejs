@@ -1,0 +1,75 @@
+<head>
+    <link rel="stylesheet" href="/Frontend/css/header.css">
+  </head>
+  
+  <header>
+    <h3><a href="/">ConectaOficios.com ADMIN</a></h3>
+    <div class="menu">
+      <a href="/">Inicio</a>
+      <a href="/oficios/0">Oficios</a>
+      <a href="/destacar">Destacarse</a>
+    </div>
+  
+  
+    <nav class="navbar">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"></a>
+        <h4 class="bienvenido">¡Hola, <%= usuarioLogeado.nombre %>!</h4>
+        <div class="imagenParaUsuario">
+          <button class="navbar-toggler " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+            <img class="img-fluid" src="<%= usuarioLogeado.path %>" alt="">
+          </button>
+        </div>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+          <div class="offcanvas-header ">
+            <div class="imagenParaUsuario d-flex ">
+              <img class="img-fluid" src="<%= usuarioLogeado.path %>" alt="">
+              <h4>
+                <%= usuarioLogeado.nombre %>
+                <%= usuarioLogeado.apellido %>
+              </h4>
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/perfil/<%= usuarioLogeado.id %>">Mi perfil</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/destacar">Hacerse Premium</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/admin">Panel Administrador</a>
+              </li>
+              <li class="nav-item fixed-bottom text-end">
+                <a id="cerrar-sesion" class="nav-link cerrar" href="#"><i class="fa-solid fa-arrow-left"></i>Cerrar Sesion</a>
+              </li>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  
+  <div class="barra">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="input-group">
+          <input type="text" id="search-input" class="form-control" placeholder="Buscar oficios...">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button" id="search-button">Buscar</button>
+          </div>
+        </div>
+        <!-- Lista de sugerencias (inicialmente oculta) -->
+        <ul class="list-group" id="suggestions" style="display: none;"></ul>
+      </div>
+    </div>
+  </div>
+  </div>
+  
+  <script src="/Frontend/js/funciones_usuarios.js"></script>
+  <script>
+    $("#cerrar-sesion").on("click", function() {
+      CerrarSesion();
+    })
+  </script>

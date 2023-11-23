@@ -11,10 +11,14 @@
 
 <body>
 
-  <% if (usuarioLogeado) { %>
-  <%- include ('../partials/headerParaUsuario') %>
+  <% if (adminLogeado) { %>
+    <%- include ('../partials/headerParaAdmin') %>
   <% } else { %>
-  <%- include ('../partials/header') %>
+    <% if (usuarioLogeado) { %>
+      <%- include ('../partials/headerParaUsuario') %>
+    <% } else { %>
+      <%- include ('../partials/header') %>
+    <% } %>
   <% } %>
 
   <div class="container">
@@ -209,12 +213,14 @@
         <% proyectos.forEach(function(p){ %>
         <div class="proyecto">
           <div class="proyectos-cuerpo d-flex ">
+            <% if (user.id===id) { %>
             <div class="boton-eliminar-trabajo">
-              <button id="btn-formulario-Trabajos" onclick="FormularioEliminarTrabajos()">
+              <button id="btn-formulario-Trabajos" >
                 <i class="fa-solid fa-x" style="color: #ff0000;">
                 </i>
               </button>
             </div>
+            <% } %>
             <div class="encabezado">
               <img src="<%=p.path%>" alt="">
             </div>
@@ -492,7 +498,7 @@
 
       var perfil_id = $(".perfil").data("perfil-id")
 
-      var descripcionReseña = $("#descripcion-reseña").val();
+      var descripcionReseña = ($("#descripcion-reseña").val());
 
       AñadirReseña(perfil_id, descripcionReseña, puntuacion);
     })

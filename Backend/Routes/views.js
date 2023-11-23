@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { viewUsuariosEspecialistas, UsuarioLogeado, getUsuario, viewsTodosLosUsuarios, viewProyectos, getReseñaHabilitada, viewReseñasPerfil} from '../Controllers/usuarios.js'
+import { viewUsuariosEspecialistas, UsuarioLogeado, getUsuario, viewsTodosLosUsuarios, viewProyectos, getReseñaHabilitada, viewReseñasPerfil, AdminLogeado} from '../Controllers/usuarios.js'
 import { viewEspecializacionUsuario, viewEspecializaciones, getEspecializacionPerfil, viewEspecializacionesNueva } from '../Controllers/especializaciones.js';
 import { connection } from '../Database/connection.js';
 
@@ -10,6 +10,7 @@ router.get('/', function (req, res) {
     var idUsuario = (req.session.idUsuario || 0);
     var tokenUsuario = (req.session.token || 0);
 
+    var admin = AdminLogeado(idUsuario, tokenUsuario);
     var usuarioLogeado = UsuarioLogeado(idUsuario, tokenUsuario);
 
     var usuariosEspecialistas = viewUsuariosEspecialistas(0);
@@ -19,13 +20,17 @@ router.get('/', function (req, res) {
         especializaciones.then(function (especializacion) {
             especializacionUsuario.then(function (userEspecializacion) {
                 usuarioLogeado.then(function (userLogeado) {
-                    res.render("../Frontend/views/pages/index", {
-                        "usuariosEsp": usuarios,
-                        "especializacion": especializacion,
-                        "especializacionUsuario": userEspecializacion,
-                        "usuarioLogeado": userLogeado,
-                        "user_id": idUsuario,
-                    });
+                    admin.then(function(adminlogeado)
+                    {
+                        res.render("../Frontend/views/pages/index", {
+                            "usuariosEsp": usuarios,
+                            "especializacion": especializacion,
+                            "especializacionUsuario": userEspecializacion,
+                            "adminLogeado": adminlogeado,
+                            "usuarioLogeado": userLogeado,
+                            "user_id": idUsuario,
+                        });
+                    })
                 })
             })
         })
@@ -43,6 +48,7 @@ router.get('/oficios/:pag', function (req, res) {
     var idUsuario = (req.session.idUsuario || 0);
     var tokenUsuario = (req.session.token || 0);
 
+    var admin = AdminLogeado(idUsuario, tokenUsuario);
     var usuarioLogeado = UsuarioLogeado(idUsuario, tokenUsuario);
 
     //var usuariosEspecialistas = viewUsuariosEspecialistas(pagina);
@@ -53,19 +59,22 @@ router.get('/oficios/:pag', function (req, res) {
     usuariosEspecialistas.then(function (usuarios) {
         especializaciones.then(function (especializacion) {
             usuarioLogeado.then(function (logeado) {
-
-                usuarios.sort(function(a, b){
-                    return a.destacado - b.destacado;
+                admin.then(function(adminLogeado){
+                    usuarios.sort(function(a, b){
+                        return a.destacado - b.destacado;
+                    })
+                    usuarios.reverse();
+    
+                    res.render("../Frontend/views/pages/oficios", {
+                        "usuariosEsp": usuarios,
+                        "especializacion": especializacion,
+                        "adminLogeado": adminLogeado,
+                        "usuarioLogeado": logeado,
+                        "pag": pagina,
+                        "user_id": idUsuario,
+                    });
                 })
-                usuarios.reverse();
 
-                res.render("../Frontend/views/pages/oficios", {
-                    "usuariosEsp": usuarios,
-                    "especializacion": especializacion,
-                    "usuarioLogeado": logeado,
-                    "pag": pagina,
-                    "user_id": idUsuario,
-                });
             })
         })
     })
@@ -89,6 +98,7 @@ router.get('/perfil/:id', function (req, res) {
     var idUsuario = (req.session.idUsuario || 0);
     var tokenUsuario = (req.session.token || 0);
 
+    var admin = AdminLogeado(idUsuario, tokenUsuario);
     var usuarioLogeado = UsuarioLogeado(idUsuario, tokenUsuario);
 
     var idPerfil = req.params.id;
@@ -107,24 +117,20 @@ router.get('/perfil/:id', function (req, res) {
                     especializaciones.then(function (especializacion) {
                         reseñaHabilitada.then(function(habilitada) { 
                             reseñasPerfil.then(function(reseñas) {
-                                
-                                console.log("user")
-                                console.log(usuario)
-                                console.log("perfilEsp")
-                                console.log(perfilEsp)
-                                console.log("especializacion")
-                                console.log(especializacion)
-        
-                                res.render('../Frontend/views/pages/perfil', {
-                                    "user": usuario,
-                                    "id": idUsuario,
-                                    "perfilEsp": perfilEsp,
-                                    "usuarioLogeado": logeado,
-                                    "proyectos": proyectos,
-                                    "especializacion": especializacion,
-                                    "puedeReseñar": habilitada,
-                                    "reseñas": reseñas,
-                                });
+                                admin.then(function(adminLogeado)
+                                {                          
+                                    res.render('../Frontend/views/pages/perfil', {
+                                        "user": usuario,
+                                        "id": idUsuario,
+                                        "perfilEsp": perfilEsp,
+                                        "adminLogeado": adminLogeado,
+                                        "usuarioLogeado": logeado,
+                                        "proyectos": proyectos,
+                                        "especializacion": especializacion,
+                                        "puedeReseñar": habilitada,
+                                        "reseñas": reseñas,
+                                    });
+                                })
                             })
                         })
                     })
@@ -136,47 +142,62 @@ router.get('/perfil/:id', function (req, res) {
 });
 
 router.get('/admin', function (req, res) {
-    let cantCategorias, cantEspecializaciones, cantUsuarios;
 
-    // Consulta SQL para contar los registros en las tablas
-    const queryCategorias = 'SELECT COUNT(*) AS total FROM categorias';
-    connection.query(queryCategorias, (error1, results1) => {
-        if (error1) {
-            console.error('Error al contar los registros en categorias:', error1);
-            res.status(500).send('Error al contar los registros en categorias');
-            return;
-        }
-        cantCategorias = results1[0].total;
+    var idUsuario = (req.session.idUsuario || 0);
+    var tokenUsuario = (req.session.token || 0);
 
-        
-        const queryEspecializaciones = 'SELECT COUNT(*) AS total FROM especializaciones';
-        connection.query(queryEspecializaciones, (error2, results2) => {
-            if (error2) {
-                console.error('Error al contar los registros en especializaciones:', error2);
-                res.status(500).send('Error al contar los registros en especializaciones');
-                return;
-            }
-            cantEspecializaciones = results2[0].total;
-
+    var admin = AdminLogeado(idUsuario, tokenUsuario);
+    admin.then(function(adminLogeado)
+    { 
+        if (adminLogeado)
+        {
+            let cantDestacados, cantEspecializaciones, cantUsuarios;
             
-            const queryUsuarios = 'SELECT COUNT(*) AS total FROM usuarios';
-            connection.query(queryUsuarios, (error3, results3) => {
-                if (error3) {
-                    console.error('Error al contar los registros en usuarios:', error3);
-                    res.status(500).send('Error al contar los registros en usuarios');
+            // Consulta SQL para contar los registros en las tablas
+            const queryCategorias = 'SELECT COUNT(*) AS total FROM usuarios WHERE destacado = 1';
+            connection.query(queryCategorias, (error1, results1) => {
+                if (error1) {
+                    console.error('Error al contar los registros en categorias:', error1);
+                    res.status(500).send('Error al contar los registros en categorias');
                     return;
                 }
-                cantUsuarios = results3[0].total;
-
+                cantDestacados = results1[0].total;
+        
                 
-                res.render('../Frontend/views/pages/admin.ejs', {
-                    cantCategorias,
-                    cantEspecializaciones,
-                    cantUsuarios,
+                const queryEspecializaciones = 'SELECT COUNT(*) AS total FROM especializaciones';
+                connection.query(queryEspecializaciones, (error2, results2) => {
+                    if (error2) {
+                        console.error('Error al contar los registros en especializaciones:', error2);
+                        res.status(500).send('Error al contar los registros en especializaciones');
+                        return;
+                    }
+                    cantEspecializaciones = results2[0].total;
+        
+                    
+                    const queryUsuarios = 'SELECT COUNT(*) AS total FROM usuarios';
+                    connection.query(queryUsuarios, (error3, results3) => {
+                        if (error3) {
+                            console.error('Error al contar los registros en usuarios:', error3);
+                            res.status(500).send('Error al contar los registros en usuarios');
+                            return;
+                        }
+                        cantUsuarios = results3[0].total;
+        
+                        
+                        res.render('../Frontend/views/pages/admin.ejs', {
+                            adminLogeado,
+                            cantDestacados,
+                            cantEspecializaciones,
+                            cantUsuarios,
+                        });
+                    });
                 });
             });
-        });
-    });
+        } else
+        {
+            res.render('../Frontend/views/pages/error.ejs');
+        }
+    })
 });
 
 router.get('/destacar', function (req, res) {
@@ -196,15 +217,32 @@ router.get('/destacar', function (req, res) {
 //tablas del admin
 
 router.get('/categorias', (req, res) => {
-    connection.query('SELECT * FROM categorias', (error, results) => {
-        if (error) {
-            console.error('Error al obtener los nombres de las tablas:', error);
-            res.status(500).send('Error al obtener los nombres de las tablas');
-            return;
+
+    var idUsuario = (req.session.idUsuario || 0);
+    var tokenUsuario = (req.session.token || 0);
+
+    var admin = AdminLogeado(idUsuario, tokenUsuario);
+    admin.then(function(adminLogeado)
+    { 
+        if (adminLogeado)
+        {
+            connection.query('SELECT * FROM categorias', (error, results) => {
+                if (error) {
+                    console.error('Error al obtener los nombres de las tablas:', error);
+                    res.status(500).send('Error al obtener los nombres de las tablas');
+                    return;
+                }
+                res.render('../Frontend/views/pages/tablas-admin/categorias', { categorias: results, adminLogeado }); // Renderiza la vista EJS con los nombres de las tablas
+            });
+        } else
+        {
+            res.render('../Frontend/views/pages/error.ejs');
         }
-        res.render('../Frontend/views/pages/tablas-admin/categorias', { categorias: results }); // Renderiza la vista EJS con los nombres de las tablas
-    });
+    })
 });
+
+
+
 
 // router.get('/categorias', (req, res) => {
 //     const queryCategorias = 'SELECT * FROM categorias';
@@ -221,48 +259,105 @@ router.get('/categorias', (req, res) => {
 // })
 
 router.get('/especializaciones', (req, res) => {
-    connection.query('SELECT * FROM especializaciones', (error, results) => {
-        if (error) {
-            console.error('Error al obtener los nombres de las tablas:', error);
-            res.status(500).send('Error al obtener los nombres de las tablas');
-            return;
+
+    var idUsuario = (req.session.idUsuario || 0);
+    var tokenUsuario = (req.session.token || 0);
+
+    var admin = AdminLogeado(idUsuario, tokenUsuario);
+    admin.then(function(adminLogeado)
+    { 
+        if (adminLogeado)
+        {
+            connection.query('SELECT * FROM especializaciones', (error, results) => {
+                if (error) {
+                    console.error('Error al obtener los nombres de las tablas:', error);
+                    res.status(500).send('Error al obtener los nombres de las tablas');
+                    return;
+                }
+                res.render('../Frontend/views/pages/tablas-admin/especializaciones', { especializaciones: results, adminLogeado }); // Renderiza la vista EJS con los nombres de las tablas
+            });
+        } else
+        {
+            res.render('../Frontend/views/pages/error.ejs');
         }
-        res.render('../Frontend/views/pages/tablas-admin/especializaciones', { especializaciones: results }); // Renderiza la vista EJS con los nombres de las tablas
-    });
+    })
+
 });
 
 router.get('/especializacionDeUsuario', function (req, res) {
-    connection.query('SELECT * FROM especializacion_usuario', (error, results) => {
-        if (error) {
-            console.error('Error al obtener los nombres de las tablas:', error);
-            res.status(500).send('Error al obtener los nombres de las tablas');
-            return;
+    
+    var idUsuario = (req.session.idUsuario || 0);
+    var tokenUsuario = (req.session.token || 0);
+
+    var admin = AdminLogeado(idUsuario, tokenUsuario);
+    admin.then(function(adminLogeado)
+    { 
+        if (adminLogeado)
+        {
+            connection.query('SELECT * FROM especializacion_usuario', (error, results) => {
+                if (error) {
+                    console.error('Error al obtener los nombres de las tablas:', error);
+                    res.status(500).send('Error al obtener los nombres de las tablas');
+                    return;
+                }
+                res.render('../Frontend/views/pages/tablas-admin/especializacionDeUsuario', { especializacionUsuario: results, adminLogeado }); // Renderiza la vista EJS con los nombres de las tablas
+            });
+        } else
+        {
+            res.render('../Frontend/views/pages/error.ejs');
         }
-        res.render('../Frontend/views/pages/tablas-admin/especializacionDeUsuario', { especializacionUsuario: results }); // Renderiza la vista EJS con los nombres de las tablas
-    });
+    })
 
 });
 
 router.get('/proyectos', (req, res) => {
-    connection.query('SELECT * FROM proyectos', (error, results) => {
-        if (error) {
-            console.error('Error al obtener los nombres de las tablas:', error);
-            res.status(500).send('Error al obtener los nombres de las tablas');
-            return;
+    
+    var idUsuario = (req.session.idUsuario || 0);
+    var tokenUsuario = (req.session.token || 0);
+
+    var admin = AdminLogeado(idUsuario, tokenUsuario);
+    admin.then(function(adminLogeado)
+    { 
+        if (adminLogeado)
+        {  
+            connection.query('SELECT * FROM proyectos', (error, results) => {
+                if (error) {
+                    console.error('Error al obtener los nombres de las tablas:', error);
+                    res.status(500).send('Error al obtener los nombres de las tablas');
+                    return;
+                }
+                res.render('../Frontend/views/pages/tablas-admin/proyectos', { proyectos: results, adminLogeado }); // Renderiza la vista EJS con los nombres de las tablas
+            });
+        } else
+        {
+            res.render('../Frontend/views/pages/error.ejs');
         }
-        res.render('../Frontend/views/pages/tablas-admin/proyectos', { proyectos: results }); // Renderiza la vista EJS con los nombres de las tablas
-    });
+    })
 });
 
 router.get('/usuariosAdmin', (req, res) => {
-    connection.query('SELECT * FROM usuarios', (error, results) => {
-        if (error) {
-            console.error('Error al obtener los nombres de las tablas:', error);
-            res.status(500).send('Error al obtener los nombres de las tablas');
-            return;
+    
+    var idUsuario = (req.session.idUsuario || 0);
+    var tokenUsuario = (req.session.token || 0);
+
+    var admin = AdminLogeado(idUsuario, tokenUsuario);
+    admin.then(function(adminLogeado)
+    { 
+        if (adminLogeado)
+        {  
+            connection.query('SELECT * FROM usuarios', (error, results) => {
+                if (error) {
+                    console.error('Error al obtener los nombres de las tablas:', error);
+                    res.status(500).send('Error al obtener los nombres de las tablas');
+                    return;
+                }
+                res.render('../Frontend/views/pages/tablas-admin/usuariosAdmin', { usuariosAdmin: results, adminLogeado }); // Renderiza la vista EJS con los nombres de las tablas
+            });
+        } else
+        {
+            res.render('../Frontend/views/pages/error.ejs');
         }
-        res.render('../Frontend/views/pages/tablas-admin/usuariosAdmin', { usuariosAdmin: results }); // Renderiza la vista EJS con los nombres de las tablas
-    });
+    })
 });
 
 export default router;

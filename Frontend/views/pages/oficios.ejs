@@ -9,10 +9,14 @@
 
 <body>
 
-  <% if (usuarioLogeado) { %>
-  <%- include ('../partials/headerParaUsuario') %>
+  <% if (adminLogeado) { %>
+    <%- include ('../partials/headerParaAdmin') %>
   <% } else { %>
-  <%- include ('../partials/header') %>
+    <% if (usuarioLogeado) { %>
+      <%- include ('../partials/headerParaUsuario') %>
+    <% } else { %>
+      <%- include ('../partials/header') %>
+    <% } %>
   <% } %>
 
   <div class="container" class="perfil" data-perfil-id="<%= user_id %>">

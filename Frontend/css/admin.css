@@ -29,7 +29,7 @@
     justify-content: flex-start;
     align-items: center;
     margin: 0;
-    padding-bottom: 30px;
+    padding-bottom: 15px;
 }
 
 .aside a:hover {
@@ -46,6 +46,8 @@
     justify-content: flex-start;
     align-items: center;
     margin: 0;
+    padding-top: 15px;
+    padding-bottom: 30px;
 }
 
 .aside p:hover {
@@ -76,7 +78,7 @@
     padding-inline: 15px;
 }
 
-.aside-usuario a {
+.aside-usuario a p{
     text-decoration: none;
     color: #FFF;
     font-family: Montserrat;
@@ -86,13 +88,19 @@
     border-radius: 5px;
 }
 
-.aside-usuario a:hover {
-    color: #F57F25;
+.aside-usuario a p:hover {
+    cursor: pointer;
     border: 3px solid #F57F25;
 }
 
 .aside-usuario i {
     margin-right: 10px;
+    color: #FFF;
+}
+
+.aside-usuario i:hover {
+    margin-right: 10px;
+    color: #F57F25;
 }
 
 .aside-usuario img {

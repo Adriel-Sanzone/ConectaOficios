@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-11-2023 a las 17:10:41
+-- Tiempo de generación: 23-11-2023 a las 07:11:18
 -- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.0.28
+-- Versión de PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -65,7 +65,19 @@ INSERT INTO `especializaciones` (`id`, `especializacion`, `id_categoria`) VALUES
 (3, 'Pintor', 5),
 (4, 'Jardinero', 5),
 (5, 'Gasista', 2),
-(6, 'Arreglos tecnológicos', 4);
+(6, 'Arreglos tecnológicos', 4),
+(13, 'Fontanero', 1),
+(14, 'Sistemas de riego', 1),
+(15, 'Tratamiento de aguas\n', 1),
+(16, 'Paneles solares', 3),
+(17, 'Electricista industrial', 3),
+(18, 'Reparación de calderas', 2),
+(19, 'Inspector de seguridad', 2),
+(20, 'Desarrollador web', 4),
+(21, 'Ingeniero de software', 4),
+(22, 'Ciberseguridad', 4),
+(23, 'Carpintero', 5),
+(24, 'Albañil', 5);
 
 -- --------------------------------------------------------
 
@@ -229,8 +241,12 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `email`, `password`, `nombre`, `apellido`, `contacto`, `descripcion`, `destacado`, `especialista`, `direccion`, `token`, `path`, `path_portada`) VALUES
+(1, 'adriel@hotmail', '202cb962ac59075b964b07152d234b70', 'Adriel', 'Sanzone', '', '', 0, 0, '', 'd3ef135b313f6e897e2594b2cbd703eb', '/Frontend/uploads/usuario-sin-foto.png', '/Frontend/uploads/portada-sin-foto.png'),
+(2, 'fede@hotmail', '202cb962ac59075b964b07152d234b70', 'Federico', 'Caggiano', '', '', 0, 0, '', '64ffe5cb1a9b121be817fca8c0691936', '/Frontend/uploads/usuario-sin-foto.png', '/Frontend/uploads/portada-sin-foto.png'),
+(3, 'abril@hotmail', '202cb962ac59075b964b07152d234b70', 'Abril', 'Sanchez', '', '', 0, 0, '', '98cca20cffe1a5d8c22bb0ca42ce9e9d', '/Frontend/uploads/usuario-sin-foto.png', '/Frontend/uploads/portada-sin-foto.png'),
+(4, 'kevin@hotmail', '202cb962ac59075b964b07152d234b70', 'Kevin', 'Ledesma', '', '', 0, 0, '', '8cd38a390759414dc96bad869f3b56cd', '/Frontend/uploads/usuario-sin-foto.png', '/Frontend/uploads/portada-sin-foto.png'),
 (33, 'laura.rodriguez@email.com', '202cb962ac59075b964b07152d234b70', 'Laura', 'Rodríguez', '+54 1234 56-7890', 'Gasista matriculado. Garantizo instalaciones seguras y eficientes. Tu tranquilidad es mi prioridad.', 1, 1, 'Belgrano 456', 'af0eba0056fa78d56d21f23ea7b2eb3f', '/Frontend/uploads/1695109619338.Sin tÃ­tulo.png', '/Frontend/uploads/portada-sin-foto.png'),
-(34, 'juan.perez@email.com', '202cb962ac59075b964b07152d234b70', 'Juan', 'Pérez', '+54 1234 56-7890', 'Electricista con amplia experiencia en Chivilcoy. Hago que tu hogar brille con luz. ¡Confía en mí para tus necesidades eléctricas', 0, 1, 'San Martín 789', 'f6c9ed68403fa1ad847f1e2f039f769a', '/Frontend/uploads/1695109737901.Sin tÃ­tulo.png', '/Frontend/uploads/portada-sin-foto.png'),
+(34, 'juan.perez@email.com', '202cb962ac59075b964b07152d234b70', 'Juan', 'Pérez', '+54 1234 56-7890', 'Electricista con amplia experiencia en Chivilcoy. Hago que tu hogar brille con luz. ¡Confía en mí para tus necesidades eléctricas', 0, 1, 'San Martín 789', 'c05d38d076fcdb0b74e6772f54fa80d4', '/Frontend/uploads/1695109737901.Sin tÃ­tulo.png', '/Frontend/uploads/portada-sin-foto.png'),
 (35, 'maria.lopez@email.com', '202cb962ac59075b964b07152d234b70', 'María', 'López', '+54 1234 56-7890', 'Transformo jardines en paraísos verdes. Cuida la belleza de tu espacio exterior. ¡Contáctame para un jardín de ensueño!', 1, 1, 'Rivadavia 234', '0a7e98ffd60b77dffa50db7c68858a0c', '/Frontend/uploads/1695109952599.Sin tÃ­tulo.png', '/Frontend/uploads/portada-sin-foto.png'),
 (36, 'pablo.fernandez@email.com', '202cb962ac59075b964b07152d234b70', 'Pablo', 'Fernández', '+54 1234 56-7890', 'Pintor artístico en Chivilcoy. Doy vida a tus ideas en colores. Transforma tu hogar u oficina con mi creatividad y precisión.', 0, 1, 'Sarmiento 567', '85fae73c6d041e7e3f293ee28965a177', '/Frontend/uploads/1695110028824.Sin tÃ­tulo.png', '/Frontend/uploads/portada-sin-foto.png'),
 (37, 'diego.martinez@email.com', '202cb962ac59075b964b07152d234b70', 'Diego', 'Martínez', '+54 1234 56-7890', 'Reparación rápida y confiable de dispositivos móviles. Vuelve a conectarte con tus seres queridos. ¡Estoy aquí para ayudarte con tus problemas de celular!', 1, 1, 'Mitre 890', '920a65b45afad49096052a884d7b2ac5', '/Frontend/uploads/1695110119612.Sin tÃ­tulo.png', '/Frontend/uploads/portada-sin-foto.png'),
@@ -308,7 +324,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `especializaciones`
 --
 ALTER TABLE `especializaciones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `especializacion_usuario`
@@ -338,7 +354,7 @@ ALTER TABLE `reseña_habilitada`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- Restricciones para tablas volcadas
@@ -349,20 +365,6 @@ ALTER TABLE `usuarios`
 --
 ALTER TABLE `especializaciones`
   ADD CONSTRAINT `fk_id_categoria` FOREIGN KEY (`id_categoria`) REFERENCES `categorias` (`id`);
-
---
--- Filtros para la tabla `especializacion_usuario`
---
-ALTER TABLE `especializacion_usuario`
-  ADD CONSTRAINT `especializacion_usuario_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`),
-  ADD CONSTRAINT `especializacion_usuario_ibfk_2` FOREIGN KEY (`id_especializacion`) REFERENCES `especializaciones` (`id`);
-
---
--- Filtros para la tabla `reseña_habilitada`
---
-ALTER TABLE `reseña_habilitada`
-  ADD CONSTRAINT `reseña_habilitada_ibfk_1` FOREIGN KEY (`id_reseñador`) REFERENCES `usuarios` (`id`),
-  ADD CONSTRAINT `reseña_habilitada_ibfk_2` FOREIGN KEY (`id_reseñado`) REFERENCES `usuarios` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
