@@ -1,9 +1,9 @@
 import mysql from 'mysql2';
-import {PORT, DB_HOTS, DB_USER, DB_PASSWORD, DB_NAME} from './configuracion.js';
+import {PORT, DB_HOST, DB_USER, DB_PASSWORD, DB_NAME} from './configuracion.js';
 
 const connection = mysql.createConnection({
-  host: PORT,
-  port: DB_HOTS,
+  host: DB_HOST,
+  port: PORT,
   user: DB_USER,
   password: DB_PASSWORD,
   database: DB_NAME,
